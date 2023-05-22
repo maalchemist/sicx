@@ -1,0 +1,19 @@
+[SICx32V.DLL]
+@_02=_02
+@_10=_10
+
+
+[++] ; duplicate
+;n=o
+
+
+[+-] ; rename
+;n=o
+
+
+[-+] ; exchange
+;n=o
+
+
+[--] ; invalidate
+;o

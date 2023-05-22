@@ -1,0 +1,21 @@
+@cd /d "%~dp0"
+
+@if {%1} == {} ( set BPAUSE=1 ) else ( set BPAUSE=%1 )
+
+:BAT
+if not %BPAUSE%==0 GOTO BATT
+echo.
+echo [COPY_TEST_LIST.BAT]
+:BATT
+
+copy TEST.LIST .\TEST\DELPHI\BIN_Win32_ActiveX\TEST.LIST
+copy TEST.LIST .\TEST\DELPHI\BIN_Win32_Release\TEST.LIST
+copy TEST.LIST .\TEST\DELPHI\BIN_Win32_Static\TEST.LIST
+copy TEST.LIST .\TEST\DELPHI\BIN_Win64_ActiveX\TEST.LIST
+copy TEST.LIST .\TEST\DELPHI\BIN_Win64_Release\TEST.LIST
+copy TEST.LIST .\TEST\DELPHI\BIN_Win64_Static\TEST.LIST
+
+:RET
+if %BPAUSE%==0 GOTO RETT
+pause
+:RETT

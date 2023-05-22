@@ -1,0 +1,477 @@
+[..\LIBs64\AMD\libalm.dll]
+; AMD Optimizing CPU Libraries (AOCL)
+amd_sin=amd_sin:1
+amd_cos=amd_cos:1
+
+[..\LIBs64\Intel\libmmd.dll]
+; Math Library for Intel(r) Compilers (thread-safe)
+
+libm_ceil=ceil:1
+libm_floor=floor:1
+libm_round=round:1
+libm_hypot=hypot:2
+libm_sqrt=sqrt:1
+libm_cbrt=cbrt:1
+libm_rsqrt=invsqrt:1
+libm_invsqrt=invsqrt:1
+libm_pow=pow:2
+libm_powr=powr:2
+libm_pow2o3=pow2o3:1
+libm_pow3o2=pow3o2:1
+libm_exp=exp:1
+libm_exp2=exp2:1
+libm_exp10=exp10:1
+libm_expm1=expm1:1
+libm_ln=log:1
+libm_log=log:1
+libm_loge=log:1
+libm_log2=log2:1
+libm_log10=log10:1
+libm_log1p=log1p:1
+libm_sin=sin:1
+libm_cos=cos:1
+libm_tan=tan:1
+libm_cot=cot:1
+libm_sincos=sincos:3:0110:-1                            ; cdecl void ( double __x, double *__psin, double *__pcos )
+libm_sinpi=sinpi:1
+libm_cospi=cospi:1
+libm_tanpi=tanpi:1
+libm_asin=asin:1
+libm_acos=acos:1
+libm_atan=atan:1
+libm_atan2=atan2:2
+libm_asinpi=asinpi:1
+libm_acospi=acospi:1
+libm_atanpi=atanpi:1
+libm_atan2pi=atan2pi:2
+libm_sinh=sinh:1
+libm_cosh=cosh:1
+libm_tanh=tanh:1
+libm_sinhcosh=sinhcosh:3:0110:-1                        ; cdecl void ( double __x, double *__psinh, double *__pcosh )
+libm_asinh=asinh:1
+libm_acosh=acosh:1
+libm_atanh=atanh:1
+libm_j0=j0:1
+libm_j1=j1:1
+libm_jn=jn:2:0001                                       ; cdecl double ( int __n, double __x )
+libm_y0=y0:1
+libm_y1=y1:1
+libm_yn=yn:2:0001                                       ; cdecl double ( int __n, double __x )
+libm_erf=erf:1
+libm_erfc=erfc:1
+libm_cdfnorm=cdfnorm:1
+libm_erfinv=erfinv:1
+libm_erfcinv=erfcinv:1
+libm_cdfnorminv=cdfnorminv:1
+libm_lgamma=lgamma:1
+libm_tgamma=tgamma:1
+
+; complex ca0, cb0, cr0;
+; libm_cpow (&cr0, &ca0, &cb0);
+; libm_csin (&cr0, &ca0);
+libm_cpow=cpow:3:0111:-1
+libm_csin=csin:2:0011:-1
+libm_ccos=ccos:2:0011:-1
+
+
+[..\LIBs64\Intel\svml_dispmd.dll]
+; SVML Library for Intel(r) Compilers (thread-safe)
+; Short Vector Math Library (SVML)
+
+svm_ceil=__svml_ceil1:1
+svm_floor=__svml_floor1:1
+svm_round=__svml_round1:1
+svm_hypot=__svml_hypot1:1
+svm_sqrt=__svml_sqrt1:1
+svm_cbrt=__svml_cbrt1:1
+svm_invsqrt=__svml_invsqrt1:1
+svm_invcbrt=__svml_invcbrt1:1
+svm_pow=__svml_pow1:1
+svm_powr=__svml_powr1:1
+svm_pow2o3=__svml_pow2o31:1
+svm_pow3o2=__svml_pow3o21:1
+svm_exp=__svml_exp1:1
+svm_exp=__svml_exp21:1
+svm_exp10=__svml_exp101:1
+svm_expm1=__svml_expm11:1
+svm_ln=__svml_log1:1
+svm_log=__svml_log1:1
+svm_loge=__svml_log1:1
+svm_log2=__svml_log21:1
+svm_log10=__svml_log101:1
+svm_log1p=__svml_log1p1:1
+svm_sin=__svml_sin1:1
+svm_cos=__svml_cos1:1
+svm_tan=__svml_tan1:1
+svm_sincos=__svml_sincos1:3:0110:-1                     ; cdecl void ( double __x, double *__psin, double *__pcos )
+svm_sinpi=__svml_sinpi1:1
+svm_cospi=__svml_cospi1:1
+svm_tanpi=__svml_tanpi1:1
+svm_asin=__svml_asin1:1
+svm_acos=__svml_acos1:1
+svm_atan=__svml_atan1:1
+svm_atan2=__svml_atan21:2
+svm_asinpi=__svml_asinpi1:1
+svm_acospi=__svml_acospi1:1
+svm_atanpi=__svml_atanpi1:1
+svm_atan2pi=__svml_atan2pi1:2
+svm_sinh=__svml_sinh1:1
+svm_cosh=__svml_cosh1:1
+svm_tanh=__svml_tanh1:1
+svm_asinh=__svml_asinh1:1
+svm_acosh=__svml_acosh1:1
+svm_atanh=__svml_atanh1:1
+svm_erf=__svml_erf1:1
+svm_erfc=__svml_erfc1:1
+svm_cdfnorm=__svml_cdfnorm1:1
+svm_erfinv=__svml_erfinv1:1
+svm_erfcinv=__svml_erfcinv1:1
+svm_cdfnorminv=__svml_cdfnorminv1:1
+
+
+[..\LIBs64\Intel\mkl_vml_mc.2.dll]
+; Intel(R) oneAPI Math Kernel Library
+; VML&VSL. Kernel optimized for Intel(R) Supplemental Streaming SIMD Extensions 3 enabled processors.
+
+; cdecl void (const MKL_INT n, const double a[], double r[])
+; f (#1, &a, &r)
+
+vml_Erf=_vmldErf:3:0111:-1
+vml_Erfc=_vmldErfc:3:0111:-1
+vml_CdfNorm=_vmldCdfNorm:3:0111:-1
+vml_ErfInv=_vmldErfInv:3:0111:-1
+vml_ErfcInv=_vmldErfcInv:3:0111:-1
+vml_CdfNormInv=_vmldCdfNormInv:3:0111:-1
+vml_LGamma=_vmldLGamma:3:0111:-1
+vml_TGamma=_vmldTGamma:3:0111:-1
+
+
+[..\LIBs64\GSL\libgsl-25.dll]
+; GNU Scientific Library (GSL)
+
+gsl_exp=gsl_sf_exp:1
+gsl_sin=gsl_sf_sin:1
+gsl_cos=gsl_sf_cos:1
+gsl_lgamma=gsl_sf_lngamma:1
+gsl_tgamma=gsl_sf_gamma:1
+gsl_igamma=gsl_sf_gamma_inc_P:2                         ; double gsl_sf_gamma_inc_P(const double a, const double x);
+gsl_igammac=gsl_sf_gamma_inc_Q:2                        ; double gsl_sf_gamma_inc_Q(const double a, const double x);
+gsl_beta=gsl_sf_beta:2
+gsl_erf=gsl_sf_erf:1
+gsl_erfc=gsl_sf_erfc:1
+gsl_cdfnorm=gsl_cdf_ugaussian_P:1
+gsl_cdfnorminv=gsl_cdf_ugaussian_Pinv:1
+gsl_cdf_ugaussian_P=gsl_cdf_ugaussian_P:1
+gsl_cdf_ugaussian_Pinv=gsl_cdf_ugaussian_Pinv:1
+gsl_cdf_ugaussian_Q=gsl_cdf_ugaussian_Q:1
+gsl_cdf_ugaussian_Qinv=gsl_cdf_ugaussian_Qinv:1
+gsl_cdf_gaussian_P=gsl_cdf_gaussian_P:2
+gsl_cdf_gaussian_Pinv=gsl_cdf_gaussian_Pinv:2
+gsl_cdf_gaussian_Q=gsl_cdf_gaussian_Q:2
+gsl_cdf_gaussian_Qinv=gsl_cdf_gaussian_Qinv:2
+
+; complex ca0, cb0, cr0;
+; gsl_cadd (&cr0, &ca0, &cb0);
+; gsl_cpow (&cr0, &ca0, &cb0);
+; gsl_csin (&cr0, &ca0);
+gsl_cadd=gsl_complex_add:3:0111:-1
+gsl_csub=gsl_complex_sub:3:0111:-1
+gsl_cdiv=gsl_complex_div:3:0111:-1
+gsl_cmul=gsl_complex_mul:3:0111:-1
+gsl_cpow=gsl_complex_pow:3:0111:-1
+gsl_csin=gsl_complex_sin:2:0011:-1
+gsl_ccos=gsl_complex_cos:2:0011:-1
+gsl_csec=gsl_complex_sec:2:0011:-1
+gsl_ccosec=gsl_complex_csc:2:0011:-1
+gsl_ccsc=gsl_complex_csc:2:0011:-1
+gsl_ctan=gsl_complex_tan:2:0011:-1
+gsl_ccot=gsl_complex_cot:2:0011:-1
+gsl_ccotan=gsl_complex_cot:2:0011:-1
+gsl_csinh=gsl_complex_sinh:2:0011:-1
+gsl_ccosh=gsl_complex_cosh:2:0011:-1
+gsl_csech=gsl_complex_sech:2:0011:-1
+gsl_ccosech=gsl_complex_csch:2:0011:-1
+gsl_ccsch=gsl_complex_csch:2:0011:-1
+gsl_ctanh=gsl_complex_tanh:2:0011:-1
+gsl_ccoth=gsl_complex_coth:2:0011:-1
+gsl_ccotanh=gsl_complex_coth:2:0011:-1
+gsl_casin=gsl_complex_arcsin:2:0011:-1
+gsl_cacos=gsl_complex_arccos:2:0011:-1
+gsl_casec=gsl_complex_arcsec:2:0011:-1
+gsl_cacosec=gsl_complex_arccsc:2:0011:-1
+gsl_cacsc=gsl_complex_arccsc:2:0011:-1
+gsl_catan=gsl_complex_arctan:2:0011:-1
+gsl_cacot=gsl_complex_arccot:2:0011:-1
+gsl_cacotan=gsl_complex_arccot:2:0011:-1
+gsl_casinh=gsl_complex_arcsinh:2:0011:-1
+gsl_cacosh=gsl_complex_arccosh:2:0011:-1
+gsl_casech=gsl_complex_arcsech:2:0011:-1
+gsl_cacosech=gsl_complex_arccsch:2:0011:-1
+gsl_cacsch=gsl_complex_arccsch:2:0011:-1
+gsl_catanh=gsl_complex_arctanh:2:0011:-1
+gsl_cacoth=gsl_complex_arccoth:2:0011:-1
+gsl_cacotanh=gsl_complex_arccoth:2:0011:-1
+
+
+[..\LIBs64\Wolfram\WolframRTL_Minimal.dll]
+; Wolfram Engine Library
+; Minimal shared library for runtime support
+
+wf_ceil=unary_ceiling_Real64:1
+wf_floor=unary_floor_Real64:1
+wf_round=unary_round_Real64:1
+wf_sqrt=unary_sqrt_Real64:1
+wf_cbrt=unary_cbrt_Real64:1
+wf_rsqrt=unary_rsqrt_Real64:1
+wf_invsqrt=unary_rsqrt_Real64:1
+wf_pow=binary_pow_Real64_Real64:2
+wf_root=binary_root_Real64_Real64:2
+wf_exp=unary_exp_Real64:1
+wf_expm1=unary_expm1_Real64:1
+wf_ln=unary_log_Real64:1
+wf_log=unary_log_Real64:1
+wf_loge=unary_log_Real64:1
+wf_log2=unary_log2_Real64:1
+wf_log10=unary_log10_Real64:1
+wf_log1p=unary_log1p_Real64:1
+wf_sin=unary_sin_Real64:1
+wf_cos=unary_cos_Real64:1
+wf_sec=unary_sec_Real64:1
+wf_csc=unary_csc_Real64:1
+wf_cosec=unary_csc_Real64:1
+wf_tan=unary_tan_Real64:1
+wf_cot=unary_cot_Real64:1
+wf_cotan=unary_cot_Real64:1
+wf_asin=unary_asin_Real64:1
+wf_acos=unary_acos_Real64:1
+wf_asec=unary_asec_Real64:1
+wf_acsc=unary_acsc_Real64:1
+wf_acosec=unary_acsc_Real64:1
+wf_atan=unary_atan_Real64:1
+wf_acot=unary_acot_Real64:1
+wf_acotan=unary_acot_Real64:1
+wf_atan2=binary_atan2_Real64_Real64:2
+wf_sinh=unary_sinh_Real64:1
+wf_cosh=unary_cosh_Real64:1
+wf_sech=unary_sech_Real64:1
+wf_csch=unary_csch_Real64:1
+wf_cosech=unary_csch_Real64:1
+wf_tanh=unary_tanh_Real64:1
+wf_coth=unary_coth_Real64:1
+wf_cotanh=unary_coth_Real64:1
+wf_asinh=unary_asinh_Real64:1
+wf_acosh=unary_acosh_Real64:1
+wf_asech=unary_asech_Real64:1
+wf_acsch=unary_acsch_Real64:1
+wf_acosech=unary_acsch_Real64:1
+wf_atanh=unary_atanh_Real64:1
+wf_acoth=unary_acoth_Real64:1
+wf_acotanh=unary_acoth_Real64:1
+wf_erf=unary_erf_Real64:1
+wf_erfc=unary_erfc_Real64:1
+wf_lgamma=unary_loggamma_Real64:1
+wf_tgamma=unary_gamma_Real64:1
+
+
+[msvcp140_2.dll]
+; Microsoft® C Runtime Library _2
+
+smf_assoc_laguerre=__std_smf_assoc_laguerre:3:0011      ; double assoc_laguerre ( unsigned int n, unsigned int m, double x )
+smf_assoc_legendre=__std_smf_assoc_legendre:3:0011      ; double assoc_legendre ( unsigned int n, unsigned int m, double x )
+smf_beta=__std_smf_beta:2                               ; double beta ( double x, double y )
+smf_comp_ellint_1=__std_smf_comp_ellint_1:1             ; double comp_ellint_1 ( double k )
+smf_comp_ellint_2=__std_smf_comp_ellint_2:1             ; double comp_ellint_2 ( double k )
+smf_comp_ellint_3=__std_smf_comp_ellint_3:2             ; double comp_ellint_3 ( double k, double nu )
+smf_cyl_bessel_i=__std_smf_cyl_bessel_i:2               ; double cyl_bessel_i ( double nu, double x )
+smf_cyl_bessel_j=__std_smf_cyl_bessel_j:2               ; double cyl_bessel_j ( double nu, double x )
+smf_cyl_bessel_k=__std_smf_cyl_bessel_k:2               ; double cyl_bessel_k ( double nu, double x )
+smf_cyl_neumann=__std_smf_cyl_neumann:2                 ; double cyl_neumann ( double nu, double x )
+smf_ellint_1=__std_smf_ellint_1:2                       ; double ellint_1 ( double k, double phi )
+smf_ellint_2=__std_smf_ellint_2:2                       ; double ellint_2 ( double k, double phi )
+smf_ellint_3=__std_smf_ellint_3:3                       ; double ellint_3 ( double k, double nu, double phi )
+smf_expint=__std_smf_expint:1                           ; double expint ( double arg )
+smf_hermite=__std_smf_hermite:2:0001                    ; double hermite ( unsigned int n, double x )
+smf_hypot3=__std_smf_hypot3:3                           ; double hypot3 ( double x, double y, double z )
+smf_laguerre=__std_smf_laguerre:2:0001                  ; double laguerre ( unsigned int n, double x )
+smf_legendre=__std_smf_legendre:2:0001                  ; double legendre ( unsigned int n, double x )
+smf_riemann_zeta=__std_smf_riemann_zeta:1               ; double riemann_zeta ( double arg )
+smf_sph_bessel=__std_smf_sph_bessel:2:0001              ; double sph_bessel ( unsigned n, double x )
+smf_sph_legendre=__std_smf_sph_legendre:3:0011          ; double sph_legendre ( unsigned l, unsigned m, double theta )
+smf_sph_neumann=__std_smf_sph_neumann:2:0001            ; double sph_neumann ( unsigned n, double x )
+
+
+[..\LIBs64\alglib316_64free.dll]
+; ALGLIB native core
+
+alib_lgamma=alglib_xv2_lngamma:5:1111:4
+; Tlngamma = function(error_msg: PPAnsiChar; result: PDouble; x: PDouble; sgngam: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_lgamma (&s0, &r0, &x, &t, #0);
+
+alib_tgamma=alglib_xv2_gammafunction:4:1111:4
+; Tgammafunction = function(error_msg: PPAnsiChar; result: PDouble; x: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_tgamma (&s0, &r0, &x, #0);
+
+alib_igamma=alglib_xv2_incompletegamma:5:1111:4
+; Tincompletegamma = function(error_msg: PPAnsiChar; result: PDouble; a: PDouble; x: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_igamma (&s0, &r0, &a, &x, #0);
+
+alib_igammac=alglib_xv2_incompletegammac:5:1111:4
+; Tincompletegammac = function(error_msg: PPAnsiChar; result: PDouble; a: PDouble; x: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_igammac (&s0, &r0, &a, &x, #0);
+
+alib_psi=alglib_xv2_psi:4:1111:4
+; Tpsi = function(error_msg: PPAnsiChar; result: PDouble; x: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_psi (&s0, &r0, &x, #0);
+
+alib_beta=alglib_xv2_beta:5:1111:4
+; Tbeta = function(error_msg: PPAnsiChar; result: PDouble; a: PDouble; b: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_beta (&s0, &r0, &x, &y, #0);
+
+alib_ibeta=alglib_xv2_incompletebeta:6:1111:4
+; Tincompletebeta = function(error_msg: PPAnsiChar; result: PDouble; a: PDouble; b: PDouble; x: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_ibeta (&s0, &r0, &a, &b, &x, #0);
+
+alib_fresnel=alglib_xv2_fresnelintegral:5:1111:4
+; Tfresnelintegral = function(error_msg: PPAnsiChar; x: PDouble; c: PDouble; s: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_fresnel (&s0, &x, &fc, &fs, #0);
+
+alib_sici=alglib_xv2_sinecosineintegrals:5:1111:4
+; Tsinecosineintegrals = function(error_msg: PPAnsiChar; x: PDouble; si: PDouble; ci: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_sici (&s0, &x, &si, &ci, #0);
+
+alib_shichi=alglib_xv2_hyperbolicsinecosineintegrals:5:1111:4
+; Thyperbolicsinecosineintegrals = function(error_msg: PPAnsiChar; x: PDouble; shi: PDouble; chi: PDouble; _xparams: UInt64):Int32T;cdecl;
+; alib_shichi (&s0, &x, &shi, &chi, #0);
+
+
+[msvcr120.dll]
+; Microsoft® C Runtime Library
+
+vcr_pow=pow:2
+vcr_lgamma=lgamma:1
+vcr_tgamma=tgamma:1
+
+
+[msvcrt.dll:0]
+; Windows NT CRT DLL
+
+crt_fabs=fabs:1
+crt_fmod=fmod:2
+crt_modf=modf:2:0010
+crt_ceil=ceil:1
+crt_floor=floor:1
+crt_hypot=_hypot:2
+crt_sqrt=sqrt:1
+crt_pow=pow:2
+crt_exp=exp:1
+crt_ln=log:1
+crt_log=log:1
+crt_loge=log:1
+crt_log10=log10:1
+crt_logb=_logb:1
+crt_ldexp=ldexp:2:0010
+crt_cos=cos:1
+crt_sin=sin:1
+crt_tan=tan:1
+crt_acos=acos:1
+crt_asin=asin:1
+crt_atan=atan:1
+crt_atan2=atan2:2
+crt_cosh=cosh:1
+crt_sinh=sinh:1
+crt_tanh=tanh:1
+crt_j0=_j0:1
+crt_j1=_j1:1
+crt_jn=_jn:2:0001
+crt_y0=_y0:1
+crt_y1=_y1:1
+crt_yn=_yn:2:0001
+crt_rand=rand:::4:D                                     ; dynamic function
+crt_srand=srand:1:0001:-1:D                             ; dynamic function
+
+
+[msvcrt.dll:1]
+; Windows NT CRT DLL
+
+ltoa=_ltoa:3:0111:8:D                                   ; dynamic function
+atof=atof:1:0001
+strtod=strtod:2:0011
+strtol=strtol:3:0111:4
+strtoi64=_strtoi64:3:0111:8
+gcvt=_gcvt:3:0110:8                                     ; char *_gcvt ( double value, int digits, char *buffer )
+strlen=strlen:1:0001:8
+strcmp=strcmp:2:0011:4
+stricmp=_stricmp:2:0011:4
+strncmp=strncmp:3:0111:4
+strnicmp=_strnicmp:3:0111:4
+strcat=strcat:2:0011:8:D                                ; dynamic function
+malloc=malloc:1:0001:8:D                                ; dynamic function
+free=free:1:0001:-1:D                                   ; dynamic function
+memset=memset:3:0111:8:D                                ; dynamic function
+controlfp=_controlfp:2:0011:4:D                         ; dynamic function
+
+
+[kernel32.dll]
+lstrlen=lstrlenA:1:0001:4:D                             ; dynamic function
+lstrcat=lstrcatA:2:0011:8:D                             ; dynamic function
+GetLastError=GetLastError:0::4:D                        ; dynamic function
+CreateFile=CreateFileA:7:1111:8:D                       ; dynamic function
+WriteFile=WriteFile:5:1111:4:D                          ; dynamic function
+CloseHandle=CloseHandle:1:1111:4:D                      ; dynamic function
+
+
+[user32.dll]
+MessageBox=MessageBoxA:4:1111:4:D                       ; dynamic function
+
+
+[SICx64F.DLL]
+@_zoom=zoom:2
+@_izoom2x=izoom2x:3:0011
+@_izoom2x2x=izoom2x2x:4:0101
+@_izoom3x=izoom3x:4:0111
+@_izoom4x=izoom4x:5:1111
+
+
+[==] ; SIC64.DLL
+cpuseed=cpuseed:::8:D                                   ; dynamic function
+cpuseed64=cpuseed64:::8:D                               ; dynamic function
+cpuseed32=cpuseed32:::4:D                               ; dynamic function
+cpuseed16=cpuseed16:::2:D                               ; dynamic function
+cpurand=cpurand:::8:D                                   ; dynamic function
+cpurand64=cpurand64:::8:D                               ; dynamic function
+cpurand32=cpurand32:::4:D                               ; dynamic function
+cpurand16=cpurand16:::2:D                               ; dynamic function
+cpurandf=cpurandf::::D                                  ; dynamic function
+cpurandf2pi=cpurandf2pi::::D                            ; dynamic function
+mt19937_seed=mt19937_seed:1:0001:-1:D                   ; dynamic function
+mt19937_igen=mt19937_igen:::8:D                         ; dynamic function
+mt19937_fgen=mt19937_fgen::::D                          ; dynamic function
+mt19937_fgen2pi=mt19937_fgen2pi::::D                    ; dynamic function
+sic_erf=sic_erf:1
+sic_erfc=sic_erfc:1
+sic_cdfnorm=sic_cdfnorm:1
+sic_erfinv=sic_erfinv:1
+sic_erfcinv=sic_erfcinv:1
+sic_cdfnorminv=sic_cdfnorminv:1
+sic_lgamma=sic_lgamma:1
+sic_lgammas=sic_lgammas:2:0010
+sic_tgamma=sic_tgamma:1
+sic_rgamma=sic_rgamma:1
+sic_rtgamma=sic_rtgamma:1
+sic_beta=sic_beta:2
+
+
+[++] ; duplicate
+;n=o
+
+
+[+-] ; rename
+;n=o
+
+
+[-+] ; exchange
+;n=o
+
+
+[--] ; invalidate
+;o

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{926bdd6b-2bfe-4b11-b8bb-377a21d6ba8e}</ProjectGuid>
+    <MainSource>TEST_D2007_RS32.dpr</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>BIN_Win32_Release\TEST_D2007_RS32.exe</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_Define>RELEASE;SIC_SSE</DCC_Define>
+    <DCC_Optimize>False</DCC_Optimize>
+    <DCC_ExeOutput>.\BIN_Win32_Release</DCC_ExeOutput>
+    <DCC_DcuOutput>.\OBJ\D2007_Win32_Release_SSE</DCC_DcuOutput>
+    <DCC_ObjOutput>.\OBJ\D2007_Win32_Release_SSE</DCC_ObjOutput>
+    <DCC_HppOutput>.\OBJ\D2007_Win32_Release_SSE</DCC_HppOutput>
+    <DCC_UnitSearchPath>.\STUB;..\..\ActiveX\Common</DCC_UnitSearchPath>
+    <DCC_ResourcePath>.\STUB;..\..\ActiveX\Common</DCC_ResourcePath>
+    <DCC_ObjPath>.\STUB;..\..\ActiveX\Common</DCC_ObjPath>
+    <DCC_IncludePath>.\STUB;..\..\ActiveX\Common</DCC_IncludePath>
+    <DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;Winapi.Windows=Windows;System.Classes=Classes;System.Variants=Variants;System.Win.StdVCL=StdVCL;Vcl.Graphics=Graphics;Vcl.OleServer=OleServer;Winapi.ActiveX=ActiveX;System.Win.ComObj=ComObj</DCC_UnitAlias>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_Define>DEBUG</DCC_Define>
+    <DCC_Optimize>False</DCC_Optimize>
+    <DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;Winapi.Windows=Windows;System.Classes=Classes;System.Variants=Variants;System.Win.StdVCL=StdVCL;Vcl.Graphics=Graphics;Vcl.OleServer=OleServer;Winapi.ActiveX=ActiveX;System.Win.ComObj=ComObj</DCC_UnitAlias>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>VCLApplication</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject><Delphi.Personality><Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><VersionInfo><VersionInfo Name="IncludeVerInfo">False</VersionInfo><VersionInfo Name="AutoIncBuild">False</VersionInfo><VersionInfo Name="MajorVer">1</VersionInfo><VersionInfo Name="MinorVer">0</VersionInfo><VersionInfo Name="Release">0</VersionInfo><VersionInfo Name="Build">0</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">False</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">False</VersionInfo><VersionInfo Name="Locale">1049</VersionInfo><VersionInfo Name="CodePage">1251</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName"></VersionInfoKeys><VersionInfoKeys Name="FileDescription"></VersionInfoKeys><VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="InternalName"></VersionInfoKeys><VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys><VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys><VersionInfoKeys Name="ProductName"></VersionInfoKeys><VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="Comments"></VersionInfoKeys></VersionInfoKeys><Excluded_Packages>
+      
+      
+      <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+      <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+    </Excluded_Packages><Source><Source Name="MainSource">TEST_D2007_RS32.dpr</Source></Source></Delphi.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+  <ItemGroup>
+    <DelphiCompile Include="TEST_D2007_RS32.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="cordic.pas" />
+    <DCCReference Include="msvcrt.pas" />
+    <DCCReference Include="mt19937.pas" />
+    <DCCReference Include="SICxClasses.pas" />
+    <DCCReference Include="SICxDefs.pas" />
+    <DCCReference Include="SICxDProcs.pas" />
+    <DCCReference Include="SICxFPU.pas" />
+    <DCCReference Include="SICxIDA.pas" />
+    <DCCReference Include="SICxProcs.pas" />
+    <DCCReference Include="SICxSSE.pas" />
+    <DCCReference Include="SICxTable.pas">
+      <Form>SICxTableForm</Form>
+    </DCCReference>
+    <DCCReference Include="SICxTest.pas" />
+    <DCCReference Include="SICxTypes.pas" />
+    <DCCReference Include="SICxUDF.pas" />
+    <DCCReference Include="SICxUtils.pas" />
+    <DCCReference Include="uTest.pas">
+      <Form>mForm</Form>
+    </DCCReference>
+  </ItemGroup>
+</Project>

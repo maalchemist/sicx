@@ -1,0 +1,108 @@
+// exports
+  sic_version name 'sic_version',               // compiler version
+  sic_cpu_support name 'sic_cpu_support',       // compiler support for the CPU
+  sic_setup name 'sic_setup',                   // setup compiler
+  sic_cretab name 'sic_cretab',                 // create global tables
+  sic_fretab name 'sic_fretab',                 // destroy global tables
+  sic_funtac name 'sic_funtac',                 // create global function table
+  sic_funtaf name 'sic_funtaf',                 // destroy global function table
+  sic_funloa name 'sic_funloa',                 // load external user defined functions
+  sic_funulo name 'sic_funulo',                 // unload external user defined functions
+  sic_contac name 'sic_contac',                 // create global constant table
+  sic_contaf name 'sic_contaf',                 // destroy global constant table
+  sic_conloa name 'sic_conloa',                 // load external user defined constants
+  sic_conulo name 'sic_conulo',                 // unload external user defined constants
+  sic_vartac name 'sic_vartac',                 // create global variable table
+  sic_vartaf name 'sic_vartaf',                 // destroy global variable table
+  sic_varloa name 'sic_varloa',                 // load external user defined variables
+  sic_varulo name 'sic_varulo',                 // unload external user defined variables
+  sic_runtac name 'sic_runtac',                 // create global runtime table
+  sic_runtaf name 'sic_runtaf',                 // destroy global runtime table
+  sic_init name 'sic_init',                     // allocate memory for sic constant & variable data segments
+  sic_done name 'sic_done',                     // free memory previously allocated for sic segments
+  sic_afun name 'sic_afun',                     // add|set user defined function
+  sic_refun name 'sic_refun',                   // rename function
+  sic_dufun name 'sic_dufun',                   // duplicate function
+  sic_exfun name 'sic_exfun',                   // exchange functions
+  sic_aconf name 'sic_aconf',                   // add|set user defined float constant
+  sic_aconi name 'sic_aconi',                   // add|set user defined integer constant
+  sic_acons name 'sic_acons',                   // add|set user defined string constant
+  sic_acono name 'sic_acono',                   // add|set user defined offset constant
+  sic_aconp name 'sic_aconp',                   // add|set user defined pointer constant
+  sic_aconpf name 'sic_aconpf',                 // add|set user defined float pointer constant
+  sic_aconpi name 'sic_aconpi',                 // add|set user defined integer pointer constant
+  sic_aconps name 'sic_aconps',                 // add|set user defined string pointer constant
+  sic_recon name 'sic_recon',                   // rename constant
+  sic_ducon name 'sic_ducon',                   // duplicate constant
+  sic_excon name 'sic_excon',                   // exchange constants
+  sic_avarf name 'sic_avarf',                   // add|set user defined float variable
+  sic_avari name 'sic_avari',                   // add|set user defined integer variable
+  sic_avars name 'sic_avars',                   // add|set user defined string variable
+  sic_avaro name 'sic_avaro',                   // add|set user defined offset variable
+  sic_avarp name 'sic_avarp',                   // add|set user defined pointer variable
+  sic_avarpf name 'sic_avarpf',                 // add|set user defined float pointer variable
+  sic_avarpi name 'sic_avarpi',                 // add|set user defined integer pointer variable
+  sic_avarps name 'sic_avarps',                 // add|set user defined string pointer variable
+  sic_revar name 'sic_revar',                   // rename variable
+  sic_duvar name 'sic_duvar',                   // duplicate variable
+  sic_exvar name 'sic_exvar',                   // exchange variables
+  sic_invaf name 'sic_invaf',                   // invalidate function
+  sic_invac name 'sic_invac',                   // invalidate constant
+  sic_invav name 'sic_invav',                   // invalidate variable
+  sic_patab name 'sic_patab',                   // pack tables
+  sic_pafut name 'sic_pafut',                   // pack function table
+  sic_pacot name 'sic_pacot',                   // pack constant table
+  sic_pavat name 'sic_pavat',                   // pack variable table
+  sic_gefut name 'sic_gefut',                   // get function table offset
+  sic_gefuc name 'sic_gefuc',                   // get function item count
+  sic_gefui name 'sic_gefui',                   // get function item
+  sic_gefun name 'sic_gefun',                   // get item index in function table
+  sic_gecot name 'sic_gecot',                   // get constant table offset
+  sic_gecoc name 'sic_gecoc',                   // get constant item count
+  sic_gecoi name 'sic_gecoi',                   // get constant item
+  sic_gecon name 'sic_gecon',                   // get item index in constant table
+  sic_gevat name 'sic_gevat',                   // get variable table offset
+  sic_gevac name 'sic_gevac',                   // get variable item count
+  sic_gevai name 'sic_gevai',                   // get variable item
+  sic_gevar name 'sic_gevar',                   // get item index in variable table
+  sic_gerut name 'sic_gerut',                   // get runtime table offset
+  sic_geruc name 'sic_geruc',                   // get runtime item count
+  sic_gerui name 'sic_gerui',                   // get runtime item
+  sic_gerun name 'sic_gerun',                   // get item index in runtime table
+  sic_compile name 'sic_compile',               // compile string
+  sic_build name 'sic_build',                   // compile complex string
+  sic_exec name 'sic_exec',                     // execute code
+  sic_call name 'sic_call',                     // execute code
+  sic_cexec name 'sic_cexec',                   // compile & execute string
+  sic_bexec name 'sic_bexec',                   // compile & execute complex string
+  sic_scexec name 'sic_scexec',                 // compile & execute string
+  sic_sbexec name 'sic_sbexec',                 // compile & execute complex string
+  sic_va_count name 'sic_va_count',             // variable argument count
+  sic_inda name 'sic_inda',                     // instruction disassembler
+  cpuseed name 'cpuseed',                       // cpu random generator
+  cpuseed64 name 'cpuseed64',                   // cpu random generator
+  cpuseed32 name 'cpuseed32',                   // cpu random generator
+  cpuseed16 name 'cpuseed16',                   // cpu random generator
+  cpurand name 'cpurand',                       // cpu random generator
+  cpurand64 name 'cpurand64',                   // cpu random generator
+  cpurand32 name 'cpurand32',                   // cpu random generator
+  cpurand16 name 'cpurand16',                   // cpu random generator
+  cpurandf name 'cpurandf',                     // cpu random generator
+  cpurandf2pi name 'cpurandf2pi',               // cpu random generator
+  mt19937_igen name 'mt19937_igen',             // mt19937 random generator
+  mt19937_fgen name 'mt19937_fgen',             // mt19937 random generator
+  mt19937_fgen2pi name 'mt19937_fgen2pi',       // mt19937 random generator
+  mt19937_seed name 'mt19937_seed',             // mt19937 seed by value
+  mt19937_seeds name 'mt19937_seeds',           // mt19937 seed by array
+  sic_erf name 'sic_erf',                       // error function
+  sic_erfc name 'sic_erfc',                     // complementary error function
+  sic_cdfnorm name 'sic_cdfnorm',               // normal distribution function
+  sic_erfinv name 'sic_erfinv',                 // inverse error function
+  sic_erfcinv name 'sic_erfcinv',               // inverse complementary error function
+  sic_cdfnorminv name 'sic_cdfnorminv',         // inverse of normal distribution function
+  sic_lgamma name 'sic_lgamma',                 // natural logarithm of the absolute value of gamma function
+  sic_lgammas name 'sic_lgammas',               // natural logarithm of the absolute value and the sign of gamma function
+  sic_tgamma name 'sic_tgamma',                 // gamma function
+  sic_rgamma name 'sic_rgamma',                 // reciprocal gamma function
+  sic_rtgamma name 'sic_rtgamma',               // reciprocal gamma function
+  sic_beta name 'sic_beta';                     // beta function

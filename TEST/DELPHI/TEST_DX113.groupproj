@@ -1,0 +1,144 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C3A6BDB7-1C5B-4465-8905-885EEBFADFC4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TEST_DX113_R64.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_R32.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_RS64.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_RS32.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_S64.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_S32.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_SS64.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_SS32.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_A64.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TEST_DX113_A32.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TEST_DX113_R64">
+        <MSBuild Projects="TEST_DX113_R64.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_R64:Clean">
+        <MSBuild Projects="TEST_DX113_R64.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_R64:Make">
+        <MSBuild Projects="TEST_DX113_R64.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_R32">
+        <MSBuild Projects="TEST_DX113_R32.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_R32:Clean">
+        <MSBuild Projects="TEST_DX113_R32.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_R32:Make">
+        <MSBuild Projects="TEST_DX113_R32.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_RS64">
+        <MSBuild Projects="TEST_DX113_RS64.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_RS64:Clean">
+        <MSBuild Projects="TEST_DX113_RS64.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_RS64:Make">
+        <MSBuild Projects="TEST_DX113_RS64.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_RS32">
+        <MSBuild Projects="TEST_DX113_RS32.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_RS32:Clean">
+        <MSBuild Projects="TEST_DX113_RS32.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_RS32:Make">
+        <MSBuild Projects="TEST_DX113_RS32.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_S64">
+        <MSBuild Projects="TEST_DX113_S64.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_S64:Clean">
+        <MSBuild Projects="TEST_DX113_S64.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_S64:Make">
+        <MSBuild Projects="TEST_DX113_S64.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_S32">
+        <MSBuild Projects="TEST_DX113_S32.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_S32:Clean">
+        <MSBuild Projects="TEST_DX113_S32.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_S32:Make">
+        <MSBuild Projects="TEST_DX113_S32.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_SS64">
+        <MSBuild Projects="TEST_DX113_SS64.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_SS64:Clean">
+        <MSBuild Projects="TEST_DX113_SS64.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_SS64:Make">
+        <MSBuild Projects="TEST_DX113_SS64.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_SS32">
+        <MSBuild Projects="TEST_DX113_SS32.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_SS32:Clean">
+        <MSBuild Projects="TEST_DX113_SS32.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_SS32:Make">
+        <MSBuild Projects="TEST_DX113_SS32.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_A64">
+        <MSBuild Projects="TEST_DX113_A64.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_A64:Clean">
+        <MSBuild Projects="TEST_DX113_A64.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_A64:Make">
+        <MSBuild Projects="TEST_DX113_A64.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEST_DX113_A32">
+        <MSBuild Projects="TEST_DX113_A32.dproj"/>
+    </Target>
+    <Target Name="TEST_DX113_A32:Clean">
+        <MSBuild Projects="TEST_DX113_A32.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEST_DX113_A32:Make">
+        <MSBuild Projects="TEST_DX113_A32.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TEST_DX113_R64;TEST_DX113_R32;TEST_DX113_RS64;TEST_DX113_RS32;TEST_DX113_S64;TEST_DX113_S32;TEST_DX113_SS64;TEST_DX113_SS32;TEST_DX113_A64;TEST_DX113_A32"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TEST_DX113_R64:Clean;TEST_DX113_R32:Clean;TEST_DX113_RS64:Clean;TEST_DX113_RS32:Clean;TEST_DX113_S64:Clean;TEST_DX113_S32:Clean;TEST_DX113_SS64:Clean;TEST_DX113_SS32:Clean;TEST_DX113_A64:Clean;TEST_DX113_A32:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TEST_DX113_R64:Make;TEST_DX113_R32:Make;TEST_DX113_RS64:Make;TEST_DX113_RS32:Make;TEST_DX113_S64:Make;TEST_DX113_S32:Make;TEST_DX113_SS64:Make;TEST_DX113_SS32:Make;TEST_DX113_A64:Make;TEST_DX113_A32:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

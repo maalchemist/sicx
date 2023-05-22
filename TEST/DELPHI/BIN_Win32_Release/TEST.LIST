@@ -1,0 +1,12337 @@
+[*]
+sin(logn(10,ln(33.33)*sqrt(abs(
+sin(a)*tan(11.11)+
+cos(b)*cotan(22.22)))+
+exp(c)+power(x,y))-a/b+x*y+z**10)-
+log10(100*a)+logn(x,y)*z-
+sqr(a*b)+sqrt(abs(atan2(a,x)))+
+cos(a*b/c-x*y/z)+hypot(x,y)+
+arcsin(cos(a*b*c))+arccos(sin(x*y*z))+
+sh(x)+ch(y)+th(z)+cth(a)+sch(b)+csh(c)+
+a-b+c-d+int(x)-frac(y)+round(z)-t
+
+
+[*]
+sin(30∞)+cos(60∞)
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+
+p1 = c∞;
+p2 = a + c∞ - b;
+p3 = c∞∞;
+p4 = a + c∞∞ - b;
+p5 = ∞c;
+p6 = a + ∞c - b;
+p7 = ∞∞c;
+p8 = a + ∞∞c - b;
+
+
+[*]
+!(-a)
+
+
+[*]
+vmin (4,3,2,1,2,3,4)
+
+
+[*]
+vmax (1,2,3,4,3,2,1)
+
+
+[*]
+vsum (1,2,3,4)
+
+
+[*]
+vmul (1,2,3,4)
+
+
+[*]
+(u->0 + u->1 + u->2) * u->3
+
+
+[*]
+crt_rand
+
+
+[*]
+crt_jn (2:int, 2.387000)
+
+
+[*]
+crt_yn (2:int, 2.387000)
+
+
+[*]
+@_izoom2x (2:int, 3:int, 10.0)
+
+
+[*]
+@_izoom2x2x (2:int, 20.0, 3:int, 30.0)
+
+
+[*]
+UF_2x2x (2:int, 20.0, 3:int, 30.0)
+
+
+[*]
+UF_REF (&z)
+
+
+[*]
+UF_REFF (2:int, 20.0, 3:int, 30.0, &z)
+
+
+[*]
+UF_5P (1, 2, 3*cos(0), 4, 5)
+
+
+[*]
+strtod ("123.456", null)
+
+
+[*]
+PTEST (PPP)
+
+
+[*]
+STEST ("1234567890")
+
+
+[*]
+VTEST (1,2,3,4,5,6,7,8,9,10)
+
+
+[*]
+ie.true (a, x,y)
+
+
+[*]
+ie.bea (a,2, x,y,z)
+
+
+[*]
+case (a, 2,x, 3,y, 4,z, 200)
+
+
+[*]
+double aas;      // declare variable
+: aas = 1/32767; // evaluate at compile time
+
+u->>3 = roundto (100000*aas, -6);
+
+// crt_rand returns integer result
+// use :double modifier to get double value
+x = crt_rand:double * aas;
+
+a = sin (x);
+b = cos (x);
+c = a^2 + b^2;
+
+
+[*]
+string aa;
+string ss = "123456.789";
+string zz = "a\cZ\t\x30";
+string uu = "\u0031\x32\063";
+
+aa = ss;
+x = strtod (uu, null);
+strtod (aa, null)
+
+
+[*]
+int n = 10;
+int m = 20;
+double nn = n;
+a + nn + m:double
+
+
+[*]
+// sum(n), n=1..100
+
+int n = 0;
+int m = 100;
+double su = 0;
+
+reset(n);
+reset(m);
+| SE:
+|   n += 1;
+|   su += n;
+|   goto.if SE, n<m; // if n<m then goto SE
+
+result:
+su // return result
+
+
+[*]
+// goto label example
+
+x = 0;
+goto mars;
+x += 2;
+
+mars:
+x // return result
+
+
+[*]
+// Procedure call example
+
+call procc;
+goto result;
+
+| procc: // procedure
+| proc.begin
+|   a = b*c;
+|   a = sin(a);
+| proc.end
+
+a = 8888;
+
+result:
+a // return result
+
+
+[*]
+// Create file example
+
+int file = 0;
+int p2 = 0xC0000000; // GENERIC_READ(0x80000000) or GENERIC_WRITE(0x40000000)
+int p3 = 0x00000001; // FILE_SHARE_READ(0x00000001)
+int p5 = 2;          // CREATE_ALWAYS(2)
+int p6 = 0x00000080; // FILE_ATTRIBUTE_NORMAL(0x00000080)
+int p7 = 0;
+int pp = 0;
+
+string data = "http://flatassembler.net\r\n\x22\x95\x22\r\n";
+int sz = lstrlen (data);
+
+file = CreateFile (
+  "TEST.FILE",
+  p2, p3, null,
+  p5, p6, p7
+);
+
+WriteFile (file,
+  data, sz,
+  &pp, null
+);
+
+CloseHandle (file);
+pp // return result
+
+
+[]
+// ¬ычисление элементарной сплайновой
+// кривой Catmull-Rom в трехмерном
+// пространстве
+
+// ќпорные точки
+double x1 = -1;
+double y1 = -1;
+double z1 =  0;
+double x2 = -1;
+double y2 =  1;
+double z2 =  0;
+double x3 =  1;
+double y3 = -1;
+double z3 =  0;
+double x4 =  1;
+double y4 =  1;
+double z4 =  0;
+
+// ѕромежуточные переменные
+double px1;
+double py1;
+double pz1;
+double px2;
+double py2;
+double pz2;
+double px3;
+double py3;
+double pz3;
+double px4;
+double py4;
+double pz4;
+
+double ansx;
+double ansy;
+double ansz;
+
+int iOptCnt = 50000000; // количество рассчитываемых точек
+double dt = 1.0 / iOptCnt:double; // инкремент параметра tt на каждой итерации
+
+double t1;
+double t2;
+double t3;
+double n0;
+double n1;
+double n2;
+double n3; //  оэффициент сплайна
+
+int i;
+double tt;
+
+i = 0;
+tt = 0;
+
+| SE:
+|   // n0 = (-tt * ((1 - tt) * (1 - tt))) / 2;
+|   // n1 = (2 - 5 * tt * tt + 3 * tt * tt * tt) / 2;
+|   // n2 = (tt / 2) * (1 + 4 * tt - 3 * tt * tt);
+|   // n3 = -((tt * tt) / 2) * (1 - tt);
+|
+|   t1 = 1 - tt;
+|   t2 = tt * tt;
+|   t3 = tt * t2;
+|
+|   n0 = (-tt * (t1 * t1)) * (1 / 2);
+|   n1 = (2 - 5 * t2 + 3 * t3) * (1 / 2);
+|   n2 = (tt * (1 / 2)) * (1 + 4 * tt - 3 * t2);
+|   n3 = -(t2 * (1 / 2)) * t1;
+|
+|   px1 = x1 * n0; py1 = y1 * n0; pz1 = z1 * n0;
+|   px2 = x2 * n1; py2 = y2 * n1; pz2 = z2 * n1;
+|   px3 = x3 * n2; py3 = y3 * n2; pz3 = z3 * n2;
+|   px4 = x4 * n3; py4 = y4 * n3; pz4 = z4 * n3;
+|
+|   ansx = px1 + px2 + px3 + px4;
+|   ansy = py1 + py2 + py3 + py4;
+|   ansz = pz1 + pz2 + pz3 + pz4;
+|
+|   tt += dt;
+|   i += 1;
+| goto.if SE, i<iOptCnt; // if i<iOptCnt then goto SE
+
+result:
+x = ansx;
+y = ansy;
+z = ansz;
+t = tt;
+
+
+[*]
+// c := 0;
+// for i := 1 to 100 do begin
+//   c := c + 2;
+// end;
+
+int i = 1;
+int imax = 100;
+
+c=0;
+
+reset(i);
+reset(imax);
+| for.enter:
+|   goto.if for.leave, i>imax; // goto for.leave if i>imax
+| for.body:
+|
+|   c+=2;
+|
+| for.next:
+|   i+=1;
+|   goto.if for.body, i<=imax; // goto for.body if i<=imax
+| for.leave:
+
+result:
+c
+
+
+[*]
+// c := 0;
+// for i := 1 to 100 do begin
+//   for j := 1 to 100 do begin
+//     c := c + 2;
+//   end;
+// end;
+
+int i;
+int imax;
+int j;
+int jmax;
+
+c=0;
+
+| i=1; imax=100;
+| for.i.enter:
+|   goto.if for.i.leave, i>imax; // goto for.i.leave if i>imax
+| for.i.body:
+|
+|   | j=1; jmax=100;
+|   | for.j.enter:
+|   |   goto.if for.j.leave, j>jmax; // goto for.j.leave if j>jmax
+|   | for.j.body:
+|   |
+|   |   c+=2;
+|   |
+|   | for.j.next:
+|   |   j+=1;
+|   |   goto.if for.j.body, j<=jmax; // goto for.j.body if j<=jmax
+|   | for.j.leave:
+|
+| for.i.next:
+|   i+=1;
+|   goto.if for.i.body, i<=imax; // goto for.i.body if i<=imax
+| for.i.leave:
+
+result:
+c
+
+
+[*]
+// c := 0;
+// a := 0;
+// b := 8;
+//
+// while a < b do begin
+//   c := c + 1;
+//   b := b - 1;
+// end;
+
+c=0; a=0; b=8;
+
+| while.enter:
+|   goto.if while.leave, a>=b; // goto while.leave if a>=b
+| while.body:
+|
+|   c+=1;
+|   b-=1;
+|
+| while.next:
+|   goto.if while.body, a<b; // goto while.body if a<b
+| while.leave:
+
+result:
+c
+
+
+[*]
+// c := 0;
+// a := 0;
+// b := 8;
+//
+// repeat
+//   c := c + 1;
+//   b := b - 1;
+// until a > b;
+
+c=0; a=0; b=8;
+
+| repeat.enter:
+|
+|   c+=1;
+|   b-=1;
+|
+| repeat.next:
+|   goto.if repeat.enter, a<=b; // goto repeat.enter if a<=b
+| repeat.leave:
+
+result:
+c
+
+
+[*]
+// case a of
+//   x : b := 2;
+//   y : b := 4;
+//   z : b := 8;
+//   else b := 256;
+// end;
+
+| case.enter:
+|   goto.if case.x, a==x; // goto case.x if a=x
+|   goto.if case.y, a==y; // goto case.y if a=y
+|   goto.if case.z, a==z; // goto case.z if a=z
+| case.else:
+|   b = 256;
+|   goto case.leave;
+| case.x:
+|   b = 2;
+|   goto case.leave;
+| case.y:
+|   b = 4;
+|   goto case.leave;
+| case.z:
+|   b = 8;
+|   // goto case.leave;
+| case.leave:
+
+result:
+b
+
+
+[*]
+// c := 1;
+// a := 2;
+// b := 8;
+//
+// if a > b then begin
+//   c := c + 1;
+// end else begin
+//   c := c - 1;
+// end;
+
+c=1; a=2; b=8;
+
+| if.enter:
+|   goto.if if.then, a>b; // goto if.then if a>b
+|
+| if.else:
+|   c-=1;
+|   goto if.leave;
+|
+| if.then:
+|   c+=1;
+|
+| if.leave:
+
+result:
+c
+
+
+[*]
+// c := 1;
+// a := 2;
+// b := 8;
+// x := 2.2;
+// y := 8.8;
+//
+// if (a > b) or (x > y) then begin
+//   c := c + 1;
+// end else begin
+//   c := c - 1;
+// end;
+
+c=1; a=2; b=8; x=2.2; y=8.8;
+
+| if.enter:
+|   goto.if if.then, a>b; // goto if.then if a>b
+|   goto.if if.then, x>y; // goto if.then if x>y
+|
+| if.else:
+|   c-=1;
+|   goto if.leave;
+|
+| if.then:
+|   c+=1;
+|
+| if.leave:
+
+result:
+c
+
+
+[*]
+// c := 1;
+// a := 2;
+// b := 8;
+// x := 2.2;
+// y := 8.8;
+//
+// if (a > b) and (x > y) then begin
+//   c := c + 1;
+// end else begin
+//   c := c - 1;
+// end;
+
+c=1; a=2; b=8; x=2.2; y=8.8;
+
+| if.enter:
+|   goto.if if.else, a<=b; // goto if.else if a?b
+|   goto.if if.else, x<=y; // goto if.else if x?y
+|
+| if.then:
+|   c+=1;
+|   goto if.leave;
+|
+| if.else:
+|   c-=1;
+|
+| if.leave:
+
+result:
+c
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps;
+int pchar;
+
+// allocate 20 bytes for string
+ps = malloc (0i20);
+return.if(-1,ps==0); // return -1 on error
+
+// convert base-10 integer to string
+pchar = ltoa (0i123456789, ps, 0i10);
+
+// get string length
+y = lstrlen (pchar);
+
+// convert string to double
+x = strtod (pchar, null);
+
+// free string
+free (ps);
+
+result:
+x;
+
+
+[*]
+// FPU Control
+// msvcrt.dll
+
+int RC_o = 0;
+int PC_o = 0;
+int RC_n = 0x00000300; // _RC_CHOP
+int PC_n = 0x00000000; // _PC_64
+
+RC_o = controlfp (RC_n, 0x00000300);
+PC_o = controlfp (PC_n, 0x00030000);
+
+// Rounding Control
+//
+// _MCW_RC  = 0x00000300
+//
+// _RC_NEAR = 0x00000000
+// _RC_DOWN = 0x00000100
+// _RC_UP   = 0x00000200
+// _RC_CHOP = 0x00000300
+
+// Precision Control
+//
+// _MCW_PC  = 0x00030000
+//
+// _PC_64   = 0x00000000
+// _PC_53   = 0x00010000
+// _PC_24   = 0x00020000
+
+
+[*]
+// FPU status word test 
+
+// f[n]stsw ax 
+// ah                        al 
+// 07 06 05 04 03 02 01 00   07 06 05 04 03 02 01 00 
+// ?? C3 ?? ?? ?? C2 C1 C0   ?? ?? PE UE OE ZE DE IE 
+
+// f[n]stcw m2b 
+// mh                        ml 
+// 07 06 05 04 03 02 01 00   07 06 05 04 03 02 01 00 
+// ?? ?? ?? IC RC RC PC PC   ?? ?? PE UE OE ZE DE IE 
+
+var bb; 
+var cc; 
+int cw_o; 
+int ef_n; 
+
+// clear FPU exception flags 
+fnclex; 
+
+// save FPU control word 
+fnstcw cw_o; 
+
+// mask all FPU exceptions 
+fnmaske 0b00111111; 
+
+// divide by zero 
+cc = 0; 
+bb = a / cc; 
+
+// get exception flags
+fstef ef_n;
+
+// test OE, ZE and IE flags 
+ef_n = ef_n & 0b00001101;
+
+goto.if.nz E_1, ef_n; // goto E_1 if some flags are set 
+
+E_0: // all flags are clear 
+b = 888; 
+goto leave; 
+
+E_1: // some flags are set 
+b = -888; 
+
+leave: 
+
+// clear FPU exception flags 
+fnclex; 
+
+// restore FPU control word 
+fldcw cw_o; 
+
+result: 
+bb; 
+
+
+[*]
+// Bitwise expressions
+
+var cc = 16;
+int uu_1;
+int uu_2;
+int pp_1;
+int pp_2;
+int nn_1;
+int nn_2;
+int ee_1;
+int ee_2;
+
+// uu := 0x1 or 0x2
+uu_1 = 0x1 | 0x2;
+uu_2 = 0x1 | (cc/8):int;
+
+// pp := 0x1 or 0x2 or 0x4
+pp_1 = 0x1 | 0x2 | 0x4;
+pp_2 = 0x1 | 0x2 | (cc/4):int;
+
+// nn := 0x1 or 0x2 or 0x4 or 0x8
+nn_1 = 0x1 | 0x2 | 0x4 | 0x8;
+nn_2 = 0x1 | 0x2 | 0x4 | (cc/2):int;
+
+// ee := 0x1 or 0x2 and 0x4 or 0x10
+ee_1 = 0x1 | 0x2 & 0x4 | 0x10;
+ee_2 = 0x1 | 0x2 & 0x4 | cc:int;
+
+result:
+u->0 = uu_2:double;
+u->1 = pp_2:double;
+u->2 = nn_2:double;
+u->3 = ee_2:double;
+x = uu_1;
+y = pp_1;
+z = nn_1;
+
+
+[*]
+// return example
+
+$+ STACK_FRAME
+$+ LOCALS
+
+a = x;
+
+| case.enter:
+|   goto.if case.x, a==x; // goto case.x if a=x
+|   goto.if case.y, a==y; // goto case.y if a=y
+|   goto.if case.z, a==z; // goto case.z if a=z
+| case.else:
+|   // a=?
+|   return (b = 256);
+| case.x:
+|   // a=x
+|   return (b = 2);
+| case.y:
+|   // a=y
+|   return (b = 4);
+| case.z:
+|   // a=z
+|   return (b = 8);
+| case.leave:
+
+a = 888;
+
+
+[*]
+// Complex numbers
+
+var a.re=10, a.im=20;
+var b.re=30, b.im=40;
+var c.re=50, c.im=60;
+var d.re=70, d.im=80;
+var z.re=11, z.im=22;
+var u.re, u.im;
+var v.re, v.im;
+var m.re, m.im;
+var n.re, n.im;
+
+// u = (a*z + b)/(c*z + d)
+
+cmove(u.re,u.im,
+  cdiv(
+    cadd(cmul(a.re,a.im, z.re,z.im), b.re,b.im),
+    cadd(cmul(c.re,c.im, z.re,z.im), d.re,d.im)
+  )
+);
+
+// v = (1/2)*(z + 1/z)
+
+cmove(v.re,v.im,
+  crmul(cadd(z.re,z.im, cinv(z.re,z.im)), 1/2)
+);
+
+// m = z^2 + c
+
+cmove(m.re,m.im,
+  cadd(csqr(z.re,z.im), c.re,c.im)
+);
+
+// n = z^2.2 + c
+
+cmove(n.re,n.im,
+  cadd(cpowx(z.re,z.im, 2.2), c.re,c.im)
+);
+
+
+[*]
+// Complex numbers
+
+complex a0 = 10,20;
+complex b0 = 30,40;
+complex c0 = 50,60;
+complex d0 = 70,80;
+complex z0 = 11,22;
+complex u0, v0, m0, n0;
+
+// u = (a*z + b)/(c*z + d)
+
+cmove(u0,
+  cdiv(
+    cadd(cmul(a0,z0), b0),
+    cadd(cmul(c0,z0), d0)
+  )
+);
+
+// v = (1/2)*(z + 1/z)
+
+cmove(v0,
+  crmul(cadd(z0, cinv(z0)), 1/2)
+);
+
+// m = z^2 + c
+
+cmove(m0,
+  cadd(csqr(z0), c0)
+);
+
+// n = z^2.2 + c
+
+cmove(n0,
+  cadd(cpowx(z0, 2.2), c0)
+);
+
+
+[*]
+888;
+
+
+[*]
+a;
+
+
+[*]
+sin(logn(2,256)+cos(123)-sqrt(4)*(3-1));
+
+
+[*]
+int sw;
+fstsw sw;
+
+
+[*]
+int sw;
+fnstsw sw;
+
+
+[*]
+int cw;
+fstcw cw;
+
+
+[*]
+int cw;
+fnstcw cw;
+
+
+[*]
+int cw_o;
+int cw_n;
+
+// save FPU control word
+fnstcw cw_o;
+
+// mask all FPU exceptions
+cw_n = cw_o | 0b00111111;
+
+// load FPU control word
+fldcw cw_n;
+
+// ...
+
+// restore FPU control word
+fldcw cw_o;
+
+
+[*]
+var dd00 = 222.123;
+float dd01 = sin(2:pi);
+double dd02 = 888.123;
+double dd03 = sin(a) / 0.1;
+
+dd00;
+
+
+[*]
+var vv, v1=sin(a), v2=cos(a);
+vv = v1^2 + v2^2;
+
+
+[*]
+var x0=(x1=10)+(x2=20);
+x0 + x1 + x2;
+
+
+[*]
+cvar z0;
+complex (z1=11,22), (z2=33,44);
+var z.re, z.im;
+var u.re, u.im;
+// z0 = z1 + z2
+cmove(z0, cadd(z1,z2));
+cmove(z.re,z.im, cadd(z1,z2));
+cmove(u.re,u.im, z0);
+
+
+[*]
+cvar z0;
+cvar z1=(11,22), z2=(33,44);
+// z0 = z1 + z2
+cmove(z0, cadd(z1,z2));
+
+
+[*]
+cvar z0;
+cvar z1=11,22, z2=33,44;
+// z0 = z1 + z2
+cmove(z0, cadd(z1,z2));
+
+
+[*]
+int ii00 = 222;
+integer ii01 = 888;
+integer ii02 = a - b;
+integer ii03 = #55;
+integer ii04 = $A;
+integer ii05 = ##1000;
+
+ii00;
+
+
+[*]
+int ii, i1=123, i2=321;
+ii = i2 - i1;
+
+
+[*]
+str ss00 = "123";
+string ss01 = "abc";
+string ss02 = "abc\xA7+\xa7";
+string ss03 = "abc\x22+\x22";
+string ss04 = "abc\"+\"";
+string ss05 = "abc\r\n";
+string ss06 = 'abc';
+string ss07 = УabcФ;
+string ss08 = ДabcФ;
+string ss09 = СabcТ;
+string ss10 = ВabcТ;
+string ss11 = Ђabcї;
+string ss12 = ЛabcЫ;
+
+ss00;
+
+
+[*]
+str ss = "12345678";
+ss += 4; // ss = "5678"
+
+
+[*]
+str ss1="abc", ss2="abcd";
+int i1, i2, i3=lstrlen("abcdef");
+i1 = lstrlen(ss1);
+i2 = lstrlen(ss2);
+
+
+[*]
+int p1;
+int p2;
+//
+p1 = &x;
+p2 = addr(x);
+
+
+[*]
+complex z0=11,22;
+complex z2;
+int p_z0;
+//
+p_z0 = &z0;
+cmove(z2, p_z0^^);
+
+
+[*]
+int p0;
+int p1;
+int p2;
+int p3;
+//
+p0 = &u;
+p1 = u&->2;
+p2 = &u+16;
+p3 = &u+(2*sizeof(double));
+
+
+[*]
+int p0;
+int p1;
+int p2;
+int p3;
+//
+p0 = &u;
+p1 = u&~>2;
+p2 = &u-16;
+p3 = &u-(2*sizeof(double));
+
+
+[*]
+int p_v;
+var v1;
+var v2;
+var v3;
+var v4;
+var v5;
+var v6;
+
+x = 111.222;
+p_v = &x;
+
+v1 = *p_v;
+v2 = p_v^;
+v3 = pfloat(p_v);
+v4 = pdouble(p_v);
+v5 = p_v:pfloat;
+v6 = p_v:pdouble;
+
+
+[*]
+int p_c;
+complex z0;
+complex z1;
+complex z2;
+complex z3;
+complex z4;
+
+cmove(z0, 22,88);
+p_c = &z0;
+
+cmove(z1, **p_c);
+cmove(z2, p_c^^);
+cmove(z3, pcomplex(p_c));
+cmove(z4, p_c:pcomplex);
+
+
+[*]
+int p_i;
+int i0 = 888;
+int i1;
+int i2;
+
+p_i = &i0;
+i1 = pint(p_i);
+i2 = p_i:pint;
+
+
+[*]
+int p_s;
+str s0 = "888";
+str s1;
+str s2;
+
+p_s = &s0;
+s1 = pstr(p_s);
+s2 = p_s:pstr;
+
+
+[*]
+double u0; // u0 = 0
+double ua;
+double ub;
+
+u0 = 888;
+ua = u0:covalue; // ua = 0
+u0 = 222;
+ub = u0:covalue; // ub = 0
+
+
+[*]
+double u0 = 777;
+double ua;
+double ub;
+
+u0 = 888;
+ua = u0:covalue; // ua = 777
+u0 = 222;
+ub = u0:covalue; // ub = 777
+
+
+[*]
+double u0; // u0 = 0
+double ua;
+double ub;
+
+// evaluate at compile time
+: u0 = 888+111; // u0 = 999
+
+u0 = 888;
+ua = u0:covalue; // ua = 999
+u0 = 222;
+ub = u0:covalue; // ub = 999
+
+
+[*]
+double u0; // u0 = 0
+double ua;
+double ub;
+double uc;
+double ud;
+
+// evaluate at compile time
+: u0 = 888+111; // u0 = 999
+
+u0 = 888;
+ua = u0:covalue; // ua = 999
+u0 = 222;
+ub = u0:covalue; // ub = 999
+
+// evaluate at compile time
+: u0 = 888-111; // u0 = 777
+
+u0 = 888;
+uc = u0:covalue; // uc = 777
+u0 = 222;
+ud = u0:covalue; // ud = 777
+
+
+[*]
+var vv;
+int ii;
+str ss;
+
+int vv.size;
+int ii.size;
+int ss.size;
+
+int double.size;
+int complex.size;
+int integer.size;
+int string.size;
+int pointer.size;
+
+vv.size = sizeof(vv);
+// = 8
+
+ii.size = sizeof(ii);
+// = 8 (x64) | 4 (x32)
+
+ss.size = sizeof(ss);
+// = 8 (x64) | 4 (x32)
+
+double.size = sizeof(double);
+// = 8
+
+complex.size = sizeof(complex);
+// = 16
+
+integer.size = sizeof(integer);
+// = 8 (x64) | 4 (x32)
+
+string.size = sizeof(string);
+// = 8 (x64) | 4 (x32)
+
+pointer.size = sizeof(pointer);
+// = 8 (x64) | 4 (x32)
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+result.set(888);
+
+a = x;
+b = y;
+
+exit;
+
+c = z;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+= 888; // result = 888
+
+a = x;
+b = y;
+
+exit;
+
+c = z;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+:= 888; // result = 888
+
+a = x;
+b = y;
+
+exit;
+
+c = z;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+result.set(888);
+
+a = x;
+b = y;
+c = result.get;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+= 888; // result = 888
+
+a = x;
+b = y;
+c = 12 + (=); // c = 12 + result
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+= 222; // result = 222
+
+a = x;
+b = y;
+c = 2222 - ==; // c = 2222 - result
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+= 888; // result = 888
+
+a = x;
+b = y;
+c = ; // c = 888
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+:= 888; // result = 888
+
+a = x;
+b = y;
+c := ; // c = 888
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+x + y;
+exit;
+
+x - y;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+x + y;
+quit;
+
+x - y;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+exit.if (a==0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+exit.if.true (a!=0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+exit.if.not (a==0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+exit.if.false (a!=0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+x + y;
+return;
+
+x - y;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+x + y;
+return (222);
+
+x - y;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if (a==0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if.true (a==0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if (222, a==0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if.true (222, a==0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if.not (a!=0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if.false (a!=0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if.not (222, a!=0);
+
+a = 888;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+a = b * 0;
+return.if.false (222, a!=0);
+
+a = 888;
+
+
+[*]
+int DST;
+int nn;
+var vv;
+
+DST = &nn;
+pcopy (DST, (x+y):int);
+
+DST = &vv;
+pcopy (DST, x+y);
+
+
+[*]
+int DST;
+int nn;
+var vv;
+
+DST = &nn;
+DST *:= (x+y):int;
+
+DST = &vv;
+DST *:= x+y;
+
+
+[*]
+int DST;
+int ii;
+int nn;
+var vv;
+
+DST = &nn;
+ii = x;
+pcopx (ii, DST);
+
+DST = &vv;
+pcopx (x, DST);
+
+
+[*]
+int DST;
+int ii;
+int nn;
+var vv;
+
+DST = &nn;
+ii = x;
+ii =:* DST;
+
+DST = &vv;
+x =:* DST;
+
+
+[*]
+var x1;
+var x2;
+var y1 = 11.1;
+var y2 = 22.2;
+
+x2copy(x1,x2,y1,y2);
+
+
+[*]
+int x1;
+int x2;
+int y1 = 111;
+int y2 = 222;
+
+x2copy(x1,x2,y1,y2);
+
+
+[*]
+str x1;
+str x2;
+str y1 = "aaa";
+str y2 = "bbb";
+
+x2copy(x1,x2,y1,y2);
+
+
+[*]
+var x1;
+var x2;
+var x3;
+var y1 = 11.1;
+var y2 = 22.2;
+var y3 = 33.3;
+
+x3copy(x1,x2,x3,y1,y2,y3);
+
+
+[*]
+int x1;
+int x2;
+int x3;
+int y1 = 111;
+int y2 = 222;
+int y3 = 333;
+
+x3copy(x1,x2,x3,y1,y2,y3);
+
+
+[*]
+str x1;
+str x2;
+str x3;
+str y1 = "aaa";
+str y2 = "bbb";
+str y3 = "ccc";
+
+x3copy(x1,x2,x3,y1,y2,y3);
+
+
+[*]
+var x1;
+var x2;
+var x3;
+var x4;
+var y1 = 11.1;
+var y2 = 22.2;
+var y3 = 33.3;
+var y4 = 44.4;
+
+x4copy(x1,x2,x3,x4,y1,y2,y3,y4);
+
+
+[*]
+int x1;
+int x2;
+int x3;
+int x4;
+int y1 = 111;
+int y2 = 222;
+int y3 = 333;
+int y4 = 444;
+
+x4copy(x1,x2,x3,x4,y1,y2,y3,y4);
+
+
+[*]
+str x1;
+str x2;
+str x3;
+str x4;
+str y1 = "aaa";
+str y2 = "bbb";
+str y3 = "ccc";
+str y4 = "ddd";
+
+x4copy(x1,x2,x3,x4,y1,y2,y3,y4);
+
+
+[*]
+var x1;
+var x2;
+var y0 = 888.888;
+
+vcopy(x1,x2,y0);
+
+
+[*]
+int x1;
+int x2;
+int y0 = 888;
+
+vcopy(x1,x2,y0);
+
+
+[*]
+str x1;
+str x2;
+str y0 = "abc";
+
+vcopy(x1,x2,y0);
+
+
+[*]
+var y1;
+var y2;
+var x0 = 888.888;
+
+vcopx(x0,y1,y2);
+
+
+[*]
+int y1;
+int y2;
+int x0 = 888;
+
+vcopx(x0,y1,y2);
+
+
+[*]
+str y1;
+str y2;
+str x0 = "abc";
+
+vcopx(x0,y1,y2);
+
+
+[*]
+var vv_1 = 111.111;
+var vv_2 = 222.222;
+
+int ii_1 = 111;
+int ii_2 = 222;
+
+str ss_1 = "111";
+str ss_2 = "222";
+
+vv_1 :=: vv_2;
+vv_1 :=: ii_1;
+
+ii_1 :=: ii_2;
+ii_1 :=: vv_1;
+ii_1 :=: ss_1;
+
+ss_1 :=: ss_2;
+ss_2 :=: ii_1;
+
+
+[*]
+var p1 = 111.111;
+var p2 = 222.222;
+var p3 = 333.333;
+
+swapr (p1, p2, p3);
+
+
+[*]
+int p1 = 111;
+int p2 = 222;
+int p3 = 333;
+
+swapr (p1, p2, p3);
+
+
+[*]
+str p1 = "111";
+str p2 = "222";
+str p3 = "333";
+
+swapr (p1, p2, p3);
+
+
+[*]
+var p1 = 111.111;
+var p2 = 222.222;
+var p3 = 333.333;
+
+swapl (p1, p2, p3);
+
+
+[*]
+int p1 = 111;
+int p2 = 222;
+int p3 = 333;
+
+swapl (p1, p2, p3);
+
+
+[*]
+str p1 = "111";
+str p2 = "222";
+str p3 = "333";
+
+swapl (p1, p2, p3);
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = ~999;      //  = -1000
+ii2 = bnot(999); //  = -1000
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = 999 | 333;    // = 1007
+ii2 = bor(999,333); // = 1007
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = 999 ~| 333;    // = -1008
+ii2 = bnor(999,333); // = -1008
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = 999 ^ 333;     // = 682
+ii2 = bxor(999,333); // = 682
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = 999 ~^ 333;     // = -683
+ii2 = bxnor(999,333); // = -683
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = 999 & 333;     // = 325
+ii2 = band(999,333); // = 325
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = 999 ~& 333;     // = -326
+ii2 = bnand(999,333); // = -326
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+
+ii1 = 32 >>  2; // = 8
+ii2 = 32 >> -1; // = 64
+ii3 = 32 <<  1; // = 64
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+
+ii1 = 8 <<  2; // = 32
+ii2 = 8 << -1; // = 4
+ii3 = 8 >>  1; // = 4
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+
+ii1 = -999 >>>  1; // = -500
+ii2 = -999 >>> -1; // = -1998
+ii3 = -999 <<<  1; // = -1998
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+
+ii1 = -999 <<<  1; // = -1998
+ii2 = -999 <<< -1; // = -500
+ii3 = -999 >>>  1; // = -500
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+int ii4;
+int ii5;
+int ii6;
+
+ii1 = 8 ror  1; // = 4
+ii2 = 8 ror -1; // = 16
+ii3 = 8 rol  1; // = 16
+
+ii4 = 8 >><  1; // = 4
+ii5 = 8 >>< -1; // = 16
+ii6 = 8 <<>  1; // = 16
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+int ii4;
+int ii5;
+int ii6;
+
+ii1 = 8 rol  1; // = 16
+ii2 = 8 rol -1; // = 4
+ii3 = 8 ror  1; // = 4
+
+ii4 = 8 <<>  1; // = 16
+ii5 = 8 <<> -1; // = 4
+ii6 = 8 >><  1; // = 4
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+call procc;
+return z;
+
+| procc: // procedure
+| proc.begin
+|   x = sin(a);
+|   y = cos(a);
+|   z = x^2 + y^2;
+|   call proco;
+| proc.end
+
+| proco: // procedure
+| proc.begin
+|   z = z + 10;
+| proc.end
+
+
+[*]
+// calls
+
+$+ STACK_FRAME
+$+ LOCALS
+
+x = 0;
+calls p1, p2, p3, p4;
+return x;
+
+p1: // procedure
+x += 1;
+retn;
+
+p2: // procedure
+x += 2;
+retn;
+
+p3: // procedure
+x += 3;
+retn;
+
+p4: // procedure
+x += 4;
+retn;
+
+
+[*]
+int n = 4;
+int m = 5;
+int p = 6;
+
+int ip.1.1;
+int ip.1.2;
+int ip.1.2o;
+int ip.2.4;
+int ip.2.4o;
+int ip.3.6;
+int ip.3.6o;
+
+// 1D-matrix
+ip.1.1 = matrip(8);
+// ip.1.1 = 8
+
+// 1D-matrix
+ip.1.2 = matrip(n, 2);
+// ip.1.2 = 2
+
+// 1D-matrix
+ip.1.2o = matrip(n, 6);
+// index out of range
+// ip.1.2o = 6
+
+// 2D-matrix
+ip.2.4 = matrip((n,m), (2,3));
+// ip.2.4 = 14
+
+// 2D-matrix
+ip.2.4o = matrip((n,m), (2,6));
+// 2nd index out of range
+// ip.2.4o = 26
+
+// 3D-matrix
+ip.3.6 = matrip((n,m,p), (2,3,4));
+// ip.3.6 = 94
+
+// 3D-matrix
+ip.3.6o = matrip((n,m,p), (2,6,4));
+// 2nd index out of range
+// ip.3.6o = 106
+
+
+[*]
+int n = 4;
+int m = 5;
+int p = 6;
+
+int ip.e;
+int ip.1.1;
+int ip.1.2;
+int ip.1.2o;
+int ip.2.4;
+int ip.2.4o;
+int ip.3.6;
+int ip.3.6o;
+
+// 2D-matrix
+ip.e = matrip.rc(n,m, 2);
+// argument count is odd
+// ip.e = -1
+
+// 1D-matrix
+ip.1.1 = matrip.rc(8);
+// ip.1.1 = 8
+
+// 1D-matrix
+ip.1.2 = matrip.rc(n, 2);
+// ip.1.2 = 2
+
+// 1D-matrix
+ip.1.2o = matrip.rc(n, 6);
+// index out of range
+// ip.1.2o = -1
+
+// 2D-matrix
+ip.2.4 = matrip.rc((n,m), (2,3));
+// ip.2.4 = 14
+
+// 2D-matrix
+ip.2.4o = matrip.rc((n,m), (2,6));
+// 2nd index out of range
+// ip.2.4o = -1
+
+// 3D-matrix
+ip.3.6 = matrip.rc((n,m,p), (2,3,4));
+// ip.3.6 = 94
+
+// 3D-matrix
+ip.3.6o = matrip.rc((n,m,p), (2,6,4));
+// 2nd index out of range
+// ip.3.6o = -1
+
+
+[*]
+a = u->1;
+b = u[2];
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps; // size of array in bytes
+int pu;
+var u_0;
+var u_1;
+var u_2;
+var u_3;
+
+// array [0..3] of double
+ps = 4*sizeof(double);
+
+// allocate memory
+pu = malloc (ps);
+return.if(-1,pu==0); // return -1 on error
+
+pu*->0 = 111;
+pu*->1 = 222;
+pu*->2 = 333;
+pu*->3 = 444;
+
+u_0 = pu*->0;
+u_1 = pu*->1;
+u_2 = pu*->2;
+u_3 = pu*->3;
+
+// free memory
+free (pu);
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps; // size of array in bytes
+int pu;
+var u_0;
+var u_1;
+var u_2;
+var u_3;
+
+// array [0..3] of double
+ps = 4*sizeof(double);
+
+// allocate memory
+pu = malloc (ps);
+return.if(-1,pu==0); // return -1 on error
+
+pu{0} = 111;
+pu{1} = 222;
+pu{2} = 333;
+pu{3} = 444;
+
+u_0 = pu{0};
+u_1 = pu{1};
+u_2 = pu{2};
+u_3 = pu{3};
+
+// free memory
+free (pu);
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps; // size of array in bytes
+int pu;
+var u_0_0;
+var u_0_1;
+var u_1_0;
+var u_1_1;
+
+// array [0..1, 0..1] of double
+ps = (2*2)*sizeof(double);
+
+// allocate memory
+pu = malloc (ps);
+return.if(-1,pu==0); // return -1 on error
+
+pu{2,2, 0,0} = 111;
+pu{2,2, 0,1} = 222;
+pu{2,2, 1,0} = 333;
+pu{2,2, 1,1} = 444;
+
+u_0_0 = pu{2,2, 0,0};
+u_0_1 = pu{2,2, 0,1};
+u_1_0 = pu{2,2, 1,0};
+u_1_1 = pu{2,2, 1,1};
+
+// determinant
+a =
+pu{2,2, 0,0} * pu{2,2, 1,1} -
+pu{2,2, 0,1} * pu{2,2, 1,0};
+
+// determinant
+b =
+u_0_0 * u_1_1 - u_0_1 * u_1_0;
+
+// free memory
+free (pu);
+
+
+[*]
+a = u~>1;
+b = u~>2;
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps; // size of array in bytes
+int pm;
+int pu;
+var u_0;
+var u_1;
+var u_2;
+var u_3;
+
+// array [0..3] of double
+ps = 4*sizeof(double);
+
+// allocate memory
+pm = malloc (ps);
+return.if(-1,pm==0); // return -1 on error
+
+// pu = last array item address
+pu = pm;
+pu += 3*sizeof(double);
+
+pu*~>0 = 111;
+pu*~>1 = 222;
+pu*~>2 = 333;
+pu*~>3 = 444;
+
+u_0 = pu*~>0;
+u_1 = pu*~>1;
+u_2 = pu*~>2;
+u_3 = pu*~>3;
+
+// free memory
+free (pm);
+
+
+[*]
+x = u->1;
+u->2 = x;
+
+u->3 = u->0;
+
+
+[*]
+x = u[1];
+u[2] = x;
+
+u[3] = u[0];
+
+
+[*]
+int pu = &u;
+
+x = pu*->1;
+pu*->2 = x;
+
+pu*->3 = pu*->0;
+
+
+[*]
+int pu = &u;
+
+x = pu{1};
+pu{2} = x;
+
+pu{3} = pu{0};
+
+
+[*]
+int p;
+
+p = u &-> 2;
+x = *p;
+
+
+[*]
+swap(
+  (u&->2):vdouble,
+  (u&->3):vdouble
+);
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps; // size of array in bytes
+int pu;
+int a_0;
+int a_1;
+int a_2;
+int a_3;
+var v_0;
+var v_1;
+var v_2;
+var v_3;
+
+// array [0..3] of double
+ps = 4*sizeof(double);
+
+// allocate memory
+pu = malloc (ps);
+return.if(-1,pu==0); // return -1 on error
+
+// fill the memory with zeros
+memset (pu, 0x00, ps);
+
+a_0 = pu *&-> 0;
+a_1 = pu *&-> 1;
+a_2 = pu *&-> 2;
+a_3 = pu *&-> 3;
+
+v_0 = *a_0;
+v_1 = *a_1;
+v_2 = *a_2;
+v_3 = *a_3;
+
+// free memory
+free (pu);
+
+
+[*]
+int p;
+
+p = u &~> 2;
+x = *p;
+
+
+[*]
+swap(
+  (u&~>2):vdouble,
+  (u&~>3):vdouble
+);
+
+
+[*]
+$+ STACK_FRAME
+$+ LOCALS
+
+int ps; // size of array in bytes
+int pm;
+int pu;
+int a_0;
+int a_1;
+int a_2;
+int a_3;
+var v_0;
+var v_1;
+var v_2;
+var v_3;
+
+// array [0..3] of double
+ps = 4*sizeof(double);
+
+// allocate memory
+pm = malloc (ps);
+return.if(-1,pm==0); // return -1 on error
+
+// fill the memory with zeros
+memset (pm, 0x00, ps);
+
+// pu = last array item address
+pu = pm;
+pu += 3*sizeof(double);
+
+a_0 = pu *&~> 0;
+a_1 = pu *&~> 1;
+a_2 = pu *&~> 2;
+a_3 = pu *&~> 3;
+
+v_0 = *a_0;
+v_1 = *a_1;
+v_2 = *a_2;
+v_3 = *a_3;
+
+// free memory
+free (pm);
+
+
+[*]
+farv(u,0) = 888;
+farv(u,1) = 555;
+swap (farv(u,0), farv(u,1));
+
+
+[*]
+u->>0 = 888;
+u->>1 = 555;
+swap (u->>0, u->>1);
+
+
+[*]
+barv(u,0) = 888;
+barv(u,1) = 555;
+swap (barv(u,0), barv(u,1));
+
+
+[*]
+u~>>0 = 888;
+u->>1 = 555;
+swap (u~>>0, u~>>1);
+
+
+[*]
+var vs;
+var ve;
+
+x2copy(vs,ve, fxtractse(1234.5678));
+
+
+[*]
+var vs;
+var ve;
+
+co.fxtractse(vs,ve, 1234.5678);
+
+
+[*]
+var vs;
+var ve;
+
+x2copy(ve,vs, fxtractes(1234.5678));
+
+
+[*]
+var vs;
+var ve;
+
+co.fxtractes(ve,vs, 1234.5678);
+
+
+[*]
+a = 8/+2; // a = 4
+b = 8+/2; // b = 8.5
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 + p2;
+i3 = p1 + p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 + p2;
+v3 = p1 + p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 - p2;
+i3 = p1 - p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 - p2;
+v3 = p1 - p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 ~- p2;
+i3 = p1 ~- p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 ~- p2;
+v3 = p1 ~- p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 * p2;
+i3 = p1 * p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 * p2;
+v3 = p1 * p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 / p2;
+i3 = p1 / p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 / p2;
+v3 = p1 / p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 ~/ p2;
+i3 = p1 ~/ p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 ~/ p2;
+v3 = p1 ~/ p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 \ p2;
+i3 = p1 \ p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 \ p2;
+v3 = p1 \ p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 ~\ p2;
+i3 = p1 ~\ p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 ~\ p2;
+v3 = p1 ~\ p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 % p2;
+i3 = p1 % p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 % p2;
+v3 = p1 % p2;
+
+
+[*]
+var p1 = 333;
+var p2 = 222;
+var p3;
+int i3;
+
+p3 = p1 ~% p2;
+i3 = p1 ~% p2;
+
+
+[*]
+int p1 = 333;
+int p2 = 222;
+int p3;
+var v3;
+
+p3 = p1 ~% p2;
+v3 = p1 ~% p2;
+
+
+[*]
+int p1;
+int p2;
+int p3;
+int p4;
+int p5;
+int p6;
+
+p1 = trunc ( 2.1); // 2
+p2 = trunc ( 2.5); // 2
+p3 = trunc ( 3.5); // 3
+p4 = trunc (-2.1); // -2
+p5 = trunc (-2.5); // -2
+p6 = trunc (-3.5); // -3
+
+
+[*]
+var p0;
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+
+[2.1];
+a + [2.1] - b;
+p0 = a + [2.1] - b;
+
+p1 = int ( 2.1); // 2
+p2 = int ( 2.5); // 2
+p3 = int ( 3.5); // 3
+p4 = int (-2.1); // -2
+p5 = int (-2.5); // -2
+p6 = int (-3.5); // -3
+
+
+[*]
+var p0;
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+
+[123456,4];
+a + [123456,4] - b;
+p0 = a + [123456,4] - b;
+
+p1 = intto (123456, 4); // 120000
+p2 = intto (123456, 3); // 123000
+p3 = intto (123456, 2); // 123400
+p4 = intto (1.234, -2); // 1.23
+p5 = intto (1.235, -2); // 1.23
+p6 = intto (1.245, -2); // 1.24
+
+
+[*]
+var p0;
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+
+{2.1};
+a + {2.1} - b;
+p0 = a + {2.1} - b;
+
+p1 = frac ( 2.1); // 0.1
+p2 = frac ( 2.5); // 0.5
+p3 = frac ( 3.5); // 0.5
+p4 = frac (-2.1); // -0.1
+p5 = frac (-2.5); // -0.5
+p6 = frac (-3.5); // -0.5
+
+
+[*]
+var p0;
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+
+{12345.6789,4};
+a + {12345.6789,4} - b;
+p0 = a + {12345.6789,4} - b;
+
+p1 = fracto (12345.6789, 4); // 0.23456789
+p2 = fracto (12345.6789, 3); // 0.3456789
+p3 = fracto (12345.6789, 2); // 0.456789
+p4 = fracto (12345.6789, -1); // 0.789
+p5 = fracto (12345.6789, -2); // 0.89
+p6 = fracto (12345.6789, -3); // 0.9
+
+
+[*]
+var p0;
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+var p9;
+var p10;
+var p11;
+var p12;
+var p13;
+var p14;
+
+<2.1>;
+a + <2.1> - b;
+p0 = a + <2.1> - b;
+
+p1 = round ( 2.1); // 2
+p2 = round ( 2.5); // 3
+p3 = round ( 2.9); // 3
+p4 = round ( 5.1); // 5
+p5 = round ( 5.5); // 6
+p6 = round ( 5.9); // 6
+p7 = round (-2.1); // -2
+p8 = round (-2.5); // -3
+p9 = round (-2.9); // -3
+p10 = round (-5.1); // -5
+p11 = round (-5.5); // -6
+p12 = round (-5.9); // -6
+
+p13 = round (8728.5); // 8729
+p14 = round (87.285*100); // 8728 !!!
+
+
+[*]
+var p0;
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+
+<123456,4>;
+a + <123456,4> - b;
+p0 = a + <123456,4> - b;
+
+p1 = roundto (123456, 4); // 120000
+p2 = roundto (123456, 3); // 123000
+p3 = roundto (123456, 2); // 123500
+p4 = roundto (1.234, -2); // 1.23
+p5 = roundto (1.235, -2); // 1.24
+p6 = roundto (1.245, -2); // 1.25
+
+p7 = roundto (87.285, -2); // 87.28 !!!
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+var p9;
+var p10;
+var p11;
+var p12;
+
+p1 = rheven ( 2.1); // 2
+p2 = rheven ( 2.5); // 2
+p3 = rheven ( 2.9); // 3
+p4 = rheven ( 5.1); // 5
+p5 = rheven ( 5.5); // 6
+p6 = rheven ( 5.9); // 6
+p7 = rheven (-2.1); // -2
+p8 = rheven (-2.5); // -2
+p9 = rheven (-2.9); // -3
+p10 = rheven (-5.1); // -5
+p11 = rheven (-5.5); // -6
+p12 = rheven (-5.9); // -6
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+var p9;
+var p10;
+var p11;
+var p12;
+
+p1 = rhodd ( 2.1); // 2
+p2 = rhodd ( 2.5); // 3
+p3 = rhodd ( 2.9); // 3
+p4 = rhodd ( 5.1); // 5
+p5 = rhodd ( 5.5); // 5
+p6 = rhodd ( 5.9); // 6
+p7 = rhodd (-2.1); // -2
+p8 = rhodd (-2.5); // -3
+p9 = rhodd (-2.9); // -3
+p10 = rhodd (-5.1); // -5
+p11 = rhodd (-5.5); // -5
+p12 = rhodd (-5.9); // -6
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+
+p1 = rzero ( 2.1); // 2
+p2 = rzero ( 2.5); // 2
+p3 = rzero ( 2.9); // 2
+p4 = rzero ( 5.1); // 5
+p5 = rzero (-2.1); // -2
+p6 = rzero (-2.5); // -2
+p7 = rzero (-2.9); // -2
+p8 = rzero (-5.1); // -5
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+
+p1 = rinf ( 2.1); // 3
+p2 = rinf ( 2.5); // 3
+p3 = rinf ( 2.9); // 3
+p4 = rinf ( 5.1); // 6
+p5 = rinf (-2.1); // -3
+p6 = rinf (-2.5); // -3
+p7 = rinf (-2.9); // -3
+p8 = rinf (-5.1); // -6
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+
+p1 = rpinf ( 2.1); // 3
+p2 = rpinf ( 2.5); // 3
+p3 = rpinf ( 2.9); // 3
+p4 = rpinf ( 5.1); // 6
+p5 = rpinf (-2.1); // -2
+p6 = rpinf (-2.5); // -2
+p7 = rpinf (-2.9); // -2
+p8 = rpinf (-5.1); // -5
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+var p8;
+
+p1 = rninf ( 2.1); // 2
+p2 = rninf ( 2.5); // 2
+p3 = rninf ( 2.9); // 2
+p4 = rninf ( 5.1); // 5
+p5 = rninf (-2.1); // -3
+p6 = rninf (-2.5); // -3
+p7 = rninf (-2.9); // -3
+p8 = rninf (-5.1); // -6
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+
+p1 = ceil(2);    //  2
+p2 = ceil(2.4);  //  3
+p3 = ceil(2.8);  //  3
+p4 = ceil(-2.8); // -2
+p5 = ceil(-2.4); // -2
+p6 = ceil(-2);   // -2
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+
+p1 = floor(2);    //  2
+p2 = floor(2.4);  //  2
+p3 = floor(2.8);  //  2
+p4 = floor(-2.8); // -3
+p5 = floor(-2.4); // -3
+p6 = floor(-2);   // -2
+
+
+[*]
+var u_min;
+var u_max;
+var x_min;
+var x_max;
+
+x2copy(u_min,u_max, 22?<>11);
+x2copy(x_min,x_max, minmax(22,11));
+
+
+[*]
+var x_min;
+var x_max;
+
+co.minmax(x_min,x_max, 22,11);
+
+
+[*]
+var u_min;
+var u_max;
+var x_min;
+var x_max;
+
+x2copy(u_max,u_min, 22?><11);
+x2copy(x_max,x_min, maxmin(22,11));
+
+
+[*]
+var x_min;
+var x_max;
+
+co.maxmin(x_max,x_min, 22,11);
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = min.adev(1,9, 3); // = 2
+bb = min.adev(1,9, 5); // = 4
+cc = min.adev(1,9, 4); // = 3
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = minl.adev(2,8, 3); // = 2
+bb = minl.adev(2,8, 7); // = 8
+cc = minl.adev(2,8, 5); // = 2
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = minh.adev(2,8, 3); // = 2
+bb = minh.adev(2,8, 7); // = 8
+cc = minh.adev(2,8, 5); // = 8
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = max.adev(1,9, 3); // = 6
+bb = max.adev(1,9, 5); // = 4
+cc = max.adev(1,9, 4); // = 5
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = maxl.adev(2,8, 3); // = 8
+bb = maxl.adev(2,8, 7); // = 2
+cc = maxl.adev(2,8, 5); // = 2
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = maxh.adev(2,8, 3); // = 8
+bb = maxh.adev(2,8, 7); // = 2
+cc = maxh.adev(2,8, 5); // = 8
+
+
+[*]
+int p1;
+int p2;
+int p3;
+
+p1 = 24;
+p2 = 54;
+p3 = gcd(p1,p2); // = 6
+
+
+[*]
+int p1;
+int p2;
+int p3;
+
+p1 = 36;
+p2 = 14;
+p3 = lcm(p1,p2); // = 252
+
+
+[*]
+var uu = 10;
+var ee;
+
+ee = ++uu;
+// uu = 11
+// ee = 11
+
+
+[*]
+var uu = 10;
+var ee;
+
+ee = uu++;
+// uu = 11
+// ee = 10
+
+
+[*]
+var uu = 10;
+var ee;
+
+ee = --uu;
+// uu = 9
+// ee = 9
+
+
+[*]
+var uu = 10;
+var ee;
+
+ee = uu--;
+// uu = 9
+// ee = 10
+
+
+[*]
+var x_min;
+var x_max;
+
+// x_min = -2
+// x_max = 8
+x2copy(x_min,x_max, vminmax(-1,6,-2,8,1,2));
+
+
+[*]
+var x_min;
+var x_max;
+
+// x_min = -2
+// x_max = 8
+co.vminmax(x_min,x_max, -1,6,-2,8,1,2);
+
+
+[*]
+var x_max;
+var x_min;
+
+// x_max = 8
+// x_min = -2
+x2copy(x_max,x_min, vmaxmin(-1,6,-2,8,1,2));
+
+
+[*]
+var x_max;
+var x_min;
+
+// x_max = 8
+// x_min = -2
+co.vmaxmin(x_max,x_min, -1,6,-2,8,1,2);
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = vmin.adev(2,6,5,4, 1); // = 1
+bb = vmin.adev(2,6,5,4, 8); // = 2
+cc = vmin.adev(2,6,5,4, 9); // = 3
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = vminl.adev(2,6,5,4, 1); // = 2
+bb = vminl.adev(2,6,5,4, 7); // = 6
+cc = vminl.adev(2,6,5,4, 3); // = 2
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = vminh.adev(2,6,5,4, 1); // = 2
+bb = vminh.adev(2,6,5,4, 7); // = 6
+cc = vminh.adev(2,6,5,4, 3); // = 4
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = vmax.adev(7,2,3,1, 9); // = 8
+bb = vmax.adev(7,2,3,1, 2); // = 5
+cc = vmax.adev(7,2,3,1, 4); // = 3
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = vmaxl.adev(7,2,3,1, 9); // = 1
+bb = vmaxl.adev(7,2,3,1, 2); // = 7
+cc = vmaxl.adev(7,2,3,1, 4); // = 7
+
+
+[*]
+var aa;
+var bb;
+var cc;
+
+aa = vmaxh.adev(7,2,3,1, 9); // = 1
+bb = vmaxh.adev(7,2,3,1, 2); // = 7
+cc = vmaxh.adev(7,2,3,1, 4); // = 1
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+x3copy(a.d,a.m,a.s, d2a(a2d(33,44,55)));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+co.d2a(a.d,a.m,a.s, a2d(33,44,55));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+x3copy(a.d,a.m,a.s, r2a(a2r(33,44,55)));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+co.r2a(a.d,a.m,a.s, a2r(33,44,55));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+x3copy(a.d,a.m,a.s, g2a(a2g(33,44,55)));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+co.g2a(a.d,a.m,a.s, a2g(33,44,55));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+x3copy(a.d,a.m,a.s, c2a(a2c(33,44,55)));
+
+
+[*]
+var a.d;
+var a.m;
+var a.s;
+
+co.c2a(a.d,a.m,a.s, a2c(33,44,55));
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+
+p11 := +p01;
+p12 := -p01;
+p13 := /p02;
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 + p02;
+p12 = (add p01, p02);
+p13 = p01 ++ p02;
+p14 = p01 +- p02;
+p15 = p01 [+] p02;
+p16 = p01 {+} p02;
+p17 = p01 <+> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 - p02;
+p12 = (sub p01, p02);
+p13 = p01 -+ p02;
+p14 = p01 -- p02;
+p15 = p01 [-] p02;
+p16 = p01 {-} p02;
+p17 = p01 <-> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 ~- p02;
+p12 = (subr p01, p02);
+p13 = p01 ~-+ p02;
+p14 = p01 ~-- p02;
+p15 = p01 [~-] p02;
+p16 = p01 {~-} p02;
+p17 = p01 <~-> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 * p02;
+p12 = (mul p01, p02);
+p13 = p01 *+ p02;
+p14 = p01 *- p02;
+p15 = p01 [*] p02;
+p16 = p01 {*} p02;
+p17 = p01 <*> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 / p02;
+p12 = (div p01, p02);
+p13 = p01 /+ p02;
+p14 = p01 /- p02;
+p15 = p01 [/] p02;
+p16 = p01 {/} p02;
+p17 = p01 </> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 ~/ p02;
+p12 = (divr p01, p02);
+p13 = p01 ~/+ p02;
+p14 = p01 ~/- p02;
+p15 = p01 [~/] p02;
+p16 = p01 {~/} p02;
+p17 = p01 <~/> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 \ p02;
+p12 = (quo p01, p02);
+p13 = p01 \+ p02;
+p14 = p01 \- p02;
+p15 = p01 [\] p02;
+p16 = p01 {\} p02;
+p17 = p01 <\> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 ~\ p02;
+p12 = (quor p01, p02);
+p13 = p01 ~\+ p02;
+p14 = p01 ~\- p02;
+p15 = p01 [~\] p02;
+p16 = p01 {~\} p02;
+p17 = p01 <~\> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 % p02;
+p12 = (mod p01, p02);
+p13 = p01 %+ p02;
+p14 = p01 %- p02;
+p15 = p01 [%] p02;
+p16 = p01 {%} p02;
+p17 = p01 <%> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 ~% p02;
+p12 = (modr p01, p02);
+p13 = p01 ~%+ p02;
+p14 = p01 ~%- p02;
+p15 = p01 [~%] p02;
+p16 = p01 {~%} p02;
+p17 = p01 <~%> p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p14;
+var p15;
+
+p11 = p01 |+| p02;
+p14 = p01 |*| p02;
+p15 = p01 |/| p02;
+
+
+[*]
+var p01 = 56.78;
+var p02 = 12.34;
+var p11;
+var p12;
+var p13;
+var p14;
+var p15;
+var p16;
+var p17;
+
+p11 = p01 *% p02;
+p12 = p01 /% p02;
+p13 = p01 ~/% p02;
+p14 = p01 +% p02;
+p15 = p01 ~+% p02;
+p16 = p01 -% p02;
+p17 = p01 ~-% p02;
+
+
+[*]
+var p1;
+var p2;
+var p3;
+var p4;
+var p5;
+var p6;
+var p7;
+
+a:+;
+p1 = a:+;
+
+a:++;
+p2 = a:++;
+
+a:-;
+p3 = a:-;
+
+a:--;
+p4 = a:--;
+
+a:pi;
+p5 = a:pi;
+
+a:/pi;
+p6 = a:/pi;
+
+a:mega;
+p7 = a:mega;
+
+
+[*]
+int i1 = 2;
+var d1 = 2.6;
+var v1;
+var v2;
+var v3;
+var v4;
+
+v1 = pow(10,i1:double);
+v2 = pow(10,#2:double);
+v3 = pow(10,d1);
+v4 = pow(10,2.6);
+
+
+[*]
+int i1 = 2;
+var d1 = 2.6;
+var v1;
+var v2;
+var v3;
+var v4;
+
+v1 = ipow(10,i1);
+v2 = ipow(10,#2);
+v3 = ipow(10,d1:int);
+v4 = ipow(10,2.6:int);
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var v1, v2, v3, v4;
+var arg0;
+var arg1, arg2, arg3, arg4;
+var arg5, arg6, arg7, arg8;
+//
+v1 = creal(a0,b0);
+v2 = cimag(a0,b0);
+v3 = cabs(a0,b0);
+v4 = cnorm(a0,b0);
+//
+arg0 = carg(0,0)*(360/2/pi);
+arg1 = carg(1,0)*(360/2/pi);
+arg2 = carg(1,1)*(360/2/pi);
+arg3 = carg(0,1)*(360/2/pi);
+arg4 = carg(-1,1)*(360/2/pi);
+arg5 = carg(-1,0)*(360/2/pi);
+arg6 = carg(-1,-1)*(360/2/pi);
+arg7 = carg(0,-1)*(360/2/pi);
+arg8 = carg(1,-1)*(360/2/pi);
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var z1.re, z1.im;
+var z2.re, z2.im;
+var z3.re, z3.im;
+var z4.re, z4.im;
+var z5.re, z5.im;
+var z6.re, z6.im;
+//
+cmove(z1.re,z1.im, creze(a0,b0));
+cmove(z2.re,z2.im, (a0,b0):creze);
+cmove(z3.re,z3.im, czeim(a0,b0));
+cmove(z4.re,z4.im, (a0,b0):czeim);
+cmove(z5.re,z5.im, czero(a0,b0));
+cmove(z6.re,z6.im, (a0,b0):czero);
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var r0;
+var t0;
+//
+cmove(r0,t0, cpolar(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var r0, t0;
+var x0, y0;
+//
+cmove(r0,t0, cpolar(a0,b0));
+cmove(x0,y0, cplane(r0,t0));
+
+
+[*]
+var r0 = 5;
+var t0 = 0.927295218001612;
+var a0;
+var b0;
+//
+cmove(a0,b0, cplane(r0,t0));
+
+
+[*]
+var r0 = 5;
+var t0 = 0.927295218001612;
+var a0, b0;
+var x0, y0;
+//
+cmove(a0,b0, cplane(r0,t0));
+cmove(x0,y0, cpolar(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var a2;
+var b2;
+//
+cmove(a2,b2, cconj(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var a2;
+var b2;
+//
+cmove(a2,b2, crconj(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var a2;
+var b2;
+//
+cmove(a2,b2, cchs(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+
+cmove(x0,y0, cadd(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+
+cmove(x0,y0, csub(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+
+cmove(x0,y0, csubr(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+
+cmove(x0,y0, cmul(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+
+cmove(x0,y0, cdiv(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+
+cmove(x0,y0, cdivr(a0,b0,c0,d0));
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cinv(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cpow2(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cpow3(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cpow4(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3; var n4; var n5; var n6;
+var p1; var p2; var p3; var p4; var p5; var p6;
+
+cmove(n1,p1, cmul(a0,b0,a0,b0));
+cmove(n2,p2, csqr(a0,b0));
+//
+cmove(n3,p3, cmul(cmul(a0,b0,a0,b0),a0,b0));
+cmove(n4,p4, ccube(a0,b0));
+//
+cmove(n5,p5, cmul(cmul(cmul(a0,b0,a0,b0),a0,b0),a0,b0));
+cmove(n6,p6, cpow4(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+//
+cmove(x0,y0, croot2(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0, y0;
+var x1, y1;
+var x2, y2;
+//
+cmove(x0,y0, croot2(a0,b0));
+cmove(x1,y1, csqr(x0,y0));
+cmove(x2,y2, cmul(x0,y0,x0,y0));
+
+
+[*]
+var n1; var n21; var n22;
+var p1; var p21; var p22;
+var n3; var n41; var n42;
+var p3; var p41; var p42;
+var n5; var n61; var n62;
+var p5; var p61; var p62;
+var n7; var n81; var n82;
+var p7; var p81; var p82;
+//
+cmove(n1,p1, csqrt(3,4));
+cmove(n21,p21, csqr(n1,p1));
+cmove(n22,p22, csqr(-n1,-p1));
+//
+cmove(n3,p3, csqrt(-3,4));
+cmove(n41,p41, csqr(n3,p3));
+cmove(n42,p42, csqr(-n3,-p3));
+//
+cmove(n5,p5, csqrt(-3,-4));
+cmove(n61,p61, csqr(n5,p5));
+cmove(n62,p62, csqr(-n5,-p5));
+//
+cmove(n7,p7, csqrt(3,-4));
+cmove(n81,p81, csqr(n7,p7));
+cmove(n82,p82, csqr(-n7,-p7));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cln(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0, y0;
+var x1, y1;
+//
+cmove(x0,y0, cln(a0,b0));
+cmove(x1,y1, cexp(x0,y0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2;
+var p1; var p2;
+var n3; var p3;
+//
+cmove(n1,p1, cln(a0,b0));
+n2 = ln(cabs(a0,b0));
+p2 = carg(a0,b0);
+cmove(n3,p3, cexp(n1,p1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ccos(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2;
+var p1; var p2;
+var d1; var d2;
+//
+cmove(n1,p1, ccos(a0,b0));
+n2 =  cos(a0)*cosh(b0);
+p2 = -sin(a0)*sinh(b0);
+//
+d1 = n1 - n2;
+d2 = p1 - p2;
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, csin(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2;
+var p1; var p2;
+var d1; var d2;
+//
+cmove(n1,p1, csin(a0,b0));
+n2 = sin(a0)*cosh(b0);
+p2 = cos(a0)*sinh(b0);
+//
+d1 = n1 - n2;
+d2 = p1 - p2;
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ccosec(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3;
+var p1; var p2; var p3;
+//
+cmove(n1,p1, csin(a0,b0));
+cmove(n2,p2, cinv(n1,p1));
+cmove(n3,p3, ccosec(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, csec(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3;
+var p1; var p2; var p3;
+//
+cmove(n1,p1, ccos(a0,b0));
+cmove(n2,p2, cinv(n1,p1));
+cmove(n3,p3, csec(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ccotan(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3; var n4;
+var p1; var p2; var p3; var p4;
+//
+cmove(n1,p1, ccos(a0,b0));
+cmove(n2,p2, csin(a0,b0));
+cmove(n3,p3, cdiv(n1,p1,n2,p2));
+cmove(n4,p4, ccotan(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ctan(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3; var n4;
+var p1; var p2; var p3; var p4;
+//
+cmove(n1,p1, ccos(a0,b0));
+cmove(n2,p2, csin(a0,b0));
+cmove(n3,p3, cdiv(n2,p2,n1,p1));
+cmove(n4,p4, ctan(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ccosh(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2;
+var p1; var p2;
+var d1; var d2;
+//
+cmove(n1,p1, ccosh(a0,b0));
+n2 = cosh(a0)*cos(b0);
+p2 = sinh(a0)*sin(b0);
+//
+d1 = n1 - n2;
+d2 = p1 - p2;
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, csinh(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2;
+var p1; var p2;
+var d1; var d2;
+//
+cmove(n1,p1, csinh(a0,b0));
+n2 = sinh(a0)*cos(b0);
+p2 = cosh(a0)*sin(b0);
+//
+d1 = n1 - n2;
+d2 = p1 - p2;
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ccosech(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3;
+var p1; var p2; var p3;
+//
+cmove(n1,p1, csinh(a0,b0));
+cmove(n2,p2, cinv(n1,p1));
+cmove(n3,p3, ccosech(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, csech(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3;
+var p1; var p2; var p3;
+//
+cmove(n1,p1, ccosh(a0,b0));
+cmove(n2,p2, cinv(n1,p1));
+cmove(n3,p3, csech(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ccotanh(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3; var n4;
+var p1; var p2; var p3; var p4;
+//
+cmove(n1,p1, ccosh(a0,b0));
+cmove(n2,p2, csinh(a0,b0));
+cmove(n3,p3, cdiv(n1,p1,n2,p2));
+cmove(n4,p4, ccotanh(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, ctanh(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2; var n3; var n4;
+var p1; var p2; var p3; var p4;
+//
+cmove(n1,p1, ccosh(a0,b0));
+cmove(n2,p2, csinh(a0,b0));
+cmove(n3,p3, cdiv(n2,p2,n1,p1));
+cmove(n4,p4, ctanh(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cexp(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n1; var n2;
+var p1; var p2;
+var d1; var d2;
+//
+cmove(n1,p1, cexp(a0,b0));
+n2 = exp(a0)*cos(b0);
+p2 = exp(a0)*sin(b0);
+//
+d1 = n1 - n2;
+d2 = p1 - p2;
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var a1; var b1;
+var a2; var b2;
+var n1; var p1; var q1;
+var n2; var n3;
+var p2; var p3;
+var q2; var q3;
+//
+x3copy(n1,p1,q1, cprojdx(a0,b0,2));
+x3copy(n2,p2,q2, cprojdx(a0,b0,1));
+x3copy(n3,p3,q3, cprojd(a0,b0));
+//
+x2copy(a1,b1, caprojd(n3,p3,q3));
+x2copy(a2,b2, caprojdx(n2,p2,q2,1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var a1; var b1;
+var a2; var b2;
+var n1; var p1; var q1;
+var n2; var n3;
+var p2; var p3;
+var q2; var q3;
+//
+x3copy(n1,p1,q1, cprojrx(a0,b0,2));
+x3copy(n2,p2,q2, cprojrx(a0,b0,1));
+x3copy(n3,p3,q3, cprojr(a0,b0));
+//
+x2copy(a1,b1, caprojr(n3,p3,q3));
+x2copy(a2,b2, caprojrx(n2,p2,q2,1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var xi;
+var et;
+var zt;
+var dd;
+
+x3copy(xi,et,zt, cprojd(a0,b0));
+dd = 2*sqrt(xi^2 + et^2 + (zt - 1/2)^2);
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var d0 = 1;
+var xi;
+var et;
+var zt;
+var dd;
+
+x3copy(xi,et,zt, cprojdx(a0,b0,d0));
+dd = 2*sqrt(xi^2 + et^2 + (zt - d0/2)^2);
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var xi;
+var et;
+var zt;
+var rr;
+
+x3copy(xi,et,zt, cprojr(a0,b0));
+rr = sqrt(xi^2 + et^2 + zt^2);
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var r0 = 1;
+var xi;
+var et;
+var zt;
+var rr;
+
+x3copy(xi,et,zt, cprojrx(a0,b0,r0));
+rr = sqrt(xi^2 + et^2 + zt^2);
+
+
+[*]
+var a0 = 3; var x0;
+var b0 = 4; var y0;
+var xi;
+var et;
+var zt;
+
+x3copy(xi,et,zt, cprojd(a0,b0));
+x2copy(x0,y0, caprojd(xi,et,zt));
+
+
+[*]
+var a0 = 3; var x0;
+var b0 = 4; var y0;
+var xi;
+var et;
+var zt;
+
+x3copy(xi,et,zt, cprojdx(a0,b0,1));
+x2copy(x0,y0, caprojdx(xi,et,zt,1));
+
+
+[*]
+var a0 = 3; var x0;
+var b0 = 4; var y0;
+var xi;
+var et;
+var zt;
+
+x3copy(xi,et,zt, cprojr(a0,b0));
+x2copy(x0,y0, caprojr(xi,et,zt));
+
+
+[*]
+var a0 = 3; var x0;
+var b0 = 4; var y0;
+var xi;
+var et;
+var zt;
+
+x3copy(xi,et,zt, cprojrx(a0,b0,1));
+x2copy(x0,y0, caprojrx(xi,et,zt,1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cmuli(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cdivi(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cdivri(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, caddi(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, csubi(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, csubri(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cinc(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cdec(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cdecr(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+//
+cmove(x0,y0, cpow(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+//
+cmove(x0,y0, cpowr(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 2;
+var d0 = 0;
+var x0; var x1;
+var y0; var y1;
+
+cmove(x0,y0, cpow(a0,b0,c0,d0));
+cmove(x1,y1, csqr(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+int n0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cpown(a0,b0,n0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+int n0 = 2;
+var x0; var x1;
+var y0; var y1;
+
+cmove(x0,y0, cpown(a0,b0,n0));
+cmove(x1,y1, csqr(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0; var x1;
+var y0; var y1;
+
+cmove(x0,y0, cpown(a0,b0,#3));
+cmove(x1,y1, ccube(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+int n0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, crootn(a0,b0,n0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0; var x1;
+var y0; var y1;
+
+cmove(x0,y0, crootn(a0,b0,#2));
+cmove(x1,y1, csqrt(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+var x3; var y3;
+
+cmove(x1,y1, crootsn(a0,b0,#3,#0));
+cmove(x2,y2, crootsn(a0,b0,#3,#1));
+cmove(x3,y3, crootsn(a0,b0,#3,#2));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+var x3; var y3;
+var x4; var y4;
+var x5; var y5;
+var x6; var y6;
+var x7; var y7;
+var x8; var y8;
+var x9; var y9;
+
+cmove(x1,y1, crootsn(a0,b0,#3,#0));
+cmove(x2,y2, crootsn(a0,b0,#3,#1));
+cmove(x3,y3, crootsn(a0,b0,#3,#2));
+//
+cmove(x4,y4, cpown(x1,y1,#3));
+cmove(x5,y5, cpown(x2,y2,#3));
+cmove(x6,y6, cpown(x3,y3,#3));
+//
+cmove(x7,y7, csqrt(a0,b0));
+cmove(x8,y8, crootsn(a0,b0,#2,#0));
+cmove(x9,y9, crootsn(a0,b0,#2,#1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+//
+cmove(x0,y0, croot(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x0;
+var y0;
+//
+cmove(x0,y0, crootr(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var d0 = 9;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, croot(a0,b0,c0,d0));
+cmove(x2,y2, cpow(x1,y1,c0,d0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var a2;
+var b2;
+
+cmove(a2,b2, cxch(a0,b0));
+
+
+[*]
+var a0 = 3;
+var a2;
+var b2;
+
+cmove(a2,b2, ccis(a0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cacos(a0,b0));
+cmove(x2,y2, ccos(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+var x3; var y3;
+var x4; var y4;
+var x5; var y5;
+var x6; var y6;
+var x7; var y7;
+var x8; var y8;
+
+cmove(x1,y1, csqr(a0,b0));
+cmove(x2,y2, cdec(x1,y1));
+cmove(x3,y3, csqrt(x2,y2));
+cmove(x4,y4, cadd(x3,y3,a0,b0));
+cmove(x5,y5, cln(x4,y4));
+cmove(x6,y6, cmuli(x5,y5));
+cmove(x7,y7, cchs(x6,y6));
+cmove(x8,y8, ccos(x7,y7));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, casin(a0,b0));
+cmove(x2,y2, csin(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cacosec(a0,b0));
+cmove(x2,y2, ccosec(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, casec(a0,b0));
+cmove(x2,y2, csec(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cacotan(a0,b0));
+cmove(x2,y2, ccotan(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, catan(a0,b0));
+cmove(x2,y2, ctan(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cacosh(a0,b0));
+cmove(x2,y2, ccosh(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, casinh(a0,b0));
+cmove(x2,y2, csinh(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cacosech(a0,b0));
+cmove(x2,y2, ccosech(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, casech(a0,b0));
+cmove(x2,y2, csech(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cacotanh(a0,b0));
+cmove(x2,y2, ccotanh(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, catanh(a0,b0));
+cmove(x2,y2, ctanh(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cradd(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, ciadd(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, crsub(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cisub(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, crsubr(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cisubr(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, crmul(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cimul(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, crdiv(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cidiv(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, crdivr(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var c0 = 6;
+var x0;
+var y0;
+
+cmove(x0,y0, cidivr(a0,b0,c0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x0;
+var y0;
+
+cmove(x0,y0, cpowx(a0,b0,n0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2; var x3;
+var y1; var y2; var y3;
+
+cmove(x1,y1, cpowx(a0,b0,n0));
+cmove(x2,y2, cpow(a0,b0,(n0,0)));
+cmove(x3,y3, csqr(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x0;
+var y0;
+
+cmove(x0,y0, crootx(a0,b0,n0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2; var x3;
+var y1; var y2; var y3;
+
+cmove(x1,y1, crootx(a0,b0,n0));
+cmove(x2,y2, croot(a0,b0,(n0,0)));
+cmove(x3,y3, csqrt(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cadd(a0,b0,11,0));
+cmove(x2,y2, cradd(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cadd(a0,b0,0,11));
+cmove(x2,y2, ciadd(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, csub(a0,b0,11,0));
+cmove(x2,y2, crsub(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, csub(a0,b0,0,11));
+cmove(x2,y2, cisub(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, csubr(a0,b0,11,0));
+cmove(x2,y2, crsubr(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, csubr(a0,b0,0,11));
+cmove(x2,y2, cisubr(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cmul(a0,b0,11,0));
+cmove(x2,y2, crmul(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cmul(a0,b0,0,11));
+cmove(x2,y2, cimul(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cdiv(a0,b0,11,0));
+cmove(x2,y2, crdiv(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cdiv(a0,b0,0,11));
+cmove(x2,y2, cidiv(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cdivr(a0,b0,11,0));
+cmove(x2,y2, crdivr(a0,b0,11));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var n0 = 2;
+var x1; var x2;
+var y1; var y2;
+
+cmove(x1,y1, cdivr(a0,b0,0,11));
+cmove(x2,y2, cidivr(a0,b0,11));
+
+
+[*]
+var a0 = 8;
+var b0 = 0;
+var x0;
+var y0;
+
+cmove(x0,y0, cxpow(2,a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cxpow(2,a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cexp2(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cxpow(10,a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, cexp10(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, clog2(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, clog2(a0,b0));
+cmove(x2,y2, cexp2(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, clog10(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, clog10(a0,b0));
+cmove(x2,y2, cexp10(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var y1;
+var x2; var y2;
+
+cmove(x1,y1, cln(a0,b0));
+cmove(x2,y2, cexp(x1,y1));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, clogn(2,a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var x2;
+var y1; var y2;
+var x3; var x4;
+var y3; var y4;
+var x5; var x6;
+var y5; var y6;
+//
+cmove(x1,y1, clogn(2,a0,b0));
+cmove(x2,y2, clog2(a0,b0));
+//
+cmove(x3,y3, clogn(10,a0,b0));
+cmove(x4,y4, clog10(a0,b0));
+//
+cmove(x5,y5, clogn(@e,a0,b0));
+cmove(x6,y6, cln(a0,b0));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x0;
+var y0;
+
+cmove(x0,y0, clognr(a0,b0,2));
+
+
+[*]
+var a0 = 3;
+var b0 = 4;
+var x1; var x2;
+var y1; var y2;
+var x3; var x4;
+var y3; var y4;
+var x5; var x6;
+var y5; var y6;
+//
+cmove(x1,y1, clognr(a0,b0,2));
+cmove(x2,y2, clog2(a0,b0));
+//
+cmove(x3,y3, clognr(a0,b0,10));
+cmove(x4,y4, clog10(a0,b0));
+//
+cmove(x5,y5, clognr(a0,b0,@e));
+cmove(x6,y6, cln(a0,b0));
+
+
+[*]
+double dd = cos(a) / 0.1;
+:dd = sin(a) / 0.1;
+dd + 1;
+
+
+[*]
+var z1.re, z1.im;
+var z2.re=3, z2.im=4;
+
+ccopy(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var z2.re=3, z2.im=4;
+
+cmove(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var z2.re=3, z2.im=4;
+
+crrcopy(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var vv=8;
+
+cxrcopy(z1.re,z1.im, vv);
+
+
+[*]
+var z1.re, z1.im;
+var z2.re=3, z2.im=4;
+
+ciicopy(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var vv=8;
+
+cxicopy(z1.re,z1.im, vv);
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+
+ch1 := ch(x);
+sh1 := sh(x);
+x2copy(ch2,sh2, chsh(x));
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+
+ch1 := ch(x);
+sh1 := sh(x);
+x2copy(sh2,ch2, shch(x));
+
+
+[*]
+var a1 = 3, b1 = 4;
+var a2, b2;
+//
+cmove(a2,b2, csign(a1,b1));
+
+
+[*]
+var z1.re, z1.im;
+var z2.re=3, z2.im=4;
+//
+crrmove(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var vv=8;
+//
+cxrmove(z1.re,z1.im, vv);
+
+
+[*]
+var z1.re, z1.im;
+var z2.re=3, z2.im=4;
+//
+ciimove(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var vv=8;
+//
+cximove(z1.re,z1.im, vv);
+
+
+[*]
+var z1.re=1, z1.im=2;
+var z2.re=3, z2.im=4;
+//
+cswap(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re=1, z1.im=2;
+var z2.re=3, z2.im=4;
+//
+cswop(z1.re,z1.im, z2.re,z2.im);
+
+
+[*]
+var z1.re, z1.im;
+var vv=8;
+//
+cxcopy(z1.re,z1.im, vv);
+
+
+[*]
+var z1.re, z1.im;
+var vv=8;
+//
+cxmove(z1.re,z1.im, vv);
+
+
+[*]
+var z1.re=3, z1.im=4;
+//
+czcopy(z1.re,z1.im);
+
+
+[*]
+var z1.re=3, z1.im=4;
+//
+czmove(z1.re,z1.im);
+
+
+[*]
+var z1.re=3, z1.im=4;
+//
+czrcopy(z1.re,z1.im);
+
+
+[*]
+var z1.re=3, z1.im=4;
+//
+czrmove(z1.re,z1.im);
+
+
+[*]
+var z1.re=3, z1.im=4;
+//
+czicopy(z1.re,z1.im);
+
+
+[*]
+var z1.re=3, z1.im=4;
+//
+czimove(z1.re,z1.im);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 0, d0 = 0;
+int iz_ab, iz_cd;
+//
+iz_ab = cis.zero(a0,b0);
+iz_cd = cis.zero(c0,d0);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 0;
+var x3 = 0, y3 = 4;
+var x4 = 0, y4 = 0;
+int iz_1, iz_2, iz_3, iz_4;
+//
+iz_1 = cis.zero(x1,y1);
+iz_2 = cis.zero(x2,y2);
+iz_3 = cis.zero(x3,y3);
+iz_4 = cis.zero(x4,y4);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 0, d0 = 0;
+int iz_ab, iz_cd;
+//
+iz_ab = cisn.zero(a0,b0);
+iz_cd = cisn.zero(c0,d0);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 0;
+var x3 = 0, y3 = 4;
+var x4 = 0, y4 = 0;
+int iz_1, iz_2, iz_3, iz_4;
+//
+iz_1 = cisn.zero(x1,y1);
+iz_2 = cisn.zero(x2,y2);
+iz_3 = cisn.zero(x3,y3);
+iz_4 = cisn.zero(x4,y4);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 3, d0 = 0;
+int iz_ab, iz_cd;
+//
+iz_ab = cis.real(a0,b0);
+iz_cd = cis.real(c0,d0);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 0;
+var x3 = 0, y3 = 4;
+var x4 = 0, y4 = 0;
+int iz_1, iz_2, iz_3, iz_4;
+//
+iz_1 = cis.real(x1,y1);
+iz_2 = cis.real(x2,y2);
+iz_3 = cis.real(x3,y3);
+iz_4 = cis.real(x4,y4);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 3, d0 = 0;
+int iz_ab, iz_cd;
+//
+iz_ab = cisn.real(a0,b0);
+iz_cd = cisn.real(c0,d0);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 0;
+var x3 = 0, y3 = 4;
+var x4 = 0, y4 = 0;
+int iz_1, iz_2, iz_3, iz_4;
+//
+iz_1 = cisn.real(x1,y1);
+iz_2 = cisn.real(x2,y2);
+iz_3 = cisn.real(x3,y3);
+iz_4 = cisn.real(x4,y4);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 0, d0 = 4;
+int iz_ab, iz_cd;
+//
+iz_ab = cis.imag(a0,b0);
+iz_cd = cis.imag(c0,d0);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 0;
+var x3 = 0, y3 = 4;
+var x4 = 0, y4 = 0;
+int iz_1, iz_2, iz_3, iz_4;
+//
+iz_1 = cis.imag(x1,y1);
+iz_2 = cis.imag(x2,y2);
+iz_3 = cis.imag(x3,y3);
+iz_4 = cis.imag(x4,y4);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 0, d0 = 4;
+int iz_ab, iz_cd;
+//
+iz_ab = cisn.imag(a0,b0);
+iz_cd = cisn.imag(c0,d0);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 0;
+var x3 = 0, y3 = 4;
+var x4 = 0, y4 = 0;
+int iz_1, iz_2, iz_3, iz_4;
+//
+iz_1 = cisn.imag(x1,y1);
+iz_2 = cisn.imag(x2,y2);
+iz_3 = cisn.imag(x3,y3);
+iz_4 = cisn.imag(x4,y4);
+
+
+[*]
+var x0 = 3, y0 = 4;
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 3;
+int iz_1, iz_2;
+//
+iz_1 = cequ(x0,y0,x1,y1);
+iz_2 = cequ(x0,y0,x2,y2);
+
+
+[*]
+var x0 = 3, y0 = 4;
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 3;
+int iz_1, iz_2;
+//
+iz_1 = cnequ(x0,y0,x1,y1);
+iz_2 = cnequ(x0,y0,x2,y2);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = -4;
+var x3 = 3, y3 = 4;
+var x4 = 3, y4 = 3;
+int iz_1, iz_2;
+//
+iz_1 = cabs.equ(x1,y1,x2,y2);
+iz_2 = cabs.equ(x3,y3,x4,y4);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = -4;
+var x3 = 3, y3 = 4;
+var x4 = 3, y4 = 3;
+int iz_1, iz_2;
+//
+iz_1 = cabs.nequ(x1,y1,x2,y2);
+iz_2 = cabs.nequ(x3,y3,x4,y4);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 6, y2 = 8;
+var x3 = 3, y3 = 4;
+var x4 = 3, y4 = 3;
+int iz_1, iz_2;
+//
+iz_1 = carg.equ(x1,y1,x2,y2);
+iz_2 = carg.equ(x3,y3,x4,y4);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 6, y2 = 8;
+var x3 = 3, y3 = 4;
+var x4 = 3, y4 = 3;
+int iz_1, iz_2;
+//
+iz_1 = carg.nequ(x1,y1,x2,y2);
+iz_2 = carg.nequ(x3,y3,x4,y4);
+
+
+[*]
+var z.re, z.im;
+//
+cmove(z.re,z.im, cadd(coa:pcomplex, cob:pcomplex));
+
+
+[*]
+var z.re=333, z.im=444;
+var u.re, u.im;
+var m.re, m.im;
+var n.re, n.im;
+
+// coa - pointer constant
+// coa = address of TComplex structure
+cpcopy(coa, z.re,z.im);
+ccopy(u.re,u.im, coa:pcomplex);
+ccopy(m.re,m.im, **coa);
+ccopy(n.re,n.im, coa^^);
+
+
+[*]
+var z.re=333, z.im=444;
+var u.re, u.im;
+var m.re, m.im;
+var n.re, n.im;
+
+// coa - pointer constant
+// coa = address of TComplex structure
+cpmove(coa, z.re,z.im);
+ccopy(u.re,u.im, coa:pcomplex);
+ccopy(m.re,m.im, **coa);
+ccopy(n.re,n.im, coa^^);
+
+
+[*]
+int pp;
+var x1, x2, x3, x4, x5;
+//
+pp = &a;
+x1 = add(pp:pdouble,10);
+x2 = add(10,pp:pdouble);
+x3 = pp:pdouble + 10;
+x4 = 10 + pp:pdouble;
+x5 = 10 + pp:pdouble + 10;
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+//
+x1 = a++b;
+x2 = a--b;
+x3 = a^b;
+x4 = a^^b;
+x5 -= a;
+x6 = a;
+x7 := a;
+
+
+[*]
+var x1, x2, x3, x4;
+//
+x1 = (a,b):add;
+x2 = (x+y):cos;
+x3 = x:sin;
+x4 = x:sin:sqr + x:cos:sqr;
+
+
+[*]
+var x1, x2, x3, x4;
+//
+x1 = (a,b)#add;
+x2 = (x+y)#cos;
+x3 = x#sin;
+x4 = x#sin#sqr + x#cos#sqr;
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 4;
+var x3 = 3, y3 = 4;
+var x4 = 2, y4 = 4;
+int iz_1, iz_2;
+//
+iz_1 = creal.equ(x1,y1,x2,y2);
+iz_2 = creal.equ(x3,y3,x4,y4);
+
+
+[*]
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 4;
+var x3 = 3, y3 = 4;
+var x4 = 2, y4 = 4;
+int iz_1, iz_2;
+//
+iz_1 = creal.nequ(x1,y1,x2,y2);
+iz_2 = creal.nequ(x3,y3,x4,y4);
+
+
+[*]
+var x0 = 3, y0 = 4;
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 2;
+int iz_1, iz_2;
+//
+iz_1 = cimag.equ(x0,y0,x1,y1);
+iz_2 = cimag.equ(x0,y0,x2,y2);
+
+
+[*]
+var x0 = 3, y0 = 4;
+var x1 = 3, y1 = 4;
+var x2 = 3, y2 = 2;
+int iz_1, iz_2;
+//
+iz_1 = cimag.nequ(x0,y0,x1,y1);
+iz_2 = cimag.nequ(x0,y0,x2,y2);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 6, d0 = 9;
+var x1, y1;
+var x2, y2;
+var x3, y3;
+var x4, y4;
+//
+cmove(x1,y1, crere(a0,b0,c0,d0));
+cmove(x2,y2, creim(a0,b0,c0,d0));
+cmove(x3,y3, cimre(a0,b0,c0,d0));
+cmove(x4,y4, cimim(a0,b0,c0,d0));
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 6, d0 = 9;
+var n1, norm1;
+var n2, norm2;
+//
+cmove(n1,n2, cnorms(a0,b0,c0,d0));
+norm1 = cnorm(a0,b0);
+norm2 = cnorm(c0,d0);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 6, d0 = 9;
+var r1, abs1;
+var r2, abs2;
+//
+cmove(r1,r2, cabss(a0,b0,c0,d0));
+abs1 = cabs(a0,b0);
+abs2 = cabs(c0,d0);
+
+
+[*]
+var a0 = 3, b0 = 4;
+var c0 = 6, d0 = 9;
+var t1, arg1;
+var t2, arg2;
+//
+cmove(t1,t2, cargs(a0,b0,c0,d0));
+arg1 = carg(a0,b0);
+arg2 = carg(c0,d0);
+
+
+[*]
+var d1 = 111.222;
+var d2;
+//
+d1 = 333.444; // d1 = 333.444
+d2 = d1;      // d1 = 333.444
+reset(d1);    // d1 = 111.222
+
+
+[*]
+int i1 = 111;
+int i2;
+//
+i1 = 333;  // i1 = 333
+i2 = i1;   // i1 = 333
+reset(i1); // i1 = 111
+
+
+[*]
+str s1 = "aaa";
+str s2;
+//
+s1 = "bbb"; // s1 = "bbb"
+s2 = s1;    // s1 = "bbb"
+reset(s1);  // s1 = "aaa"
+
+
+[*]
+var d1 = 111.222;
+var d2, d3;
+//
+d1 = 333.444;     // d1 = 333.444
+d2 = d1;          // d1 = 333.444
+d3 = restore(d1); // d1 = 111.222
+
+
+[*]
+int i1 = 111;
+int i2, i3;
+//
+i1 = 333;         // i1 = 333
+i2 = i1;          // i1 = 333
+i3 = restore(i1); // i1 = 111
+
+
+[*]
+str s1 = "aaa";
+str s2, s3, s4, s5, s6, s7, s8;
+//
+s1 = "bbb";       // s1 = "bbb"
+s2 = s1;          // s1 = "bbb"
+s3 = restore(s1); // s1 = "aaa"
+s4 = s1;
+s5 = s1;
+s6 = s1;
+s7 = s1;
+s8 = s1;
+
+
+[*]
+complex z0=11,22;
+complex z1, z2;
+//
+cmove(z0, 33,44);
+cmove(z1, z0);
+cmove(z2, ccovalue(z0));
+
+
+[*]
+complex z0=11,22;
+complex z1, z2;
+//
+cmove(z0, 33,44);
+cmove(z1, z0);
+cmove(z2, crestore(z0));
+
+
+[*]
+complex z0=11,22;
+complex z1, z2;
+//
+cmove(z0, 33,44);
+cmove(z1, z0);
+creset(z0);
+cmove(z2, z0);
+
+
+[*]
+var dx1,dx2,dx3,dy0=8.88;
+vcopy(dx1,dx2,dx3,dy0);
+//
+int ix1,ix2,ix3,iy0=888;
+vcopy(ix1,ix2,ix3,iy0);
+//
+str sx1,sx2,sx3,sy0="888";
+vcopy(sx1,sx2,sx3,sy0);
+
+
+[*]
+var dy1,dy2,dy3,dx0=8.88;
+vcopx(dx0,dy1,dy2,dy3);
+//
+int iy1,iy2,iy3,ix0=888;
+vcopx(ix0,iy1,iy2,iy3);
+//
+str sy1,sy2,sy3,sx0="888";
+vcopx(sx0,sy1,sy2,sy3);
+
+
+[*]
+var d1=1.1,d2=2.2,d3=3.3,d4=4.4;
+swapr(d1,d2,d3,d4);
+//
+int i1=11,i2=22,i3=33,i4=44;
+swapr(i1,i2,i3,i4);
+//
+str s1="11",s2="22",s3="33",s4="44";
+swapr(s1,s2,s3,s4);
+
+
+[*]
+var d1=1.1,d2=2.2,d3=3.3,d4=4.4;
+swapl(d1,d2,d3,d4);
+//
+var i1=11,i2=22,i3=33,i4=44;
+swapl(i1,i2,i3,i4);
+//
+str s1="11",s2="22",s3="33",s4="44";
+swapl(s1,s2,s3,s4);
+
+
+[*]
+var u0,u1,u2,u3;
+var d0,d1,d2,d3;
+var z0,z1,z2,z3;
+//
+u0=u[0];
+u1=u[1];
+u2=u[2];
+u3=u[3];
+swapr(u->>0,u->>1,u->>2,u->>3);
+d0=u[0];
+d1=u[1];
+d2=u[2];
+d3=u[3];
+swapl(u->>0,u->>1,u->>2,u->>3);
+z0=u[0];
+z1=u[1];
+z2=u[2];
+z3=u[3];
+
+
+[*]
+complex z0=11,22;
+complex z2;
+int p_z0;
+//
+p_z0 = &z0;
+cmove(z2, p_z0^^);
+
+
+[*]
+complex z0=11,22;
+complex z2;
+int p_z0;
+//
+p_z0 = &z0;
+cmove(z2, p_z0^^);
+
+
+[*]
+var v1=1.1, v2=2.2;
+var v3, v4, v5, v6;
+//
+v3 = vdouble(&v1);
+v4 = (&v2):vdouble;
+vdouble(&v5) = v3;
+(&v6):vdouble = v4;
+
+
+[*]
+complex z1, z2, z3, z4, z5, z6;
+//
+cmove(z1, 1.1, 2.2);
+cmove(z2, 3.3, 4.4);
+//
+cmove(z3, (&z1):vcomplex);
+cmove(z4, vcomplex(&z2));
+cmove((&z5):vcomplex, z3);
+cmove(vcomplex(&z6), z4);
+
+
+[*]
+complex z0, z8;
+//
+cmove(z0, coa:vcomplex);
+cmove(coa:vcomplex, 22,33);
+cmove(z8, coa:vcomplex);
+
+
+[*]
+int v1=11, v2=22;
+int v3, v4, v5, v6;
+//
+v3 = vint(&v1);
+v4 = (&v2):vint;
+vint(&v5) = v3;
+(&v6):vint = v4;
+
+
+[*]
+str v1="11", v2="22";
+str v3, v4, v5, v6;
+//
+v3 = vstr(&v1);
+v4 = (&v2):vstr;
+vstr(&v5) = v3;
+(&v6):vstr = v4;
+
+
+[*]
+(u&->1):vdouble = 111;
+a = (u&->1):vdouble;
+(u&->#2):vdouble = 222;
+b = (u&->#2):vdouble;
+(u&~>1):vdouble = 333;
+c = (u&~>1):vdouble;
+(u&~>#2):vdouble = 444;
+d = (u&~>#2):vdouble;
+
+
+[*]
+cvar z0 = 22,88, z1, z2, z3;
+//
+z1 = 1,2;
+z2 = z1;
+z3 := z0;
+
+
+[*]
+cvar z1 = 22,88;
+cvar z2 = 44,99;
+//
+z1 :=: z2;
+
+
+[*]
+cvar z1=22,88;
+var z2, z3;
+str s1="123", s2;
+int i1=222, i2;
+int p_z1, p_z2, p_z3;
+int p_s1, p_s2;
+int p_i1, p_i2;
+//
+p_z1 = &z1;
+p_z2 = &z2;
+p_z3 = &z3;
+p_s1 = &s1;
+p_s2 = &s2;
+p_i1 = &i1;
+p_i2 = &i2;
+
+
+[*]
+var z0.re=3, z0.im=5;
+complex z0 absolute z0.re;
+complex z1=11,22;
+complex z2=77,88;
+int p0, p1, p2;
+int d10, d21;
+//
+p0 = &z0;
+p1 = &z1;
+p2 = &z2;
+d10 = p1 - p0;
+d21 = p2 - p1;
+
+
+[*]
+var z0.re=3, z0.im=5;
+var u0.re=2, u0.im=8;
+complex z0::z0.re;
+complex z1::z0, z2::u0.re, z3=44,55;
+var abs1, abs2;
+var arg1, arg2;
+//
+abs1 = cabs(z0.re,z0.im);
+abs2 = cabs(z0);
+arg1 = carg(z0.re,z0.im);
+arg2 = carg(z0);
+
+
+[*]
+var z0.re=3, z0.im=5;
+var u0.re=2, u0.im=8;
+complex z0 absolute z0.re;
+complex z1 absolute z0, z2 absolute u0.re, z3=44,55;
+var abs1, abs2;
+var arg1, arg2;
+//
+abs1 = cabs(z0.re,z0.im);
+abs2 = cabs(z0);
+arg1 = carg(z0.re,z0.im);
+arg2 = carg(z0);
+
+
+[*]
+var z0.re=3, z0.im=5;
+var u0.re=2, u0.im=8;
+complex z0 absolute z0.re;
+complex z1 absolute z0, z3=44,55, z2 absolute u0.re;
+var abs1, abs2;
+var arg1, arg2;
+//
+abs1 = cabs(z0.re,z0.im);
+abs2 = cabs(z0);
+arg1 = carg(z0.re,z0.im);
+arg2 = carg(z0);
+
+
+[*]
+var z0.re=3, z0.im=4;
+complex z0::z0.re;
+complex z1 absolute z0.re;
+complex absolute(z2,z0);
+complex (z3,z0):absolute;
+var abs0, abs1, abs2, abs3, abs4;
+var arg0, arg1, arg2, arg3, arg4;
+//
+abs0 = cabs(z0.re,z0.im);
+abs1 = cabs(z0);
+abs2 = cabs(z1);
+abs3 = cabs(z2);
+abs4 = cabs(z3);
+//
+arg0 = carg(z0.re,z0.im);
+arg1 = carg(z0);
+arg2 = carg(z1);
+arg3 = carg(z2);
+arg4 = carg(z3);
+
+
+[*]
+complex z0=3,4;
+var z0.re absolute z0;
+var z0.im absolute (&z0+8);
+var z1.re absolute (&z0+0);
+var z1.im absolute (&z0+8);
+var abs0, abs1, abs2;
+var arg0, arg1, arg2;
+//
+abs0 = cabs(z0);
+abs1 = cabs(z0.re,z0.im);
+abs2 = cabs(z1.re,z1.im);
+//
+arg0 = carg(z0);
+arg1 = carg(z0.re,z0.im);
+arg2 = carg(z1.re,z1.im);
+
+
+[*]
+var x0 = 888;
+int p0 = &x0;
+
+// x0 = 123
+(p0:covalue):vdouble = 123;
+
+
+[*]
+complex z0 = 11,22;
+int p0 = &z0;
+
+// z0 = (33,88)
+cmove((p0:covalue):vcomplex, 33,88);
+
+
+[*]
+int x0 = 888;
+int p0 = &x0;
+
+// x0 = 123
+(p0:covalue):vinteger = 123;
+
+
+[*]
+str x0 = "abc";
+int p0 = &x0;
+
+// x0 = "xyz"
+(p0:covalue):vstring = "xyz";
+
+
+[*]
+var v0=222;
+var v1 absolute v0;
+
+
+[*]
+cvar v0=222,333;
+cvar v8=555,777;
+//
+var v0.re absolute v0;
+var v0.im absolute (&v0+8);
+var v8.re absolute v8;
+var v8.im absolute (&v8+#8);
+
+
+[*]
+cvar z0=11,22;
+var v0=888;
+var z0.re absolute (&z0+0);
+var z0.im absolute (&z0+8);
+var u0=222;
+int p_v0, p_u0, pd;
+//
+p_v0 = &v0;
+p_u0 = &u0;
+pd = p_u0 - p_v0;
+
+
+[*]
+var u0;
+//
+assign u0, x;
+u0 = 111;
+// x = 111
+//
+assign u0, y;
+u0 = 222;
+// y = 222
+
+
+[*]
+var u0;
+//
+assign u0, &x;
+u0 = 111;
+// x = 111
+//
+assign u0, &y;
+u0 = 222;
+// y = 222
+
+
+[*]
+int p0 = &x;
+var x0;
+//
+assign x0, p0:covalue;
+x0 = 888;
+// x = 888
+
+
+[*]
+str s0, z0;
+int i0, j0;
+//
+s0 = "12345678";
+assign i0, &&s0;
+// i0 = null
+: z0 = "12345678";
+assign j0, &&z0;
+// x64: j0 = 4050765991979987505
+// x32: j0 = 875770417
+
+
+[*]
+var u0 = 123;
+var p0 = 456;
+//
+assign u0, p0;
+u0 = 222;
+// u0 = 222
+// p0 = 222
+//
+reassign u0;
+u0 = 888;
+// u0 = 888
+// p0 = 222
+
+
+[*]
+assign a, b;
+a = 222;
+reassign a;
+a = 888;
+
+
+[*]
+str ss="1234";
+int pp absolute ss;
+
+
+[*]
+str ss="12345678";
+int pp absolute ss;
+
+
+[*]
+int p1 absolute v_str8;
+int p2 absolute c_str8;
+int p3, p4;
+assign p3, v_str8;
+assign p4, c_str8;
+
+
+[*]
+int p0 = &x;
+var x0 absolute p0:covalue;
+//
+x0 = 888;
+// x = 888;
+
+
+[*]
+str s0 = "12345678";
+int i0, i1, i2;
+//
+assign i0, &&s0;
+assign i1, &&v_str8;
+assign i2, &&c_str8;
+
+
+[*]
+str s0;
+int i1, i2, i3;
+int i4, i5, i6;
+//
+i1 = &s0;
+i2 = &&s0;
+assign i3, &&s0;
+//
+: s0 = "12345678";
+i4 = &s0;
+i5 = &&s0;
+assign i6, &&s0;
+
+
+[*]
+str s0 = "12345678";
+str s2 = "abcdefgh";
+int n1, n2, n3, n4, n5;
+int p1, p2, p3, p4, p5;
+int u1, u2, u3, u4, u5;
+int a1, a2, a3, a4, a5;
+//
+p1 = &s0;
+u1 = &&s0;
+assign n1, s0;
+a1 = &n1;
+//
+: s0 = "87654321";
+p2 = &s0;
+u2 = &&s0;
+assign n2, s0;
+a2 = &n2;
+//
+: s0 = s2;
+p3 = &s0;
+u3 = &&s0;
+assign n3, s0;
+a3 = &n3;
+//
+: s0 = v_str8;
+p4 = &s0;
+u4 = &&s0;
+assign n4, s0;
+a4 = &n4;
+//
+: s0 = c_str8;
+p5 = &s0;
+u5 = &&s0;
+assign n5, s0;
+a5 = &n5;
+
+
+[*]
+str s0 = "12345678";
+int p0 = &&s0;
+str s2, s3;
+int i2, i3;
+//
+: s2 := p0:covalue;
+assign i2, s2;
+//
+p0:covalue =: s3;
+assign i3, s3;
+
+
+[*]
+str s0 = "12345678";
+int p0 = &&s0;
+str s2, s3;
+int i2, i3;
+//
+: s2 := p0;
+assign i2, s2;
+//
+p0 =: s3;
+assign i3, s3;
+
+
+[*]
+str s1, s2;
+int i1, i2;
+//
+: s1 = "12345678";
+: s2 = "87654321";
+: swap (s1, s2);
+assign i1, s1;
+assign i2, s2;
+
+
+[*]
+str s1, s2;
+int i0;
+int i1, i2;
+//
+: s1 = "12345678";
+: swap (s1, i0);
+: swap (i0, s2);
+assign i1, s1;
+assign i2, s2;
+
+
+[*]
+str s0;
+str s1, s2;
+int i1, i2;
+//
+: s0 = "12345678";
+: vcopy (s1, s2, s0);
+assign i1, s1;
+assign i2, s2;
+
+
+[*]
+str s0;
+str s1, s2;
+int i1, i2;
+//
+: s0 = "12345678";
+: vcopx (s0, s1, s2);
+assign i1, s1;
+assign i2, s2;
+
+
+[*]
+str s1, s2, s3;
+str z1, z2, z3;
+int p1, p2, p3;
+int i1, i2, i3;
+//
+: s1 = "12345678";
+: s2 = "22222222";
+: s3 = "44444444";
+//
+: z1 = s1;
+: z2 = s2;
+: z3 = s3;
+assign p1, z1;
+assign p2, z2;
+assign p3, z3;
+//
+: swapr (s1, s2, s3);
+assign i1, s1;
+assign i2, s2;
+assign i3, s3;
+
+
+[*]
+str s1, s2, s3;
+str z1, z2, z3;
+int p1, p2, p3;
+int i1, i2, i3;
+//
+: s1 = "12345678";
+: s2 = "22222222";
+: s3 = "44444444";
+//
+: z1 = s1;
+: z2 = s2;
+: z3 = s3;
+assign p1, z1;
+assign p2, z2;
+assign p3, z3;
+//
+: swapl (s1, s2, s3);
+assign i1, s1;
+assign i2, s2;
+assign i3, s3;
+
+
+[*]
+str s1, s2;
+int i1, i2;
+//
+: x2copy (s1, s2, "12345678", "87654321");
+assign i1, s1;
+assign i2, s2;
+
+
+[*]
+var v0 = 8.88, v2;
+int p0 = &v0;
+v2 = p0`:pdouble;
+
+
+[*]
+int v0 = 888, v2;
+int p0 = &v0;
+v2 = p0`:pinteger;
+
+
+[*]
+str v0 = "888", v2;
+int p0 = &v0;
+v2 = p0`:pstring;
+
+
+[*]
+cvar v0 = 3,4, v2;
+int p0 = &v0;
+v2 = p0`:pcomplex;
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 + z2;
+$- complex
+//
+cmove(u0, cadd(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 - z2;
+$- complex
+//
+cmove(u0, csub(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ~- z2;
+$- complex
+//
+cmove(u0, csubr(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 * z2;
+$- complex
+//
+cmove(u0, cmul(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 / z2;
+$- complex
+//
+cmove(u0, cdiv(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ~/ z2;
+$- complex
+//
+cmove(u0, cdivr(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 + z2 * z1;
+$- complex
+//
+cmove(u0, cadd(z1,cmul(z2,z1)));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ^ z2;
+$- complex
+//
+cmove(u0, cpow(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ~^ z2;
+$- complex
+//
+cmove(u0, cpowr(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ** z2;
+$- complex
+//
+cmove(u0, cpow(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ~** z2;
+$- complex
+//
+cmove(u0, cpowr(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 */ z2;
+$- complex
+//
+cmove(u0, croot(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+$+ complex
+z0 = z1 ~*/ z2;
+$- complex
+//
+cmove(u0, crootr(z1,z2));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+cmove(z0, cpow(z1,z2));
+cmove(u0, cpowr(z2,z1));
+
+
+[*]
+complex z0, u0;
+complex z1=1.2,3.4, z2=5.6,7.8;
+//
+cmove(z0, croot(z1,z2));
+cmove(u0, crootr(z2,z1));
+
+
+[*]
+x = 0;
+
+// goto ooo if x = 0
+goto.if ooo, x = 0;
+
+x = 2;
+
+ooo:
+++x;
+
+
+[*]
+x = 0;
+
+// goto ooo if x = 0
+goto.if ooo, x == 0;
+
+x = 2;
+
+ooo:
+++x;
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = cos(x);
+sin1 = sin(x);
+x2copy (cos2,sin2, cossin(x));
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = cos(x);
+sin1 = sin(x);
+//co.cossin (cos2,sin2, x);
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = cos(x);
+sin1 = sin(x);
+x2copy (sin2,cos2, sincos(x));
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = cos(x);
+sin1 = sin(x);
+//co.sincos (sin2,cos2, x);
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+//
+ch1 := ch(x);
+sh1 := sh(x);
+co.chsh(ch2,sh2, x);
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+//
+ch1 := ch(x);
+sh1 := sh(x);
+co.shch(sh2,ch2, x);
+
+
+[*]
+var vr;
+var vquo, vmod;
+//
+x2copy(vquo,vmod, 100\%(pi/4));
+vr = vquo*(pi/4) + vmod;
+
+
+[*]
+var vr;
+var vquo, vmod;
+//
+co.quo.mod(vquo,vmod, 100, pi/4);
+vr = vquo*(pi/4) + vmod;
+
+
+[*]
+var vr;
+var vquo, vmod;
+//
+x2copy(vmod,vquo, 100%\(pi/4));
+vr = vquo*(pi/4) + vmod;
+
+
+[*]
+var vr;
+var vquo, vmod;
+//
+co.mod.quo(vmod,vquo, 100, pi/4);
+vr = vquo*(pi/4) + vmod;
+
+
+[*]
+var v00;
+var v11, v12, v13, v14;
+var v21, v22, v23, v24;
+var v31, v32, v33, v34;
+var v41, v42, v43, v44;
+var v51, v52, v53, v54;
+//
+v00 = 1234.5678;
+//
+v11 = v00:+;
+v12 = v00:-;
+v13 = v00:++;
+v14 = v00:--;
+//
+v21 = v00:2pi;
+v22 = v00:pi;
+v23 = v00:pi2;
+v24 = v00:pi4;
+//
+v31 = v00:/2pi;
+v32 = v00:/pi;
+v33 = v00:/pi2;
+v34 = v00:/pi4;
+//
+v41 = v00:\2pi;
+v42 = v00:\pi;
+v43 = v00:\pi2;
+v44 = v00:\pi4;
+//
+v51 = v00:%2pi;
+v52 = v00:%pi;
+v53 = v00:%pi2;
+v54 = v00:%pi4;
+
+
+[*]
+aif.z (sin(x) - fsin(x));
+
+
+[*]
+aif.nz (sin(x) - fsin(x));
+
+
+[*]
+aif.e (sin(x), fsin(x));
+
+
+[*]
+aif.ne (sin(x), fsin(x));
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+int i1, i2, i3, i4, i5, i6, i7;
+//
+x1 = -1;
+i1 = aif.z (x1);
+//
+x2 = -(2^(-50));
+i2 = aif.z (x2);
+//
+x3 = -(2^(-60));;
+i3 = aif.z (x3);
+//
+x4 = 0;
+i4 = aif.z (x4);
+//
+x5 = +(2^(-60));;
+i5 = aif.z (x5);
+//
+x6 = +(2^(-50));
+i6 = aif.z (x6);
+//
+x7 = +1;
+i7 = aif.z (x7);
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+int i1, i2, i3, i4, i5, i6, i7;
+//
+x1 = -1;
+i1 = aif.nz (x1);
+//
+x2 = -(2^(-50));
+i2 = aif.nz (x2);
+//
+x3 = -(2^(-60));;
+i3 = aif.nz (x3);
+//
+x4 = 0;
+i4 = aif.nz (x4);
+//
+x5 = +(2^(-60));;
+i5 = aif.nz (x5);
+//
+x6 = +(2^(-50));
+i6 = aif.nz (x6);
+//
+x7 = +1;
+i7 = aif.nz (x7);
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+int i1, i2, i3, i4, i5, i6, i7;
+//
+x1 = -1;
+i1 = aif.az (x1);
+//
+x2 = -(2^(-50));
+i2 = aif.az (x2);
+//
+x3 = -(2^(-60));;
+i3 = aif.az (x3);
+//
+x4 = 0;
+i4 = aif.az (x4);
+//
+x5 = +(2^(-60));;
+i5 = aif.az (x5);
+//
+x6 = +(2^(-50));
+i6 = aif.az (x6);
+//
+x7 = +1;
+i7 = aif.az (x7);
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+int i1, i2, i3, i4, i5, i6, i7;
+//
+x1 = -1;
+i1 = aif.aez (x1);
+//
+x2 = -(2^(-50));
+i2 = aif.aez (x2);
+//
+x3 = -(2^(-60));;
+i3 = aif.aez (x3);
+//
+x4 = 0;
+i4 = aif.aez (x4);
+//
+x5 = +(2^(-60));;
+i5 = aif.aez (x5);
+//
+x6 = +(2^(-50));
+i6 = aif.aez (x6);
+//
+x7 = +1;
+i7 = aif.aez (x7);
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+int i1, i2, i3, i4, i5, i6, i7;
+//
+x1 = -1;
+i1 = aif.bz (x1);
+//
+x2 = -(2^(-50));
+i2 = aif.bz (x2);
+//
+x3 = -(2^(-60));;
+i3 = aif.bz (x3);
+//
+x4 = 0;
+i4 = aif.bz (x4);
+//
+x5 = +(2^(-60));;
+i5 = aif.bz (x5);
+//
+x6 = +(2^(-50));
+i6 = aif.bz (x6);
+//
+x7 = +1;
+i7 = aif.bz (x7);
+
+
+[*]
+var x1, x2, x3, x4, x5, x6, x7;
+int i1, i2, i3, i4, i5, i6, i7;
+//
+x1 = -1;
+i1 = aif.bez (x1);
+//
+x2 = -(2^(-50));
+i2 = aif.bez (x2);
+//
+x3 = -(2^(-60));;
+i3 = aif.bez (x3);
+//
+x4 = 0;
+i4 = aif.bez (x4);
+//
+x5 = +(2^(-60));;
+i5 = aif.bez (x5);
+//
+x6 = +(2^(-50));
+i6 = aif.bez (x6);
+//
+x7 = +1;
+i7 = aif.bez (x7);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=pow2x(x1);
+e01x=fexp2(x1);
+//
+x2=0.8;
+e02=pow2x(x2);
+e02x=fexp2(x2);
+//
+x3=-0.4;
+e03=pow2x(x3);
+e03x=fexp2(x3);
+//
+x4=-0.8;
+e04=pow2x(x4);
+e04x=fexp2(x4);
+//
+x5=1.2;
+e05=pow2x(x5);
+e05x=fexp2(x5);
+//
+x6=111.6;
+e06=pow2x(x6);
+e06x=fexp2(x6);
+//
+x7=-1.2;
+e07=pow2x(x7);
+e07x=fexp2(x7);
+//
+x8=-111.6;
+e08=pow2x(x8);
+e08x=fexp2(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=pow10x(x1);
+e01x=fexp10(x1);
+//
+x2=0.8;
+e02=pow10x(x2);
+e02x=fexp10(x2);
+//
+x3=-0.4;
+e03=pow10x(x3);
+e03x=fexp10(x3);
+//
+x4=-0.8;
+e04=pow10x(x4);
+e04x=fexp10(x4);
+//
+x5=1.2;
+e05=pow10x(x5);
+e05x=fexp10(x5);
+//
+x6=111.6;
+e06=pow10x(x6);
+e06x=fexp10(x6);
+//
+x7=-1.2;
+e07=pow10x(x7);
+e07x=fexp10(x7);
+//
+x8=-111.6;
+e08=pow10x(x8);
+e08x=fexp10(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  exp(x1);
+e01x=fexp(x1);
+//
+x2=0.8;
+e02=  exp(x2);
+e02x=fexp(x2);
+//
+x3=-0.4;
+e03=  exp(x3);
+e03x=fexp(x3);
+//
+x4=-0.8;
+e04=  exp(x4);
+e04x=fexp(x4);
+//
+x5=1.2;
+e05=  exp(x5);
+e05x=fexp(x5);
+//
+x6=111.6;
+e06=  exp(x6);
+e06x=fexp(x6);
+//
+x7=-1.2;
+e07=  exp(x7);
+e07x=fexp(x7);
+//
+x8=-111.6;
+e08=  exp(x8);
+e08x=fexp(x8);
+
+
+[*]
+var r01, f01; 
+var r02, f02; 
+//
+r01=power(a,b);
+f01=fpower(a,b);
+//
+r02=power(x,y);
+f02=fpower(x,y);
+
+
+[*]
+var r01, f01; 
+var r02, f02; 
+//
+r01=powerr(a,b);
+f01=fpowerr(a,b);
+//
+r02=powerr(x,y);
+f02=fpowerr(x,y);
+
+
+[*]
+var x01, r01, f01; 
+var x02, r02, f02; 
+var x03, r03, f03; 
+var x04, r04, f04;
+var x05, r05, f05; 
+var x06, r06, f06; 
+var x07, r07, f07; 
+var x08, r08, f08;
+//
+x01=0.01;
+r01= log2(x01);
+f01=flog2(x01);
+//
+x02=0.1;
+r02= log2(x02);
+f02=flog2(x02);
+//
+x03=1;
+r03= log2(x03);
+f03=flog2(x03);
+//
+x04=1.1;
+r04= log2(x04);
+f04=flog2(x04);
+//
+x05=1.5;
+r05= log2(x05);
+f05=flog2(x05);
+//
+x06=1.8;
+r06= log2(x06);
+f06=flog2(x06);
+//
+x07=11;
+r07= log2(x07);
+f07=flog2(x07);
+//
+x08=111;
+r08= log2(x08);
+f08=flog2(x08);
+
+
+[*]
+var x01, r01, f01; 
+var x02, r02, f02; 
+var x03, r03, f03; 
+var x04, r04, f04;
+var x05, r05, f05; 
+var x06, r06, f06; 
+var x07, r07, f07; 
+var x08, r08, f08;
+//
+x01=0.01;
+r01= ln(x01);
+f01=fln(x01);
+//
+x02=0.1;
+r02= ln(x02);
+f02=fln(x02);
+//
+x03=1;
+r03= ln(x03);
+f03=fln(x03);
+//
+x04=1.1;
+r04= ln(x04);
+f04=fln(x04);
+//
+x05=1.5;
+r05= ln(x05);
+f05=fln(x05);
+//
+x06=1.8;
+r06= ln(x06);
+f06=fln(x06);
+//
+x07=11;
+r07= ln(x07);
+f07=fln(x07);
+//
+x08=111;
+r08= ln(x08);
+f08=fln(x08);
+
+
+[*]
+var x01, r01, f01; 
+var x02, r02, f02; 
+var x03, r03, f03; 
+var x04, r04, f04;
+var x05, r05, f05; 
+var x06, r06, f06; 
+var x07, r07, f07; 
+var x08, r08, f08;
+//
+x01=0.01;
+r01= log10(x01);
+f01=flog10(x01);
+//
+x02=0.1;
+r02= log10(x02);
+f02=flog10(x02);
+//
+x03=1;
+r03= log10(x03);
+f03=flog10(x03);
+//
+x04=1.1;
+r04= log10(x04);
+f04=flog10(x04);
+//
+x05=1.5;
+r05= log10(x05);
+f05=flog10(x05);
+//
+x06=1.8;
+r06= log10(x06);
+f06=flog10(x06);
+//
+x07=11;
+r07= log10(x07);
+f07=flog10(x07);
+//
+x08=111;
+r08= log10(x08);
+f08=flog10(x08);
+
+
+[*]
+var r01, f01; 
+var r02, f02; 
+var r03, f03; 
+var r04, f04;
+//
+r01= logn(a,b);
+f01=flogn(a,b);
+//
+r02= logn(x,y);
+f02=flogn(x,y);
+//
+r03= lognr(a,b);
+f03=flognr(a,b);
+//
+r04= lognr(x,y);
+f04=flognr(x,y);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  sin(x1);
+e01x=fsin(x1);
+//
+x2=0.8;
+e02=  sin(x2);
+e02x=fsin(x2);
+//
+x3=-0.4;
+e03=  sin(x3);
+e03x=fsin(x3);
+//
+x4=-0.8;
+e04=  sin(x4);
+e04x=fsin(x4);
+//
+x5=11.2;
+e05=  sin(x5);
+e05x=fsin(x5);
+//
+x6=111.6;
+e06=  sin(x6);
+e06x=fsin(x6);
+//
+x7=-11.2;
+e07=  sin(x7);
+e07x=fsin(x7);
+//
+x8=-111.6;
+e08=  sin(x8);
+e08x=fsin(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.6;
+e01=  sin(x1);
+e01x=fsin(x1);
+//
+x2=1.4;
+e02=  sin(x2);
+e02x=fsin(x2);
+//
+x3=2.2;
+e03=  sin(x3);
+e03x=fsin(x3);
+//
+x4=3.0;
+e04=  sin(x4);
+e04x=fsin(x4);
+//
+x5=3.8;
+e05=  sin(x5);
+e05x=fsin(x5);
+//
+x6=4.6;
+e06=  sin(x6);
+e06x=fsin(x6);
+//
+x7=5.4;
+e07=  sin(x7);
+e07x=fsin(x7);
+//
+x8=6.2;
+e08=  sin(x8);
+e08x=fsin(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=-0.6;
+e01=  sin(x1);
+e01x=fsin(x1);
+//
+x2=-1.4;
+e02=  sin(x2);
+e02x=fsin(x2);
+//
+x3=-2.2;
+e03=  sin(x3);
+e03x=fsin(x3);
+//
+x4=-3.0;
+e04=  sin(x4);
+e04x=fsin(x4);
+//
+x5=-3.8;
+e05=  sin(x5);
+e05x=fsin(x5);
+//
+x6=-4.6;
+e06=  sin(x6);
+e06x=fsin(x6);
+//
+x7=-5.4;
+e07=  sin(x7);
+e07x=fsin(x7);
+//
+x8=-6.2;
+e08=  sin(x8);
+e08x=fsin(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  cos(x1);
+e01x=fcos(x1);
+//
+x2=0.8;
+e02=  cos(x2);
+e02x=fcos(x2);
+//
+x3=-0.4;
+e03=  cos(x3);
+e03x=fcos(x3);
+//
+x4=-0.8;
+e04=  cos(x4);
+e04x=fcos(x4);
+//
+x5=11.2;
+e05=  cos(x5);
+e05x=fcos(x5);
+//
+x6=111.6;
+e06=  cos(x6);
+e06x=fcos(x6);
+//
+x7=-11.2;
+e07=  cos(x7);
+e07x=fcos(x7);
+//
+x8=-111.6;
+e08=  cos(x8);
+e08x=fcos(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.6;
+e01=  cos(x1);
+e01x=fcos(x1);
+//
+x2=1.4;
+e02=  cos(x2);
+e02x=fcos(x2);
+//
+x3=2.2;
+e03=  cos(x3);
+e03x=fcos(x3);
+//
+x4=3.0;
+e04=  cos(x4);
+e04x=fcos(x4);
+//
+x5=3.8;
+e05=  cos(x5);
+e05x=fcos(x5);
+//
+x6=4.6;
+e06=  cos(x6);
+e06x=fcos(x6);
+//
+x7=5.4;
+e07=  cos(x7);
+e07x=fcos(x7);
+//
+x8=6.2;
+e08=  cos(x8);
+e08x=fcos(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=-0.6;
+e01=  cos(x1);
+e01x=fcos(x1);
+//
+x2=-1.4;
+e02=  cos(x2);
+e02x=fcos(x2);
+//
+x3=-2.2;
+e03=  cos(x3);
+e03x=fcos(x3);
+//
+x4=-3.0;
+e04=  cos(x4);
+e04x=fcos(x4);
+//
+x5=-3.8;
+e05=  cos(x5);
+e05x=fcos(x5);
+//
+x6=-4.6;
+e06=  cos(x6);
+e06x=fcos(x6);
+//
+x7=-5.4;
+e07=  cos(x7);
+e07x=fcos(x7);
+//
+x8=-6.2;
+e08=  cos(x8);
+e08x=fcos(x8);
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(x1);
+c01=  fcos(x1);
+x2copy(s01x,c01x,fsincos(x1));
+//
+x2=0.8;
+s02=  fsin(x2);
+c02=  fcos(x2);
+x2copy(s02x,c02x,fsincos(x2));
+//
+x3=-0.4;
+s03=  fsin(x3);
+c03=  fcos(x3);
+x2copy(s03x,c03x,fsincos(x3));
+//
+x4=-0.8;
+s04=  fsin(x4);
+c04=  fcos(x4);
+x2copy(s04x,c04x,fsincos(x4));
+//
+x5=11.2;
+s05=  fsin(x5);
+c05=  fcos(x5);
+x2copy(s05x,c05x,fsincos(x5));
+//
+x6=111.6;
+s06=  fsin(x6);
+c06=  fcos(x6);
+x2copy(s06x,c06x,fsincos(x6));
+//
+x7=-11.2;
+s07=  fsin(x7);
+c07=  fcos(x7);
+x2copy(s07x,c07x,fsincos(x7));
+//
+x8=-111.6;
+s08=  fsin(x8);
+c08=  fcos(x8);
+x2copy(s08x,c08x,fsincos(x8));
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(x1);
+c01=  fcos(x1);
+co.fsincos(s01x,c01x,(x1));
+//
+x2=0.8;
+s02=  fsin(x2);
+c02=  fcos(x2);
+co.fsincos(s02x,c02x,(x2));
+//
+x3=-0.4;
+s03=  fsin(x3);
+c03=  fcos(x3);
+co.fsincos(s03x,c03x,(x3));
+//
+x4=-0.8;
+s04=  fsin(x4);
+c04=  fcos(x4);
+co.fsincos(s04x,c04x,(x4));
+//
+x5=11.2;
+s05=  fsin(x5);
+c05=  fcos(x5);
+co.fsincos(s05x,c05x,(x5));
+//
+x6=111.6;
+s06=  fsin(x6);
+c06=  fcos(x6);
+co.fsincos(s06x,c06x,(x6));
+//
+x7=-11.2;
+s07=  fsin(x7);
+c07=  fcos(x7);
+co.fsincos(s07x,c07x,(x7));
+//
+x8=-111.6;
+s08=  fsin(x8);
+c08=  fcos(x8);
+co.fsincos(s08x,c08x,(x8));
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(x1);
+c01=  fcos(x1);
+x2copy(c01x,s01x,fcossin(x1));
+//
+x2=0.8;
+s02=  fsin(x2);
+c02=  fcos(x2);
+x2copy(c02x,s02x,fcossin(x2));
+//
+x3=-0.4;
+s03=  fsin(x3);
+c03=  fcos(x3);
+x2copy(c03x,s03x,fcossin(x3));
+//
+x4=-0.8;
+s04=  fsin(x4);
+c04=  fcos(x4);
+x2copy(c04x,s04x,fcossin(x4));
+//
+x5=11.2;
+s05=  fsin(x5);
+c05=  fcos(x5);
+x2copy(c05x,s05x,fcossin(x5));
+//
+x6=111.6;
+s06=  fsin(x6);
+c06=  fcos(x6);
+x2copy(c06x,s06x,fcossin(x6));
+//
+x7=-11.2;
+s07=  fsin(x7);
+c07=  fcos(x7);
+x2copy(c07x,s07x,fcossin(x7));
+//
+x8=-111.6;
+s08=  fsin(x8);
+c08=  fcos(x8);
+x2copy(c08x,s08x,fcossin(x8));
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(x1);
+c01=  fcos(x1);
+co.fcossin(c01x,s01x,(x1));
+//
+x2=0.8;
+s02=  fsin(x2);
+c02=  fcos(x2);
+co.fcossin(c02x,s02x,(x2));
+//
+x3=-0.4;
+s03=  fsin(x3);
+c03=  fcos(x3);
+co.fcossin(c03x,s03x,(x3));
+//
+x4=-0.8;
+s04=  fsin(x4);
+c04=  fcos(x4);
+co.fcossin(c04x,s04x,(x4));
+//
+x5=11.2;
+s05=  fsin(x5);
+c05=  fcos(x5);
+co.fcossin(c05x,s05x,(x5));
+//
+x6=111.6;
+s06=  fsin(x6);
+c06=  fcos(x6);
+co.fcossin(c06x,s06x,(x6));
+//
+x7=-11.2;
+s07=  fsin(x7);
+c07=  fcos(x7);
+co.fcossin(c07x,s07x,(x7));
+//
+x8=-111.6;
+s08=  fsin(x8);
+c08=  fcos(x8);
+co.fcossin(c08x,s08x,(x8));
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  tan(x1);
+e01x=ftan(x1);
+//
+x2=0.8;
+e02=  tan(x2);
+e02x=ftan(x2);
+//
+x3=-0.4;
+e03=  tan(x3);
+e03x=ftan(x3);
+//
+x4=-0.8;
+e04=  tan(x4);
+e04x=ftan(x4);
+//
+x5=11.2;
+e05=  tan(x5);
+e05x=ftan(x5);
+//
+x6=111.6;
+e06=  tan(x6);
+e06x=ftan(x6);
+//
+x7=-11.2;
+e07=  tan(x7);
+e07x=ftan(x7);
+//
+x8=-111.6;
+e08=  tan(x8);
+e08x=ftan(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  cotan(x1);
+e01x=fcotan(x1);
+//
+x2=0.8;
+e02=  cotan(x2);
+e02x=fcotan(x2);
+//
+x3=-0.4;
+e03=  cotan(x3);
+e03x=fcotan(x3);
+//
+x4=-0.8;
+e04=  cotan(x4);
+e04x=fcotan(x4);
+//
+x5=11.2;
+e05=  cotan(x5);
+e05x=fcotan(x5);
+//
+x6=111.6;
+e06=  cotan(x6);
+e06x=fcotan(x6);
+//
+x7=-11.2;
+e07=  cotan(x7);
+e07x=fcotan(x7);
+//
+x8=-111.6;
+e08=  cotan(x8);
+e08x=fcotan(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  asin(x1);
+e01x=fasin(x1);
+//
+x2=0.8;
+e02=  asin(x2);
+e02x=fasin(x2);
+//
+x3=-0.4;
+e03=  asin(x3);
+e03x=fasin(x3);
+//
+x4=-0.8;
+e04=  asin(x4);
+e04x=fasin(x4);
+//
+x5=0.9999;
+e05=  asin(x5);
+e05x=fasin(x5);
+//
+x6=0.0001;
+e06=  asin(x6);
+e06x=fasin(x6);
+//
+x7=-0.9999;
+e07=  asin(x7);
+e07x=fasin(x7);
+//
+x8=-0.0001;
+e08=  asin(x8);
+e08x=fasin(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  acos(x1);
+e01x=facos(x1);
+//
+x2=0.8;
+e02=  acos(x2);
+e02x=facos(x2);
+//
+x3=-0.4;
+e03=  acos(x3);
+e03x=facos(x3);
+//
+x4=-0.8;
+e04=  acos(x4);
+e04x=facos(x4);
+//
+x5=0.9999;
+e05=  acos(x5);
+e05x=facos(x5);
+//
+x6=0.0001;
+e06=  acos(x6);
+e06x=facos(x6);
+//
+x7=-0.9999;
+e07=  acos(x7);
+e07x=facos(x7);
+//
+x8=-0.0001;
+e08=  acos(x8);
+e08x=facos(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  atan(x1);
+e01x=fatan(x1);
+//
+x2=0.8;
+e02=  atan(x2);
+e02x=fatan(x2);
+//
+x3=-0.4;
+e03=  atan(x3);
+e03x=fatan(x3);
+//
+x4=-0.8;
+e04=  atan(x4);
+e04x=fatan(x4);
+//
+x5=11.2;
+e05=  atan(x5);
+e05x=fatan(x5);
+//
+x6=111.6;
+e06=  atan(x6);
+e06x=fatan(x6);
+//
+x7=-11.2;
+e07=  atan(x7);
+e07x=fatan(x7);
+//
+x8=-111.6;
+e08=  atan(x8);
+e08x=fatan(x8);
+
+
+[*]
+var x1, e01, e01x;
+var x2, e02, e02x;
+var x3, e03, e03x;
+var x4, e04, e04x;
+var x5, e05, e05x;
+var x6, e06, e06x;
+var x7, e07, e07x;
+var x8, e08, e08x;
+//
+x1=0.4;
+e01=  acotan(x1);
+e01x=facotan(x1);
+//
+x2=0.8;
+e02=  acotan(x2);
+e02x=facotan(x2);
+//
+x3=-0.4;
+e03=  acotan(x3);
+e03x=facotan(x3);
+//
+x4=-0.8;
+e04=  acotan(x4);
+e04x=facotan(x4);
+//
+x5=11.2;
+e05=  acotan(x5);
+e05x=facotan(x5);
+//
+x6=111.6;
+e06=  acotan(x6);
+e06x=facotan(x6);
+//
+x7=-11.2;
+e07=  acotan(x7);
+e07x=facotan(x7);
+//
+x8=-111.6;
+e08=  acotan(x8);
+e08x=facotan(x8);
+
+
+[*]
+var x01, y01, r01, f01; 
+var x02, y02, r02, f02; 
+var x03, y03, r03, f03; 
+var x04, y04, r04, f04;
+var x05, y05, r05, f05; 
+var x06, y06, r06, f06; 
+var x07, y07, r07, f07; 
+var x08, y08, r08, f08;
+//
+x01=1;
+y01=0;
+r01= atan2(y01,x01);
+f01=fatan2(y01,x01);
+//
+x02=1;
+y02=1;
+r02= atan2(y02,x02);
+f02=fatan2(y02,x02);
+//
+x03=0;
+y03=1;
+r03= atan2(y03,x03);
+f03=fatan2(y03,x03);
+//
+x04=-1;
+y04=1;
+r04= atan2(y04,x04);
+f04=fatan2(y04,x04);
+//
+x05=-1;
+y05=0;
+r05= atan2(y05,x05);
+f05=fatan2(y05,x05);
+//
+x06=-1;
+y06=-1;
+r06= atan2(y06,x06);
+f06=fatan2(y06,x06);
+//
+x07=0;
+y07=-1;
+r07= atan2(y07,x07);
+f07=fatan2(y07,x07);
+//
+x08=1;
+y08=-1;
+r08= atan2(y08,x08);
+f08=fatan2(y08,x08);
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcos(x);
+sin1 = fsin(x);
+x2copy (cos2,sin2, fcossin(x));
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcos(x);
+sin1 = fsin(x);
+co.fcossin (cos2,sin2, x);
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcos(x);
+sin1 = fsin(x);
+x2copy (sin2,cos2, fsincos(x));
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcos(x);
+sin1 = fsin(x);
+co.fsincos (sin2,cos2, x);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+//
+x1 = 0.5;
+f1 = erf(x1);
+ff1 = libm_erf(x1);
+//
+x2 = -0.5;
+f2 = erf(x2);
+ff2 = libm_erf(x2);
+//
+x3 = 1.5;
+f3 = erf(x3);
+ff3 = libm_erf(x3);
+//
+x4 = -1.5;
+f4 = erf(x4);
+ff4 = libm_erf(x4);
+//
+x5 = 4.5;
+f5 = erf(x5);
+ff5 = libm_erf(x5);
+//
+x6 = -4.5;
+f6 = erf(x6);
+ff6 = libm_erf(x6);
+//
+x7 = 10.5;
+f7 = erf(x7);
+ff7 = libm_erf(x7);
+//
+x8 = -10.5;
+f8 = erf(x8);
+ff8 = libm_erf(x8);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+//
+x1 = 0.5;
+f1 = erfc(x1);
+ff1 = libm_erfc(x1);
+//
+x2 = -0.5;
+f2 = erfc(x2);
+ff2 = libm_erfc(x2);
+//
+x3 = 1.5;
+f3 = erfc(x3);
+ff3 = libm_erfc(x3);
+//
+x4 = -1.5;
+f4 = erfc(x4);
+ff4 = libm_erfc(x4);
+//
+x5 = 4.5;
+f5 = erfc(x5);
+ff5 = libm_erfc(x5);
+//
+x6 = -4.5;
+f6 = erfc(x6);
+ff6 = libm_erfc(x6);
+//
+x7 = 10.5;
+f7 = erfc(x7);
+ff7 = libm_erfc(x7);
+//
+x8 = -10.5;
+f8 = erfc(x8);
+ff8 = libm_erfc(x8);
+
+
+[*]
+var x1, f_1, f1, ff1;
+var x2, f_2, f2, ff2;
+var x3, f_3, f3, ff3;
+var x4, f_4, f4, ff4;
+var x5, f_5, f5, ff5;
+var x6, f_6, f6, ff6;
+var x7, f_7, f7, ff7;
+var x8, f_8, f8, ff8;
+var x9, f_9, f9, ff9;
+var xA, f_A, fA, ffA;
+//
+x1 = 0.5;
+f1 = cdfnorm(x1);
+ff1 = libm_cdfnorm(x1);
+f_1 = 0.6914624612740131036377;
+//
+x2 = -0.5;
+f2 = cdfnorm(x2);
+ff2 = libm_cdfnorm(x2);
+f_2 = 0.3085375387259868963623;
+//
+x3 = 1.5;
+f3 = cdfnorm(x3);
+ff3 = libm_cdfnorm(x3);
+f_3 = 0.9331927987311419339955;
+//
+x4 = -1.5;
+f4 = cdfnorm(x4);
+ff4 = libm_cdfnorm(x4);
+f_4 = 0.06680720126885806600449;
+//
+x5 = 4.5;
+f5 = cdfnorm(x5);
+ff5 = libm_cdfnorm(x5);
+f_5 = 0.9999966023268752699396;
+//
+x6 = -4.5;
+f6 = cdfnorm(x6);
+ff6 = libm_cdfnorm(x6);
+f_6 = 3.397673124730060401687E-6;
+//
+x7 = 10.5;
+f7 = cdfnorm(x7);
+ff7 = libm_cdfnorm(x7);
+f_7 = 1.0;
+//
+x8 = -10.5;
+f8 = cdfnorm(x8);
+ff8 = libm_cdfnorm(x8);
+f_8 = 4.31900631780923034655E-26;
+//
+x9 = 30.5;
+f9 = cdfnorm(x9);
+ff9 = libm_cdfnorm(x9);
+f_9 = 1.0;
+//
+xA = -30.5;
+fA = cdfnorm(xA);
+ffA = libm_cdfnorm(xA);
+f_A = 1.3029379131780763509E-204;
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+var xB, fB, ffB;
+var xC, fC, ffC;
+var xD, fD, ffD;
+var xE, fE, ffE;
+var xF, fF, ffF;
+var xG, fG, ffG;
+var xH, fH, ffH;
+var xI, fI, ffI;
+var xJ, fJ, ffJ;
+//
+x1 = 1E-16;
+f1 = erfinv(x1);
+ff1 = libm_erfinv(x1);
+//
+x2 = 1E-14;
+f2 = erfinv(x2);
+ff2 = libm_erfinv(x2);
+//
+x3 = 1E-12;
+f3 = erfinv(x3);
+ff3 = libm_erfinv(x3);
+//
+x4 = 0.01;
+f4 = erfinv(x4);
+ff4 = libm_erfinv(x4);
+//
+x5 = 0.1;
+f5 = erfinv(x5);
+ff5 = libm_erfinv(x5);
+//
+x6 = 0.2;
+f6 = erfinv(x6);
+ff6 = libm_erfinv(x6);
+//
+x7 = 0.3;
+f7 = erfinv(x7);
+ff7 = libm_erfinv(x7);
+//
+x8 = 0.4;
+f8 = erfinv(x8);
+ff8 = libm_erfinv(x8);
+//
+x9 = 0.5;
+f9 = erfinv(x9);
+ff9 = libm_erfinv(x9);
+//
+xA = 0.6;
+fA = erfinv(xA);
+ffA = libm_erfinv(xA);
+//
+xB = 0.7;
+fB = erfinv(xB);
+ffB = libm_erfinv(xB);
+//
+xC = 0.8;
+fC = erfinv(xC);
+ffC = libm_erfinv(xC);
+//
+xD = 0.9;
+fD = erfinv(xD);
+ffD = libm_erfinv(xD);
+//
+xE = 0.99;
+fE = erfinv(xE);
+ffE = libm_erfinv(xE);
+//
+xF = -0.99;
+fF = erfinv(xF);
+ffF = libm_erfinv(xF);
+//
+xG = -0.8;
+fG = erfinv(xG);
+ffG = libm_erfinv(xG);
+//
+xH = -0.6;
+fH = erfinv(xH);
+ffH = libm_erfinv(xH);
+//
+xI = -0.4;
+fI = erfinv(xI);
+ffI = libm_erfinv(xI);
+//
+xJ = -0.2;
+fJ = erfinv(xJ);
+ffJ = libm_erfinv(xJ);
+
+
+[*]
+var x0, f0, ff0;
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+var xB, fB, ffB;
+var xC, fC, ffC;
+var xD, fD, ffD;
+var xE, fE, ffE;
+var xF, fF, ffF;
+var xG, fG, ffG;
+var xH, fH, ffH;
+var xI, fI, ffI;
+var xJ, fJ, ffJ;
+//
+x0 = 2E-1;
+f0 = erfinv(x0);
+ff0 = libm_erfinv(x0);
+//
+x1 = 1E-1;
+f1 = erfinv(x1);
+ff1 = libm_erfinv(x1);
+//
+x2 = 1E-2;
+f2 = erfinv(x2);
+ff2 = libm_erfinv(x2);
+//
+x3 = 1E-3;
+f3 = erfinv(x3);
+ff3 = libm_erfinv(x3);
+//
+x4 = 1E-4;
+f4 = erfinv(x4);
+ff4 = libm_erfinv(x4);
+//
+x5 = 1E-5;
+f5 = erfinv(x5);
+ff5 = libm_erfinv(x5);
+//
+x6 = 1E-6;
+f6 = erfinv(x6);
+ff6 = libm_erfinv(x6);
+//
+x7 = 1E-7;
+f7 = erfinv(x7);
+ff7 = libm_erfinv(x7);
+//
+x8 = 1E-8;
+f8 = erfinv(x8);
+ff8 = libm_erfinv(x8);
+//
+x9 = 1E-9;
+f9 = erfinv(x9);
+ff9 = libm_erfinv(x9);
+//
+xA = 1E-10;
+fA = erfinv(xA);
+ffA = libm_erfinv(xA);
+//
+xB = 1E-11;
+fB = erfinv(xB);
+ffB = libm_erfinv(xB);
+//
+xC = 1E-12;
+fC = erfinv(xC);
+ffC = libm_erfinv(xC);
+//
+xD = 1E-13;
+fD = erfinv(xD);
+ffD = libm_erfinv(xD);
+//
+xE = 1E-14;
+fE = erfinv(xE);
+ffE = libm_erfinv(xE);
+//
+xF = 1E-15;
+fF = erfinv(xF);
+ffF = libm_erfinv(xF);
+//
+xG = 1E-16;
+fG = erfinv(xG);
+ffG = libm_erfinv(xG);
+//
+xH = 1E-17;
+fH = erfinv(xH);
+ffH = libm_erfinv(xH);
+//
+xI = 1E-18;
+fI = erfinv(xI);
+ffI = libm_erfinv(xI);
+//
+xJ = 1E-19;
+fJ = erfinv(xJ);
+ffJ = libm_erfinv(xJ);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+var xB, fB, ffB;
+var xC, fC, ffC;
+var xD, fD, ffD;
+var xE, fE, ffE;
+var xF, fF, ffF;
+var xG, fG, ffG;
+var xH, fH, ffH;
+var xI, fI, ffI;
+var xJ, fJ, ffJ;
+//
+x1 = 1E-16;
+f1 = erfcinv(x1);
+ff1 = libm_erfcinv(x1);
+//
+x2 = 1E-14;
+f2 = erfcinv(x2);
+ff2 = libm_erfcinv(x2);
+//
+x3 = 1E-12;
+f3 = erfcinv(x3);
+ff3 = libm_erfcinv(x3);
+//
+x4 = 0.01;
+f4 = erfcinv(x4);
+ff4 = libm_erfcinv(x4);
+//
+x5 = 0.1;
+f5 = erfcinv(x5);
+ff5 = libm_erfcinv(x5);
+//
+x6 = 0.2;
+f6 = erfcinv(x6);
+ff6 = libm_erfcinv(x6);
+//
+x7 = 0.3;
+f7 = erfcinv(x7);
+ff7 = libm_erfcinv(x7);
+//
+x8 = 0.4;
+f8 = erfcinv(x8);
+ff8 = libm_erfcinv(x8);
+//
+x9 = 0.5;
+f9 = erfcinv(x9);
+ff9 = libm_erfcinv(x9);
+//
+xA = 0.6;
+fA = erfcinv(xA);
+ffA = libm_erfcinv(xA);
+//
+xB = 0.8;
+fB = erfcinv(xB);
+ffB = libm_erfcinv(xB);
+//
+xC = 0.9;
+fC = erfcinv(xC);
+ffC = libm_erfcinv(xC);
+//
+xD = 0.99;
+fD = erfcinv(xD);
+ffD = libm_erfcinv(xD);
+//
+xE = 1.0;
+fE = erfcinv(xE);
+ffE = libm_erfcinv(xE);
+//
+xF = 1.2;
+fF = erfcinv(xF);
+ffF = libm_erfcinv(xF);
+//
+xG = 1.4;
+fG = erfcinv(xG);
+ffG = libm_erfcinv(xG);
+//
+xH = 1.6;
+fH = erfcinv(xH);
+ffH = libm_erfcinv(xH);
+//
+xI = 1.8;
+fI = erfcinv(xI);
+ffI = libm_erfcinv(xI);
+//
+xJ = 1.9999;
+fJ = erfcinv(xJ);
+ffJ = libm_erfcinv(xJ);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+var xB, fB, ffB;
+var xC, fC, ffC;
+var xD, fD, ffD;
+var xE, fE, ffE;
+//
+x1 = 1E-16;
+f1 = cdfnorminv(x1);
+ff1 = libm_cdfnorminv(x1);
+//
+x2 = 1E-14;
+f2 = cdfnorminv(x2);
+ff2 = libm_cdfnorminv(x2);
+//
+x3 = 1E-12;
+f3 = cdfnorminv(x3);
+ff3 = libm_cdfnorminv(x3);
+//
+x4 = 0.01;
+f4 = cdfnorminv(x4);
+ff4 = libm_cdfnorminv(x4);
+//
+x5 = 0.1;
+f5 = cdfnorminv(x5);
+ff5 = libm_cdfnorminv(x5);
+//
+x6 = 0.2;
+f6 = cdfnorminv(x6);
+ff6 = libm_cdfnorminv(x6);
+//
+x7 = 0.3;
+f7 = cdfnorminv(x7);
+ff7 = libm_cdfnorminv(x7);
+//
+x8 = 0.4;
+f8 = cdfnorminv(x8);
+ff8 = libm_cdfnorminv(x8);
+//
+x9 = 0.5;
+f9 = cdfnorminv(x9);
+ff9 = libm_cdfnorminv(x9);
+//
+xA = 0.6;
+fA = cdfnorminv(xA);
+ffA = libm_cdfnorminv(xA);
+//
+xB = 0.7;
+fB = cdfnorminv(xB);
+ffB = libm_cdfnorminv(xB);
+//
+xC = 0.8;
+fC = cdfnorminv(xC);
+ffC = libm_cdfnorminv(xC);
+//
+xD = 0.9;
+fD = cdfnorminv(xD);
+ffD = libm_cdfnorminv(xD);
+//
+xE = 0.99;
+fE = cdfnorminv(xE);
+ffE = libm_cdfnorminv(xE);
+
+
+[*]
+var x0, f0, ff0, fm0;
+var x1, f1, ff1, fm1;
+var x2, f2, ff2, fm2;
+var x3, f3, ff3, fm3;
+var x4, f4, ff4, fm4;
+var x5, f5, ff5, fm5;
+var x6, f6, ff6, fm6;
+var x7, f7, ff7, fm7;
+var x8, f8, ff8, fm8;
+//
+x0 = +(0*pi/4)+0.1;
+f0 = fsin(x0);
+ff0 = sin(x0);
+fm0 = libm_sin(x0);
+//
+x1 = +(1*pi/4)+0.1;
+f1 = fsin(x1);
+ff1 = sin(x1);
+fm1 = libm_sin(x1);
+//
+x2 = +(2*pi/4)+0.1;
+f2 = fsin(x2);
+ff2 = sin(x2);
+fm2 = libm_sin(x2);
+//
+x3 = +(3*pi/4)+0.1;
+f3 = fsin(x3);
+ff3 = sin(x3);
+fm3 = libm_sin(x3);
+//
+x4 = +(4*pi/4)+0.1;
+f4 = fsin(x4);
+ff4 = sin(x4);
+fm4 = libm_sin(x4);
+//
+x5 = +(5*pi/4)+0.1;
+f5 = fsin(x5);
+ff5 = sin(x5);
+fm5 = libm_sin(x5);
+//
+x6 = +(6*pi/4)+0.1;
+f6 = fsin(x6);
+ff6 = sin(x6);
+fm6 = libm_sin(x6);
+//
+x7 = +(7*pi/4)+0.1;
+f7 = fsin(x7);
+ff7 = sin(x7);
+fm7 = libm_sin(x7);
+//
+x8 = +(8*pi/4)+0.1;
+f8 = fsin(x8);
+ff8 = sin(x8);
+fm8 = libm_sin(x8);
+
+
+[*]
+var x0, f0, ff0, fm0;
+var x1, f1, ff1, fm1;
+var x2, f2, ff2, fm2;
+var x3, f3, ff3, fm3;
+var x4, f4, ff4, fm4;
+var x5, f5, ff5, fm5;
+var x6, f6, ff6, fm6;
+var x7, f7, ff7, fm7;
+var x8, f8, ff8, fm8;
+//
+x0 = -(0*pi/4)-0.1;
+f0 = fsin(x0);
+ff0 = sin(x0);
+fm0 = libm_sin(x0);
+//
+x1 = -(1*pi/4)-0.1;
+f1 = fsin(x1);
+ff1 = sin(x1);
+fm1 = libm_sin(x1);
+//
+x2 = -(2*pi/4)-0.1;
+f2 = fsin(x2);
+ff2 = sin(x2);
+fm2 = libm_sin(x2);
+//
+x3 = -(3*pi/4)-0.1;
+f3 = fsin(x3);
+ff3 = sin(x3);
+fm3 = libm_sin(x3);
+//
+x4 = -(4*pi/4)-0.1;
+f4 = fsin(x4);
+ff4 = sin(x4);
+fm4 = libm_sin(x4);
+//
+x5 = -(5*pi/4)-0.1;
+f5 = fsin(x5);
+ff5 = sin(x5);
+fm5 = libm_sin(x5);
+//
+x6 = -(6*pi/4)-0.1;
+f6 = fsin(x6);
+ff6 = sin(x6);
+fm6 = libm_sin(x6);
+//
+x7 = -(7*pi/4)-0.1;
+f7 = fsin(x7);
+ff7 = sin(x7);
+fm7 = libm_sin(x7);
+//
+x8 = -(8*pi/4)-0.1;
+f8 = fsin(x8);
+ff8 = sin(x8);
+fm8 = libm_sin(x8);
+
+
+[*]
+var x0, f0, ff0, fm0;
+var x1, f1, ff1, fm1;
+var x2, f2, ff2, fm2;
+var x3, f3, ff3, fm3;
+var x4, f4, ff4, fm4;
+//
+x0 = +(0*pi/4)+0.1;
+f0 = ftan(x0);
+ff0 = tan(x0);
+fm0 = libm_tan(x0);
+//
+x1 = +(1*pi/4)+0.1;
+f1 = ftan(x1);
+ff1 = tan(x1);
+fm1 = libm_tan(x1);
+//
+x2 = +(2*pi/4)+0.1;
+f2 = ftan(x2);
+ff2 = tan(x2);
+fm2 = libm_tan(x2);
+//
+x3 = +(3*pi/4)+0.1;
+f3 = ftan(x3);
+ff3 = tan(x3);
+fm3 = libm_tan(x3);
+//
+x4 = +(4*pi/4)+0.1;
+f4 = ftan(x4);
+ff4 = tan(x4);
+fm4 = libm_tan(x4);
+
+
+[*]
+var x0, f0, ff0, fm0;
+var x1, f1, ff1, fm1;
+var x2, f2, ff2, fm2;
+var x3, f3, ff3, fm3;
+var x4, f4, ff4, fm4;
+//
+x0 = -(0*pi/4)-0.1;
+f0 = ftan(x0);
+ff0 = tan(x0);
+fm0 = libm_tan(x0);
+//
+x1 = -(1*pi/4)-0.1;
+f1 = ftan(x1);
+ff1 = tan(x1);
+fm1 = libm_tan(x1);
+//
+x2 = -(2*pi/4)-0.1;
+f2 = ftan(x2);
+ff2 = tan(x2);
+fm2 = libm_tan(x2);
+//
+x3 = -(3*pi/4)-0.1;
+f3 = ftan(x3);
+ff3 = tan(x3);
+fm3 = libm_tan(x3);
+//
+x4 = -(4*pi/4)-0.1;
+f4 = ftan(x4);
+ff4 = tan(x4);
+fm4 = libm_tan(x4);
+
+
+[*]
+var x0, f0, ff0;
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x0 = 0;
+f0 = fsinh(x0);
+ff0 = sinh(x0);
+//
+x1 = 1;
+f1 = fsinh(x1);
+ff1 = sinh(x1);
+//
+x2 = 10;
+f2 = fsinh(x2);
+ff2 = sinh(x2);
+//
+x3 = -1;
+f3 = fsinh(x3);
+ff3 = sinh(x3);
+//
+x4 = -10;
+f4 = fsinh(x4);
+ff4 = sinh(x4);
+//
+x5 = 0.2;
+f5 = fsinh(x5);
+ff5 = sinh(x5);
+//
+x6 = -0.2;
+f6 = fsinh(x6);
+ff6 = sinh(x6);
+
+
+[*]
+var x0, f0, ff0;
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x0 = 0;
+f0 = fcosh(x0);
+ff0 = cosh(x0);
+//
+x1 = 1;
+f1 = fcosh(x1);
+ff1 = cosh(x1);
+//
+x2 = 10;
+f2 = fcosh(x2);
+ff2 = cosh(x2);
+//
+x3 = -1;
+f3 = fcosh(x3);
+ff3 = cosh(x3);
+//
+x4 = -10;
+f4 = fcosh(x4);
+ff4 = cosh(x4);
+//
+x5 = 0.2;
+f5 = fcosh(x5);
+ff5 = cosh(x5);
+//
+x6 = -0.2;
+f6 = fcosh(x6);
+ff6 = cosh(x6);
+
+
+[*]
+var x0, f0, ff0;
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x0 = 0;
+f0 = ftanh(x0);
+ff0 = tanh(x0);
+//
+x1 = 1;
+f1 = ftanh(x1);
+ff1 = tanh(x1);
+//
+x2 = 10;
+f2 = ftanh(x2);
+ff2 = tanh(x2);
+//
+x3 = -1;
+f3 = ftanh(x3);
+ff3 = tanh(x3);
+//
+x4 = -10;
+f4 = ftanh(x4);
+ff4 = tanh(x4);
+//
+x5 = 0.2;
+f5 = ftanh(x5);
+ff5 = tanh(x5);
+//
+x6 = -0.2;
+f6 = ftanh(x6);
+ff6 = tanh(x6);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x1 = 1;
+f1 = fcoth(x1);
+ff1 = coth(x1);
+//
+x2 = 10;
+f2 = fcoth(x2);
+ff2 = coth(x2);
+//
+x3 = -1;
+f3 = fcoth(x3);
+ff3 = coth(x3);
+//
+x4 = -10;
+f4 = fcoth(x4);
+ff4 = coth(x4);
+//
+x5 = 0.2;
+f5 = fcoth(x5);
+ff5 = coth(x5);
+//
+x6 = -0.2;
+f6 = fcoth(x6);
+ff6 = coth(x6);
+
+
+[*]
+var x0, f0, ff0;
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x0 = 0;
+f0 = fasinh(x0);
+ff0 = asinh(x0);
+//
+x1 = 1;
+f1 = fasinh(x1);
+ff1 = asinh(x1);
+//
+x2 = 10;
+f2 = fasinh(x2);
+ff2 = asinh(x2);
+//
+x3 = -1;
+f3 = fasinh(x3);
+ff3 = asinh(x3);
+//
+x4 = -10;
+f4 = fasinh(x4);
+ff4 = asinh(x4);
+//
+x5 = 0.2;
+f5 = fasinh(x5);
+ff5 = asinh(x5);
+//
+x6 = -0.2;
+f6 = fasinh(x6);
+ff6 = asinh(x6);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x1 = 1;
+f1 = facosh(x1);
+ff1 = acosh(x1);
+//
+x2 = 2;
+f2 = facosh(x2);
+ff2 = acosh(x2);
+//
+x3 = 10;
+f3 = facosh(x3);
+ff3 = acosh(x3);
+//
+x4 = 20;
+f4 = facosh(x4);
+ff4 = acosh(x4);
+//
+x5 = 1.1;
+f5 = facosh(x5);
+ff5 = acosh(x5);
+//
+x6 = 1.2;
+f6 = facosh(x6);
+ff6 = acosh(x6);
+
+
+[*]
+var x0, f0, ff0;
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+//
+x0 = 0;
+f0 = fatanh(x0);
+ff0 = atanh(x0);
+//
+x1 = 0.15;
+f1 = fatanh(x1);
+ff1 = atanh(x1);
+//
+x2 = 0.8;
+f2 = fatanh(x2);
+ff2 = atanh(x2);
+//
+x3 = -0.15;
+f3 = fatanh(x3);
+ff3 = atanh(x3);
+//
+x4 = -0.8;
+f4 = fatanh(x4);
+ff4 = atanh(x4);
+//
+x5 = 0.1;
+f5 = fatanh(x5);
+ff5 = atanh(x5);
+//
+x6 = -0.1;
+f6 = fatanh(x6);
+ff6 = atanh(x6);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+//
+x1 = 2;
+f1 = facoth(x1);
+ff1 = acoth(x1);
+//
+x2 = 10;
+f2 = facoth(x2);
+ff2 = acoth(x2);
+//
+x3 = -2;
+f3 = facoth(x3);
+ff3 = acoth(x3);
+//
+x4 = -10;
+f4 = facoth(x4);
+ff4 = acoth(x4);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+//
+x1 = 15.5;
+f1 = lgamma(x1);
+ff1 = libm_lgamma(x1);
+//
+x2 = 55.5;
+f2 = lgamma(x2);
+ff2 = libm_lgamma(x2);
+//
+x3 = 555.5;
+f3 = lgamma(x3);
+ff3 = libm_lgamma(x3);
+//
+x4 = 1000.5;
+f4 = lgamma(x4);
+ff4 = libm_lgamma(x4);
+//
+x5 = 1555.5;
+f5 = lgamma(x5);
+ff5 = libm_lgamma(x5);
+//
+x6 = 5555.5;
+f6 = lgamma(x6);
+ff6 = libm_lgamma(x6);
+//
+x7 = 55555.5;
+f7 = lgamma(x7);
+ff7 = libm_lgamma(x7);
+//
+x8 = 1E+9;
+f8 = lgamma(x8);
+ff8 = libm_lgamma(x8);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+//
+x1 = 0.1;
+f1 = lgamma(x1);
+ff1 = libm_lgamma(x1);
+//
+x2 = 0.5;
+f2 = lgamma(x2);
+ff2 = libm_lgamma(x2);
+//
+x3 = 1.1;
+f3 = lgamma(x3);
+ff3 = libm_lgamma(x3);
+//
+x4 = 1.5;
+f4 = lgamma(x4);
+ff4 = libm_lgamma(x4);
+//
+x5 = 2.5;
+f5 = lgamma(x5);
+ff5 = libm_lgamma(x5);
+//
+x6 = 10.5;
+f6 = lgamma(x6);
+ff6 = libm_lgamma(x6);
+//
+x7 = 11.5;
+f7 = lgamma(x7);
+ff7 = libm_lgamma(x7);
+//
+x8 = 12.5;
+f8 = lgamma(x8);
+ff8 = libm_lgamma(x8);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+//
+x1 = -0.1;
+f1 = lgamma(x1);
+ff1 = libm_lgamma(x1);
+//
+x2 = -0.5;
+f2 = lgamma(x2);
+ff2 = libm_lgamma(x2);
+//
+x3 = -1.1;
+f3 = lgamma(x3);
+ff3 = libm_lgamma(x3);
+//
+x4 = -1.5;
+f4 = lgamma(x4);
+ff4 = libm_lgamma(x4);
+//
+x5 = -2.5;
+f5 = lgamma(x5);
+ff5 = libm_lgamma(x5);
+//
+x6 = -10.5;
+f6 = lgamma(x6);
+ff6 = libm_lgamma(x6);
+//
+x7 = -11.5;
+f7 = lgamma(x7);
+ff7 = libm_lgamma(x7);
+//
+x8 = -12.5;
+f8 = lgamma(x8);
+ff8 = libm_lgamma(x8);
+//
+x9 = -22.5;
+f9 = lgamma(x9);
+ff9 = libm_lgamma(x9);
+//
+xA = -33.9;
+fA = lgamma(xA);
+ffA = libm_lgamma(xA);
+
+
+[*]
+var x1, f1; int u1;
+var x2, f2; int u2;
+var x3, f3; int u3;
+var x4, f4; int u4;
+var x5, f5; int u5;
+var x6, f6; int u6;
+var x7, f7; int u7;
+var x8, f8; int u8;
+//
+x1 = 1;
+f1 = sic_lgammas(x1,&u1);
+//
+x2 = 10;
+f2 = sic_lgammas(x2,&u2);
+//
+x3 = -0.5;
+f3 = sic_lgammas(x3,&u3);
+//
+x4 = -1.5;
+f4 = sic_lgammas(x4,&u4);
+//
+x5 = -10.5;
+f5 = sic_lgammas(x5,&u5);
+//
+x6 = -11.5;
+f6 = sic_lgammas(x6,&u6);
+//
+x7 = -1000.5;
+f7 = sic_lgammas(x7,&u7);
+//
+x8 = -1111.5;
+f8 = sic_lgammas(x8,&u8);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+//
+x1 = -34.1;
+f1 = lgamma(x1);
+ff1 = libm_lgamma(x1);
+//
+x2 = -34.9;
+f2 = lgamma(x2);
+ff2 = libm_lgamma(x2);
+//
+x3 = -44.1;
+f3 = lgamma(x3);
+ff3 = libm_lgamma(x3);
+//
+x4 = -44.9;
+f4 = lgamma(x4);
+ff4 = libm_lgamma(x4);
+//
+x5 = -99.1;
+f5 = lgamma(x5);
+ff5 = libm_lgamma(x5);
+//
+x6 = -99.9;
+f6 = lgamma(x6);
+ff6 = libm_lgamma(x6);
+//
+x7 = -100.1;
+f7 = lgamma(x7);
+ff7 = libm_lgamma(x7);
+//
+x8 = -100.9;
+f8 = lgamma(x8);
+ff8 = libm_lgamma(x8);
+//
+x9 = -333.1;
+f9 = lgamma(x9);
+ff9 = libm_lgamma(x9);
+//
+xA = -333.9;
+fA = lgamma(xA);
+ffA = libm_lgamma(xA);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+var x9, f9, ff9;
+var xA, fA, ffA;
+//
+x1 = -33.22;
+f1 = tgamma(x1);
+ff1 = libm_tgamma(x1);
+//
+x2 = -33.88;
+f2 = tgamma(x2);
+ff2 = libm_tgamma(x2);
+//
+x3 = -44.22;
+f3 = tgamma(x3);
+ff3 = libm_tgamma(x3);
+//
+x4 = -44.88;
+f4 = tgamma(x4);
+ff4 = libm_tgamma(x4);
+//
+x5 = -77.22;
+f5 = tgamma(x5);
+ff5 = libm_tgamma(x5);
+//
+x6 = -77.88;
+f6 = tgamma(x6);
+ff6 = libm_tgamma(x6);
+//
+x7 = -100.22;
+f7 = tgamma(x7);
+ff7 = libm_tgamma(x7);
+//
+x8 = -100.88;
+f8 = tgamma(x8);
+ff8 = libm_tgamma(x8);
+//
+x9 = -130.22;
+f9 = tgamma(x9);
+ff9 = libm_tgamma(x9);
+//
+xA = -130.88;
+fA = tgamma(xA);
+ffA = libm_tgamma(xA);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+//
+x1 = 1E-10;
+f1 = tgamma(x1);
+ff1 = libm_tgamma(x1);
+//
+x2 = 0.5;
+f2 = tgamma(x2);
+ff2 = libm_tgamma(x2);
+//
+x3 = 2.5;
+f3 = tgamma(x3);
+ff3 = libm_tgamma(x3);
+//
+x4 = 6;
+f4 = tgamma(x4);
+ff4 = libm_tgamma(x4);
+//
+x5 = 10;
+f5 = tgamma(x5);
+ff5 = libm_tgamma(x5);
+//
+x6 = 10.5;
+f6 = tgamma(x6);
+ff6 = libm_tgamma(x6);
+//
+x7 = 20.5;
+f7 = tgamma(x7);
+ff7 = libm_tgamma(x7);
+//
+x8 = 30.5;
+f8 = tgamma(x8);
+ff8 = libm_tgamma(x8);
+
+
+[*]
+var x1, f1, ff1;
+var x2, f2, ff2;
+var x3, f3, ff3;
+var x4, f4, ff4;
+var x5, f5, ff5;
+var x6, f6, ff6;
+var x7, f7, ff7;
+var x8, f8, ff8;
+//
+x1 = -1E-10;
+f1 = tgamma(x1);
+ff1 = libm_tgamma(x1);
+//
+x2 = -0.5;
+f2 = tgamma(x2);
+ff2 = libm_tgamma(x2);
+//
+x3 = -2.5;
+f3 = tgamma(x3);
+ff3 = libm_tgamma(x3);
+//
+x4 = -6.2;
+f4 = tgamma(x4);
+ff4 = libm_tgamma(x4);
+//
+x5 = -10.2;
+f5 = tgamma(x5);
+ff5 = libm_tgamma(x5);
+//
+x6 = -10.5;
+f6 = tgamma(x6);
+ff6 = libm_tgamma(x6);
+//
+x7 = -20.5;
+f7 = tgamma(x7);
+ff7 = libm_tgamma(x7);
+//
+x8 = -30.5;
+f8 = tgamma(x8);
+ff8 = libm_tgamma(x8);
+
+
+[*]
+var x1, f1, fu1, ff1;
+var x2, f2, fu2, ff2;
+var x3, f3, fu3, ff3;
+var x4, f4, fu4, ff4;
+var x5, f5, fu5, ff5;
+var x6, f6, fu6, ff6;
+var x7, f7, fu7, ff7;
+var x8, f8, fu8, ff8;
+var x9, f9, fu9, ff9;
+var xA, fA, fuA, ffA;
+//
+x1 = -33.22;
+f1 = rgamma(x1);
+fu1 = rtgamma(x1);
+ff1 = 1/libm_tgamma(x1);
+//
+x2 = -33.88;
+f2 = rgamma(x2);
+fu2 = rtgamma(x2);
+ff2 = 1/libm_tgamma(x2);
+//
+x3 = -44.22;
+f3 = rgamma(x3);
+fu3 = rtgamma(x3);
+ff3 = 1/libm_tgamma(x3);
+//
+x4 = -44.88;
+f4 = rgamma(x4);
+fu4 = rtgamma(x4);
+ff4 = 1/libm_tgamma(x4);
+//
+x5 = -77.22;
+f5 = rgamma(x5);
+fu5 = rtgamma(x5);
+ff5 = 1/libm_tgamma(x5);
+//
+x6 = -77.88;
+f6 = rgamma(x6);
+fu6 = rtgamma(x6);
+ff6 = 1/libm_tgamma(x6);
+//
+x7 = -100.22;
+f7 = rgamma(x7);
+fu7 = rtgamma(x7);
+ff7 = 1/libm_tgamma(x7);
+//
+x8 = -100.88;
+f8 = rgamma(x8);
+fu8 = rtgamma(x8);
+ff8 = 1/libm_tgamma(x8);
+//
+x9 = -130.22;
+f9 = rgamma(x9);
+fu9 = rtgamma(x9);
+ff9 = 1/libm_tgamma(x9);
+//
+xA = -130.88;
+fA = rgamma(xA);
+fuA = rtgamma(xA);
+ffA = 1/libm_tgamma(xA);
+
+
+[*]
+var x1, f1, fu1, ff1;
+var x2, f2, fu2, ff2;
+var x3, f3, fu3, ff3;
+var x4, f4, fu4, ff4;
+var x5, f5, fu5, ff5;
+var x6, f6, fu6, ff6;
+var x7, f7, fu7, ff7;
+var x8, f8, fu8, ff8;
+//
+x1 = 1E-10;
+f1 = rgamma(x1);
+fu1 = rtgamma(x1);
+ff1 = 1/libm_tgamma(x1);
+//
+x2 = 0.5;
+f2 = rgamma(x2);
+fu2 = rtgamma(x2);
+ff2 = 1/libm_tgamma(x2);
+//
+x3 = 2.5;
+f3 = rgamma(x3);
+fu3 = rtgamma(x3);
+ff3 = 1/libm_tgamma(x3);
+//
+x4 = 6;
+f4 = rgamma(x4);
+fu4 = rtgamma(x4);
+ff4 = 1/libm_tgamma(x4);
+//
+x5 = 10;
+f5 = rgamma(x5);
+fu5 = rtgamma(x5);
+ff5 = 1/libm_tgamma(x5);
+//
+x6 = 10.5;
+f6 = rgamma(x6);
+fu6 = rtgamma(x6);
+ff6 = 1/libm_tgamma(x6);
+//
+x7 = 20.5;
+f7 = rgamma(x7);
+fu7 = rtgamma(x7);
+ff7 = 1/libm_tgamma(x7);
+//
+x8 = 30.5;
+f8 = rgamma(x8);
+fu8 = rtgamma(x8);
+ff8 = 1/libm_tgamma(x8);
+
+
+[*]
+var x1, f1, fu1, ff1;
+var x2, f2, fu2, ff2;
+var x3, f3, fu3, ff3;
+var x4, f4, fu4, ff4;
+var x5, f5, fu5, ff5;
+var x6, f6, fu6, ff6;
+var x7, f7, fu7, ff7;
+var x8, f8, fu8, ff8;
+//
+x1 = -1E-10;
+f1 = rgamma(x1);
+fu1 = rtgamma(x1);
+ff1 = 1/libm_tgamma(x1);
+//
+x2 = -0.5;
+f2 = rgamma(x2);
+fu2 = rtgamma(x2);
+ff2 = 1/libm_tgamma(x2);
+//
+x3 = -2.5;
+f3 = rgamma(x3);
+fu3 = rtgamma(x3);
+ff3 = 1/libm_tgamma(x3);
+//
+x4 = -6.2;
+f4 = rgamma(x4);
+fu4 = rtgamma(x4);
+ff4 = 1/libm_tgamma(x4);
+//
+x5 = -10.2;
+f5 = rgamma(x5);
+fu5 = rtgamma(x5);
+ff5 = 1/libm_tgamma(x5);
+//
+x6 = -10.5;
+f6 = rgamma(x6);
+fu6 = rtgamma(x6);
+ff6 = 1/libm_tgamma(x6);
+//
+x7 = -20.5;
+f7 = rgamma(x7);
+fu7 = rtgamma(x7);
+ff7 = 1/libm_tgamma(x7);
+//
+x8 = -30.5;
+f8 = rgamma(x8);
+fu8 = rtgamma(x8);
+ff8 = 1/libm_tgamma(x8);
+
+
+[*]
+var x1, y1, f_1, f1, ff1;
+var x2, y2, f_2, f2, ff2;
+var x3, y3, f_3, f3, ff3;
+var x4, y4, f_4, f4, ff4;
+var x5, y5, f_5, f5, ff5;
+var x6, y6, f_6, f6, ff6;
+var x7, y7, f_7, f7, ff7;
+var x8, y8, f_8, f8, ff8;
+var x9, y9, f_9, f9, ff9;
+var xA, yA, f_A, fA, ffA;
+//
+x1 = 1.1;
+y1 = 2.2;
+f1 = beta(x1,y1);
+ff1 = smf_beta(x1,y1);
+f_1 = 3.906186352579218713812E-1;
+//
+x2 = 91.1;
+y2 = 2.2;
+f2 = beta(x2,y2);
+ff2 = smf_beta(x2,y2);
+f_2 = 5.30773695429462152553E-5;
+//
+x3 = 1.1;
+y3 = 92.2;
+f3 = beta(x3,y3);
+ff3 = smf_beta(x3,y3);
+f_3 = 6.55961201736395145752E-3;
+//
+x4 = 91.1;
+y4 = 92.2;
+f4 = beta(x4,y4);
+ff4 = smf_beta(x4,y4);
+f_4 = 2.464756986978274340026E-56;
+//
+x5 = -1.1;
+y5 = -2.2;
+f5 = beta(x5,y5);
+ff5 = smf_beta(x5,y5);
+f_5 = -4.884859573552668346213E+1;
+//
+x6 = -91.1;
+y6 = -2.2;
+f6 = beta(x6,y6);
+ff6 = smf_beta(x6,y6);
+f_6 = -1.227263059774123086631E+5;
+//
+x7 = -1.1;
+y7 = -92.2;
+f7 = beta(x7,y7);
+ff7 = smf_beta(x7,y7);
+f_7 = -1.962394656316897630268E+3;
+//
+x8 = -91.1;
+y8 = -92.2;
+f8 = beta(x8,y8);
+ff8 = smf_beta(x8,y8);
+f_8 = -1.238926460202145230075E+55;
+//
+x9 = -11.1;
+y9 = 22.2;
+f9 = beta(x9,y9);
+ff9 = smf_beta(x9,y9);
+f_9 = 4.100888272617841980555E+6;
+//
+xA = 11.1;
+yA = -22.2;
+fA = beta(xA,yA);
+ffA = smf_beta(xA,yA);
+f_A = -5.870840421083989118483E-8;
+
+
+[*]
+var v_01 = fpow(x,+0.0);      // = 1.0
+var v_02 = fpow(x,-0.0);      // = 1.0
+var v_03 = fpow(NaN,y);       // = NaN
+var v_04 = fpow(1.0,NaN);     // = 1.0
+var v_05 = fpow(x,NaN);       // = NaN
+var v_06 = fpow(+0.0,PInf);   // = +0.0
+var v_07 = fpow(-0.0,PInf);   // = +0.0
+var v_08 = fpow(+0.0,NInf);   // = PInf
+var v_09 = fpow(-0.0,NInf);   // = PInf
+var v_10 = fpow((+0.0),-3);   // = PInf
+var v_11 = fpow((+0.0),-4);   // = PInf
+var v_12 = fpow((+0.0),+3);   // = +0.0
+var v_13 = fpow((+0.0),+4);   // = +0.0
+var v_14 = fpow((-0.0),-3);   // = NInf
+var v_15 = fpow((-0.0),-4);   // = PInf
+var v_16 = fpow((-0.0),+3);   // = -0.0
+var v_17 = fpow((-0.0),+4);   // = +0.0
+var v_18 = fpow(+0.0,-3.4);   // = PInf
+var v_19 = fpow(-0.0,-3.4);   // = PInf
+var v_20 = fpow(+0.0,+3.4);   // = +0.0
+var v_21 = fpow(-0.0,+3.4);   // = +0.0
+var v_22 = fpow(PInf,+3.4);   // = PInf
+var v_23 = fpow(PInf,-3.4);   // = +0.0
+var v_24 = fpow(NInf,-3);     // = -0.0
+var v_25 = fpow(NInf,-4);     // = +0.0
+var v_26 = fpow(NInf,+3);     // = NInf
+var v_27 = fpow(NInf,+4);     // = PInf
+var v_28 = fpow(NInf,-3.4);   // = +0.0
+var v_29 = fpow(NInf,+3.4);   // = PInf
+var v_30 = fpow((1.0),PInf);  // = 1.0
+var v_31 = fpow((0.5),PInf);  // = +0.0
+var v_32 = fpow((1.5),PInf);  // = PInf
+var v_33 = fpow((1.0),NInf);  // = 1.0
+var v_34 = fpow((0.5),NInf);  // = PInf
+var v_35 = fpow((1.5),NInf);  // = +0.0
+var v_36 = fpow(x,1.0);       // = x
+var v_37 = fpow(1.0,y);       // = 1.0
+var v_38 = fpow((-3.4),3.4);  // = NaN
+var v_39 = fpow((-3.4),3);    // = NaN
+
+
+[*]
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x1 = 0;
+fs1 = fsec(x1);
+fu1 = wf_sec(x1);
+//
+x2 = 0.5;
+fs2 = fsec(x2);
+fu2 = wf_sec(x2);
+//
+x3 = -0.5;
+fs3 = fsec(x3);
+fu3 = wf_sec(x3);
+//
+x4 = 3.5;
+fs4 = fsec(x4);
+fu4 = wf_sec(x4);
+//
+x5 = -3.5;
+fs5 = fsec(x5);
+fu5 = wf_sec(x5);
+//
+x6 = 100;
+fs6 = fsec(x6);
+fu6 = wf_sec(x6);
+//
+x7 = -100;
+fs7 = fsec(x7);
+fu7 = wf_sec(x7);
+//
+x8 = 1000;
+fs8 = fsec(x8);
+fu8 = wf_sec(x8);
+//
+x9 = -1000;
+fs9 = fsec(x9);
+fu9 = wf_sec(x9);
+
+
+[*]
+var x0, fs0, fu0;
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x0 = 0.001;
+fs0 = fcosec(x0);
+fu0 = wf_cosec(x0);
+//
+x1 = -0.001;
+fs1 = fcosec(x1);
+fu1 = wf_cosec(x1);
+//
+x2 = 0.5;
+fs2 = fcosec(x2);
+fu2 = wf_cosec(x2);
+//
+x3 = -0.5;
+fs3 = fcosec(x3);
+fu3 = wf_cosec(x3);
+//
+x4 = 3.5;
+fs4 = fcosec(x4);
+fu4 = wf_cosec(x4);
+//
+x5 = -3.5;
+fs5 = fcosec(x5);
+fu5 = wf_cosec(x5);
+//
+x6 = 100;
+fs6 = fcosec(x6);
+fu6 = wf_cosec(x6);
+//
+x7 = -100;
+fs7 = fcosec(x7);
+fu7 = wf_cosec(x7);
+//
+x8 = 1000;
+fs8 = fcosec(x8);
+fu8 = wf_cosec(x8);
+//
+x9 = -1000;
+fs9 = fcosec(x9);
+fu9 = wf_cosec(x9);
+
+
+[*]
+var x0, fs0, fu0;
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x0 = 1;
+fs0 = fasec(x0);
+fu0 = wf_asec(x0);
+//
+x1 = -1;
+fs1 = fasec(x1);
+fu1 = wf_asec(x1);
+//
+x2 = 1.5;
+fs2 = fasec(x2);
+fu2 = wf_asec(x2);
+//
+x3 = -1.5;
+fs3 = fasec(x3);
+fu3 = wf_asec(x3);
+//
+x4 = 3.5;
+fs4 = fasec(x4);
+fu4 = wf_asec(x4);
+//
+x5 = -3.5;
+fs5 = fasec(x5);
+fu5 = wf_asec(x5);
+//
+x6 = 100;
+fs6 = fasec(x6);
+fu6 = wf_asec(x6);
+//
+x7 = -100;
+fs7 = fasec(x7);
+fu7 = wf_asec(x7);
+//
+x8 = 1000;
+fs8 = fasec(x8);
+fu8 = wf_asec(x8);
+//
+x9 = -1000;
+fs9 = fasec(x9);
+fu9 = wf_asec(x9);
+
+
+[*]
+var x0, fs0, fu0;
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x0 = 1;
+fs0 = facosec(x0);
+fu0 = wf_acosec(x0);
+//
+x1 = -1;
+fs1 = facosec(x1);
+fu1 = wf_acosec(x1);
+//
+x2 = 1.5;
+fs2 = facosec(x2);
+fu2 = wf_acosec(x2);
+//
+x3 = -1.5;
+fs3 = facosec(x3);
+fu3 = wf_acosec(x3);
+//
+x4 = 3.5;
+fs4 = facosec(x4);
+fu4 = wf_acosec(x4);
+//
+x5 = -3.5;
+fs5 = facosec(x5);
+fu5 = wf_acosec(x5);
+//
+x6 = 100;
+fs6 = facosec(x6);
+fu6 = wf_acosec(x6);
+//
+x7 = -100;
+fs7 = facosec(x7);
+fu7 = wf_acosec(x7);
+//
+x8 = 1000;
+fs8 = facosec(x8);
+fu8 = wf_acosec(x8);
+//
+x9 = -1000;
+fs9 = facosec(x9);
+fu9 = wf_acosec(x9);
+
+
+[*]
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x1 = 0;
+fs1 = fsech(x1);
+fu1 = wf_sech(x1);
+//
+x2 = 0.5;
+fs2 = fsech(x2);
+fu2 = wf_sech(x2);
+//
+x3 = -0.5;
+fs3 = fsech(x3);
+fu3 = wf_sech(x3);
+//
+x4 = 3.5;
+fs4 = fsech(x4);
+fu4 = wf_sech(x4);
+//
+x5 = -3.5;
+fs5 = fsech(x5);
+fu5 = wf_sech(x5);
+//
+x6 = 100;
+fs6 = fsech(x6);
+fu6 = wf_sech(x6);
+//
+x7 = -100;
+fs7 = fsech(x7);
+fu7 = wf_sech(x7);
+//
+x8 = 700;
+fs8 = fsech(x8);
+fu8 = wf_sech(x8);
+//
+x9 = -700;
+fs9 = fsech(x9);
+fu9 = wf_sech(x9);
+
+
+[*]
+var x0, fs0, fu0;
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x0 = 0.001;
+fs0 = fcosech(x0);
+fu0 = wf_cosech(x0);
+//
+x1 = -0.001;
+fs1 = fcosech(x1);
+fu1 = wf_cosech(x1);
+//
+x2 = 0.5;
+fs2 = fcosech(x2);
+fu2 = wf_cosech(x2);
+//
+x3 = -0.5;
+fs3 = fcosech(x3);
+fu3 = wf_cosech(x3);
+//
+x4 = 3.5;
+fs4 = fcosech(x4);
+fu4 = wf_cosech(x4);
+//
+x5 = -3.5;
+fs5 = fcosech(x5);
+fu5 = wf_cosech(x5);
+//
+x6 = 100;
+fs6 = fcosech(x6);
+fu6 = wf_cosech(x6);
+//
+x7 = -100;
+fs7 = fcosech(x7);
+fu7 = wf_cosech(x7);
+//
+x8 = 700;
+fs8 = fcosech(x8);
+fu8 = wf_cosech(x8);
+//
+x9 = -700;
+fs9 = fcosech(x9);
+fu9 = wf_cosech(x9);
+
+
+[*]
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x1 = 0.001;
+fs1 = fasech(x1);
+fu1 = wf_asech(x1);
+//
+x2 = 0.1;
+fs2 = fasech(x2);
+fu2 = wf_asech(x2);
+//
+x3 = 0.2;
+fs3 = fasech(x3);
+fu3 = wf_asech(x3);
+//
+x4 = 0.3;
+fs4 = fasech(x4);
+fu4 = wf_asech(x4);
+//
+x5 = 0.4;
+fs5 = fasech(x5);
+fu5 = wf_asech(x5);
+//
+x6 = 0.5;
+fs6 = fasech(x6);
+fu6 = wf_asech(x6);
+//
+x7 = 0.7;
+fs7 = fasech(x7);
+fu7 = wf_asech(x7);
+//
+x8 = 0.9;
+fs8 = fasech(x8);
+fu8 = wf_asech(x8);
+//
+x9 = 1;
+fs9 = fasech(x9);
+fu9 = wf_asech(x9);
+
+
+[*]
+var x0, fs0, fu0;
+var x1, fs1, fu1;
+var x2, fs2, fu2;
+var x3, fs3, fu3;
+var x4, fs4, fu4;
+var x5, fs5, fu5;
+var x6, fs6, fu6;
+var x7, fs7, fu7;
+var x8, fs8, fu8;
+var x9, fs9, fu9;
+//
+x0 = 0.001;
+fs0 = facosech(x0);
+fu0 = wf_acosech(x0);
+//
+x1 = -0.001;
+fs1 = facosech(x1);
+fu1 = wf_acosech(x1);
+//
+x2 = 0.5;
+fs2 = facosech(x2);
+fu2 = wf_acosech(x2);
+//
+x3 = -0.5;
+fs3 = facosech(x3);
+fu3 = wf_acosech(x3);
+//
+x4 = 3.5;
+fs4 = facosech(x4);
+fu4 = wf_acosech(x4);
+//
+x5 = -3.5;
+fs5 = facosech(x5);
+fu5 = wf_acosech(x5);
+//
+x6 = 100;
+fs6 = facosech(x6);
+fu6 = wf_acosech(x6);
+//
+x7 = -100;
+fs7 = facosech(x7);
+fu7 = wf_acosech(x7);
+//
+x8 = 700;
+fs8 = facosech(x8);
+fu8 = wf_acosech(x8);
+//
+x9 = -700;
+fs9 = facosech(x9);
+fu9 = wf_acosech(x9);
+
+
+[*]
+var x0, fs0, fu0, fz0;
+var x1, fs1, fu1, fz1;
+var x2, fs2, fu2, fz2;
+var x3, fs3, fu3, fz3;
+var x4, fs4, fu4, fz4;
+var x5, fs5, fu5, fz5;
+var x6, fs6, fu6, fz6;
+var x7, fs7, fu7, fz7;
+var x8, fs8, fu8, fz8;
+var x9, fs9, fu9, fz9;
+var xA, fsA, fuA, fzA;
+var xB, fsB, fuB, fzB;
+//
+x0 = 1.1;
+fs0 =  fsinpi(x0);
+fu0 = libm_sinpi(x0);
+fz0 = fsin(pi*x0);
+//
+x1 = -1.1;
+fs1 =  fsinpi(x1);
+fu1 = libm_sinpi(x1);
+fz1 = fsin(pi*x1);
+//
+x2 = 22.2;
+fs2 =  fsinpi(x2);
+fu2 = libm_sinpi(x2);
+fz2 = fsin(pi*x2);
+//
+x3 = -22.2;
+fs3 =  fsinpi(x3);
+fu3 = libm_sinpi(x3);
+fz3 = fsin(pi*x3);
+//
+x4 = 333.3;
+fs4 =  fsinpi(x4);
+fu4 = libm_sinpi(x4);
+fz4 = fsin(pi*x4);
+//
+x5 = -333.3;
+fs5 =  fsinpi(x5);
+fu5 = libm_sinpi(x5);
+fz5 = fsin(pi*x5);
+//
+x6 = 4444.4;
+fs6 =  fsinpi(x6);
+fu6 = libm_sinpi(x6);
+fz6 = fsin(pi*x6);
+//
+x7 = -4444.4;
+fs7 =  fsinpi(x7);
+fu7 = libm_sinpi(x7);
+fz7 = fsin(pi*x7);
+//
+x8 = 55555.5;
+fs8 =  fsinpi(x8);
+fu8 = libm_sinpi(x8);
+fz8 = fsin(pi*x8);
+//
+x9 = -55555.5;
+fs9 =  fsinpi(x9);
+fu9 = libm_sinpi(x9);
+fz9 = fsin(pi*x9);
+//
+xA = 55555.6;
+fsA =  fsinpi(xA);
+fuA = libm_sinpi(xA);
+fzA = fsin(pi*xA);
+//
+xB = -55555.6;
+fsB =  fsinpi(xB);
+fuB = libm_sinpi(xB);
+fzB = fsin(pi*xB);
+
+
+[*]
+var x0, fs0, fu0, fz0;
+var x1, fs1, fu1, fz1;
+var x2, fs2, fu2, fz2;
+var x3, fs3, fu3, fz3;
+var x4, fs4, fu4, fz4;
+var x5, fs5, fu5, fz5;
+var x6, fs6, fu6, fz6;
+var x7, fs7, fu7, fz7;
+var x8, fs8, fu8, fz8;
+var x9, fs9, fu9, fz9;
+var xA, fsA, fuA, fzA;
+var xB, fsB, fuB, fzB;
+//
+x0 = 1.1;
+fs0 =  fcospi(x0);
+fu0 = libm_cospi(x0);
+fz0 = fcos(pi*x0);
+//
+x1 = -1.1;
+fs1 =  fcospi(x1);
+fu1 = libm_cospi(x1);
+fz1 = fcos(pi*x1);
+//
+x2 = 22.2;
+fs2 =  fcospi(x2);
+fu2 = libm_cospi(x2);
+fz2 = fcos(pi*x2);
+//
+x3 = -22.2;
+fs3 =  fcospi(x3);
+fu3 = libm_cospi(x3);
+fz3 = fcos(pi*x3);
+//
+x4 = 333.3;
+fs4 =  fcospi(x4);
+fu4 = libm_cospi(x4);
+fz4 = fcos(pi*x4);
+//
+x5 = -333.3;
+fs5 =  fcospi(x5);
+fu5 = libm_cospi(x5);
+fz5 = fcos(pi*x5);
+//
+x6 = 4444.4;
+fs6 =  fcospi(x6);
+fu6 = libm_cospi(x6);
+fz6 = fcos(pi*x6);
+//
+x7 = -4444.4;
+fs7 =  fcospi(x7);
+fu7 = libm_cospi(x7);
+fz7 = fcos(pi*x7);
+//
+x8 = 55555.5;
+fs8 =  fcospi(x8);
+fu8 = libm_cospi(x8);
+fz8 = fcos(pi*x8);
+//
+x9 = -55555.5;
+fs9 =  fcospi(x9);
+fu9 = libm_cospi(x9);
+fz9 = fcos(pi*x9);
+//
+xA = 55555.6;
+fsA =  fcospi(xA);
+fuA = libm_cospi(xA);
+fzA = fcos(pi*xA);
+//
+xB = -55555.6;
+fsB =  fcospi(xB);
+fuB = libm_cospi(xB);
+fzB = fcos(pi*xB);
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(pi*x1);
+c01=  fcos(pi*x1);
+co.fsincospi(s01x,c01x,(x1));
+//
+x2=0.8;
+s02=  fsin(pi*x2);
+c02=  fcos(pi*x2);
+co.fsincospi(s02x,c02x,(x2));
+//
+x3=-0.4;
+s03=  fsin(pi*x3);
+c03=  fcos(pi*x3);
+co.fsincospi(s03x,c03x,(x3));
+//
+x4=-0.8;
+s04=  fsin(pi*x4);
+c04=  fcos(pi*x4);
+co.fsincospi(s04x,c04x,(x4));
+//
+x5=11.2;
+s05=  fsin(pi*x5);
+c05=  fcos(pi*x5);
+co.fsincospi(s05x,c05x,(x5));
+//
+x6=111.6;
+s06=  fsin(pi*x6);
+c06=  fcos(pi*x6);
+co.fsincospi(s06x,c06x,(x6));
+//
+x7=-11.2;
+s07=  fsin(pi*x7);
+c07=  fcos(pi*x7);
+co.fsincospi(s07x,c07x,(x7));
+//
+x8=-111.6;
+s08=  fsin(pi*x8);
+c08=  fcos(pi*x8);
+co.fsincospi(s08x,c08x,(x8));
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(pi*x1);
+c01=  fcos(pi*x1);
+x2copy(c01x,s01x,fcossinpi(x1));
+//
+x2=0.8;
+s02=  fsin(pi*x2);
+c02=  fcos(pi*x2);
+x2copy(c02x,s02x,fcossinpi(x2));
+//
+x3=-0.4;
+s03=  fsin(pi*x3);
+c03=  fcos(pi*x3);
+x2copy(c03x,s03x,fcossinpi(x3));
+//
+x4=-0.8;
+s04=  fsin(pi*x4);
+c04=  fcos(pi*x4);
+x2copy(c04x,s04x,fcossinpi(x4));
+//
+x5=11.2;
+s05=  fsin(pi*x5);
+c05=  fcos(pi*x5);
+x2copy(c05x,s05x,fcossinpi(x5));
+//
+x6=111.6;
+s06=  fsin(pi*x6);
+c06=  fcos(pi*x6);
+x2copy(c06x,s06x,fcossinpi(x6));
+//
+x7=-11.2;
+s07=  fsin(pi*x7);
+c07=  fcos(pi*x7);
+x2copy(c07x,s07x,fcossinpi(x7));
+//
+x8=-111.6;
+s08=  fsin(pi*x8);
+c08=  fcos(pi*x8);
+x2copy(c08x,s08x,fcossinpi(x8));
+
+
+[*]
+var x1, s01, s01x, c01, c01x;
+var x2, s02, s02x, c02, c02x;
+var x3, s03, s03x, c03, c03x;
+var x4, s04, s04x, c04, c04x;
+var x5, s05, s05x, c05, c05x;
+var x6, s06, s06x, c06, c06x;
+var x7, s07, s07x, c07, c07x;
+var x8, s08, s08x, c08, c08x;
+//
+x1=0.4;
+s01=  fsin(pi*x1);
+c01=  fcos(pi*x1);
+co.fcossinpi(c01x,s01x,(x1));
+//
+x2=0.8;
+s02=  fsin(pi*x2);
+c02=  fcos(pi*x2);
+co.fcossinpi(c02x,s02x,(x2));
+//
+x3=-0.4;
+s03=  fsin(pi*x3);
+c03=  fcos(pi*x3);
+co.fcossinpi(c03x,s03x,(x3));
+//
+x4=-0.8;
+s04=  fsin(pi*x4);
+c04=  fcos(pi*x4);
+co.fcossinpi(c04x,s04x,(x4));
+//
+x5=11.2;
+s05=  fsin(pi*x5);
+c05=  fcos(pi*x5);
+co.fcossinpi(c05x,s05x,(x5));
+//
+x6=111.6;
+s06=  fsin(pi*x6);
+c06=  fcos(pi*x6);
+co.fcossinpi(c06x,s06x,(x6));
+//
+x7=-11.2;
+s07=  fsin(pi*x7);
+c07=  fcos(pi*x7);
+co.fcossinpi(c07x,s07x,(x7));
+//
+x8=-111.6;
+s08=  fsin(pi*x8);
+c08=  fcos(pi*x8);
+co.fcossinpi(c08x,s08x,(x8));
+
+
+[*]
+var x0, fs0, fz0;
+var x1, fs1, fz1;
+var x2, fs2, fz2;
+var x3, fs3, fz3;
+var x4, fs4, fz4;
+var x5, fs5, fz5;
+var x6, fs6, fz6;
+var x7, fs7, fz7;
+var x8, fs8, fz8;
+var x9, fs9, fz9;
+var xA, fsA, fzA;
+var xB, fsB, fzB;
+//
+x0 = 1.1;
+fs0 =  fsecpi(x0);
+fz0 = fsec(pi*x0);
+//
+x1 = -1.1;
+fs1 =  fsecpi(x1);
+fz1 = fsec(pi*x1);
+//
+x2 = 22.2;
+fs2 =  fsecpi(x2);
+fz2 = fsec(pi*x2);
+//
+x3 = -22.2;
+fs3 =  fsecpi(x3);
+fz3 = fsec(pi*x3);
+//
+x4 = 333.3;
+fs4 =  fsecpi(x4);
+fz4 = fsec(pi*x4);
+//
+x5 = -333.3;
+fs5 =  fsecpi(x5);
+fz5 = fsec(pi*x5);
+//
+x6 = 4444.4;
+fs6 =  fsecpi(x6);
+fz6 = fsec(pi*x6);
+//
+x7 = -4444.4;
+fs7 =  fsecpi(x7);
+fz7 = fsec(pi*x7);
+//
+x8 = 55555.5;
+fs8 =  fsecpi(x8);
+fz8 = fsec(pi*x8);
+//
+x9 = -55555.5;
+fs9 =  fsecpi(x9);
+fz9 = fsec(pi*x9);
+//
+xA = 55555.6;
+fsA =  fsecpi(xA);
+fzA = fsec(pi*xA);
+//
+xB = -55555.6;
+fsB =  fsecpi(xB);
+fzB = fsec(pi*xB);
+
+
+[*]
+var x0, fs0, fz0;
+var x1, fs1, fz1;
+var x2, fs2, fz2;
+var x3, fs3, fz3;
+var x4, fs4, fz4;
+var x5, fs5, fz5;
+var x6, fs6, fz6;
+var x7, fs7, fz7;
+var x8, fs8, fz8;
+var x9, fs9, fz9;
+var xA, fsA, fzA;
+var xB, fsB, fzB;
+//
+x0 = 1.1;
+fs0 =  fcosecpi(x0);
+fz0 = fcosec(pi*x0);
+//
+x1 = -1.1;
+fs1 =  fcosecpi(x1);
+fz1 = fcosec(pi*x1);
+//
+x2 = 22.2;
+fs2 =  fcosecpi(x2);
+fz2 = fcosec(pi*x2);
+//
+x3 = -22.2;
+fs3 =  fcosecpi(x3);
+fz3 = fcosec(pi*x3);
+//
+x4 = 333.3;
+fs4 =  fcosecpi(x4);
+fz4 = fcosec(pi*x4);
+//
+x5 = -333.3;
+fs5 =  fcosecpi(x5);
+fz5 = fcosec(pi*x5);
+//
+x6 = 4444.4;
+fs6 =  fcosecpi(x6);
+fz6 = fcosec(pi*x6);
+//
+x7 = -4444.4;
+fs7 =  fcosecpi(x7);
+fz7 = fcosec(pi*x7);
+//
+x8 = 55555.5;
+fs8 =  fcosecpi(x8);
+fz8 = fcosec(pi*x8);
+//
+x9 = -55555.5;
+fs9 =  fcosecpi(x9);
+fz9 = fcosec(pi*x9);
+//
+xA = 55555.6;
+fsA =  fcosecpi(xA);
+fzA = fcosec(pi*xA);
+//
+xB = -55555.6;
+fsB =  fcosecpi(xB);
+fzB = fcosec(pi*xB);
+
+
+[*]
+var x0, fs0, fu0, fz0;
+var x1, fs1, fu1, fz1;
+var x2, fs2, fu2, fz2;
+var x3, fs3, fu3, fz3;
+var x4, fs4, fu4, fz4;
+var x5, fs5, fu5, fz5;
+var x6, fs6, fu6, fz6;
+var x7, fs7, fu7, fz7;
+var x8, fs8, fu8, fz8;
+var x9, fs9, fu9, fz9;
+var xA, fsA, fuA, fzA;
+var xB, fsB, fuB, fzB;
+//
+x0 = 1.1;
+fs0 =  ftanpi(x0);
+fu0 = libm_tanpi(x0);
+fz0 = ftan(pi*x0);
+//
+x1 = -1.1;
+fs1 =  ftanpi(x1);
+fu1 = libm_tanpi(x1);
+fz1 = ftan(pi*x1);
+//
+x2 = 22.2;
+fs2 =  ftanpi(x2);
+fu2 = libm_tanpi(x2);
+fz2 = ftan(pi*x2);
+//
+x3 = -22.2;
+fs3 =  ftanpi(x3);
+fu3 = libm_tanpi(x3);
+fz3 = ftan(pi*x3);
+//
+x4 = 333.3;
+fs4 =  ftanpi(x4);
+fu4 = libm_tanpi(x4);
+fz4 = ftan(pi*x4);
+//
+x5 = -333.3;
+fs5 =  ftanpi(x5);
+fu5 = libm_tanpi(x5);
+fz5 = ftan(pi*x5);
+//
+x6 = 4444.4;
+fs6 =  ftanpi(x6);
+fu6 = libm_tanpi(x6);
+fz6 = ftan(pi*x6);
+//
+x7 = -4444.4;
+fs7 =  ftanpi(x7);
+fu7 = libm_tanpi(x7);
+fz7 = ftan(pi*x7);
+//
+x8 = 55555.5;
+fs8 =  ftanpi(x8);
+fu8 = NaN; // libm_tanpi(x8);
+fz8 = ftan(pi*x8);
+//
+x9 = -55555.5;
+fs9 =  ftanpi(x9);
+fu9 = NaN; // libm_tanpi(x9);
+fz9 = ftan(pi*x9);
+//
+xA = 55555.6;
+fsA =  ftanpi(xA);
+fuA = libm_tanpi(xA);
+fzA = ftan(pi*xA);
+//
+xB = -55555.6;
+fsB =  ftanpi(xB);
+fuB = libm_tanpi(xB);
+fzB = ftan(pi*xB);
+
+
+[*]
+var x0, fs0, fz0;
+var x1, fs1, fz1;
+var x2, fs2, fz2;
+var x3, fs3, fz3;
+var x4, fs4, fz4;
+var x5, fs5, fz5;
+var x6, fs6, fz6;
+var x7, fs7, fz7;
+var x8, fs8, fz8;
+var x9, fs9, fz9;
+var xA, fsA, fzA;
+var xB, fsB, fzB;
+//
+x0 = 1.1;
+fs0 =  fcotanpi(x0);
+fz0 = fcotan(pi*x0);
+//
+x1 = -1.1;
+fs1 =  fcotanpi(x1);
+fz1 = fcotan(pi*x1);
+//
+x2 = 22.2;
+fs2 =  fcotanpi(x2);
+fz2 = fcotan(pi*x2);
+//
+x3 = -22.2;
+fs3 =  fcotanpi(x3);
+fz3 = fcotan(pi*x3);
+//
+x4 = 333.3;
+fs4 =  fcotanpi(x4);
+fz4 = fcotan(pi*x4);
+//
+x5 = -333.3;
+fs5 =  fcotanpi(x5);
+fz5 = fcotan(pi*x5);
+//
+x6 = 4444.4;
+fs6 =  fcotanpi(x6);
+fz6 = fcotan(pi*x6);
+//
+x7 = -4444.4;
+fs7 =  fcotanpi(x7);
+fz7 = fcotan(pi*x7);
+//
+x8 = 55555.5;
+fs8 =  fcotanpi(x8);
+fz8 = fcotan(pi*x8);
+//
+x9 = -55555.5;
+fs9 =  fcotanpi(x9);
+fz9 = fcotan(pi*x9);
+//
+xA = 55555.6;
+fsA =  fcotanpi(xA);
+fzA = fcotan(pi*xA);
+//
+xB = -55555.6;
+fsB =  fcotanpi(xB);
+fzB = fcotan(pi*xB);
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcospi(x);
+sin1 = fsinpi(x);
+x2copy (sin2,cos2, fsincospi(x));
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcospi(x);
+sin1 = fsinpi(x);
+co.fsincospi (sin2,cos2, x);
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcospi(x);
+sin1 = fsinpi(x);
+x2copy (cos2,sin2, fcossinpi(x));
+
+
+[*]
+var cos1, cos2;
+var sin1, sin2;
+//
+cos1 = fcospi(x);
+sin1 = fsinpi(x);
+co.fcossinpi (cos2,sin2, x);
+
+
+[*]
+var x0, m0;
+var x1, m1;
+var x2, m2;
+var x3, m3;
+var x4, m4;
+var x5, m5;
+var x6, m6;
+//
+x0 := (2*pi+0.22);
+m0 = x0 % pi;
+//
+x1 := 2^40;
+m1 = x1 % pi;
+//
+x2 := 2^50;
+m2 = x2 % pi;
+//
+x3 := 2^60;
+m3 = x3 % pi;
+//
+x4 := 2^70;
+m4 = x4 % pi;
+//
+x5 := 2^80;
+m5 = x5 % pi;
+//
+x6 := 2^888;
+m6 = x6 % pi;
+
+
+[*]
+var x0, q0, qq0, m0, mm0;
+var x1, q1, qq1, m1, mm1;
+var x2, q2, qq2, m2, mm2;
+var x3, q3, qq3, m3, mm3;
+var x4, q4, qq4, m4, mm4;
+var x5, q5, qq5, m5, mm5;
+var x6, q6, qq6, m6, mm6;
+//
+x0 := (2*pi+0.22);
+q0 = x0 \ pi;
+m0 = x0 % pi;
+x2copy(qq0,mm0, quo.mod(x0,pi));
+//
+x1 := 2^40;
+q1 = x1 \ pi;
+m1 = x1 % pi;
+x2copy(qq1,mm1, quo.mod(x1,pi));
+//
+x2 := 2^50;
+q2 = x2 \ pi;
+m2 = x2 % pi;
+x2copy(qq2,mm2, quo.mod(x2,pi));
+//
+x3 := 2^60;
+q3 = x3 \ pi;
+m3 = x3 % pi;
+x2copy(qq3,mm3, quo.mod(x3,pi));
+//
+x4 := 2^70;
+q4 = x4 \ pi;
+m4 = x4 % pi;
+x2copy(qq4,mm4, quo.mod(x4,pi));
+//
+x5 := 2^80;
+q5 = x5 \ pi;
+m5 = x5 % pi;
+x2copy(qq5,mm5, quo.mod(x5,pi));
+//
+x6 := 2^888;
+q6 = x6 \ pi;
+m6 = x6 % pi;
+x2copy(qq6,mm6, quo.mod(x6,pi));
+
+
+[*]
+var x0, q0, qq0, m0, mm0;
+var x1, q1, qq1, m1, mm1;
+var x2, q2, qq2, m2, mm2;
+var x3, q3, qq3, m3, mm3;
+var x4, q4, qq4, m4, mm4;
+var x5, q5, qq5, m5, mm5;
+var x6, q6, qq6, m6, mm6;
+//
+x0 := (2*pi+0.22);
+q0 = x0 \ pi;
+m0 = x0 % pi;
+co.quo.mod(qq0,mm0, (x0,pi));
+//
+x1 := 2^40;
+q1 = x1 \ pi;
+m1 = x1 % pi;
+co.quo.mod(qq1,mm1, (x1,pi));
+//
+x2 := 2^50;
+q2 = x2 \ pi;
+m2 = x2 % pi;
+co.quo.mod(qq2,mm2, (x2,pi));
+//
+x3 := 2^60;
+q3 = x3 \ pi;
+m3 = x3 % pi;
+co.quo.mod(qq3,mm3, (x3,pi));
+//
+x4 := 2^70;
+q4 = x4 \ pi;
+m4 = x4 % pi;
+co.quo.mod(qq4,mm4, (x4,pi));
+//
+x5 := 2^80;
+q5 = x5 \ pi;
+m5 = x5 % pi;
+co.quo.mod(qq5,mm5, (x5,pi));
+//
+x6 := 2^888;
+q6 = x6 \ pi;
+m6 = x6 % pi;
+co.quo.mod(qq6,mm6, (x6,pi));
+
+
+[*]
+var x0, q0, qq0, m0, mm0;
+var x1, q1, qq1, m1, mm1;
+var x2, q2, qq2, m2, mm2;
+var x3, q3, qq3, m3, mm3;
+var x4, q4, qq4, m4, mm4;
+var x5, q5, qq5, m5, mm5;
+var x6, q6, qq6, m6, mm6;
+//
+x0 := (2*pi+0.22);
+q0 = x0 \ pi;
+m0 = x0 % pi;
+x2copy(mm0,qq0, mod.quo(x0,pi));
+//
+x1 := 2^40;
+q1 = x1 \ pi;
+m1 = x1 % pi;
+x2copy(mm1,qq1, mod.quo(x1,pi));
+//
+x2 := 2^50;
+q2 = x2 \ pi;
+m2 = x2 % pi;
+x2copy(mm2,qq2, mod.quo(x2,pi));
+//
+x3 := 2^60;
+q3 = x3 \ pi;
+m3 = x3 % pi;
+x2copy(mm3,qq3, mod.quo(x3,pi));
+//
+x4 := 2^70;
+q4 = x4 \ pi;
+m4 = x4 % pi;
+x2copy(mm4,qq4, mod.quo(x4,pi));
+//
+x5 := 2^80;
+q5 = x5 \ pi;
+m5 = x5 % pi;
+x2copy(mm5,qq5, mod.quo(x5,pi));
+//
+x6 := 2^888;
+q6 = x6 \ pi;
+m6 = x6 % pi;
+x2copy(mm6,qq6, mod.quo(x6,pi));
+
+
+[*]
+var x0, q0, qq0, m0, mm0;
+var x1, q1, qq1, m1, mm1;
+var x2, q2, qq2, m2, mm2;
+var x3, q3, qq3, m3, mm3;
+var x4, q4, qq4, m4, mm4;
+var x5, q5, qq5, m5, mm5;
+var x6, q6, qq6, m6, mm6;
+//
+x0 := (2*pi+0.22);
+q0 = x0 \ pi;
+m0 = x0 % pi;
+co.mod.quo(mm0,qq0, (x0,pi));
+//
+x1 := 2^40;
+q1 = x1 \ pi;
+m1 = x1 % pi;
+co.mod.quo(mm1,qq1, (x1,pi));
+//
+x2 := 2^50;
+q2 = x2 \ pi;
+m2 = x2 % pi;
+co.mod.quo(mm2,qq2, (x2,pi));
+//
+x3 := 2^60;
+q3 = x3 \ pi;
+m3 = x3 % pi;
+co.mod.quo(mm3,qq3, (x3,pi));
+//
+x4 := 2^70;
+q4 = x4 \ pi;
+m4 = x4 % pi;
+co.mod.quo(mm4,qq4, (x4,pi));
+//
+x5 := 2^80;
+q5 = x5 \ pi;
+m5 = x5 % pi;
+co.mod.quo(mm5,qq5, (x5,pi));
+//
+x6 := 2^888;
+q6 = x6 \ pi;
+m6 = x6 % pi;
+co.mod.quo(mm6,qq6, (x6,pi));
+
+
+[*]
+var x0, sh00, sh_0, ch00, ch_0;
+var x1, sh01, sh_1, ch01, ch_1;
+var x2, sh02, sh_2, ch02, ch_2;
+var x3, sh03, sh_3, ch03, ch_3;
+var x4, sh04, sh_4, ch04, ch_4;
+var x5, sh05, sh_5, ch05, ch_5;
+var x6, sh06, sh_6, ch06, ch_6;
+//
+x0 := 0;
+sh00 = fsinh(x0);
+ch00 = fcosh(x0);
+x2copy(sh_0,ch_0, fshch(x0));
+//
+x1 := 2;
+sh01 = fsinh(x1);
+ch01 = fcosh(x1);
+x2copy(sh_1,ch_1, fshch(x1));
+//
+x2 := -2;
+sh02 = fsinh(x2);
+ch02 = fcosh(x2);
+x2copy(sh_2,ch_2, fshch(x2));
+//
+x3 := 10;
+sh03 = fsinh(x3);
+ch03 = fcosh(x3);
+x2copy(sh_3,ch_3, fshch(x3));
+//
+x4 := -10;
+sh04 = fsinh(x4);
+ch04 = fcosh(x4);
+x2copy(sh_4,ch_4, fshch(x4));
+//
+x5 := 888;
+sh05 = fsinh(x5);
+ch05 = fcosh(x5);
+x2copy(sh_5,ch_5, fshch(x5));
+//
+x6 := -888;
+sh06 = fsinh(x6);
+ch06 = fcosh(x6);
+x2copy(sh_6,ch_6, fshch(x6));
+
+
+[*]
+var x0, sh00, sh_0, ch00, ch_0;
+var x1, sh01, sh_1, ch01, ch_1;
+var x2, sh02, sh_2, ch02, ch_2;
+var x3, sh03, sh_3, ch03, ch_3;
+var x4, sh04, sh_4, ch04, ch_4;
+var x5, sh05, sh_5, ch05, ch_5;
+var x6, sh06, sh_6, ch06, ch_6;
+//
+x0 := 0;
+sh00 = fsinh(x0);
+ch00 = fcosh(x0);
+co.fshch(sh_0,ch_0, (x0));
+//
+x1 := 2;
+sh01 = fsinh(x1);
+ch01 = fcosh(x1);
+co.fshch(sh_1,ch_1, (x1));
+//
+x2 := -2;
+sh02 = fsinh(x2);
+ch02 = fcosh(x2);
+co.fshch(sh_2,ch_2, (x2));
+//
+x3 := 10;
+sh03 = fsinh(x3);
+ch03 = fcosh(x3);
+co.fshch(sh_3,ch_3, (x3));
+//
+x4 := -10;
+sh04 = fsinh(x4);
+ch04 = fcosh(x4);
+co.fshch(sh_4,ch_4, (x4));
+//
+x5 := 888;
+sh05 = fsinh(x5);
+ch05 = fcosh(x5);
+co.fshch(sh_5,ch_5, (x5));
+//
+x6 := -888;
+sh06 = fsinh(x6);
+ch06 = fcosh(x6);
+co.fshch(sh_6,ch_6, (x6));
+
+
+[*]
+var x0, sh00, sh_0, ch00, ch_0;
+var x1, sh01, sh_1, ch01, ch_1;
+var x2, sh02, sh_2, ch02, ch_2;
+var x3, sh03, sh_3, ch03, ch_3;
+var x4, sh04, sh_4, ch04, ch_4;
+var x5, sh05, sh_5, ch05, ch_5;
+var x6, sh06, sh_6, ch06, ch_6;
+//
+x0 := 0;
+sh00 = fsinh(x0);
+ch00 = fcosh(x0);
+x2copy(ch_0,sh_0, fchsh(x0));
+//
+x1 := 2;
+sh01 = fsinh(x1);
+ch01 = fcosh(x1);
+x2copy(ch_1,sh_1, fchsh(x1));
+//
+x2 := -2;
+sh02 = fsinh(x2);
+ch02 = fcosh(x2);
+x2copy(ch_2,sh_2, fchsh(x2));
+//
+x3 := 10;
+sh03 = fsinh(x3);
+ch03 = fcosh(x3);
+x2copy(ch_3,sh_3, fchsh(x3));
+//
+x4 := -10;
+sh04 = fsinh(x4);
+ch04 = fcosh(x4);
+x2copy(ch_4,sh_4, fchsh(x4));
+//
+x5 := 888;
+sh05 = fsinh(x5);
+ch05 = fcosh(x5);
+x2copy(ch_5,sh_5, fchsh(x5));
+//
+x6 := -888;
+sh06 = fsinh(x6);
+ch06 = fcosh(x6);
+x2copy(ch_6,sh_6, fchsh(x6));
+
+
+[*]
+var x0, sh00, sh_0, ch00, ch_0;
+var x1, sh01, sh_1, ch01, ch_1;
+var x2, sh02, sh_2, ch02, ch_2;
+var x3, sh03, sh_3, ch03, ch_3;
+var x4, sh04, sh_4, ch04, ch_4;
+var x5, sh05, sh_5, ch05, ch_5;
+var x6, sh06, sh_6, ch06, ch_6;
+//
+x0 := 0;
+sh00 = fsinh(x0);
+ch00 = fcosh(x0);
+co.fchsh(ch_0,sh_0, (x0));
+//
+x1 := 2;
+sh01 = fsinh(x1);
+ch01 = fcosh(x1);
+co.fchsh(ch_1,sh_1, (x1));
+//
+x2 := -2;
+sh02 = fsinh(x2);
+ch02 = fcosh(x2);
+co.fchsh(ch_2,sh_2, (x2));
+//
+x3 := 10;
+sh03 = fsinh(x3);
+ch03 = fcosh(x3);
+co.fchsh(ch_3,sh_3, (x3));
+//
+x4 := -10;
+sh04 = fsinh(x4);
+ch04 = fcosh(x4);
+co.fchsh(ch_4,sh_4, (x4));
+//
+x5 := 888;
+sh05 = fsinh(x5);
+ch05 = fcosh(x5);
+co.fchsh(ch_5,sh_5, (x5));
+//
+x6 := -888;
+sh06 = fsinh(x6);
+ch06 = fcosh(x6);
+co.fchsh(ch_6,sh_6, (x6));
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+//
+ch1 := fch(x);
+sh1 := fsh(x);
+x2copy(sh2,ch2, fshch(x));
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+//
+ch1 := fch(x);
+sh1 := fsh(x);
+co.fshch(sh2,ch2, x);
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+//
+ch1 := fch(x);
+sh1 := fsh(x);
+x2copy(ch2,sh2, fchsh(x));
+
+
+[*]
+var ch1, ch2;
+var sh1, sh2;
+//
+ch1 := fch(x);
+sh1 := fsh(x);
+co.fchsh(ch2,sh2, x);
+
+
+[*]
+var fx1, fx2, fx3, fx4;
+var f_1, f_2, f_3, f_4;
+//
+fx1 := fsin(pi/2);
+fx2 := fsin(pi);
+fx3 := fsin(3*pi/2);
+fx4 := fsin(2*pi);
+//
+f_1 :=  sin(pi/2);
+f_2 :=  sin(pi);
+f_3 :=  sin(3*pi/2);
+f_4 :=  sin(2*pi);
+
+
+[*]
+var fx1, fx2, fx3, fx4;
+var f_1, f_2, f_3, f_4;
+//
+fx1 := fcos(pi/2);
+fx2 := fcos(pi);
+fx3 := fcos(3*pi/2);
+fx4 := fcos(2*pi);
+//
+f_1 :=  cos(pi/2);
+f_2 :=  cos(pi);
+f_3 :=  cos(3*pi/2);
+f_4 :=  cos(2*pi);
+
+
+[*]
+var fx1, fx2, fx3, fx4;
+var f_1, f_2, f_3, f_4;
+//
+fx1 := fsec(pi/2);
+fx2 := fsec(pi);
+fx3 := fsec(3*pi/2);
+fx4 := fsec(2*pi);
+//
+f_1 :=  sec(pi/2);
+f_2 :=  sec(pi);
+f_3 :=  sec(3*pi/2);
+f_4 :=  sec(2*pi);
+
+
+[*]
+var fx1, fx2, fx3, fx4;
+var f_1, f_2, f_3, f_4;
+//
+fx1 := fcosec(pi/2);
+fx2 := fcosec(pi);
+fx3 := fcosec(3*pi/2);
+fx4 := fcosec(2*pi);
+//
+f_1 :=  cosec(pi/2);
+f_2 :=  cosec(pi);
+f_3 :=  cosec(3*pi/2);
+f_4 :=  cosec(2*pi);
+
+
+[*]
+var fx1, fx2, fx3, fx4;
+var f_1, f_2, f_3, f_4;
+//
+fx1 := ftan(pi/2);
+fx2 := ftan(pi);
+fx3 := ftan(3*pi/2);
+fx4 := ftan(2*pi);
+//
+f_1 :=  tan(pi/2);
+f_2 :=  tan(pi);
+f_3 :=  tan(3*pi/2);
+f_4 :=  tan(2*pi);
+
+
+[*]
+var fx1, fx2, fx3, fx4;
+var f_1, f_2, f_3, f_4;
+//
+fx1 := fcotan(pi/2);
+fx2 := fcotan(pi);
+fx3 := fcotan(3*pi/2);
+fx4 := fcotan(2*pi);
+//
+f_1 :=  cotan(pi/2);
+f_2 :=  cotan(pi);
+f_3 :=  cotan(3*pi/2);
+f_4 :=  cotan(2*pi);
+
+
+[*]
+complex ca0=1,2, cb0=12,23;
+complex cr00, cr01, cr02;
+complex cr10, cr11, cr12;
+complex cr20, cr21, cr22;
+//
+cr00 = cpow (ca0, cb0);
+cr10 = csin (ca0);
+cr20 = ccos (ca0);
+//
+$+ CPUX64
+libm_cpow (&cr01, &ca0, &cb0);
+libm_csin (&cr11, &ca0);
+libm_ccos (&cr21, &ca0);
+$+ CPUX32
+libm_cpow (&cr01, ca0, cb0);
+libm_csin (&cr11, ca0);
+libm_ccos (&cr21, ca0);
+$+ CPUX
+//
+libm_cpow (&cr02, tcarg(ca0), tcarg(cb0));
+libm_csin (&cr12, tcarg(ca0));
+libm_ccos (&cr22, tcarg(ca0));
+
+
+[*]
+complex ca0=1,2, cb0=12,23;
+complex cr00, cr01, cr02;
+complex cr10, cr11, cr12;
+//
+cr00 = cmul (ca0, cb0);
+cr10 = cdiv (ca0, cb0);
+//
+$+ CPUX64
+gsl_cmul (&cr01, &ca0, &cb0);
+gsl_cdiv (&cr11, &ca0, &cb0);
+$+ CPUX32
+gsl_cmul (&cr01, ca0, cb0);
+gsl_cdiv (&cr11, ca0, cb0);
+$+ CPUX
+//
+gsl_cmul (&cr02, tcarg(ca0), tcarg(cb0));
+gsl_cdiv (&cr12, tcarg(ca0), tcarg(cb0));
+
+
+[*]
+int i1, i2, i3, i4, i5, i6, i7, i8;
+//
+i1 = aif.z (-(2^(-40)));
+i2 = aif.z (-(2^(-50)));
+i3 = aif.z (-(2^(-60)));
+i4 = aif.z (-0);
+i5 = aif.z (+0);
+i6 = aif.z (+(2^(-60)));
+i7 = aif.z (+(2^(-50)));
+i8 = aif.z (+(2^(-40)));
+
+
+[*]
+int i1, i2, i3, i4, i5, i6, i7, i8;
+//
+i1 = aif.nz (-(2^(-40)));
+i2 = aif.nz (-(2^(-50)));
+i3 = aif.nz (-(2^(-60)));
+i4 = aif.nz (-0);
+i5 = aif.nz (+0);
+i6 = aif.nz (+(2^(-60)));
+i7 = aif.nz (+(2^(-50)));
+i8 = aif.nz (+(2^(-40)));
+
+
+[*]
+int i1, i2, i3, i4, i5, i6, i7, i8;
+//
+i1 = aif.az (-(2^(-40)));
+i2 = aif.az (-(2^(-50)));
+i3 = aif.az (-(2^(-60)));
+i4 = aif.az (-0);
+i5 = aif.az (+0);
+i6 = aif.az (+(2^(-60)));
+i7 = aif.az (+(2^(-50)));
+i8 = aif.az (+(2^(-40)));
+
+
+[*]
+int i1, i2, i3, i4, i5, i6, i7, i8;
+//
+i1 = aif.aez (-(2^(-40)));
+i2 = aif.aez (-(2^(-50)));
+i3 = aif.aez (-(2^(-60)));
+i4 = aif.aez (-0);
+i5 = aif.aez (+0);
+i6 = aif.aez (+(2^(-60)));
+i7 = aif.aez (+(2^(-50)));
+i8 = aif.aez (+(2^(-40)));
+
+
+[*]
+int i1, i2, i3, i4, i5, i6, i7, i8;
+//
+i1 = aif.bz (-(2^(-40)));
+i2 = aif.bz (-(2^(-50)));
+i3 = aif.bz (-(2^(-60)));
+i4 = aif.bz (-0);
+i5 = aif.bz (+0);
+i6 = aif.bz (+(2^(-60)));
+i7 = aif.bz (+(2^(-50)));
+i8 = aif.bz (+(2^(-40)));
+
+
+[*]
+int i1, i2, i3, i4, i5, i6, i7, i8;
+//
+i1 = aif.bez (-(2^(-40)));
+i2 = aif.bez (-(2^(-50)));
+i3 = aif.bez (-(2^(-60)));
+i4 = aif.bez (-0);
+i5 = aif.bez (+0);
+i6 = aif.bez (+(2^(-60)));
+i7 = aif.bez (+(2^(-50)));
+i8 = aif.bez (+(2^(-40)));
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.e (4,2);
+i2 = aif.e (4,4);
+i3 = aif.e (4,6);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.ne (4,2);
+i2 = aif.ne (4,4);
+i3 = aif.ne (4,6);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.a (4,2);
+i2 = aif.a (4,4);
+i3 = aif.a (4,6);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.ae (4,2);
+i2 = aif.ae (4,4);
+i3 = aif.ae (4,6);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.b (4,2);
+i2 = aif.b (4,4);
+i3 = aif.b (4,6);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.be (4,2);
+i2 = aif.be (4,4);
+i3 = aif.be (4,6);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.bea (4,6);
+i2 = aif.bea (4,4);
+i3 = aif.bea (4,2);
+
+
+[*]
+int i1, i2, i3;
+//
+i1 = aif.aeb (4,2);
+i2 = aif.aeb (4,4);
+i3 = aif.aeb (4,6);
+
+
+[*]
+var a0 = 9.5; var b0 = 8.4;
+var aa = 1.4; int ii = 555;
+int jj = 666; var bb = 3.7;
+int i0 = 777; int j0 = 888;
+a0 :=: b0;
+aa :=: ii;
+jj :=: bb;
+i0 :=: j0;
+
+
+[*]
+var a0 = 9.5; var b0 = 8.4;
+var aa = 1.4; int ii = 555;
+int jj = 666; var bb = 3.7;
+int i0 = 777; int j0 = 888;
+a0 [:=:] b0;
+aa [:=:] ii;
+jj [:=:] bb;
+i0 [:=:] j0;
+
+
+[*]
+var a0 = 9.5; var b0 = 8.4;
+var aa = 1.4; int ii = 555;
+int jj = 666; var bb = 3.7;
+int i0 = 777; int j0 = 888;
+a0 {:=:} b0;
+aa {:=:} ii;
+jj {:=:} bb;
+i0 {:=:} j0;
+
+
+[*]
+var a0 = 9.5; var b0 = 8.4;
+var aa = 1.4; int ii = 555;
+int jj = 666; var bb = 3.7;
+int i0 = 777; int j0 = 888;
+a0 <:=:> b0;
+aa <:=:> ii;
+jj <:=:> bb;
+i0 <:=:> j0;
+
+
+[*]
+var z1 = 2.5, z2 = 5.8;
+int n1 = 4, n2 = 8;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+
+z1 =: x1;
+111.222 =: x2;
+n1 =: x3;
+0n777 =: x4;
+
+z2 =: u1;
+555.666 =: u2;
+n2 =: u3;
+0n999 =: u4;
+
+
+[*]
+var z1 = 2.5, z2 = 5.8;
+int n1 = 4, n2 = 8;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+
+z1 [=:] x1;
+111.222 [=:] x2;
+n1 [=:] x3;
+0n777 [=:] x4;
+
+z2 [=:] u1;
+555.666 [=:] u2;
+n2 [=:] u3;
+0n999 [=:] u4;
+
+
+[*]
+var z1 = 2.5, z2 = 5.8;
+int n1 = 4, n2 = 8;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+
+z1 {=:} x1;
+111.222 {=:} x2;
+n1 {=:} x3;
+0n777 {=:} x4;
+
+z2 {=:} u1;
+555.666 {=:} u2;
+n2 {=:} u3;
+0n999 {=:} u4;
+
+
+[*]
+var z1 = 2.5, z2 = 5.8;
+int n1 = 4, n2 = 8;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+
+z1 <=:> x1;
+111.222 <=:> x2;
+n1 <=:> x3;
+0n777 <=:> x4;
+
+z2 <=:> u1;
+555.666 <=:> u2;
+n2 <=:> u3;
+0n999 <=:> u4;
+
+
+[*]
+str ss = "123";
+var y1 = 1.1, y2 = 5.5, y3 = 2.2, y4 = 4.4;
+int n1 = 222, n2 = 2, n3 = 3;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+var x5 = 333, x6 = 333, x7 = 333, x8 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+int u5 = 333, u6 = 333, u7 = 333, u8 = 333;
+
+x1 := (y1+0.5);
+x2 := y2;
+x3 := 444.777;
+x4 := n1;
+x5 := 0n123;
+x6 := (y3+y4):int;
+x7 := (n2 && n3);
+x8 := lstrlen(ss);
+
+u1 := (y1+0.5);
+u2 := y2;
+u3 := 444.777;
+u4 := n1;
+u5 := 0n123;
+u6 := (y3+y4):int;
+u7 := (n2 && n3);
+u8 := lstrlen(ss);
+
+
+[*]
+str ss = "123";
+var y1 = 1.1, y2 = 5.5, y3 = 2.2, y4 = 4.4;
+int n1 = 222, n2 = 2, n3 = 3;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+var x5 = 333, x6 = 333, x7 = 333, x8 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+int u5 = 333, u6 = 333, u7 = 333, u8 = 333;
+
+x1 [:=] (y1+0.5);
+x2 [:=] y2;
+x3 [:=] 444.777;
+x4 [:=] n1;
+x5 [:=] 0n123;
+x6 [:=] (y3+y4):int;
+x7 [:=] (n2 && n3);
+x8 [:=] lstrlen(ss);
+
+u1 [:=] (y1+0.5);
+u2 [:=] y2;
+u3 [:=] 444.777;
+u4 [:=] n1;
+u5 [:=] 0n123;
+u6 [:=] (y3+y4):int;
+u7 [:=] (n2 && n3);
+u8 [:=] lstrlen(ss);
+
+
+[*]
+str ss = "123";
+var y1 = 1.1, y2 = 5.5, y3 = 2.2, y4 = 4.4;
+int n1 = 222, n2 = 2, n3 = 3;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+var x5 = 333, x6 = 333, x7 = 333, x8 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+int u5 = 333, u6 = 333, u7 = 333, u8 = 333;
+
+x1 {:=} (y1+0.5);
+x2 {:=} y2;
+x3 {:=} 444.777;
+x4 {:=} n1;
+x5 {:=} 0n123;
+x6 {:=} (y3+y4):int;
+x7 {:=} (n2 && n3);
+x8 {:=} lstrlen(ss);
+
+u1 {:=} (y1+0.5);
+u2 {:=} y2;
+u3 {:=} 444.777;
+u4 {:=} n1;
+u5 {:=} 0n123;
+u6 {:=} (y3+y4):int;
+u7 {:=} (n2 && n3);
+u8 {:=} lstrlen(ss);
+
+
+[*]
+str ss = "123";
+var y1 = 1.1, y2 = 5.5, y3 = 2.2, y4 = 4.4;
+int n1 = 222, n2 = 2, n3 = 3;
+var x1 = 333, x2 = 333, x3 = 333, x4 = 333;
+var x5 = 333, x6 = 333, x7 = 333, x8 = 333;
+int u1 = 333, u2 = 333, u3 = 333, u4 = 333;
+int u5 = 333, u6 = 333, u7 = 333, u8 = 333;
+
+x1 <:=> (y1+0.5);
+x2 <:=> y2;
+x3 <:=> 444.777;
+x4 <:=> n1;
+x5 <:=> 0n123;
+x6 <:=> (y3+y4):int;
+x7 <:=> (n2 && n3);
+x8 <:=> lstrlen(ss);
+
+u1 <:=> (y1+0.5);
+u2 <:=> y2;
+u3 <:=> 444.777;
+u4 <:=> n1;
+u5 <:=> 0n123;
+u6 <:=> (y3+y4):int;
+u7 <:=> (n2 && n3);
+u8 <:=> lstrlen(ss);
+
+
+[*]
+var x1, x2, x3;
+
+x1=(u&->a):double;
+x2=(u&->1):double;
+x3=(u&->0n3):double;
+
+
+[*]
+var x1, x2, x3;
+
+x1=(u&->a):pdouble;
+x2=(u&->1):pdouble;
+x3=(u&->0n3):pdouble;
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+
+ii1 = bsf(0b10001000); // = 3
+ii2 = <<?(0b10001000); // = 3
+ii3 = <<?(0b00000000); // = -1
+
+
+[*]
+int ii1;
+int ii2;
+int ii3;
+
+ii1 = bsf(0b10001000); // = 7
+ii2 = >>?(0b10001000); // = 7
+ii3 = >>?(0b00000000); // = -1
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+
+uu = bt(pp,4);
+// uu = 1
+nn = bt(pp,3);
+// nn = 0
+
+e1 = bt(pp,0n4);
+e2 = bt(pp,ii);
+e3 = bt(pp,(2*a):int);
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+
+uu = pp bt 4;
+// uu = 1
+nn = pp bt 3;
+// nn = 0
+
+e1 = pp >?< 0n4;
+e2 = pp >?< ii;
+e3 = pp >?< (2*a):int;
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+int z1, z2, z3, z4;
+
+uu = btc(pp,4);
+// uu = 1
+// pp = 0b11100000 = 224
+oo = pp;
+nn = btc(oo,3);
+// nn = 0
+// oo = 0b11101000 = 232
+
+e1 = btc(pp,0n4);
+e2 = btc(pp,ii);
+e3 = btc(pp,(2*a):int);
+
+z1 = btc(0b11100000,4);
+z2 = btc(0b11100000,0n4);
+z3 = btc(0b11100000,ii);
+z4 = btc(0b11100000,(2*a):int);
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+int z1, z2, z3, z4;
+
+uu = pp btc 4;
+// uu = 1
+// pp = 0b11100000 = 224
+oo = pp;
+nn = oo btc 3;
+// nn = 0
+// oo = 0b11101000 = 232
+
+e1 = pp >?~< 0n4;
+e2 = pp >?~< ii;
+e3 = pp >?~< (2*a):int;
+
+z1 = 0b11100000 >?~< 4;
+z2 = 0b11100000 >?~< 0n4;
+z3 = 0b11100000 >?~< ii;
+z4 = 0b11100000 >?~< (2*a):int;
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+int z1, z2, z3, z4;
+
+uu = btr(pp,4);
+// uu = 1
+// pp = 0b11100000 = 224
+oo = pp;
+nn = btr(oo,5);
+// nn = 1
+// oo = 0b11000000 = 192
+
+e1 = btr(pp,0n4);
+e2 = btr(pp,ii);
+e3 = btr(pp,(2*a):int);
+
+z1 = btr(0b11100000,4);
+z2 = btr(0b11100000,0n4);
+z3 = btr(0b11100000,ii);
+z4 = btr(0b11100000,(2*a):int);
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+int z1, z2, z3, z4;
+
+uu = pp btr 4;
+// uu = 1
+// pp = 0b11100000 = 224
+oo = pp;
+nn = oo btr 5;
+// nn = 1
+// oo = 0b11000000 = 192
+
+e1 = pp >?-< 0n4;
+e2 = pp >?-< ii;
+e3 = pp >?-< (2*a):int;
+
+z1 = 0b11100000 >?-< 4;
+z2 = 0b11100000 >?-< 0n4;
+z3 = 0b11100000 >?-< ii;
+z4 = 0b11100000 >?-< (2*a):int;
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+int z1, z2, z3, z4;
+
+uu = bts(pp,3);
+// uu = 0
+// pp = 0b11111000 = 248
+oo = pp;
+nn = bts(oo,2);
+// nn = 0
+// oo = 0b11111100 = 252
+
+e1 = bts(pp,0n4);
+e2 = bts(pp,ii);
+e3 = bts(pp,(2*a):int);
+
+z1 = bts(0b11111000,4);
+z2 = bts(0b11111000,0n4);
+z3 = bts(0b11111000,ii);
+z4 = bts(0b11111000,(2*a):int);
+
+
+[*]
+int pp = 0b11110000; // 240
+int ii = 4;
+int uu, nn, oo;
+int e1, e2, e3;
+int z1, z2, z3, z4;
+
+uu = pp bts 3;
+// uu = 0
+// pp = 0b11111000 = 248
+oo = pp;
+nn = oo bts 2;
+// nn = 0
+// oo = 0b11111100 = 252
+
+e1 = pp >?+< 0n4;
+e2 = pp >?+< ii;
+e3 = pp >?+< (2*a):int;
+
+z1 = 0b11111000 >?+< 4;
+z2 = 0b11111000 >?+< 0n4;
+z3 = 0b11111000 >?+< ii;
+z4 = 0b11111000 >?+< (2*a):int;
+
+
+[*]
+// x64
+int pp, uu;
+pp = 0x8000000000000000;
+// 2^63
+uu = bitswap(pp);
+// uu = 1
+0;
+
+
+[*]
+// x32
+int pp, uu;
+pp = 0x80000000;
+// 2^31
+uu = bitswap(pp);
+// uu = 1
+
+
+[*]
+int pp, uu;
+pp = 0b11111111000000001111111110110110;
+// 4 278 255 542
+uu = bit32swap(pp);
+// uu = 0b01101101111111110000000011111111
+// 1 845 428 479
+
+
+[*]
+int pp, uu;
+pp = 0b1111000010110110;
+// 61 622
+uu = bit16swap(pp);
+// uu = 0b0110110100001111
+// 27 919
+
+
+[*]
+int pp, uu;
+pp = 0b10110110;
+// 182
+uu = bit8swap(pp);
+// uu = 0b01101101
+// 109
+
+
+[*]
+int ii1;
+int ii2;
+
+ii1 = bswap(0b10000000);
+// x32 : = -231 = -2147483648
+// x64 : = -263 = -9223372036854775808
+
+ii2 = bswap(ii1);
+// = 128 // 0b10000000
+
+
+[*]
+// x64
+int pp, uu;
+pp = 0x0122334455667708;
+uu = bswap(pp);
+// uu = 0x0877665544332201
+// 610068790934446593
+0;
+
+
+[*]
+// x32
+int pp, uu;
+pp = 0x01223304;
+uu = bswap(pp);
+// uu = 0x04332201
+// 70459905
+
+
+[*]
+int pp, uu;
+pp = 0x01AABB04;
+uu = b4swap(pp);
+// uu = 0x04BBAA01
+// 79407617
+
+
+[*]
+int pp, uu;
+pp = 0x0104;
+uu = b2swap(pp);
+// uu = 0x0401
+// 1025
+
+
+[*]
+int pp, uu;
+pp = 0xAABB0104;
+uu = b2swap(pp);
+// uu = 0x0401
+// 1025
+
+
+[*]
+int pp = -1;
+int u1, u2, u3, u4, u5, u6;
+u1 = sign(a);
+u2 = sign(sin(a));
+u3 = sign((a-b):int);
+u4 = sign(pp);
+u5 = sign(3.1415);
+u6 = sign(-0n333);
+
+
+[*]
+int pp = -1;
+int u1, u2, u3, u4, u5, u6;
+u1 = rsign(a);
+u2 = rsign(sin(a));
+u3 = rsign((a-b):int);
+u4 = rsign(pp);
+u5 = rsign(3.1415);
+u6 = rsign(-0n333);
+
+
+[*]
+int pp = -1;
+int u1, u2, u3, u4, u5, u6;
+u1 = trunc(a);
+u2 = trunc(sin(a));
+u3 = trunc((a-b):int);
+u4 = trunc(pp);
+u5 = trunc(3.1415);
+u6 = trunc(-0n333);
+
+
+[*]
+var zz=0, aa=1, bb=-1;
+int uz1, uz2, uz3, uz4, uz5, uz6;
+int ua1, ua2, ua3, ua4, ua5, ua6;
+int ub1, ub2, ub3, ub4, ub5, ub6;
+
+uz1 = zz==. //  0==0 =1
+uz2 = zz!=. //  0!=0 =0
+uz3 = zz>.  //  0>0  =0
+uz4 = zz>=. //  0>=0 =1
+uz5 = zz<.  //  0<0  =0
+uz6 = zz<=. //  0<=0 =1
+
+ua1 = aa==. //  1==0 =0
+ua2 = aa!=. //  1!=0 =1
+ua3 = aa>.  //  1>0  =1
+ua4 = aa>=. //  1>=0 =1
+ua5 = aa<.  //  1<0  =0
+ua6 = aa<=. //  1<=0 =0
+
+ub1 = bb==. // -1==0 =0
+ub2 = bb!=. // -1!=0 =1
+ub3 = bb>.  // -1>0  =0
+ub4 = bb>=. // -1>=0 =0
+ub5 = bb<.  // -1<0  =1
+ub6 = bb<=. // -1<=0 =1
+
+
+[*]
+var zz=$:0000000000000001, aa=1, bb=-1;
+int uz1, uz2, uz3, uz4, uz5, uz6;
+int ua1, ua2, ua3, ua4, ua5, ua6;
+int ub1, ub2, ub3, ub4, ub5, ub6;
+
+uz1 = zz==.~ // ~0==0 =1
+uz2 = zz!=.~ // ~0!=0 =0
+uz3 = zz>.~  // ~0>0  =0
+uz4 = zz>=.~ // ~0>=0 =1
+uz5 = zz<.~  // ~0<0  =0
+uz6 = zz<=.~ // ~0<=0 =1
+
+ua1 = aa==.~ //  1==0 =0
+ua2 = aa!=.~ //  1!=0 =1
+ua3 = aa>.~  //  1>0  =1
+ua4 = aa>=.~ //  1>=0 =1
+ua5 = aa<.~  //  1<0  =0
+ua6 = aa<=.~ //  1<=0 =0
+
+ub1 = bb==.~ // -1==0 =0
+ub2 = bb!=.~ // -1!=0 =1
+ub3 = bb>.~  // -1>0  =0
+ub4 = bb>=.~ // -1>=0 =0
+ub5 = bb<.~  // -1<0  =1
+ub6 = bb<=.~ // -1<=0 =1
+
+
+[*]
+var aa=$:406BC00000000001; // 222+
+var bb=$:406BBFFFFFFFFFFF; // 222-
+int u1, u2, u3, u4, u5, u6, u7, u8;
+
+u1 = aa ==~   bb // =1
+u2 = aa !=~   bb // =0
+u3 = aa >~    bb // =0
+u4 = aa >=~   bb // =1
+u5 = aa <~    bb // =0
+u6 = aa <=~   bb // =1
+u7 = aa <==>~ bb // =0
+u8 = aa >==<~ bb // =0
+
+
+[*]
+var aa=222;
+var bb=888;
+int u1, u2, u3, u4, u5, u6, u7, u8;
+
+u1 = aa ==~   bb // = 0
+u2 = aa !=~   bb // = 1
+u3 = aa >~    bb // = 0
+u4 = aa >=~   bb // = 0
+u5 = aa <~    bb // = 1
+u6 = aa <=~   bb // = 1
+u7 = aa <==>~ bb // =-1
+u8 = aa >==<~ bb // = 1
+
+
+[*]
+// arithmetic average
+// (a + b)/2
+var aa=2, bb=8;
+var u1, u2, u3, u4;
+
+u1 = mean(aa,bb); // = 5
+u2 = avg(aa,bb);
+u3 = aa |A| bb;
+u4 = aa |+| bb;
+
+
+[*]
+// geometric average
+// sqrt(a*b)
+var aa=2, bb=8;
+var u1, u2, u3, u4;
+
+u1 = gmean(aa,bb); // = 4
+u2 = gavg(aa,bb);
+u3 = aa |G| bb;
+u4 = aa |*| bb;
+
+
+[*]
+var aa=2, bb=3, cc=4;
+var u1, u2, u3, u4;
+
+u1 = chmean(aa,bb); // = 13/5 = 2.6
+u2 = chavg(aa,cc);  // = 20/6 = 3.(3)
+u3 = bb |C| cc;     // = 25/7 = 3.5714285714285714285714285714286
+u4 = bb |\| cc;
+
+
+[*]
+// quadratic mean
+// sqrt((a^2 + b^2)/2)
+var aa=2, bb=3;
+var u1, u2, u3;
+
+u1 = qmean(aa,bb); // 2.5495097567963924150141120545114
+u2 = qavg(aa,bb);
+u3 = aa |Q| bb;
+
+
+[*]
+// heronian mean
+// (a + sqrt(a*b) + b) / 3
+
+var aa=2, bb=8;
+var u1, u2, u3;
+
+u1 = hemean(aa,bb); // = (2+sqrt(16)+8)/3 = 14/3 = 4.(6)
+u2 = heavg(aa,bb);
+u3 = aa |h| bb;
+
+
+[*]
+// centroidal mean
+// (2/3)*(a^2 + a*b + b^2)/(a + b)
+
+var aa=2, bb=8;
+var u1, u2, u3;
+
+u1 = cemean(aa,bb); // = (4+16+64)/10*(2/3) = 84/10*(2/3) = 5.6
+u2 = ceavg(aa,bb);
+u3 = aa |c| bb;
+
+
+[*]
+var aa=2^2; // 4
+var bb=2^3; // 8
+var cc=2^4; // 16
+var u1, u2, u3, u4;
+
+u1 = hypot3(aa,bb,cc); // 18.330302779823360026352188774912
+u2 = hypot3(aa,cc,bb);
+u3 = hypot3(cc,aa,bb);
+u4 = hypot3(cc,bb,aa);
+
+
+[*]
+var aa=2, bb=8, cc=16;
+var up2, up3;
+up2 = hypot(aa,bb);    // 8.2462112512353210996428197119482
+up3 = hypot(aa,bb,cc); // 18
+
+
+[*]
+add(0n100,(a+1):int);
+pos((a+1):int);
+nzero((a+1):int);
+ot((a+1):int);
+not((a+1):int);
+if.true((a+1):int);
+if.false((a+1):int);
+
+
+[*]
+var pp, nz, rr;
+
+pp = 0;
+nz = nzero(pp);
+rr = sin(nz)/nz;
+
+
+[*]
+var zz=222, zp=0/1, zm=0/(-1);
+int iiz = 0;
+str ss="";
+var uz, up, um;
+var sz, i1z, i2z, i3;
+
+uz  = nzero(zz); // 222
+up  = nzero(zp); // +eps  4.9406564584124654417656879286822e-324
+um  = nzero(zm); // -eps -4.9406564584124654417656879286822e-324
+
+sz  = nzero(lstrlen(ss)); // +eps
+i1z = nzero(0n0);         // +eps
+i2z = nzero(iiz);         // +eps
+i3  = nzero((zz-2):int);  // 220
+
+
+[*]
+var zz=222, zp=0/1, zm=0/(-1);
+int iiz = 0;
+str ss="";
+var uz, up, um;
+var sz, i1z, i2z, i3;
+
+uz  = rnzero(zz); // -222
+up  = rnzero(zp); // -eps  4.9406564584124654417656879286822e-324
+um  = rnzero(zm); // +eps -4.9406564584124654417656879286822e-324
+
+sz  = rnzero(lstrlen(ss)); // -eps
+i1z = rnzero(0n0);         // -eps
+i2z = rnzero(iiz);         // -eps
+i3  = rnzero((zz-2):int);  // -220
+
+
+[*]
+var u1, u2, u3, u4, u5;
+u1 = vsum(a);
+u2 = vmul(a);
+u3 = vmin(a);
+u4 = vmax(a);
+u5 = vmean(a);
+
+
+[*]
+int pp = -1;
+var u1, u2, u3, u4, u5, u6;
+u1 = chs(a);
+u2 = chs(sin(a));
+u3 = chs((a-b):int);
+u4 = chs(pp);
+u5 = chs(3.1415);
+u6 = chs(-0n333);
+
+
+[*]
+var aa=-1, bb=1, zz=0;
+int u1, u2, u3, u4, u5, u6;
+u1 = sign(aa);
+u2 = sign(bb);
+u3 = sign(zz);
+u4 = rsign(rsign(aa));
+u5 = rsign(rsign(bb));
+u6 = rsign(rsign(zz));
+
+
+[*]
+var aa=1, zp=0/1, zm=0/(-1);
+var u1, u2, u3, u4, u5, u6;
+u1 = nzero(aa);
+u2 = nzero(zp);
+u3 = nzero(zm);
+u4 = rnzero(rnzero(aa));
+u5 = rnzero(rnzero(zp));
+u6 = rnzero(rnzero(zm));
+
+
+[*]
+int ua1=0xAA11BB22;
+int ua2=0xCC33DD44;
+int ra11, ra12, rd11;
+int ra21, ra22, rd22;
+ra11 = bswap(ua1);
+ra12 = bswap(bswap(ua1));
+rd11 = ra12-ua1;
+ra21 = bitswap(ua2);
+ra22 = bitswap(bitswap(ua2));
+rd22 = ra22-ua2;
+
+
+[*]
+int ua1=0xAA11BB22;
+int ra11, ra12, rd11;
+ra11 = bnot(ua1);
+ra12 = bnot(bnot(ua1));
+rd11 = ra12-ua1;
+
+
+[*]
+int aa=333333;
+int a0=0, ap=+1, am=-1;
+int r11=555, r12=555, r13=555;
+int r21=555, r22=555, r23=555;
+int r31=555, r32=555, r33=555;
+int r41=555, r42=555, r43=555;
+int r51=555, r52=555, r53=555;
+int r61=555, r62=555, r63=555;
+int r91=555, r92=555, r93=555;
+int ra1=555, ra2=555, ra3=555;
+int rb1=555, rb2=555, rb3=555;
+int rc1=555, rc2=555, rc3=555;
+
+r11=bor(aa, 0)-(aa|a0);
+r12=bor(aa,+1)-(aa|ap);
+r13=bor(aa,-1)-(aa|am);
+
+r21=bnor(aa, 0)-(aa~|a0);
+r22=bnor(aa,+1)-(aa~|ap);
+r23=bnor(aa,-1)-(aa~|am);
+
+r31=born(aa, 0)-(aa|~a0);
+r32=born(aa,+1)-(aa|~ap);
+r33=born(aa,-1)-(aa|~am);
+
+r41=bnorn(aa, 0)-(aa~|~a0);
+r42=bnorn(aa,+1)-(aa~|~ap);
+r43=bnorn(aa,-1)-(aa~|~am);
+
+r51=bxor(aa, 0)-(aa^a0);
+r52=bxor(aa,+1)-(aa^ap);
+r53=bxor(aa,-1)-(aa^am);
+
+r61=bxnor(aa, 0)-(aa~^a0);
+r62=bxnor(aa,+1)-(aa~^ap);
+r63=bxnor(aa,-1)-(aa~^am);
+
+r91=band(aa, 0)-(aa&a0);
+r92=band(aa,+1)-(aa&ap);
+r93=band(aa,-1)-(aa&am);
+
+ra1=bnand(aa, 0)-(aa~&a0);
+ra2=bnand(aa,+1)-(aa~&ap);
+ra3=bnand(aa,-1)-(aa~&am);
+
+rb1=bandn(aa, 0)-(aa&~a0);
+rb2=bandn(aa,+1)-(aa&~ap);
+rb3=bandn(aa,-1)-(aa&~am);
+
+rc1=bnandn(aa, 0)-(aa~&~a0);
+rc2=bnandn(aa,+1)-(aa~&~ap);
+rc3=bnandn(aa,-1)-(aa~&~am);
+
+
+[*]
+int yyy=333;
+int a00=999;
+int a01=999, a02=999, a03=999, a04=999;
+int b01=999, b02=999;
+int c01=999, c02=999, c03=999, c04=999;
+
+co.bnot(a00);
+
+ co.bor  (a01,yyy);
+co.bnor  (a02,yyy);
+ co.born (a03,yyy);
+co.bnorn (a04,yyy);
+
+ co.bxor (b01,yyy);
+co.bxnor (b02,yyy);
+
+ co.band (c01,yyy);
+co.bnand (c02,yyy);
+ co.bandn(c03,yyy);
+co.bnandn(c04,yyy);
+
+
+[*]
+int a01=333333, a02=333333, a03=555;
+a01=bnot(a01); a03=a01-co.bnot(a02);
+
+
+[*]
+int a11=333333, a12=333333, a13=555;
+int a21=333333, a22=333333, a23=555;
+int a31=333333, a32=333333, a33=555;
+int a41=333333, a42=333333, a43=555;
+int b11=333333, b12=333333, b13=555;
+int b21=333333, b22=333333, b23=555;
+int c11=333333, c12=333333, c13=555;
+int c21=333333, c22=333333, c23=555;
+int c31=333333, c32=333333, c33=555;
+int c41=333333, c42=333333, c43=555;
+
+a11=bor   (a11,0); a13=a11-co.bor   (a12,0);
+a21=bnor  (a21,0); a23=a21-co.bnor  (a22,0);
+a31=born  (a31,0); a33=a31-co.born  (a32,0);
+a41=bnorn (a41,0); a43=a41-co.bnorn (a42,0);
+
+b11=bxor  (b11,0); b13=b11-co.bxor  (b12,0);
+b21=bxnor (b21,0); b23=b21-co.bxnor (b22,0);
+
+c11=band  (c11,0); c13=c11-co.band  (c12,0);
+c21=bnand (c21,0); c23=c21-co.bnand (c22,0);
+c31=bandn (c31,0); c33=c31-co.bandn (c32,0);
+c41=bnandn(c41,0); c43=c41-co.bnandn(c42,0);
+
+
+[*]
+int a11=333333, a12=333333, a13=555;
+int a21=333333, a22=333333, a23=555;
+int a31=333333, a32=333333, a33=555;
+int a41=333333, a42=333333, a43=555;
+int b11=333333, b12=333333, b13=555;
+int b21=333333, b22=333333, b23=555;
+int c11=333333, c12=333333, c13=555;
+int c21=333333, c22=333333, c23=555;
+int c31=333333, c32=333333, c33=555;
+int c41=333333, c42=333333, c43=555;
+
+a11=bor   (a11,1); a13=a11-co.bor   (a12,1);
+a21=bnor  (a21,1); a23=a21-co.bnor  (a22,1);
+a31=born  (a31,1); a33=a31-co.born  (a32,1);
+a41=bnorn (a41,1); a43=a41-co.bnorn (a42,1);
+
+b11=bxor  (b11,1); b13=b11-co.bxor  (b12,1);
+b21=bxnor (b21,1); b23=b21-co.bxnor (b22,1);
+
+c11=band  (c11,1); c13=c11-co.band  (c12,1);
+c21=bnand (c21,1); c23=c21-co.bnand (c22,1);
+c31=bandn (c31,1); c33=c31-co.bandn (c32,1);
+c41=bnandn(c41,1); c43=c41-co.bnandn(c42,1);
+
+
+[*]
+int a11=333333, a12=333333, a13=555;
+int a21=333333, a22=333333, a23=555;
+int a31=333333, a32=333333, a33=555;
+int a41=333333, a42=333333, a43=555;
+int b11=333333, b12=333333, b13=555;
+int b21=333333, b22=333333, b23=555;
+int c11=333333, c12=333333, c13=555;
+int c21=333333, c22=333333, c23=555;
+int c31=333333, c32=333333, c33=555;
+int c41=333333, c42=333333, c43=555;
+
+a11=bor   (a11,-1); a13=a11-co.bor   (a12,-1);
+a21=bnor  (a21,-1); a23=a21-co.bnor  (a22,-1);
+a31=born  (a31,-1); a33=a31-co.born  (a32,-1);
+a41=bnorn (a41,-1); a43=a41-co.bnorn (a42,-1);
+
+b11=bxor  (b11,-1); b13=b11-co.bxor  (b12,-1);
+b21=bxnor (b21,-1); b23=b21-co.bxnor (b22,-1);
+
+c11=band  (c11,-1); c13=c11-co.band  (c12,-1);
+c21=bnand (c21,-1); c23=c21-co.bnand (c22,-1);
+c31=bandn (c31,-1); c33=c31-co.bandn (c32,-1);
+c41=bnandn(c41,-1); c43=c41-co.bnandn(c42,-1);
+
+
+[*]
+int a11=333333, a12=333333, a13=555;
+int a21=333333, a22=333333, a23=555;
+int a31=333333, a32=333333, a33=555;
+int a41=333333, a42=333333, a43=555;
+
+a11=borc  (a11,0); a13=a11-co.borc  (a12,0);
+a21=bnorc (a21,0); a23=a21-co.bnorc (a22,0);
+a31=bcor  (a31,0); a33=a31-co.bcor  (a32,0);
+a41=bcorn (a41,0); a43=a41-co.bcorn (a42,0);
+
+
+[*]
+int a11=333333, a12=333333, a13=555;
+int a21=333333, a22=333333, a23=555;
+int a31=333333, a32=333333, a33=555;
+int a41=333333, a42=333333, a43=555;
+
+a11=borc  (a11,1); a13=a11-co.borc  (a12,1);
+a21=bnorc (a21,1); a23=a21-co.bnorc (a22,1);
+a31=bcor  (a31,1); a33=a31-co.bcor  (a32,1);
+a41=bcorn (a41,1); a43=a41-co.bcorn (a42,1);
+
+
+[*]
+int a11=333333, a12=333333, a13=555;
+int a21=333333, a22=333333, a23=555;
+int a31=333333, a32=333333, a33=555;
+int a41=333333, a42=333333, a43=555;
+
+a11=borc  (a11,-1); a13=a11-co.borc  (a12,-1);
+a21=bnorc (a21,-1); a23=a21-co.bnorc (a22,-1);
+a31=bcor  (a31,-1); a33=a31-co.bcor  (a32,-1);
+a41=bcorn (a41,-1); a43=a41-co.bcorn (a42,-1);
+
+
+[*]
+// fmadd132  : fused multiply-add               :  x*z+y
+// fmadd213  : fused multiply-add               :  x*y+z
+// fmadd231  : fused multiply-add               :  y*z+x
+// fnmadd132 : fused negative multiply-add      : -x*z+y
+// fnmadd213 : fused negative multiply-add      : -x*y+z
+// fnmadd231 : fused negative multiply-add      : -y*z+x
+// fmsub132  : fused multiply-subtract          :  x*z-y
+// fmsub213  : fused multiply-subtract          :  x*y-z
+// fmsub231  : fused multiply-subtract          :  y*z-x
+// fnmsub132 : fused negative multiply-subtract : -x*z-y
+// fnmsub213 : fused negative multiply-subtract : -x*y-z
+// fnmsub231 : fused negative multiply-subtract : -y*z-x
+var xx=2, yy=44, zz=8888;
+var pa_132, pa.132, pa..132=999999999;
+var pa_213, pa.213, pa..213=999999999;
+var pa_231, pa.231, pa..231=999999999;
+var na_132, na.132, na..132=999999999;
+var na_213, na.213, na..213=999999999;
+var na_231, na.231, na..231=999999999;
+var ps_132, ps.132, ps..132=999999999;
+var ps_213, ps.213, ps..213=999999999;
+var ps_231, ps.231, ps..231=999999999;
+var ns_132, ns.132, ns..132=999999999;
+var ns_213, ns.213, ns..213=999999999;
+var ns_231, ns.231, ns..231=999999999;
+
+ pa_132=fmadd132(xx,yy,zz);
+ pa.132=xx*zz+yy;
+pa..132=pa.132-pa_132;
+
+ pa_213=fmadd213(xx,yy,zz);
+ pa.213=xx*yy+zz;
+pa..213=pa.213-pa_213;
+
+ pa_231=fmadd231(xx,yy,zz);
+ pa.231=yy*zz+xx;
+pa..231=pa.231-pa_231;
+
+ na_132=fnmadd132(xx,yy,zz);
+ na.132=-xx*zz+yy;
+na..132=na.132-na_132;
+
+ na_213=fnmadd213(xx,yy,zz);
+ na.213=-xx*yy+zz;
+na..213=na.213-na_213;
+
+ na_231=fnmadd231(xx,yy,zz);
+ na.231=-yy*zz+xx;
+na..231=na.231-na_231;
+
+ ps_132=fmsub132(xx,yy,zz);
+ ps.132=xx*zz-yy;
+ps..132=ps.132-ps_132;
+
+ ps_213=fmsub213(xx,yy,zz);
+ ps.213=xx*yy-zz;
+ps..213=ps.213-ps_213;
+
+ ps_231=fmsub231(xx,yy,zz);
+ ps.231=yy*zz-xx;
+ps..231=ps.231-ps_231;
+
+ ns_132=fnmsub132(xx,yy,zz);
+ ns.132=-xx*zz-yy;
+ns..132=ns.132-ns_132;
+
+ ns_213=fnmsub213(xx,yy,zz);
+ ns.213=-xx*yy-zz;
+ns..213=ns.213-ns_213;
+
+ ns_231=fnmsub231(xx,yy,zz);
+ ns.231=-yy*zz-xx;
+ns..231=ns.231-ns_231;

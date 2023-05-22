@@ -1,0 +1,30 @@
+[GROUP#1]
+@AA=0.99
+@AB=1
+@AC=1e+10
+
+
+[GROUP#2]
+@BA=-0.99
+@BB=-1
+@BC=-1e+10
+
+
+[GROUP#3]
+@_PI=3.1415926535897932384626433832795028841972
+
+
+[++] ; duplicate
+;n=o
+
+
+[+-] ; rename
+;n=o
+
+
+[-+] ; exchange
+;n=o
+
+
+[--] ; invalidate
+;o

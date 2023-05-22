@@ -1,0 +1,37 @@
+FASM-compiled 64-bit binaries
+.\x64\SICx64.DLL
+.\x64\SICx64COFFC.OBJ
+.\x64\SICx64COFFD.OBJ
+
+FASM-compiled 64-bit binaries (SSE)
+.\x64\SICs64.DLL
+.\x64\SICs64COFFC.OBJ
+.\x64\SICs64COFFD.OBJ
+
+FASM-compiled 32-bit binaries
+.\x32\SICx32.DLL
+.\x32\SICx32COFFC.OBJ
+.\x32\SICx32COFFD.OBJ
+.\x32\SICx32D.OBJ
+
+FASM-compiled 32-bit binaries (SSE)
+.\x32\SICs32.DLL
+.\x32\SICs32COFFC.OBJ
+.\x32\SICs32COFFD.OBJ
+.\x32\SICs32D.OBJ
+
+DELPHI-compiled 64-bit binaries
+.\TEST\DELPHI\DLL_Win64_Release\DX***\SICx64.DLL
+.\ActiveX\DX***\BIN_Win64_Release\SICx64.OCX
+
+DELPHI-compiled 64-bit binaries (SSE)
+.\TEST\DELPHI\DLL_Win64_Release\DX***\SICs64.DLL
+.\ActiveX\DX***\BIN_Win64_Release\SICs64.OCX
+
+DELPHI-compiled 32-bit binaries
+.\TEST\DELPHI\DLL_Win32_Release\DX***\SICx32.DLL
+.\ActiveX\DX***\BIN_Win32_Release\SICx32.OCX
+
+DELPHI-compiled 32-bit binaries (SSE)
+.\TEST\DELPHI\DLL_Win32_Release\DX***\SICs32.DLL
+.\ActiveX\DX***\BIN_Win32_Release\SICs32.OCX
