@@ -1,4 +1,4 @@
-SICx. Simple JIT Compiler.
+<b>SICx. Simple JIT Compiler.</b>
 <br>
 Math expression compiler.
 <br>
