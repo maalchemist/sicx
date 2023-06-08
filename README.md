@@ -2,7 +2,7 @@
 Math expression compiler.
 
 More than 1100 built-in functions:
-• Assembler instructions
+Assembler instructions
 • FPU functions
 • Variable declaration
 • System functions
