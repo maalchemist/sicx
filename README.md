@@ -1,47 +1,47 @@
-SICx. Simple JIT Compiler.
+ï»¿SICx. Simple JIT Compiler.
 Math expression compiler.
 
 More than 1100 built-in functions:
-• Assembler instructions
-• FPU functions
-• Variable declaration
-• System functions
-• Return functions
-• Copy functions
-• Swap functions
-• Argument count functions
-• Argument filter functions
-• Compound assignment functions
-• Bitwise functions
-• Byte functions
-• Boolean functions
-• Approximate boolean functions
-• Conditional functions
-• Case functions
-• GOTO functions
-• CALL functions
-• Matrix and array functions
-• Base functions
-• Exponential functions
-• Power functions
-• Trigonometric functions
-• Hyperbolic functions
-• Complex number functions
-• Complex number arithmetic functions
-• Complex number boolean functions
-• Complex number exponential functions
-• Complex number power functions
-• Complex number trigonometric functions
-• Complex number hyperbolic functions
-• Special functions
-• Statistical functions
-• Variable number of arguments
-• Percent functions
-• Angle conversion functions
-• Temperature conversion functions
-• Units functions
-• Data modifier functions
-• Approximate exponential functions
-• Approximate power functions
-• Approximate trigonometric functions
-• Approximate hyperbolic functions
+â€¢ Assembler instructions
+â€¢ FPU functions
+â€¢ Variable declaration
+â€¢ System functions
+â€¢ Return functions
+â€¢ Copy functions
+â€¢ Swap functions
+â€¢ Argument count functions
+â€¢ Argument filter functions
+â€¢ Compound assignment functions
+â€¢ Bitwise functions
+â€¢ Byte functions
+â€¢ Boolean functions
+â€¢ Approximate boolean functions
+â€¢ Conditional functions
+â€¢ Case functions
+â€¢ GOTO functions
+â€¢ CALL functions
+â€¢ Matrix and array functions
+â€¢ Base functions
+â€¢ Exponential functions
+â€¢ Power functions
+â€¢ Trigonometric functions
+â€¢ Hyperbolic functions
+â€¢ Complex number functions
+â€¢ Complex number arithmetic functions
+â€¢ Complex number boolean functions
+â€¢ Complex number exponential functions
+â€¢ Complex number power functions
+â€¢ Complex number trigonometric functions
+â€¢ Complex number hyperbolic functions
+â€¢ Special functions
+â€¢ Statistical functions
+â€¢ Variable number of arguments
+â€¢ Percent functions
+â€¢ Angle conversion functions
+â€¢ Temperature conversion functions
+â€¢ Units functions
+â€¢ Data modifier functions
+â€¢ Approximate exponential functions
+â€¢ Approximate power functions
+â€¢ Approximate trigonometric functions
+â€¢ Approximate hyperbolic functions
