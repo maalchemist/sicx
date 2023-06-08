@@ -3,7 +3,7 @@
 Math expression compiler.
 <br>
 <br>
-**More than 1100 built-in functions:**
+**More than 1111 built-in functions:**
 <br>
 • Assembler instructions
 <br>
