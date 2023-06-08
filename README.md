@@ -1,4 +1,4 @@
-﻿SICx. Simple JIT Compiler.
+SICx. Simple JIT Compiler.
 Math expression compiler.
 
 More than 1100 built-in functions:
