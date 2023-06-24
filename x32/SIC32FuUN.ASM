@@ -1581,6 +1581,166 @@ $else
 $end
 
 ; ------------------------------------------------------------------------------
+
+; robi data modifier (Ri)
+; double robi ( double v )
+; v = esp
+; v:robi = v*(2^90)
+
+macro @@robi.sse
+{
+$usprocf @@robi
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.robi
+    .return:
+        retn
+$endp
+}
+
+macro @@robi.fpu
+{
+$usprocf @@robi
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fldq    ??.90.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@robi.sse
+$else
+  @@robi.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; robi data modifier (Ri)
+; double robi ( integer v )
+; v = esp
+; v:robi = v*(2^90)
+
+macro @@_robi_int.sse
+{
+$usprocf @@_robi_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.robi
+    .return:
+        retn
+$endp
+}
+
+macro @@_robi_int.fpu
+{
+$usprocf @@_robi_int
+
+        fild    dword [esp]
+    .enter:
+        fldq    ??.90.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_robi_int.sse
+$else
+  @@_robi_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quebi data modifier (Qi)
+; double quebi ( double v )
+; v = esp
+; v:quebi = v*(2^100)
+
+macro @@quebi.sse
+{
+$usprocf @@quebi
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.quebi
+    .return:
+        retn
+$endp
+}
+
+macro @@quebi.fpu
+{
+$usprocf @@quebi
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fldq    ??.100.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@quebi.sse
+$else
+  @@quebi.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quebi data modifier (Qi)
+; double quebi ( integer v )
+; v = esp
+; v:quebi = v*(2^100)
+
+macro @@_quebi_int.sse
+{
+$usprocf @@_quebi_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.quebi
+    .return:
+        retn
+$endp
+}
+
+macro @@_quebi_int.fpu
+{
+$usprocf @@_quebi_int
+
+        fild    dword [esp]
+    .enter:
+        fldq    ??.100.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_quebi_int.sse
+$else
+  @@_quebi_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 
 ; kibo data modifier
@@ -2219,6 +2379,166 @@ $ifdef _SSEX
   @@_yobo_int.sse
 $else
   @@_yobo_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; robo data modifier
+; double robo ( double v )
+; v = esp
+; v:robo = v*(2^-90)
+
+macro @@robo.sse
+{
+$usprocf @@robo
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.robo
+    .return:
+        retn
+$endp
+}
+
+macro @@robo.fpu
+{
+$usprocf @@robo
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fldq    ??.m90.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@robo.sse
+$else
+  @@robo.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; robo data modifier
+; double robo ( integer v )
+; v = esp
+; v:robo = v*(2^-90)
+
+macro @@_robo_int.sse
+{
+$usprocf @@_robo_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.robo
+    .return:
+        retn
+$endp
+}
+
+macro @@_robo_int.fpu
+{
+$usprocf @@_robo_int
+
+        fild    dword [esp]
+    .enter:
+        fldq    ??.m90.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_robo_int.sse
+$else
+  @@_robo_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quebo data modifier
+; double quebo ( double v )
+; v = esp
+; v:quebo = v*(2^-100)
+
+macro @@quebo.sse
+{
+$usprocf @@quebo
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.quebo
+    .return:
+        retn
+$endp
+}
+
+macro @@quebo.fpu
+{
+$usprocf @@quebo
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fldq    ??.m100.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@quebo.sse
+$else
+  @@quebo.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quebo data modifier
+; double quebo ( integer v )
+; v = esp
+; v:quebo = v*(2^-100)
+
+macro @@_quebo_int.sse
+{
+$usprocf @@_quebo_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.quebo
+    .return:
+        retn
+$endp
+}
+
+macro @@_quebo_int.fpu
+{
+$usprocf @@_quebo_int
+
+        fild    dword [esp]
+    .enter:
+        fldq    ??.m100.0
+        fxch
+        fscale
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_quebo_int.sse
+$else
+  @@_quebo_int.fpu
 $end
 
 ; ------------------------------------------------------------------------------
@@ -2983,6 +3303,158 @@ $else
 $end
 
 ; ------------------------------------------------------------------------------
+
+; ronna data modifier (R)
+; double ronna ( double v )
+; v = esp
+; v:ronna = v*1.0E+27
+
+macro @@ronna.sse
+{
+$usprocf @@ronna
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.ronna
+    .return:
+        retn
+$endp
+}
+
+macro @@ronna.fpu
+{
+$usprocf @@ronna
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fmulq   ??.ronna
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@ronna.sse
+$else
+  @@ronna.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; ronna data modifier (R)
+; double ronna ( integer v )
+; v = rsp
+; v:ronna = v*1.0E+27
+
+macro @@_ronna_int.sse
+{
+$usprocf @@_ronna_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.ronna
+    .return:
+        retn
+$endp
+}
+
+macro @@_ronna_int.fpu
+{
+$usprocf @@_ronna_int
+
+        fild    dword [esp]
+    .enter:
+        fmulq   ??.ronna
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_ronna_int.sse
+$else
+  @@_ronna_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quetta data modifier (Q)
+; double quetta ( double v )
+; v = esp
+; v:quetta = v*1.0E+30
+
+macro @@quetta.sse
+{
+$usprocf @@quetta
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.quetta
+    .return:
+        retn
+$endp
+}
+
+macro @@quetta.fpu
+{
+$usprocf @@quetta
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fmulq   ??.quetta
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@quetta.sse
+$else
+  @@quetta.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quetta data modifier (Q)
+; double quetta ( integer v )
+; v = esp
+; v:quetta = v*1.0E+30
+
+macro @@_quetta_int.sse
+{
+$usprocf @@_quetta_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.quetta
+    .return:
+        retn
+$endp
+}
+
+macro @@_quetta_int.fpu
+{
+$usprocf @@_quetta_int
+
+        fild    dword [esp]
+    .enter:
+        fmulq   ??.quetta
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_quetta_int.sse
+$else
+  @@_quetta_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 
 ; deci data modifier (d)
@@ -3741,6 +4213,158 @@ $ifdef _SSEX
   @@_yocto_int.sse
 $else
   @@_yocto_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; ronto data modifier (r)
+; double ronto ( double v )
+; v = esp
+; v:ronto = v*1.0E-27
+
+macro @@ronto.sse
+{
+$usprocf @@ronto
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.ronto
+    .return:
+        retn
+$endp
+}
+
+macro @@ronto.fpu
+{
+$usprocf @@ronto
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fmulq   ??.ronto
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@ronto.sse
+$else
+  @@ronto.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; ronto data modifier (r)
+; double ronto ( integer v )
+; v = esp
+; v:ronto = v*1.0E-27
+
+macro @@_ronto_int.sse
+{
+$usprocf @@_ronto_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.ronto
+    .return:
+        retn
+$endp
+}
+
+macro @@_ronto_int.fpu
+{
+$usprocf @@_ronto_int
+
+        fild    dword [esp]
+    .enter:
+        fmulq   ??.ronto
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_ronto_int.sse
+$else
+  @@_ronto_int.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quecto data modifier (q)
+; double quecto ( double v )
+; v = esp
+; v:quecto = v*1.0E-30
+
+macro @@quecto.sse
+{
+$usprocf @@quecto
+
+        movsd   xmm0, qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        xmulsd  xmm0, ??.quecto
+    .return:
+        retn
+$endp
+}
+
+macro @@quecto.fpu
+{
+$usprocf @@quecto
+
+        fld     qword [esp]
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+    .enter:
+        fmulq   ??.quecto
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@quecto.sse
+$else
+  @@quecto.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; quecto data modifier (q)
+; double quecto ( integer v )
+; v = esp
+; v:quecto = v*1.0E-30
+
+macro @@_quecto_int.sse
+{
+$usprocf @@_quecto_int
+
+       cvtsi2sd xmm0, dword [esp]
+    .enter:
+        xmulsd  xmm0, ??.quecto
+    .return:
+        retn
+$endp
+}
+
+macro @@_quecto_int.fpu
+{
+$usprocf @@_quecto_int
+
+        fild    dword [esp]
+    .enter:
+        fmulq   ??.quecto
+    .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@_quecto_int.sse
+$else
+  @@_quecto_int.fpu
 $end
 
 ; ------------------------------------------------------------------------------

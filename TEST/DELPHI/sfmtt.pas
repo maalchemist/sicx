@@ -18,6 +18,10 @@ unit sfmtt;
 // http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/SFMT/index.html
 // https://github.com/MersenneTwister-Lab/SFMT
 // https://github.com/MersenneTwister-Lab/SFMT/archive/refs/tags/1.5.4.zip
+//
+// Copyright (C) 2006, 2007 Mutsuo Saito, Makoto Matsumoto and Hiroshima University.
+// Copyright (c) 2012 Mutsuo Saito, Makoto Matsumoto, Hiroshima University and The University of Tokyo.
+// All rights reserved.
 
 interface
 
@@ -263,6 +267,12 @@ const
   SFMT_N32 = SFMT_N * 4;
   SFMT_N64 = SFMT_N * 2;
 
+const
+  // SFMT availability flags
+  SFMT_AV_FLAG_SSE2   = $00000001;
+  SFMT_AV_FLAG_AVX2   = $00000002;
+  SFMT_AV_FLAG_AVX512 = $00000004;
+
 type
   P_SFMT_MASK = ^T_SFMT_MASK;
   T_SFMT_MASK = array [0..3] of UInt32;
@@ -293,6 +303,9 @@ type
     LO : UInt16;
     HI : UInt16;
   end;
+
+type
+  T_sfmt_gen_rand_all = procedure (A_sfmt_state, A_sfmt_mask: Pointer); register;
 
 var
   sfmt_mem         : Pointer = nil;

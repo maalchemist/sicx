@@ -1,6 +1,6 @@
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 6,2,1,0
- PRODUCTVERSION 6,2,1,0
+ FILEVERSION 6,2,2,0
+ PRODUCTVERSION 6,2,2,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -17,12 +17,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "AL-CHEMIST GUILD\0"
             VALUE "FileDescription", "Simple compiler (32-BIT)\0"
-            VALUE "FileVersion", "6.2.1.0\0"
+            VALUE "FileVersion", "6.2.2.0\0"
             VALUE "InternalName", "SICx32.OCX\0"
             VALUE "LegalCopyright", "Copyright © 2000-3000 AL-CHEMIST GUILD\0"
             VALUE "OriginalFilename", "SICx32.OCX\0"
             VALUE "ProductName", "SICx32\0"
-            VALUE "ProductVersion", "6.2.1.0\0"
+            VALUE "ProductVersion", "6.2.2.0\0"
             VALUE "ProgramID", "ru.maalchemist.SICx32\0"
             VALUE "WWW", "https://maalchemist.ru\0"
         END

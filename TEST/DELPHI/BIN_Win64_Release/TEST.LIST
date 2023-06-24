@@ -12335,3 +12335,431 @@ ns..213=ns.213-ns_213;
  ns_231=fnmsub231(xx,yy,zz);
  ns.231=-yy*zz-xx;
 ns..231=ns.231-ns_231;
+
+
+[*]
+// xcall
+// constant
+
+$+ STACK_FRAME
+$+ LOCALS
+
+x = 0; 
+xcall p0, p1, p2, p3, p4, -2;
+xcall p0, p1, p2, p3, p4, 22;
+xcall p0, p1, p2, p3, p4, 2;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+p2: // procedure 
+x += 2;
+retn;
+
+p3: // procedure 
+x += 3;
+retn;
+
+p4: // procedure 
+x += 4;
+retn;
+
+
+[*]
+// xcall
+// var
+
+$+ STACK_FRAME
+$+ LOCALS
+
+int uu;
+
+x = 0; 
+uu = -3; 
+xcall p0, p1, p2, p3, p4, uu;
+uu = 33; 
+xcall p0, p1, p2, p3, p4, uu;
+uu = 3; 
+xcall p0, p1, p2, p3, p4, uu;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+p2: // procedure 
+x += 2;
+retn;
+
+p3: // procedure 
+x += 3;
+retn;
+
+p4: // procedure 
+x += 4;
+retn;
+
+
+[*]
+// xcall
+// value
+
+$+ STACK_FRAME
+$+ LOCALS
+
+int uu;
+
+x = 0; 
+xcall p0, p1, (a-b):int;
+xcall p0, p1, (a+b):int;
+xcall p0, p1, a>b;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+
+[*]
+// xcall
+// value
+
+$+ STACK_FRAME
+$+ LOCALS
+
+int uu;
+
+x = 0; 
+xcall p0, p1, a<b;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+
+[*]
+// rxcall
+// constant
+
+$+ STACK_FRAME
+$+ LOCALS
+
+x = 0; 
+rxcall p0, p1, p2, p3, p4, -2;
+rxcall p0, p1, p2, p3, p4, 22;
+rxcall p0, p1, p2, p3, p4, 2;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+p2: // procedure 
+x += 2;
+retn;
+
+p3: // procedure 
+x += 3;
+retn;
+
+p4: // procedure 
+x += 4;
+retn;
+
+
+[*]
+// rxcall
+// var
+
+$+ STACK_FRAME
+$+ LOCALS
+
+int uu;
+
+x = 0; 
+uu = -3; 
+rxcall p0, p1, p2, p3, p4, uu;
+uu = 33; 
+rxcall p0, p1, p2, p3, p4, uu;
+uu = 3; 
+rxcall p0, p1, p2, p3, p4, uu;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+p2: // procedure 
+x += 2;
+retn;
+
+p3: // procedure 
+x += 3;
+retn;
+
+p4: // procedure 
+x += 4;
+retn;
+
+
+[*]
+// rxcall
+// value
+
+$+ STACK_FRAME
+$+ LOCALS
+
+int uu;
+
+x = 0; 
+rxcall p0, p1, (a-b):int;
+rxcall p0, p1, (a+b):int;
+rxcall p0, p1, a>b;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+
+[*]
+// rxcall
+// value
+
+$+ STACK_FRAME
+$+ LOCALS
+
+int uu;
+
+x = 0; 
+rxcall p0, p1, a<b;
+return x;
+
+p0: // procedure 
+x -= 22;
+retn;
+
+p1: // procedure 
+x += 1;
+retn;
+
+
+[*]
+// xgoto
+// constant
+
+x = 0; 
+xgoto p0, p1, p2, p3, p4, 2;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+p2:
+x += 2;
+
+p3:
+x += 3;
+
+p4:
+x += 4;
+
+
+[*]
+// xgoto
+// var
+
+int uu;
+
+x = 0; 
+uu = 3; 
+xgoto p0, p1, p2, p3, p4, uu;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+p2:
+x += 2;
+
+p3:
+x += 3;
+
+p4:
+x += 4;
+
+
+[*]
+// xgoto
+// value
+
+int uu;
+
+x = 0; 
+xgoto p0, p1, a>b;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+
+[*]
+// xgoto
+// value
+
+int uu;
+
+x = 0; 
+xgoto p0, p1, a<b;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+
+[*]
+// rxgoto
+// constant
+
+x = 0; 
+rxgoto p0, p1, p2, p3, p4, 2;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+p2:
+x += 2;
+
+p3:
+x += 3;
+
+p4:
+x += 4;
+
+
+[*]
+// rxgoto
+// var
+
+int uu;
+
+x = 0; 
+uu = 3; 
+rxgoto p0, p1, p2, p3, p4, uu;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+p2:
+x += 2;
+
+p3:
+x += 3;
+
+p4:
+x += 4;
+
+
+[*]
+// rxgoto
+// value
+
+int uu;
+
+x = 0; 
+rxgoto p0, p1, a>b;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+
+[*]
+// rxgoto
+// value
+
+int uu;
+
+x = 0; 
+rxgoto p0, p1, a<b;
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+
+[*]
+// signbit
+int ip=-1, iu=1, ih=0;
+var fp=-1, fu=1, fh=0;
+int i1, i2, i3;
+int j1, j2, j3;
+i1 := signbit(ip);
+i2 := signbit(iu);
+i3 := signbit(ih);
+j1 := signbit(fp);
+j2 := signbit(fu);
+j3 := signbit(fh);
+
+
+[*]
+// rsignbit
+int ip=-1, iu=1, ih=0;
+var fp=-1, fu=1, fh=0;
+int i1, i2, i3;
+int j1, j2, j3;
+i1 := rsignbit(ip);
+i2 := rsignbit(iu);
+i3 := rsignbit(ih);
+j1 := rsignbit(fp);
+j2 := rsignbit(fu);
+j3 := rsignbit(fh);

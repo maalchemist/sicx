@@ -827,6 +827,8 @@ macro c
         mov     [.sop.active], edx              ; save active compiler options
 
    .compile.break?:
+        test    [esi + T_sic_data.coops], SIC_OPT_FLAG_BYPASS
+        jnz    .compile.next
         test    eax, eax
         jnz    .compile.success
    .compile.error:

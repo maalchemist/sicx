@@ -66,9 +66,9 @@ copy %F% ..\@OUT\%F%
 
 set F=SICx64.DEF
 copy %F% ..\TEST\VS\VSCommon\%F%
-rem copy %F% ..\TEST\VS\VS2015\SICx64\%F%
-rem copy %F% ..\TEST\VS\VS2019\SICx64\%F%
-rem copy %F% ..\TEST\VS\VS2022\SICx64\%F%
+copy %F% ..\TEST\VS\VS2015\SICx64\%F%
+copy %F% ..\TEST\VS\VS2019\SICx64\%F%
+copy %F% ..\TEST\VS\VS2022\SICx64\%F%
 copy %F% ..\@OUT\%F%
 
 set F=SICs64.DLL
@@ -87,9 +87,9 @@ copy %F% ..\@OUT\%F%
 
 set F=SICs64.DEF
 copy %F% ..\TEST\VS\VSCommon\%F%
-rem copy %F% ..\TEST\VS\VS2015\SICs64\%F%
-rem copy %F% ..\TEST\VS\VS2019\SICs64\%F%
-rem copy %F% ..\TEST\VS\VS2022\SICs64\%F%
+copy %F% ..\TEST\VS\VS2015\SICs64\%F%
+copy %F% ..\TEST\VS\VS2019\SICs64\%F%
+copy %F% ..\TEST\VS\VS2022\SICs64\%F%
 copy %F% ..\@OUT\%F%
 
 set F=SICx64F.DLL

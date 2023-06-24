@@ -664,6 +664,283 @@ $end
 ; ------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 
+; sign bit of a number (0, 1)
+; return result in eax
+
+macro @@signbit.sse
+{
+$usprocf @@signbit
+
+        movsd   xmm0, qword [esp]               ; xmm0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+       movmskpd eax, xmm0                       ; eax = sign bits
+        and     eax, 1                          ; eax = sign bit
+   .return:
+        retn
+$endp
+}
+
+macro @@signbit.fpu
+{
+$usprocf @@signbit
+
+        fld     qword [esp]                     ; st0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+        fstp    qword [esp - 8]
+        mov     eax, [esp - 4]                  ; eax = x.HI
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+   .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@signbit.sse
+$else
+  @@signbit.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+$usprocf @@_signbit_reg
+
+   .enter:                                      ; x = eax
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+   .return:
+        retn
+$endp
+
+; ------------------------------------------------------------------------------
+
+; reversed sign bit of a number (0, 1)
+; return result in eax
+
+macro @@rsignbit.sse
+{
+$usprocf @@rsignbit
+
+        movsd   xmm0, qword [esp]               ; xmm0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+       movmskpd eax, xmm0                       ; eax = sign bits
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .return:
+        retn
+$endp
+}
+
+macro @@rsignbit.fpu
+{
+$usprocf @@rsignbit
+
+        fld     qword [esp]                     ; st0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+        fstp    qword [esp - 8]
+        mov     eax, [esp - 4]                  ; eax = x.HI
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+  @@rsignbit.sse
+$else
+  @@rsignbit.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+$usprocf @@_rsignbit_reg
+
+   .enter:                                      ; x = eax
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .return:
+        retn
+$endp
+
+; ------------------------------------------------------------------------------
+; ------------------------------------------------------------------------------
+
+; sign bit of a number (0, 1)
+
+macro @@@signbit.sse
+{
+$usprocf @@@signbit
+
+        movsd   xmm0, qword [esp]               ; xmm0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+       movmskpd eax, xmm0                       ; eax = sign bits
+        and     eax, 1                          ; eax = sign bit
+   .load:
+       cvtsi2sd xmm0, eax
+   .return:
+        retn
+$endp
+}
+
+macro @@@signbit.fpu
+{
+$usprocf @@@signbit
+
+        fld     qword [esp]                     ; st0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+        fstp    qword [esp - 8]
+        mov     eax, [esp - 4]                  ; eax = x.HI
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+   .load:
+        mov     [esp - 4], eax
+        fild    dword [esp - 4]
+   .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+; @@@signbit.sse
+$else
+; @@@signbit.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+macro @@@_signbit_reg.sse
+{
+$usprocf @@@_signbit_reg
+
+   .enter:                                      ; x = eax
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+   .load:
+       cvtsi2sd xmm0, eax
+   .return:
+        retn
+$endp
+}
+
+macro @@@_signbit_reg.fpu
+{
+$usprocf @@@_signbit_reg
+
+   .enter:                                      ; x = eax
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+   .load:
+        mov     [esp - 4], eax
+        fild    dword [esp - 4]
+   .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+; @@@_signbit_reg.sse
+$else
+; @@@_signbit_reg.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+; reversed sign bit of a number (0, 1)
+
+macro @@@rsignbit.sse
+{
+$usprocf @@@rsignbit
+
+        movsd   xmm0, qword [esp]               ; xmm0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+       movmskpd eax, xmm0                       ; eax = sign bits
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .load:
+       cvtsi2sd xmm0, eax
+   .return:
+        retn
+$endp
+}
+
+macro @@@rsignbit.fpu
+{
+$usprocf @@@rsignbit
+
+        fld     qword [esp]                     ; st0 = x
+        @@discard                               ; optimizer directive - initial [xsp] values can be discarded
+   .enter:
+        fstp    qword [esp - 8]
+        mov     eax, [esp - 4]                  ; eax = x.HI
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .load:
+        mov     [esp - 4], eax
+        fild    dword [esp - 4]
+   .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+; @@@rsignbit.sse
+$else
+; @@@rsignbit.fpu
+$end
+
+; ------------------------------------------------------------------------------
+
+macro @@@_rsignbit_reg.sse
+{
+$usprocf @@@_rsignbit_reg
+
+   .enter:                                      ; x = eax
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .load:
+       cvtsi2sd xmm0, eax
+   .return:
+        retn
+$endp
+}
+
+macro @@@_rsignbit_reg.fpu
+{
+$usprocf @@@_rsignbit_reg
+
+   .enter:                                      ; x = eax
+        shr     eax, 31
+        and     eax, 1                          ; eax = sign bit
+        xor     eax, 1                          ; eax = reversed sign bit
+   .load:
+        mov     [esp - 4], eax
+        fild    dword [esp - 4]
+   .return:
+        retn
+$endp
+}
+
+$ifdef _SSEX
+; @@@_rsignbit_reg.sse
+$else
+; @@@_rsignbit_reg.fpu
+$end
+
+; ------------------------------------------------------------------------------
+; ------------------------------------------------------------------------------
+
 ; sign of a number (-1, 0, 1)
 
 macro @@sign.sse
@@ -772,9 +1049,9 @@ $endp
 }
 
 $ifdef _SSEX
-  @@_sign_int.sse
+; @@_sign_int.sse
 $else
-  @@_sign_int.fpu
+; @@_sign_int.fpu
 $end
 
 ; ------------------------------------------------------------------------------
@@ -941,9 +1218,9 @@ $endp
 }
 
 $ifdef _SSEX
-  @@_rsign_int.sse
+; @@_rsign_int.sse
 $else
-  @@_rsign_int.fpu
+; @@_rsign_int.fpu
 $end
 
 ; ------------------------------------------------------------------------------
@@ -1061,16 +1338,18 @@ $endp
 }
 
 $ifdef _SSEX
-  @@isign.sse
+; @@isign.sse
 $else
-  @@isign.fpu
+; @@isign.fpu
 $end
 
 ; ------------------------------------------------------------------------------
 
+macro @@_isign_reg.x
+{
 $usprocf @@_isign_reg
 
-   .enter:
+   .enter:                                      ; x = eax
         cmp     eax, 0
         jz     .load
    .nonzero:
@@ -1086,15 +1365,22 @@ $usprocf @@_isign_reg
    .return:
         retn
 $endp
+}
+
+$ifdef _SSEX
+; @@_isign_reg.x
+$else
+; @@_isign_reg.x
+$end
 
 ; ------------------------------------------------------------------------------
 
 ; reversed sign of a number (-1, 0, 1)
 ; return result in eax
 
-macro @@risign.sse
+macro @@irsign.sse
 {
-$usprocf @@risign
+$usprocf @@irsign
 
         movsd   xmm0, qword [esp]               ; xmm0 = x
         @@discard                               ; optimizer directive - initial [xsp] values can be discarded
@@ -1117,9 +1403,9 @@ $usprocf @@risign
 $endp
 }
 
-macro @@risign.fpu
+macro @@irsign.fpu
 {
-$usprocf @@risign
+$usprocf @@irsign
 
         fld     qword [esp]                     ; st0 = x
         @@discard                               ; optimizer directive - initial [xsp] values can be discarded
@@ -1147,16 +1433,18 @@ $endp
 }
 
 $ifdef _SSEX
-  @@risign.sse
+; @@irsign.sse
 $else
-  @@risign.fpu
+; @@irsign.fpu
 $end
 
 ; ------------------------------------------------------------------------------
 
-$usprocf @@_risign_reg
+macro @@_irsign_reg.x
+{
+$usprocf @@_irsign_reg
 
-   .enter:
+   .enter:                                      ; x = eax
         cmp     eax, 0
         jz     .load
    .nonzero:
@@ -1172,6 +1460,13 @@ $usprocf @@_risign_reg
    .return:
         retn
 $endp
+}
+
+$ifdef _SSEX
+; @@_irsign_reg.x
+$else
+; @@_irsign_reg.x
+$end
 
 ; ------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------
@@ -1179,9 +1474,9 @@ $endp
 ; non-zero sign of a number (-1, 1)
 ; return result in eax
 
-macro @@nzisign.sse
+macro @@inzsign.sse
 {
-$usprocf @@nzisign
+$usprocf @@inzsign
 
         movsd   xmm0, qword [esp]               ; xmm0 = x
         @@discard                               ; optimizer directive - initial [xsp] values can be discarded
@@ -1201,9 +1496,9 @@ $usprocf @@nzisign
 $endp
 }
 
-macro @@nzisign.fpu
+macro @@inzsign.fpu
 {
-$usprocf @@nzisign
+$usprocf @@inzsign
 
         fld     qword [esp]                     ; st0 = x
         @@discard                               ; optimizer directive - initial [xsp] values can be discarded
@@ -1225,16 +1520,18 @@ $endp
 }
 
 $ifdef _SSEX
-  @@nzisign.sse
+; @@inzsign.sse
 $else
-  @@nzisign.fpu
+; @@inzsign.fpu
 $end
 
 ; ------------------------------------------------------------------------------
 
-$usprocf @@_nzisign_reg
+macro @@_inzsign_reg.x
+{
+$usprocf @@_inzsign_reg
 
-   .enter:
+   .enter:                                      ; x = eax
         cmp     eax, 0
         jl     .m1                              ; jump if x < 0
    .p1:
@@ -1248,15 +1545,22 @@ $usprocf @@_nzisign_reg
    .return:
         retn
 $endp
+}
+
+$ifdef _SSEX
+; @@_inzsign_reg.x
+$else
+; @@_inzsign_reg.x
+$end
 
 ; ------------------------------------------------------------------------------
 
 ; reversed non-zero sign of a number (-1, 1)
 ; return result in eax
 
-macro @@rnzisign.sse
+macro @@irnzsign.sse
 {
-$usprocf @@rnzisign
+$usprocf @@irnzsign
 
         movsd   xmm0, qword [esp]               ; xmm0 = x
         @@discard                               ; optimizer directive - initial [xsp] values can be discarded
@@ -1276,9 +1580,9 @@ $usprocf @@rnzisign
 $endp
 }
 
-macro @@rnzisign.fpu
+macro @@irnzsign.fpu
 {
-$usprocf @@rnzisign
+$usprocf @@irnzsign
 
         fld     qword [esp]                     ; st0 = x
         @@discard                               ; optimizer directive - initial [xsp] values can be discarded
@@ -1300,16 +1604,18 @@ $endp
 }
 
 $ifdef _SSEX
-  @@rnzisign.sse
+; @@irnzsign.sse
 $else
-  @@rnzisign.fpu
+; @@irnzsign.fpu
 $end
 
 ; ------------------------------------------------------------------------------
 
-$usprocf @@_rnzisign_reg
+macro @@_irnzsign_reg.x
+{
+$usprocf @@_irnzsign_reg
 
-   .enter:
+   .enter:                                      ; x = eax
         cmp     eax, 0
         jl     .p1                              ; jump if x < 0
    .m1:
@@ -1323,6 +1629,13 @@ $usprocf @@_rnzisign_reg
    .return:
         retn
 $endp
+}
+
+$ifdef _SSEX
+; @@_irnzsign_reg.x
+$else
+; @@_irnzsign_reg.x
+$end
 
 ; ------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------

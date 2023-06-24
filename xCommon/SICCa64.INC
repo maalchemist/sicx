@@ -142,13 +142,18 @@ macro @@_CALL_64 fio
                 @@case.be      , .error.exit,\
                 @@rcase.be     , .error.exit
         pcase   rsi,\
+                @@xgoto        , .error.exit,\
+                @@rxgoto       , .error.exit
+        pcase   rsi,\
                 @@goto.if.or   , .error.exit,\
                 @@goto.if.nor  , .error.exit,\
                 @@goto.if.and  , .error.exit,\
                 @@goto.if.nand , .error.exit
         pcase   rsi,\
                 @@calls        , .error.exit,\
-                @@rcalls       , .error.exit
+                @@rcalls       , .error.exit,\
+                @@xcall        , .error.exit,\
+                @@rxcall       , .error.exit
         pcase   rsi,\
                 @@call.if.or   , .error.exit,\
                 @@call.if.nor  , .error.exit,\
@@ -235,13 +240,18 @@ macro @@_CALL_64 fio
                 @@co.vminmax    , .inline.x2copyDV,\
                 @@co.vmaxmin    , .inline.x2copyDV
         pcase   rsi,\
+                @@xgoto         , .inline.xgoto,\
+                @@rxgoto        , .inline.rxgoto
+        pcase   rsi,\
                 @@goto.if.or    , .inline.jump.v,\
                 @@goto.if.nor   , .inline.jump.v,\
                 @@goto.if.and   , .inline.jump.v,\
                 @@goto.if.nand  , .inline.jump.v
         pcase   rsi,\
                 @@calls         , .inline.calls,\
-                @@rcalls        , .inline.rcalls
+                @@rcalls        , .inline.rcalls,\
+                @@xcall         , .inline.xcall,\
+                @@rxcall        , .inline.rxcall
         pcase   rsi,\
                 @@call.if.or    , .inline.jump.v,\
                 @@call.if.nor   , .inline.jump.v,\
@@ -362,11 +372,9 @@ macro @@_CALL_64 fio
                 @@fact          , .inline.fact,\
                 @@fact2         , .inline.fact2
         pcase   rsi,\
+                @@signbit       , .inline.signbit,\
+                @@rsignbit      , .inline.rsignbit,\
                 @@trunc         , .inline.trunc
-;       pcase   rsi,\
-;               @@isign         , .inline.isign,\
-;               @@risign        , .inline.risign,\
-;               @@trunc         , .inline.trunc
         pcase   rsi,\
                 @@sign          , .inline.sign,\
                 @@rsign         , .inline.rsign,\
@@ -441,7 +449,9 @@ macro @@_CALL_64 fio
                 @@pebi          , .inline.pebi,\
                 @@exbi          , .inline.exbi,\
                 @@zebi          , .inline.zebi,\
-                @@yobi          , .inline.yobi
+                @@yobi          , .inline.yobi,\
+                @@robi          , .inline.robi,\
+                @@quebi         , .inline.quebi
         pcase   rsi,\
                 @@kibo          , .inline.kibo,\
                 @@mebo          , .inline.mebo,\
@@ -450,7 +460,9 @@ macro @@_CALL_64 fio
                 @@pebo          , .inline.pebo,\
                 @@exbo          , .inline.exbo,\
                 @@zebo          , .inline.zebo,\
-                @@yobo          , .inline.yobo
+                @@yobo          , .inline.yobo,\
+                @@robo          , .inline.robo,\
+                @@quebo         , .inline.quebo
         pcase   rsi,\
                 @@deca          , .inline.deca,\
                 @@hecto         , .inline.hecto,\
@@ -461,7 +473,9 @@ macro @@_CALL_64 fio
                 @@peta          , .inline.peta,\
                 @@exa           , .inline.exa,\
                 @@zetta         , .inline.zetta,\
-                @@yotta         , .inline.yotta
+                @@yotta         , .inline.yotta,\
+                @@ronna         , .inline.ronna,\
+                @@quetta        , .inline.quetta
         pcase   rsi,\
                 @@deci          , .inline.deci,\
                 @@centi         , .inline.centi,\
@@ -472,7 +486,9 @@ macro @@_CALL_64 fio
                 @@femto         , .inline.femto,\
                 @@atto          , .inline.atto,\
                 @@zepto         , .inline.zepto,\
-                @@yocto         , .inline.yocto
+                @@yocto         , .inline.yocto,\
+                @@ronto         , .inline.ronto,\
+                @@quecto        , .inline.quecto
         pcase   rsi,\
                 @@co.chs        , .inline.co.chs,\
                 @@co.abs        , .inline.co.abs,\
@@ -3624,6 +3640,12 @@ macro @@_CALL_64 fio
    .inline.yobi:
         mov     [.proc], @@yobi.map.index
         jmp    .inline.proc.1p
+   .inline.robi:
+        mov     [.proc], @@robi.map.index
+        jmp    .inline.proc.1p
+   .inline.quebi:
+        mov     [.proc], @@quebi.map.index
+        jmp    .inline.proc.1p
 ; ------
    .inline.kibo:
         mov     [.proc], @@kibo.map.index
@@ -3648,6 +3670,12 @@ macro @@_CALL_64 fio
         jmp    .inline.proc.1p
    .inline.yobo:
         mov     [.proc], @@yobo.map.index
+        jmp    .inline.proc.1p
+   .inline.robo:
+        mov     [.proc], @@robo.map.index
+        jmp    .inline.proc.1p
+   .inline.quebo:
+        mov     [.proc], @@quebo.map.index
         jmp    .inline.proc.1p
 ; ------
    .inline.deca:
@@ -3680,6 +3708,12 @@ macro @@_CALL_64 fio
    .inline.yotta:
         mov     [.proc], @@yotta.map.index
         jmp    .inline.proc.1p
+   .inline.ronna:
+        mov     [.proc], @@ronna.map.index
+        jmp    .inline.proc.1p
+   .inline.quetta:
+        mov     [.proc], @@quetta.map.index
+        jmp    .inline.proc.1p
 ; ------
    .inline.deci:
         mov     [.proc], @@deci.map.index
@@ -3710,6 +3744,12 @@ macro @@_CALL_64 fio
         jmp    .inline.proc.1p
    .inline.yocto:
         mov     [.proc], @@yocto.map.index
+        jmp    .inline.proc.1p
+   .inline.ronto:
+        mov     [.proc], @@ronto.map.index
+        jmp    .inline.proc.1p
+   .inline.quecto:
+        mov     [.proc], @@quecto.map.index
         jmp    .inline.proc.1p
 ; ------
    .inline.proc.1p:
@@ -3812,12 +3852,12 @@ macro @@_CALL_64 fio
         jmp    .inline.proc
 
 ; ------
-;  .inline.isign:
-;       mov     [.proc], @@isign.map.index
-;       jmp    .inline.proc.1p.ir
-;  .inline.risign:
-;       mov     [.proc], @@risign.map.index
-;       jmp    .inline.proc.1p.ir
+   .inline.signbit:
+        mov     [.proc], @@signbit.map.index
+        jmp    .inline.proc.1p.ir
+   .inline.rsignbit:
+        mov     [.proc], @@rsignbit.map.index
+        jmp    .inline.proc.1p.ir
    .inline.trunc:
         mov     [.proc], @@trunc.map.index
         jmp    .inline.proc.1p.ir
@@ -14822,25 +14862,38 @@ macro @@_CALL_64 fio
         ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
         ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
         ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
-        ;
         ; ...                   |
-        ;
         ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
         ;
         ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
         ;>
         ; ----------------------------------------------
         ; acount * 10 + 10
+        ; ----------------------------------------------
+        cmp     ecx, OBJ_ARG_COUNT
+        jne    .error.argument
         mov     rcx, [.ezx]
+        ;
+        ; acount * 12 - (acount * 10 + 10) = acount * 2 - 10
+        lea     rax, [2*rcx - 10]                       ; rax = acount * 2 - 10
+        @@range rax, .error.memory
+        ;
         mov     rax, 10
-        mul     rcx
-        add     rax, 10
+        mul     rcx                                     ; rax = acount * 10
+        add     rax, 10                                 ; rax = acount * 10 + 10
         @@xshl  rdi, rax
         ;
-        mov     rdx, rdi
-        add     rdx, 2
+;       mov     rdx, rdi
+;       add     rdx, 2
+        lea     rdx, [rdi + 2]
+        mov     [.acount], 0
    .inline.calls.push:
-        push    qword [rdx]
+        mov     rax, qword [rdx]
+        test    rax, rax
+        jz     .inline.calls.push.next
+        push    rax
+        inc     [.acount]
+   .inline.calls.push.next:
         add     rdx, 10
         dec     rcx
         jnz    .inline.calls.push
@@ -14862,10 +14915,13 @@ macro @@_CALL_64 fio
         ;>
         ; ----------------------------------------------
         ; acount * 12
-        mov     rcx, [.ezx]
+        ; ----------------------------------------------
+        xor     rcx, rcx
+        mov     ecx, [.acount]
+        test    rcx, rcx
+        jz     .inline.calls.no.proc
         mov     rax, 12
-        mul     rcx
-        @@range rax, .error.memory
+        mul     rcx                                     ; rax = acount * 12
         ;
         mov     rdx, rdi
    .inline.calls.pop:
@@ -14880,32 +14936,51 @@ macro @@_CALL_64 fio
         mov     [.ezx], 0
         mov     [.FPU], 0
         jmp    .done
+   .inline.calls.no.proc:
+        mov     rdx, [sic]
+        or      [rdx + T_sic_data.coops], SIC_OPT_FLAG_BYPASS
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
 
    .inline.rcalls:
         ; ----------------------------------------------
         ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
         ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
         ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
-        ;
         ; ...                   |
-        ;
         ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
         ;
         ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
         ;>
         ; ----------------------------------------------
+        ; acount * 10 + 10
+        ; ----------------------------------------------
+        cmp     ecx, OBJ_ARG_COUNT
+        jne    .error.argument
         mov     rcx, [.ezx]
+        ;
+        ; acount * 12 - (acount * 10 + 10) = acount * 2 - 10
+        lea     rax, [2*rcx - 10]                       ; rax = acount * 2 - 10
+        @@range rax, .error.memory
+        ;
         lea     rdx, [rdi - 18]
+        mov     [.acount], 0
    .inline.rcalls.push:
-        push    qword [rdx]
+        mov     rax, qword [rdx]
+        test    rax, rax
+        jz     .inline.rcalls.push.next
+        push    rax
+        inc     [.acount]
+   .inline.rcalls.push.next:
         sub     rdx, 10
         dec     rcx
         jnz    .inline.rcalls.push
         ; acount * 10 + 10
         mov     rcx, [.ezx]
         mov     rax, 10
-        mul     rcx
-        add     rax, 10
+        mul     rcx                                     ; rax = acount * 10
+        add     rax, 10                                 ; rax = acount * 10 + 10
         @@xshl  rdi, rax
         ;
         ; ----------------------------------------------
@@ -14925,10 +15000,13 @@ macro @@_CALL_64 fio
         ;>
         ; ----------------------------------------------
         ; acount * 12
-        mov     rcx, [.ezx]
+        ; ----------------------------------------------
+        xor     rcx, rcx
+        mov     ecx, [.acount]
+        test    rcx, rcx
+        jz     .inline.rcalls.no.proc
         mov     rax, 12
-        mul     rcx
-        @@range rax, .error.memory
+        mul     rcx                                     ; rax = acount * 12
         ;
         mov     rdx, rdi
    .inline.rcalls.pop:
@@ -14940,6 +15018,796 @@ macro @@_CALL_64 fio
         jnz    .inline.rcalls.pop
         ;
         @@xshr  rdi, rax
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+   .inline.rcalls.no.proc:
+        mov     rdx, [sic]
+        or      [rdx + T_sic_data.coops], SIC_OPT_FLAG_BYPASS
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+
+   .inline.xgoto:
+        mov     word [.opcode], 0x22FF                  ; JMP QWORD [RDX]  | FF22
+        jmp    .inline.xgoca
+   .inline.xcall:
+        mov     word [.opcode], 0x12FF                  ; CALL QWORD [RDX] | FF12
+        jmp    .inline.xgoca
+
+   .inline.xgoca:
+        ; ----------------------------------------------
+        ;*
+        ;?MOV   RCX, QWORD      | 48B9 SSSSSSSSSSSSSSSS ; double constant (11B)
+        ;?PUSH  RCX             | 51
+
+        ;?MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; integer variable (12B)
+        ;?PUSH  QWORD [RAX]     | FF30
+
+        ;?MOV   RAX, VALUE      | 48B8 SSSSSSSSSSSSSSSS ; integer constant (11B)
+        ;?PUSH  RAX             | 50
+
+        ; ...                   | ...
+        ;?MOV   [RSP], RAX      | 48890424              ; integer RSP RAX (4B)
+
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        cmp     ecx, OBJ_ARG_COUNT
+        jne    .error.argument
+        mov     rcx, [.ezx]
+        lea     rax, [5*rcx]                            ; rax = acount * 5
+        shl     rax, 1                                  ; rax = acount * 10
+        @@xshl  rdi, rax
+        ; ----------------------------------------------
+        ;?MOV   RCX, QWORD      | 48B9 SSSSSSSSSSSSSSSS ; double constant (11B)
+        ;?PUSH  RCX             | 51
+
+        ;?MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; integer variable (12B)
+        ;?PUSH  QWORD [RAX]     | FF30
+
+        ;?MOV   RAX, VALUE      | 48B8 SSSSSSSSSSSSSSSS ; integer constant (11B)
+        ;?PUSH  RAX             | 50
+
+        ; ...                   | ...
+        ;?MOV   [RSP], RAX      | 48890424              ; integer RSP RAX (4B)
+
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        stdcall code_object, [.cooff], 0                ; ecx = object type
+        case    ecx,\
+                OBJ_DOUBLE_CON  , .inline.xgoca.dcon,\
+                OBJ_INT_VAR     , .inline.xgoca.ivar,\
+                OBJ_INT_CON     , .inline.xgoca.icon,\
+                OBJ_INT_RSP_RAX , .inline.xgoca.irsp.rax
+        jmp    .error.argument
+        ;
+   .inline.xgoca.ivar:
+        ; ----------------------------------------------
+        ;*MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; integer variable (12B)
+        ; PUSH  QWORD [RAX]     | FF30
+
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 12
+        ; acount * 10 + 12
+        ; ----------------------------------------------
+        ; -> acount * 10 + 64
+        ; ----------------------------------------------
+        @@range (64-12), .error.memory
+        ;
+        @@xshl  rdi, 12
+        mov     rax, [rdi + 02]
+        mov     [.rax], rax
+        ;
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount - 1
+        lea     rax, [5*rcx]                            ; rax = (acount - 1) * 5
+        shl     rax, 1                                  ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + rax + 12 + 2 - 10]
+   .inline.xgoca.ivar.push:
+        push    qword [rdx]
+        sub     rdx, 10
+        dec     rcx
+        jnz    .inline.xgoca.ivar.push
+        ;
+        mov     rcx, [.ezx]
+        dec     rcx
+        mov     [rdi + 00], byte 0xE9
+        mov     [rdi + 01], eax                         ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + 05]
+   .inline.xgoca.ivar.pop:
+        mov     [rdx + 00], word 0xBA49
+        pop     qword [rdx + 02]
+        add     rdx, 10
+        dec     rcx
+        jnz    .inline.xgoca.ivar.pop
+        ;
+        mov     rcx, [.ezx]
+        lea     rax, [rcx - 1]                          ; rax = acount-1
+        mov     [rdx + 00], word 0xB948
+        mov     [rdx + 02], rax
+        mov     rax, [.rax]
+        mov     [rdx + 10], word 0xB848
+        mov     [rdx + 12], rax
+        mov     [rdx + 20], byte 0x48
+        mov     [rdx + 21], word 0x008B
+        mov     [rdx + 23], dword 0x00F88348
+        mov     [rdx + 27], word 0x8C0F
+        mov     [rdx + 29], dword (3+6+7+10+10)
+        mov     [rdx + 33], dword 0x0FC83948
+        mov     [rdx + 37], byte 0x8D
+        mov     [rdx + 38], dword (7+10+10)
+        mov     [rdx + 42], dword 0xC7158D48
+        mov     [rdx + 46], dword 0x48FFFFFF
+        mov     [rdx + 50], dword 0x4880048D
+        mov     [rdx + 54], dword 0x2948E0D1
+        mov     [rdx + 58], dword 0x128B48C2
+        mov     [rdx + 62], byte 0x48
+        mov     [rdx + 63], dword 0x0274D285
+        mov     ax, word [.opcode]                      ; FF12 | FF22
+        mov     [rdx + 67], ax
+        ;
+        ; ----------------------------------------------
+        ;*JMP   LA:             | E9 FFFFFFFF           ; (5B)
+
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; ...                   |
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+                                                        ; =(acount-1)*10B
+        ; LA:
+        ; MOV   RCX, ACOUNT-1   | 48B9 CCCCCCCCCCCCCCCC ; (10B) argument count - 1
+        ; MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; (13B) integer variable
+        ; MOV   RAX, QWORD [RAX]| 488B00
+
+        ; CMP   RAX, 0          | 4883F800              ; (4B)
+        ; JL    LC:             | 0F8C FFFFFFFF         ; (6B) +3+6+7+10+10
+        ; CMP   RAX, RCX        | 4839C8                ; (3B)
+        ; JGE   LC:             | 0F8D FFFFFFFF         ; (6B) +7+10+10
+                                                        ; =19B
+        ; LB:
+        ; LEA   RDX, [RIP-(7+50)] 488D15 C7FFFFFF       ; (7B) 50 = 19+13+10+8 | RDX = label#n offset address
+
+        ; LEA   RAX, [RAX*5]    | 488D0480              ; (4B) RAX = index * 5
+        ; SHL   RAX, 1          | 48D1E0                ; (3B) RAX = index * 10
+        ; SUB   RDX, RAX        | 4829C2                ; (3B) RDX = label#index offset address
+                                                        ; =10B
+
+        ; MOV   RDX, QWORD [RDX]| 488B12                ; (3B) RDX = label#index offset
+        ; TEST  RDX, RDX        | 4885D2                ; (3B)
+        ; JZ    @F              | 7402                  ; (2B)
+        ;?CALL  QWORD [RDX]     | FF12                  ; (2B)
+        ;?JMP   QWORD [RDX]     | FF22                  ; (2B)
+        ; @@:                                           ; =10B
+
+        ; LC:
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 5 + 10 + 13 + 19 + 7 + 10 + 10
+        ; acount * 10 + 64
+        ; ----------------------------------------------
+        mov     rax, 10
+        mul     rcx                                     ; rax = acount * 10
+        add     rax, 64                                 ; rax = acount * 10 + 64
+        @@xshr  rdi, rax
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+        ;
+   .inline.xgoca.irsp.rax:
+        ; ----------------------------------------------
+        ; ...                   | ...
+        ;*MOV   [RSP], RAX      | 48890424              ; integer RSP RAX (4B)
+
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 4
+        ; acount * 10 + 4
+        ; ----------------------------------------------
+        ; -> acount * 10 + 55
+        ; ----------------------------------------------
+        @@range (55-4), .error.memory
+        ;
+        @@xshl  rdi, 4
+        ;
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount - 1
+        lea     rax, [5*rcx]                            ; rax = (acount - 1) * 5
+        shl     rax, 1                                  ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + rax + 4 + 2 - 10]
+   .inline.xgoca.irsp.rax.push:
+        push    qword [rdx]
+        sub     rdx, 10
+        dec     rcx
+        jnz    .inline.xgoca.irsp.rax.push
+        ;
+        mov     rcx, [.ezx]
+        dec     rcx
+        mov     [rdi + 00], dword 0x08C48348
+        mov     [rdi + 04], byte 0xE9
+        mov     [rdi + 05], eax                         ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + 09]
+   .inline.xgoca.irsp.rax.pop:
+        mov     [rdx + 00], word 0xBA49
+        pop     qword [rdx + 02]
+        add     rdx, 10
+        dec     rcx
+        jnz    .inline.xgoca.irsp.rax.pop
+        ;
+        mov     rcx, [.ezx]
+        lea     rax, [rcx - 1]                          ; rax = acount-1
+        mov     [rdx + 00], word 0xB948
+        mov     [rdx + 02], rax
+        mov     [rdx + 10], dword 0x00F88348
+        mov     [rdx + 14], word 0x8C0F
+        mov     [rdx + 16], dword (3+6+7+10+10)
+        mov     [rdx + 20], dword 0x0FC83948
+        mov     [rdx + 24], byte 0x8D
+        mov     [rdx + 25], dword (7+10+10)
+        mov     [rdx + 29], dword 0xD4158D48
+        mov     [rdx + 33], dword 0x48FFFFFF
+        mov     [rdx + 37], dword 0x4880048D
+        mov     [rdx + 41], dword 0x2948E0D1
+        mov     [rdx + 45], dword 0x128B48C2
+        mov     [rdx + 49], byte 0x48
+        mov     [rdx + 50], dword 0x0274D285
+        mov     ax, word [.opcode]                      ; FF12 | FF22
+        mov     [rdx + 54], ax
+        ;
+        ; ----------------------------------------------
+        ; ...                   | ...                   ; RAX = index
+        ;*ADD   RSP, 8          | 4883C408              ; (4B)
+        ; JMP   LA:             | E9 FFFFFFFF           ; (5B)
+
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; ...                   |
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+                                                        ; =(acount-1)*10B
+        ; LA:
+        ; MOV   RCX, ACOUNT-1   | 48B9 CCCCCCCCCCCCCCCC ; (10B) argument count - 1
+
+        ; CMP   RAX, 0          | 4883F800              ; (4B)
+        ; JL    LC:             | 0F8C FFFFFFFF         ; (6B) +3+6+7+10+10
+        ; CMP   RAX, RCX        | 4839C8                ; (3B)
+        ; JGE   LC:             | 0F8D FFFFFFFF         ; (6B) +7+10+10
+                                                        ; =19B
+        ; LB:
+        ; LEA   RDX, [RIP-(7+37)] 488D15 D4FFFFFF       ; (7B) 37 = 19+10+8 | RDX = label#n offset address
+
+        ; LEA   RAX, [RAX*5]    | 488D0480              ; (4B) RAX = index * 5
+        ; SHL   RAX, 1          | 48D1E0                ; (3B) RAX = index * 10
+        ; SUB   RDX, RAX        | 4829C2                ; (3B) RDX = label#index offset address
+                                                        ; =10B
+
+        ; MOV   RDX, QWORD [RDX]| 488B12                ; (3B) RDX = label#index offset
+        ; TEST  RDX, RDX        | 4885D2                ; (3B)
+        ; JZ    @F              | 7402                  ; (2B)
+        ;?CALL  QWORD [RDX]     | FF12                  ; (2B)
+        ;?JMP   QWORD [RDX]     | FF22                  ; (2B)
+        ; @@:                                           ; =10B
+
+        ; LC:
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 4 + 5 + 10 + 19 + 7 + 10 + 10
+        ; acount * 10 + 55
+        ; ----------------------------------------------
+        mov     rax, 10
+        mul     rcx                                     ; rax = acount * 10
+        add     rax, 55                                 ; rax = acount * 10 + 55
+        @@xshr  rdi, rax
+        add     [.RSP], 8
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+        ;
+   .inline.xgoca.dcon:
+        ; ----------------------------------------------
+        ; MOV   RCX, QWORD      | 48B9 SSSSSSSSSSSSSSSS ; double constant (11B)
+        ; PUSH  RCX             | 51
+
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 11
+        ; acount * 10 + 11
+        ; ----------------------------------------------
+        mov     [.shl], 11
+        mov     rcx, [rdi - 09]                         ; rcx = constant
+        stdcall f2i, rcx                                ; rax = int64 constant
+        cmp     rax, 0
+        jl     .inline.xgoca.con.no.proc
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount-1
+        cmp     rax, rcx
+        jge    .inline.xgoca.con.no.proc
+        jmp    .inline.xgoca.con.proc
+        ;
+   .inline.xgoca.icon:
+        ; ----------------------------------------------
+        ; MOV   RAX, VALUE      | 48B8 SSSSSSSSSSSSSSSS ; integer constant (11B)
+        ; PUSH  RAX             | 50
+
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 11
+        ; acount * 10 + 11
+        ; ----------------------------------------------
+        mov     [.shl], 11
+        mov     rax, [rdi - 09]                         ; rax = int64 constant
+        cmp     rax, 0
+        jl     .inline.xgoca.con.no.proc
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount-1
+        cmp     rax, rcx
+        jge    .inline.xgoca.con.no.proc
+;       jmp    .inline.xgoca.con.proc
+        ;
+   .inline.xgoca.con.proc:
+        ; ----------------------------------------------
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; 12 BYTES
+        ;?CALL  QWORD [RDX]     | FF12
+        ;?JMP   QWORD [RDX]     | FF22
+        ;>
+        ; ----------------------------------------------
+        neg     rax                                     ; rax = -index
+        lea     rax, [rcx + rax - 1]                    ; rax = (acount-1 - index - 1)
+        mov     rcx, 10
+        mul     rcx                                     ; rax = 10 * (acount-1 - index - 1)
+        mov     rdx, [rdi + rax + 2]                    ; rdx = offset
+        test    rdx, rdx
+        jz     .inline.xgoca.con.no.proc
+        mov     rax, [.shl]
+        @@xshl  rdi, rax
+        mov     [rdi + 00], word 0xBA48
+        mov     [rdi + 02], rdx
+        mov     ax, word [.opcode]                      ; FF12 | FF22
+        mov     [rdi + 10], ax
+        @@xshr  rdi, 12
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+        ;
+   .inline.xgoca.con.no.proc:
+        mov     rax, [.shl]
+        @@xshl  rdi, rax
+        mov     rdx, [sic]
+        or      [rdx + T_sic_data.coops], SIC_OPT_FLAG_BYPASS
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+
+   .inline.rxgoto:
+        mov     word [.opcode], 0x22FF                  ; JMP QWORD [RDX]  | FF22
+        jmp    .inline.rxgoca
+   .inline.rxcall:
+        mov     word [.opcode], 0x12FF                  ; CALL QWORD [RDX] | FF12
+        jmp    .inline.rxgoca
+
+   .inline.rxgoca:
+        ; ----------------------------------------------
+        ;*
+        ;?MOV   RCX, QWORD      | 48B9 SSSSSSSSSSSSSSSS ; double constant (11B)
+        ;?PUSH  RCX             | 51
+
+        ;?MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; integer variable (12B)
+        ;?PUSH  QWORD [RAX]     | FF30
+
+        ;?MOV   RAX, VALUE      | 48B8 SSSSSSSSSSSSSSSS ; integer constant (11B)
+        ;?PUSH  RAX             | 50
+
+        ; ...                   | ...
+        ;?MOV   [RSP], RAX      | 48890424              ; integer RSP RAX (4B)
+
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        cmp     ecx, OBJ_ARG_COUNT
+        jne    .error.argument
+        mov     rcx, [.ezx]
+        lea     rax, [5*rcx]                            ; rax = acount * 5
+        shl     rax, 1                                  ; rax = acount * 10
+        @@xshl  rdi, rax
+        ; ----------------------------------------------
+        ;?MOV   RCX, QWORD      | 48B9 SSSSSSSSSSSSSSSS ; double constant (11B)
+        ;?PUSH  RCX             | 51
+
+        ;?MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; integer variable (12B)
+        ;?PUSH  QWORD [RAX]     | FF30
+
+        ;?MOV   RAX, VALUE      | 48B8 SSSSSSSSSSSSSSSS ; integer constant (11B)
+        ;?PUSH  RAX             | 50
+
+        ; ...                   | ...
+        ;?MOV   [RSP], RAX      | 48890424              ; integer RSP RAX (4B)
+
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        stdcall code_object, [.cooff], 0                ; ecx = object type
+        case    ecx,\
+                OBJ_DOUBLE_CON  , .inline.rxgoca.dcon,\
+                OBJ_INT_VAR     , .inline.rxgoca.ivar,\
+                OBJ_INT_CON     , .inline.rxgoca.icon,\
+                OBJ_INT_RSP_RAX , .inline.rxgoca.irsp.rax
+        jmp    .error.argument
+        ;
+   .inline.rxgoca.ivar:
+        ; ----------------------------------------------
+        ;*MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; integer variable (12B)
+        ; PUSH  QWORD [RAX]     | FF30
+
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 12 + 10
+        ; acount * 10 + 12
+        ; ----------------------------------------------
+        ; -> acount * 10 + 64
+        ; ----------------------------------------------
+        @@range (64-12), .error.memory
+        ;
+        @@xshl  rdi, 12
+        mov     rax, [rdi + 02]
+        mov     [.rax], rax
+        ;
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount - 1
+        lea     rax, [5*rcx]                            ; rax = (acount - 1) * 5
+        shl     rax, 1                                  ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + 12 + 2]
+   .inline.rxgoca.ivar.push:
+        push    qword [rdx]
+        add     rdx, 10
+        dec     rcx
+        jnz    .inline.rxgoca.ivar.push
+        ;
+        mov     rcx, [.ezx]
+        dec     rcx
+        mov     [rdi + 00], byte 0xE9
+        mov     [rdi + 01], eax                         ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + 05]
+   .inline.rxgoca.ivar.pop:
+        mov     [rdx + 00], word 0xBA49
+        pop     qword [rdx + 02]
+        add     rdx, 10
+        dec     rcx
+        jnz    .inline.rxgoca.ivar.pop
+        ;
+        mov     rcx, [.ezx]
+        lea     rax, [rcx - 1]                          ; rax = acount-1
+        mov     [rdx + 00], word 0xB948
+        mov     [rdx + 02], rax
+        mov     rax, [.rax]
+        mov     [rdx + 10], word 0xB848
+        mov     [rdx + 12], rax
+        mov     [rdx + 20], byte 0x48
+        mov     [rdx + 21], word 0x008B
+        mov     [rdx + 23], dword 0x00F88348
+        mov     [rdx + 27], word 0x8C0F
+        mov     [rdx + 29], dword (3+6+7+10+10)
+        mov     [rdx + 33], dword 0x0FC83948
+        mov     [rdx + 37], byte 0x8D
+        mov     [rdx + 38], dword (7+10+10)
+        mov     [rdx + 42], dword 0xC7158D48
+        mov     [rdx + 46], dword 0x48FFFFFF
+        mov     [rdx + 50], dword 0x4880048D
+        mov     [rdx + 54], dword 0x2948E0D1
+        mov     [rdx + 58], dword 0x128B48C2
+        mov     [rdx + 62], byte 0x48
+        mov     [rdx + 63], dword 0x0274D285
+        mov     ax, word [.opcode]                      ; FF12 | FF22
+        mov     [rdx + 67], ax
+        ;
+        ; ----------------------------------------------
+        ;*JMP   LA:             | E9 FFFFFFFF           ; (5B)
+
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; ...                   |
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+                                                        ; =(acount-1)*10B
+        ; LA:
+        ; MOV   RCX, ACOUNT-1   | 48B9 CCCCCCCCCCCCCCCC ; (10B) argument count - 1
+        ; MOV   RAX, OFFSET     | 48B8 SSSSSSSSSSSSSSSS ; (13B) integer variable
+        ; MOV   RAX, QWORD [RAX]| 488B00
+
+        ; CMP   RAX, 0          | 4883F800              ; (4B)
+        ; JL    LC:             | 0F8C FFFFFFFF         ; (6B) +3+6+7+10+10
+        ; CMP   RAX, RCX        | 4839C8                ; (3B)
+        ; JGE   LC:             | 0F8D FFFFFFFF         ; (6B) +7+10+10
+                                                        ; =19B
+        ; LB:
+        ; LEA   RDX, [RIP-(7+50)] 488D15 C7FFFFFF       ; (7B) 50 = 19+13+10+8 | RDX = label#n offset address
+
+        ; LEA   RAX, [RAX*5]    | 488D0480              ; (4B) RAX = index * 5
+        ; SHL   RAX, 1          | 48D1E0                ; (3B) RAX = index * 10
+        ; SUB   RDX, RAX        | 4829C2                ; (3B) RDX = label#index offset address
+                                                        ; =10B
+
+        ; MOV   RDX, QWORD [RDX]| 488B12                ; (3B) RDX = label#index offset
+        ; TEST  RDX, RDX        | 4885D2                ; (3B)
+        ; JZ    @F              | 7402                  ; (2B)
+        ;?CALL  QWORD [RDX]     | FF12                  ; (2B)
+        ;?JMP   QWORD [RDX]     | FF22                  ; (2B)
+        ; @@:                                           ; =10B
+
+        ; LC:
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 5 + 10 + 13 + 19 + 7 + 10 + 10
+        ; acount * 10 + 64
+        ; ----------------------------------------------
+        mov     rax, 10
+        mul     rcx                                     ; rax = acount * 10
+        add     rax, 64                                 ; rax = acount * 10 + 64
+        @@xshr  rdi, rax
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+        ;
+   .inline.rxgoca.irsp.rax:
+        ; ----------------------------------------------
+        ; ...                   | ...
+        ;*MOV   [RSP], RAX      | 48890424              ; integer RSP RAX (4B)
+
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 4
+        ; acount * 10 + 4
+        ; ----------------------------------------------
+        ; -> acount * 10 + 55
+        ; ----------------------------------------------
+        @@range (55-4), .error.memory
+        ;
+        @@xshl  rdi, 4
+        ;
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount - 1
+        lea     rax, [5*rcx]                            ; rax = (acount - 1) * 5
+        shl     rax, 1                                  ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + 4 + 2]
+   .inline.rxgoca.irsp.rax.push:
+        push    qword [rdx]
+        add     rdx, 10
+        dec     rcx
+        jnz    .inline.rxgoca.irsp.rax.push
+        ;
+        mov     rcx, [.ezx]
+        dec     rcx
+        mov     [rdi + 00], dword 0x08C48348
+        mov     [rdi + 04], byte 0xE9
+        mov     [rdi + 05], eax                         ; rax = (acount - 1) * 10
+        lea     rdx, [rdi + 09]
+   .inline.rxgoca.irsp.rax.pop:
+        mov     [rdx + 00], word 0xBA49
+        pop     qword [rdx + 02]
+        add     rdx, 10
+        dec     rcx
+        jnz    .inline.rxgoca.irsp.rax.pop
+        ;
+        mov     rcx, [.ezx]
+        lea     rax, [rcx - 1]                          ; rax = acount-1
+        mov     [rdx + 00], word 0xB948
+        mov     [rdx + 02], rax
+        mov     [rdx + 10], dword 0x00F88348
+        mov     [rdx + 14], word 0x8C0F
+        mov     [rdx + 16], dword (3+6+7+10+10)
+        mov     [rdx + 20], dword 0x0FC83948
+        mov     [rdx + 24], byte 0x8D
+        mov     [rdx + 25], dword (7+10+10)
+        mov     [rdx + 29], dword 0xD4158D48
+        mov     [rdx + 33], dword 0x48FFFFFF
+        mov     [rdx + 37], dword 0x4880048D
+        mov     [rdx + 41], dword 0x2948E0D1
+        mov     [rdx + 45], dword 0x128B48C2
+        mov     [rdx + 49], byte 0x48
+        mov     [rdx + 50], dword 0x0274D285
+        mov     ax, word [.opcode]                      ; FF12 | FF22
+        mov     [rdx + 54], ax
+        ;
+        ; ----------------------------------------------
+        ; ...                   | ...                   ; RAX = index
+        ;*ADD   RSP, 8          | 4883C408              ; (4B)
+        ; JMP   LA:             | E9 FFFFFFFF           ; (5B)
+
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+        ; ...                   |
+        ; MOV   R10, OFFSET     | 49BA FFFFFFFFFFFFFFFF ; (10B) label offset
+                                                        ; =(acount-1)*10B
+        ; LA:
+        ; MOV   RCX, ACOUNT-1   | 48B9 CCCCCCCCCCCCCCCC ; (10B) argument count - 1
+
+        ; CMP   RAX, 0          | 4883F800              ; (4B)
+        ; JL    LC:             | 0F8C FFFFFFFF         ; (6B) +3+6+7+10+10
+        ; CMP   RAX, RCX        | 4839C8                ; (3B)
+        ; JGE   LC:             | 0F8D FFFFFFFF         ; (6B) +7+10+10
+                                                        ; =19B
+        ; LB:
+        ; LEA   RDX, [RIP-(7+37)] 488D15 D4FFFFFF       ; (7B) 37 = 19+10+8 | RDX = label#n offset address
+
+        ; LEA   RAX, [RAX*5]    | 488D0480              ; (4B) RAX = index * 5
+        ; SHL   RAX, 1          | 48D1E0                ; (3B) RAX = index * 10
+        ; SUB   RDX, RAX        | 4829C2                ; (3B) RDX = label#index offset address
+                                                        ; =10B
+
+        ; MOV   RDX, QWORD [RDX]| 488B12                ; (3B) RDX = label#index offset
+        ; TEST  RDX, RDX        | 4885D2                ; (3B)
+        ; JZ    @F              | 7402                  ; (2B)
+        ;?CALL  QWORD [RDX]     | FF12                  ; (2B)
+        ;?JMP   QWORD [RDX]     | FF22                  ; (2B)
+        ; @@:                                           ; =10B
+
+        ; LC:
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 4 + 5 + 10 + 19 + 7 + 10 + 10
+        ; acount * 10 + 55
+        ; ----------------------------------------------
+        mov     rax, 10
+        mul     rcx                                     ; rax = acount * 10
+        add     rax, 55                                 ; rax = acount * 10 + 55
+        @@xshr  rdi, rax
+        add     [.RSP], 8
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+        ;
+   .inline.rxgoca.dcon:
+        ; ----------------------------------------------
+        ; MOV   RCX, QWORD      | 48B9 SSSSSSSSSSSSSSSS ; double constant (11B)
+        ; PUSH  RCX             | 51
+
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 11
+        ; acount * 10 + 11
+        ; ----------------------------------------------
+        mov     [.shl], 11
+        mov     rcx, [rdi - 09]                         ; rcx = constant
+        stdcall f2i, rcx                                ; rax = int64 constant
+        cmp     rax, 0
+        jl     .inline.rxgoca.con.no.proc
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount-1
+        cmp     rax, rcx
+        jge    .inline.rxgoca.con.no.proc
+        jmp    .inline.rxgoca.con.proc
+        ;
+   .inline.rxgoca.icon:
+        ; ----------------------------------------------
+        ; MOV   RAX, VALUE      | 48B8 SSSSSSSSSSSSSSSS ; integer constant (11B)
+        ; PUSH  RAX             | 50
+
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+        ; ...                   |
+        ; MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; label offset (10B)
+
+        ; MOV   R13, ACOUNT     | 49BD CCCCCCCCCCCCCCCC ; argument count (10B)
+        ;>
+        ; ----------------------------------------------
+        ; (acount - 1) * 10 + 10 + 11
+        ; acount * 10 + 11
+        ; ----------------------------------------------
+        mov     [.shl], 11
+        mov     rax, [rdi - 09]                         ; rax = int64 constant
+        cmp     rax, 0
+        jl     .inline.rxgoca.con.no.proc
+        mov     rcx, [.ezx]                             ; rcx = argument count
+        dec     rcx                                     ; rcx = acount-1
+        cmp     rax, rcx
+        jge    .inline.rxgoca.con.no.proc
+;       jmp    .inline.rxgoca.con.proc
+        ;
+   .inline.rxgoca.con.proc:
+        ; ----------------------------------------------
+        ;*MOV   RDX, OFFSET     | 48BA FFFFFFFFFFFFFFFF ; 12 BYTES
+        ;?CALL  QWORD [RDX]     | FF12
+        ;?JMP   QWORD [RDX]     | FF22
+        ;>
+        ; ----------------------------------------------
+        lea     rax, [5*rax]                            ; rax =  5 * index
+        shl     rax, 1                                  ; rax = 10 * index
+        mov     rdx, [rdi + rax + 2]                    ; rdx = offset
+        test    rdx, rdx
+        jz     .inline.rxgoca.con.no.proc
+        mov     rax, [.shl]
+        @@xshl  rdi, rax
+        mov     [rdi + 00], word 0xBA48
+        mov     [rdi + 02], rdx
+        mov     ax, word [.opcode]                      ; FF12 | FF22
+        mov     [rdi + 10], ax
+        @@xshr  rdi, 12
+        mov     [.ezx], 0
+        mov     [.FPU], 0
+        jmp    .done
+        ;
+   .inline.rxgoca.con.no.proc:
+        mov     rax, [.shl]
+        @@xshl  rdi, rax
+        mov     rdx, [sic]
+        or      [rdx + T_sic_data.coops], SIC_OPT_FLAG_BYPASS
         mov     [.ezx], 0
         mov     [.FPU], 0
         jmp    .done

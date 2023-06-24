@@ -827,6 +827,8 @@ macro c
         mov     [.sop.active], rdx              ; save active compiler options
 
    .compile.break?:
+        test    [rsi + T_sic_data.coops], SIC_OPT_FLAG_BYPASS
+        jnz    .compile.next
         test    rax, rax
         jnz    .compile.success
    .compile.error:

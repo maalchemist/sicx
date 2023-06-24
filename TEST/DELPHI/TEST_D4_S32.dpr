@@ -30,6 +30,5 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TmForm, mForm);
-  Application.CreateForm(TSICxTableForm, SICxTableForm);
   Application.Run;
 end.

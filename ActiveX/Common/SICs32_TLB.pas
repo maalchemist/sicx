@@ -12,10 +12,10 @@ unit SICs32_TLB;
 // ************************************************************************ //
 
 // $Rev: 98336 $
-// File generated on 22.05.2023 4:05:05 from Type Library described below.
+// File generated on 24.06.2023 7:59:33 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\!ROOT\PING\FASM\PROJECTS\SICx\DEBUG\ActiveX\Common\SICs32 (1)
+// Type Lib: C:\!ROOT\PING\FASM\PROJECTS\SICx\RELEASE\ActiveX\Common\SICs32 (1)
 // LIBID: {16141139-59F9-41C7-B0E8-640E0FE9D56A}
 // LCID: 0
 // Helpfile:

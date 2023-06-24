@@ -16,6 +16,41 @@
 
 ; ------------------------------------------------------------------------------
 
+; x64
+; r8q EQU r8
+; r9q EQU r9
+;
+; xax EQU rax
+; xbx EQU rbx
+; xcx EQU rcx
+; xdx EQU rdx
+; xdi EQU rdi
+; xsi EQU rsi
+; xsp EQU rsp
+; xbp EQU rbp
+
+; x32
+  alb EQU al
+  blb EQU bl
+  clb EQU cl
+  dlb EQU dl
+
+  ahb EQU ah
+  bhb EQU bh
+  chb EQU ch
+  dhb EQU dh
+
+  xax EQU eax
+  xbx EQU ebx
+  xcx EQU ecx
+  xdx EQU edx
+  xdi EQU edi
+  xsi EQU esi
+  xsp EQU esp
+  xbp EQU ebp
+
+; ------------------------------------------------------------------------------
+
 include '%INCLUDE%\WIN32A.INC'
 
 include '..\..\..\xCommon\SYSTEM.INC'

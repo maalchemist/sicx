@@ -9,6 +9,7 @@
     Компилятор математических формул, Компилятор математических выражений, 
     Compiler, Simple Compiler, JIT Compiler, Simple JIT Compiler, 
     formula compiler, expression compiler, math formula compiler, math expression compiler, 
+    random number generator, Mersenne Twister, SIMD oriented Fast Mersenne Twister (SFMT), 
     SIC32, SICx, SICx32, SICx64, SICs, SICs32, SICs64, 
     DELPHI, FASM, ASSEMBLER, C++">
   <title>SICx. Simple JIT Compiler</title>
@@ -122,7 +123,7 @@
 <b><font size="+3">SICx. Simple JIT Compiler</font></b>
 <br>
 <!-- version -->
-Version 6.2.1 &bull; 22.05.2023
+Version 6.2.2 &bull; 24.06.2023
 
 <!-- ----------------------------------------------------------------------- -->
 
@@ -172,6 +173,9 @@ Version 6.2.1 &bull; 22.05.2023
 <br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?TC">Temperature conversion functions</a>
 <br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?UN">Units functions</a>
 <br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?DM">Data modifier functions</a>
+<!--
+<br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?AX_Intro">Approximate functions</a>
+-->
 <br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?AX_EX">Approximate exponential functions</a>
 <br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?AX_PO">Approximate power functions</a>
 <br>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#FU?AX_TG">Approximate trigonometric functions</a>
@@ -1312,7 +1316,7 @@ deal with global table if sic = null or sic.fdata = null
 </TABLE>
 
 <p>
-<a name="EF?sic_acon"></a>
+<a name="EF?sic_aconf"></a>
 <a style="font-size:2px">&nbsp;</a>
 <TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
 <TR><TD>
@@ -1320,7 +1324,7 @@ deal with global table if sic = null or sic.fdata = null
 <TR><TD class="T">
 <pre>
 <font color="navy"><b>
-INT sic_acon ( LPVOID sic, LPCSTR con, DOUBLE cov )
+INT sic_aconf ( LPVOID sic, LPCSTR con, DOUBLE cov )
 </b></font>
 add|set user defined global or local float constant ( con ) and assign data ( cov )
 deal with global table if sic = null or sic.cdata = null
@@ -1513,7 +1517,7 @@ deal with global table if sic = null or sic.cdata = null
 </TABLE>
 
 <p>
-<a name="EF?sic_avar"></a>
+<a name="EF?sic_avarf"></a>
 <a style="font-size:2px">&nbsp;</a>
 <TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
 <TR><TD>
@@ -1521,7 +1525,7 @@ deal with global table if sic = null or sic.cdata = null
 <TR><TD class="T">
 <pre>
 <font color="navy"><b>
-INT sic_avar ( LPVOID sic, LPCSTR van, LPVOID vao )
+INT sic_avarf ( LPVOID sic, LPCSTR van, LPVOID vao )
 </b></font>
 add|set user defined global or local float variable ( van ) and assign data ( vao )
 deal with global table if sic = null or sic.vdata = null
@@ -3252,6 +3256,12 @@ For such functions, there are both
 
 <p>
 Description of the functions that have only the FPU implementation contains the <a class="FPU">#FPU</a> tag.
+
+<!--
+<a class="CPU">#CPU•POPCNT</a>
+<a class="FMA">#FMA•...</a>
+<a class="BMI">#BMI1•...</a>
+-->
 
 <p>
 Third column = argument count [:result count]
@@ -8794,7 +8804,7 @@ x = (x bnand y) <sub>&nbsp;</sub> <br>
 <td class="ID">
 <a class="C" href="#FU?bandn">bandn</a> + <a class="C" href="#FU?copy">copy</a> function <br>
 <p>
-<a class="BMI">#BMI1.ANDN</a>
+<a class="BMI">#BMI1•ANDN</a>
 </td>
 <td class="CO">
 co.bandn(*x,y) <sub>&nbsp;</sub> <br>
@@ -8814,7 +8824,7 @@ x = (x bandn y) <sub>&nbsp;</sub> <br>
 <td class="ID">
 <a class="C" href="#FU?bnandn">bnandn</a> + <a class="C" href="#FU?copy">copy</a> function <br>
 <p>
-<a class="BMI">#BMI1.ANDN</a>
+<a class="BMI">#BMI1•ANDN</a>
 </td>
 <td class="CO">
 co.bnandn(*x,y) <sub>&nbsp;</sub> <br>
@@ -9254,7 +9264,7 @@ nn = bts(oo,2);
 Hamming weight. <br>
 Returns the number of 1 bits in the value of x. <br>
 <p>
-<a class="CPU">#CPU.POPCNT</a>
+<a class="CPU">#CPU•POPCNT</a>
 </td>
 <td class="CO">
 hammw(x) <sub>&nbsp;</sub> <br>
@@ -9293,7 +9303,7 @@ oow = hammw (oo); // =3
 <td class="ID">
 Hamming distance <br>
 <p>
-<a class="CPU">#CPU.POPCNT</a>
+<a class="CPU">#CPU•POPCNT</a>
 </td>
 <td class="CO">
 hammd(x,y) <sub>&nbsp;</sub> <br>
@@ -9979,7 +9989,7 @@ Bitwise and not <br>
 <tr><td class="BWV">1</td><td class="BWV">1</td><td class="BWV">0</td></tr>
 </table>
 <p>
-<a class="BMI">#BMI1.ANDN</a>
+<a class="BMI">#BMI1•ANDN</a>
 </td>
 <td class="CO">
 bandn(x,y) <sub>&nbsp;</sub> <br>
@@ -10027,7 +10037,7 @@ Bitwise not and not <br>
 <tr><td class="BWV">1</td><td class="BWV">1</td><td class="BWV">1</td></tr>
 </table>
 <p>
-<a class="BMI">#BMI1.ANDN</a>
+<a class="BMI">#BMI1•ANDN</a>
 </td>
 <td class="CO">
 bnandn(x,y) <sub>&nbsp;</sub> <br>
@@ -11463,7 +11473,7 @@ aif.z (sin(x) - fsin(x));
 <a class="R">var</a> zz=$:0000000000000001;
 int uu;
 
-uu = zz ==.~ // ~0==0 =1
+uu = (zz ==.~) // ~0==0 =1
 </pre>
 </TD></TR>
 </TABLE>
@@ -11515,7 +11525,7 @@ aif.nz (sin(x) - fsin(x));
 <a class="R">var</a> zz=$:0000000000000001;
 int uu;
 
-uu = zz !=.~ // ~0!=0 =0
+uu = (zz !=.~) // ~0!=0 =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -11551,7 +11561,7 @@ x&gt;.~ <sub>&nbsp;</sub> <br>
 <a class="R">var</a> zz=$:0000000000000001;
 int uu;
 
-uu = zz &gt;.~ // ~0&gt;0 =0
+uu = (zz &gt;.~) // ~0&gt;0 =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -11589,7 +11599,7 @@ x!&lt;.~ <sub>&nbsp;</sub> <br>
 <a class="R">var</a> zz=$:0000000000000001;
 int uu;
 
-uu = zz &gt;=.~ // ~0&gt;=0 =1
+uu = (zz &gt;=.~) // ~0&gt;=0 =1
 </pre>
 </TD></TR>
 </TABLE>
@@ -11625,7 +11635,7 @@ x&lt;.~ <sub>&nbsp;</sub> <br>
 <a class="R">var</a> zz=$:0000000000000001;
 int uu;
 
-uu = zz &lt;.~ // ~0&lt;0 =0
+uu = (zz &lt;.~) // ~0&lt;0 =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -11663,7 +11673,7 @@ x!&gt;.~ <sub>&nbsp;</sub> <br>
 <a class="R">var</a> zz=$:0000000000000001;
 int uu;
 
-uu = zz &lt;=.~ // ~0&lt;=0 =1
+uu = (zz &lt;=.~) // ~0&lt;=0 =1
 </pre>
 </TD></TR>
 </TABLE>
@@ -11718,7 +11728,7 @@ aif.e (sin(x), fsin(x));
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa ==~ bb // =1
+uu = (aa ==~ bb) // =1
 </pre>
 </TD></TR>
 </TABLE>
@@ -11771,7 +11781,7 @@ aif.ne (sin(x), fsin(x));
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa !=~ bb // =0
+uu = (aa !=~ bb) // =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -11808,7 +11818,7 @@ x &gt;~ y <sub>&nbsp;</sub> <br>
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa &gt;~ bb // =0
+uu = (aa &gt;~ bb) // =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -11847,7 +11857,7 @@ x !&lt;~ y <sub>&nbsp;</sub> <br>
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa &gt;=~ bb // =1
+uu = (aa &gt;=~ bb) // =1
 </pre>
 </TD></TR>
 </TABLE>
@@ -11884,7 +11894,7 @@ x &lt;~ y <sub>&nbsp;</sub> <br>
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa &lt;~ bb // =0
+uu = (aa &lt;~ bb) // =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -11923,7 +11933,7 @@ x !&gt;~ y <sub>&nbsp;</sub> <br>
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa &lt;=~ bb // =1
+uu = (aa &lt;=~ bb) // =1
 </pre>
 </TD></TR>
 </TABLE>
@@ -11966,7 +11976,7 @@ x &lt;==&gt;~ y <sub>&nbsp;</sub> <br>
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa &lt;==&gt;~ bb // =0
+uu = (aa &lt;==&gt;~ bb) // =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -12005,7 +12015,7 @@ x &gt;==&lt;~ y <sub>&nbsp;</sub> <br>
 <a class="R">var</a> bb=$:406BBFFFFFFFFFFF; // 222-
 int uu;
 
-uu = aa &gt;==&lt;~ bb // =0
+uu = (aa &gt;==&lt;~ bb) // =0
 </pre>
 </TD></TR>
 </TABLE>
@@ -12778,6 +12788,104 @@ goto (label) <br>
 </tr>
 
 <tr>
+<td class="FN">
+<a name="FU?xgoto">xgoto</a>
+</td>
+<td class="FS"></td>
+<td class="AC">-2:0</td>
+<td class="ID">
+Jump by index <br>
+<p>
+Argument filters <a class="C" href="#FU?VF">varg(&hellip;)</a> not allowed. <br>
+</td>
+<td class="CO">
+xgoto (label<sub>0</sub>, label<sub>1</sub>, &hellip;, label<sub>n</sub>, index) <br>
+<p>
+index - integer value
+<p>
+jump to label<sub>index</sub> if index &isin; [0..n] <sub>&nbsp;</sub><br>
+do nothing otherwise <sub>&nbsp;</sub><br>
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+// xgoto
+
+<a class="R">var</a> aa=2;
+<a class="R">var</a> bb=8;
+
+x = 0;
+xgoto p0, p1, aa&gt;bb; // aa&gt;bb=0 &mdash;&gt; jump to p0
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+// x=-21
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+// xgoto
+
+<a class="R">var</a> aa=2;
+<a class="R">var</a> bb=8;
+
+x = 0;
+xgoto p0, p1, aa&lt;bb; // aa&lt;bb=1 &mdash;&gt; jump to p1
+
+p0:
+x -= 22;
+
+p1:
+x += 1;
+
+// x=1
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+</td>
+</tr>
+
+<tr>
+<td class="FN">
+<a name="FU?rxgoto">rxgoto</a>
+</td>
+<td class="FS"></td>
+<td class="AC">-2:0</td>
+<td class="ID">
+Jump by reverse index <br>
+<p>
+Argument filters <a class="C" href="#FU?VF">varg(&hellip;)</a> not allowed. <br>
+</td>
+<td class="CO">
+rxgoto (label<sub>n</sub>, &hellip;, label<sub>1</sub>, label<sub>0</sub>, index) <br>
+<p>
+index - integer value
+<p>
+jump to label<sub>index</sub> if index &isin; [0..n] <sub>&nbsp;</sub><br>
+do nothing otherwise <sub>&nbsp;</sub><br>
+</td>
+</tr>
+
+<tr>
 <td class="SL" colspan="5"></td>
 </tr>
 
@@ -13179,21 +13287,21 @@ x = 0;
 calls p1, p2, p3, p4;
 return x;
 
-p1: // procedure 
-x += 1;
-retn;
+| p1: // procedure 
+| x += 1;
+| retn;
 
-p2: // procedure 
-x += 2;
-retn;
+| p2: // procedure 
+| x += 2;
+| retn;
 
-p3: // procedure 
-x += 3;
-retn;
+| p3: // procedure 
+| x += 3;
+| retn;
 
-p4: // procedure 
-x += 4;
-retn;
+| p4: // procedure 
+| x += 4;
+| retn;
 </pre>
 </TD></TR>
 </TABLE>
@@ -13221,6 +13329,156 @@ call proc<sub>n</sub>; <sub>&nbsp;</sub><br>
 &hellip; <sub>&nbsp;</sub><br>
 call proc<sub>2</sub>; <sub>&nbsp;</sub><br>
 call proc<sub>1</sub>; <sub>&nbsp;</sub><br>
+</td>
+</tr>
+
+<tr>
+<td class="FN">
+<a name="FU?xcall">xcall</a>
+</td>
+<td class="FS"></td>
+<td class="AC">-2:0</td>
+<td class="ID">
+Procedure call by index <br>
+<p>
+Argument filters <a class="C" href="#FU?VF">varg(&hellip;)</a> not allowed. <br>
+</td>
+<td class="CO">
+xcall (proc<sub>0</sub>, proc<sub>1</sub>, &hellip;, proc<sub>n</sub>, index) <br>
+<p>
+index - integer value
+<p>
+call proc<sub>index</sub> if index &isin; [0..n] <sub>&nbsp;</sub><br>
+do nothing otherwise <sub>&nbsp;</sub><br>
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+// xcall
+
+<a class="RG">$+ STACK_FRAME</a>
+<a class="RG">$+ LOCALS</a>
+
+<a class="R">var</a> aa=2;
+<a class="R">var</a> bb=8;
+
+x = 0;
+xcall p0, p1, aa&gt;bb; // aa&gt;bb=0 &mdash;&gt; call p0
+return x; // x=-22
+
+| p0: // procedure 
+| x -= 22;
+| retn;
+
+| p1: // procedure 
+| x += 1;
+| retn;
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+// xcall
+
+<a class="RG">$+ STACK_FRAME</a>
+<a class="RG">$+ LOCALS</a>
+
+<a class="R">var</a> aa=2;
+<a class="R">var</a> bb=8;
+
+x = 0;
+xcall p0, p1, aa&lt;bb; // aa&lt;bb=1 &mdash;&gt; call p1
+return x; // x=1
+
+| p0: // procedure 
+| x -= 22;
+| retn;
+
+| p1: // procedure 
+| x += 1;
+| retn;
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+// xcall
+
+<a class="RG">$+ STACK_FRAME</a>
+<a class="RG">$+ LOCALS</a>
+
+<a class="R">int</a> uu;
+
+x = 0;
+uu = 3; 
+xcall p0, p1, p2, p3, p4, uu;
+return x;
+
+| p0: // procedure 
+| x -= 22;
+| retn;
+
+| p1: // procedure 
+| x += 1;
+| retn;
+
+| p2: // procedure 
+| x += 2;
+| retn;
+
+| p3: // procedure 
+| x += 3;
+| retn;
+
+| p4: // procedure 
+| x += 4;
+| retn;
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+</td>
+</tr>
+
+<tr>
+<td class="FN">
+<a name="FU?rxcall">rxcall</a>
+</td>
+<td class="FS"></td>
+<td class="AC">-2:0</td>
+<td class="ID">
+Procedure call by reverse index <br>
+<p>
+Argument filters <a class="C" href="#FU?VF">varg(&hellip;)</a> not allowed. <br>
+</td>
+<td class="CO">
+rxcall (proc<sub>n</sub>, &hellip;, proc<sub>1</sub>, proc<sub>0</sub>, index) <br>
+<p>
+index - integer value
+<p>
+call proc<sub>index</sub> if index &isin; [0..n] <sub>&nbsp;</sub><br>
+do nothing otherwise <sub>&nbsp;</sub><br>
 </td>
 </tr>
 
@@ -15613,6 +15871,84 @@ nabs(x) &equiv; (!x!) <br>
 
 <tr>
 <td class="FNI">
+<a name="FU?signbit"></a>
+<a name="FU?sgnbit"></a>
+<a>signbit</a> <br>
+<a>sgnbit<sup>&nbsp;</sup></a> <br>
+</td>
+<td class="FS"></td>
+<td class="AC">1:i</td>
+<td class="ID">Sign bit of a number (0, 1)</td>
+<td class="CO">
+signbit(x) <sub>&nbsp;</sub> <br>
+sgnbit(x) <sub>&nbsp;</sub> <br>
+&diams; &nbsp;1 &lArr; sign bit is set <br>
+&diams; &nbsp;0 &lArr; sign bit is reset <br>
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+<a class="R">var</a> zerom = $:8000000000000000; // -0.0
+<a class="R">var</a> zerop = $:0000000000000000; // +0.0
+<a class="R">int</a> sbm, sbp;
+
+sbm = signbit(zerom); // 1
+sbp = signbit(zerop); // 0
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?rsignbit"></a>
+<a name="FU?rsgnbit"></a>
+<a>rsignbit</a> <br>
+<a>rsgnbit<sup>&nbsp;</sup></a> <br>
+</td>
+<td class="FS"></td>
+<td class="AC">1:i</td>
+<td class="ID">Reversed sign bit of a number (0, 1)</td>
+<td class="CO">
+rsignbit(x) <sub>&nbsp;</sub> <br>
+rsgnbit(x) <sub>&nbsp;</sub> <br>
+&diams; &nbsp;1 &lArr; sign bit is reset <br>
+&diams; &nbsp;0 &lArr; sign bit is set <br>
+<!-- -->
+<p>
+<TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<TR><TD>
+<TABLE bgcolor="#FFFFEC" width="100%" border="0" cellspacing="4" cellpadding="4" align="center">
+<TR><TD class="T">
+<pre>
+<a class="R">var</a> zerom = $:8000000000000000; // -0.0
+<a class="R">var</a> zerop = $:0000000000000000; // +0.0
+<a class="R">int</a> sbm, sbp;
+
+sbm = rsignbit(zerom); // 0
+sbp = rsignbit(zerop); // 1
+</pre>
+</TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+<!-- -->
+</td>
+</tr>
+
+<tr>
+<td class="SL" colspan="5"></td>
+</tr>
+
+<tr>
+<td class="FNI">
 <a name="FU?sign"></a>
 <a name="FU?sgn"></a>
 <a>sign</a> <br>
@@ -15627,7 +15963,7 @@ sgn(x) <sub>&nbsp;</sub> <br>
 &diams; &nbsp;1 &lArr; x &gt; 0 <br>
 &diams; &nbsp;0 &lArr; x = 0 <br>
 &diams; -1 &lArr; x &lt; 0 <br>
-<!--
+<!-- -->
 <p>
 <TABLE bgcolor="#000000" width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
 <TR><TD>
@@ -15636,10 +15972,12 @@ sgn(x) <sub>&nbsp;</sub> <br>
 <pre>
 <a class="R">var</a> zerom = $:8000000000000000; // -0.0
 <a class="R">var</a> zerop = $:0000000000000000; // +0.0
-<a class="R">int</a> s1, s2;
+<a class="R">var</a> szm, szp, spp, snn;
 
-s1 = sign(zerom); // 0
-s2 = sign(zerop); // 0
+szm = sign(zerom); //  0
+szp = sign(zerop); //  0
+spp = sign((|a|)); // +1
+snn = sign((!a!)); // -1
 </pre>
 </TD></TR>
 </TABLE>
@@ -17570,7 +17908,7 @@ vr = vquo*(pi/4) + vmod;
 <td class="ID">
 Fused multiply-add <br>
 <p>
-<a class="FMA">#FMA.VFMADD132SD</a>
+<a class="FMA">#FMA•VFMADD132SD</a>
 </td>
 <td class="CO">
 fmadd132(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17588,7 +17926,7 @@ x&thinsp;*&thinsp;z + y <br>
 <td class="ID">
 Fused multiply-add <br>
 <p>
-<a class="FMA">#FMA.VFMADD213SD</a>
+<a class="FMA">#FMA•VFMADD213SD</a>
 </td>
 <td class="CO">
 fmadd213(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17606,7 +17944,7 @@ x&thinsp;*&thinsp;y + z <br>
 <td class="ID">
 Fused multiply-add <br>
 <p>
-<a class="FMA">#FMA.VFMADD231SD</a>
+<a class="FMA">#FMA•VFMADD231SD</a>
 </td>
 <td class="CO">
 fmadd231(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17624,7 +17962,7 @@ y&thinsp;*&thinsp;z + x <br>
 <td class="ID">
 Fused negative multiply-add <br>
 <p>
-<a class="FMA">#FMA.VFNMADD132SD</a>
+<a class="FMA">#FMA•VFNMADD132SD</a>
 </td>
 <td class="CO">
 fnmadd132(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17642,7 +17980,7 @@ fnmadd132(x,y,z) <sub>&nbsp;</sub> <br>
 <td class="ID">
 Fused negative multiply-add <br>
 <p>
-<a class="FMA">#FMA.VFNMADD213SD</a>
+<a class="FMA">#FMA•VFNMADD213SD</a>
 </td>
 <td class="CO">
 fnmadd213(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17660,7 +17998,7 @@ fnmadd213(x,y,z) <sub>&nbsp;</sub> <br>
 <td class="ID">
 Fused negative multiply-add <br>
 <p>
-<a class="FMA">#FMA.VFNMADD231SD</a>
+<a class="FMA">#FMA•VFNMADD231SD</a>
 </td>
 <td class="CO">
 fnmadd231(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17682,7 +18020,7 @@ fnmadd231(x,y,z) <sub>&nbsp;</sub> <br>
 <td class="ID">
 Fused multiply-subtract <br>
 <p>
-<a class="FMA">#FMA.VFMSUB132SD</a>
+<a class="FMA">#FMA•VFMSUB132SD</a>
 </td>
 <td class="CO">
 fmsub132(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17700,7 +18038,7 @@ x&thinsp;*&thinsp;z - y <br>
 <td class="ID">
 Fused multiply-subtract <br>
 <p>
-<a class="FMA">#FMA.VFMSUB213SD</a>
+<a class="FMA">#FMA•VFMSUB213SD</a>
 </td>
 <td class="CO">
 fmsub213(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17718,7 +18056,7 @@ x&thinsp;*&thinsp;y - z <br>
 <td class="ID">
 Fused multiply-subtract <br>
 <p>
-<a class="FMA">#FMA.VFMSUB231SD</a>
+<a class="FMA">#FMA•VFMSUB231SD</a>
 </td>
 <td class="CO">
 fmsub231(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17736,7 +18074,7 @@ y&thinsp;*&thinsp;z - x <br>
 <td class="ID">
 Fused negative multiply-subtract <br>
 <p>
-<a class="FMA">#FMA.VFNMSUB132SD</a>
+<a class="FMA">#FMA•VFNMSUB132SD</a>
 </td>
 <td class="CO">
 fnmsub132(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17754,7 +18092,7 @@ fnmsub132(x,y,z) <sub>&nbsp;</sub> <br>
 <td class="ID">
 Fused negative multiply-subtract <br>
 <p>
-<a class="FMA">#FMA.VFNMSUB213SD</a>
+<a class="FMA">#FMA•VFNMSUB213SD</a>
 </td>
 <td class="CO">
 fnmsub213(x,y,z) <sub>&nbsp;</sub> <br>
@@ -17772,7 +18110,7 @@ fnmsub213(x,y,z) <sub>&nbsp;</sub> <br>
 <td class="ID">
 Fused negative multiply-subtract <br>
 <p>
-<a class="FMA">#FMA.VFNMSUB231SD</a>
+<a class="FMA">#FMA•VFNMSUB231SD</a>
 </td>
 <td class="CO">
 fnmsub231(x,y,z) <sub>&nbsp;</sub> <br>
@@ -29353,6 +29691,34 @@ yobi(a) = a&times;2<sup>80</sup>
 </tr>
 
 <tr>
+<td class="FNI">
+<a name="FU?robi">robi</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+robi (Ri) <br>
+</td>
+<td class="CO">
+robi(a) = a&times;2<sup>90</sup>
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?quebi">quebi</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+quebi (Qi) <br>
+</td>
+<td class="CO">
+quebi(a) = a&times;2<sup>100</sup>
+</td>
+</tr>
+
+<tr>
 <td class="SL" colspan="5"></td>
 </tr>
 
@@ -29457,6 +29823,32 @@ zebo(a) = a&times;2<sup>-70</sup>
 </td>
 <td class="CO">
 yobo(a) = a&times;2<sup>-80</sup>
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?robo">robo</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+</td>
+<td class="CO">
+robo(a) = a&times;2<sup>-90</sup>
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?quebo">quebo</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+</td>
+<td class="CO">
+quebo(a) = a&times;2<sup>-100</sup>
 </td>
 </tr>
 
@@ -29605,6 +29997,34 @@ yotta(a) = a&times;10<sup>24</sup>
 </tr>
 
 <tr>
+<td class="FNI">
+<a name="FU?ronna">ronna</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+ronna (R) <br>
+</td>
+<td class="CO">
+ronna(a) = a&times;10<sup>27</sup>
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?quetta">quetta</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+quetta (Q) <br>
+</td>
+<td class="CO">
+quetta(a) = a&times;10<sup>30</sup>
+</td>
+</tr>
+
+<tr>
 <td class="SL" colspan="5"></td>
 </tr>
 
@@ -29745,6 +30165,34 @@ yocto (y) <br>
 </td>
 <td class="CO">
 yocto(a) = a&times;10<sup>-24</sup>
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?ronto">ronto</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+ronto (r) <br>
+</td>
+<td class="CO">
+ronto(a) = a&times;10<sup>-27</sup>
+</td>
+</tr>
+
+<tr>
+<td class="FNI">
+<a name="FU?quecto">quecto</a>
+</td>
+<td class="FS"></td>
+<td class="AC">1</td>
+<td class="ID">
+quecto (q) <br>
+</td>
+<td class="CO">
+quecto(a) = a&times;10<sup>-30</sup>
 </td>
 </tr>
 
@@ -30043,6 +30491,27 @@ a:<a class="C2">%</a>pi4 = a mod (<a class="B">&pi;</a>/4) <br>
 <tr>
 <td class="SC" colspan="5">&nbsp;</td>
 </tr>
+
+<!--
+<tr>
+<td class="SP" colspan="5">
+<a name="FU?AX_Intro">
+Approximate functions
+</a>
+</td>
+</tr>
+
+<tr>
+<td class="CO" colspan="5">
+Polynomial interpolation is used to approximate the functions. <sup>&nbsp;</sup>
+<p>
+</td>
+</tr>
+
+<tr>
+<td class="SC" colspan="5">&nbsp;</td>
+</tr>
+-->
 
 <tr>
 <td class="SP" colspan="5">
@@ -32569,6 +33038,10 @@ Functions with a variable number of arguments:
 <br>
 <li>&nbsp;<a class="C" href="#FU?qavg">qavg</a></li>
 <li>&nbsp;<a class="C" href="#FU?qmean">qmean</a></li>
+<li>&nbsp;<a class="C" href="#FU?quebi">quebi</a></li>
+<li>&nbsp;<a class="C" href="#FU?quebo">quebo</a></li>
+<li>&nbsp;<a class="C" href="#FU?quecto">quecto</a></li>
+<li>&nbsp;<a class="C" href="#FU?quetta">quetta</a></li>
 <li>&nbsp;<a class="C" href="#FU?quit">quit</a></li>
 <li>&nbsp;<a class="C" href="#FU?quit.if">quit.if</a></li>
 <li>&nbsp;<a class="C" href="#FU?quit.if.false">quit.if.false</a></li>
@@ -32634,7 +33107,11 @@ Functions with a variable number of arguments:
 <li>&nbsp;<a class="C" href="#FU?rncase">rncase</a></li>
 <li>&nbsp;<a class="C" href="#FU?rninf">rninf</a></li>
 <li>&nbsp;<a class="C" href="#FU?rnzero">rnzero</a></li>
+<li>&nbsp;<a class="C" href="#FU?robi">robi</a></li>
+<li>&nbsp;<a class="C" href="#FU?robo>robo</a></li>
 <li>&nbsp;<a class="C" href="#FU?rol">rol</a></li>
+<li>&nbsp;<a class="C" href="#FU?ronna">ronna</a></li>
+<li>&nbsp;<a class="C" href="#FU?ronto">ronto</a></li>
 <li>&nbsp;<a class="C" href="#FU?root">root</a></li>
 <li>&nbsp;<a class="C" href="#FU?root2">root2</a></li>
 <li>&nbsp;<a class="C" href="#FU?root3">root3</a></li>
@@ -32645,8 +33122,12 @@ Functions with a variable number of arguments:
 <li>&nbsp;<a class="C" href="#FU?roundto">roundto</a></li>
 <li>&nbsp;<a class="C" href="#FU?rpinf">rpinf</a></li>
 <li>&nbsp;<a class="C" href="#FU?rsgn">rsgn</a></li>
+<li>&nbsp;<a class="C" href="#FU?rsgnbit">rsgnbit</a></li>
 <li>&nbsp;<a class="C" href="#FU?rsign">rsign</a></li>
+<li>&nbsp;<a class="C" href="#FU?rsignbit">rsignbit</a></li>
 <li>&nbsp;<a class="C" href="#FU?rtgamma">rtgamma</a></li>
+<li>&nbsp;<a class="C" href="#FU?rxcall">rxcall</a></li>
+<li>&nbsp;<a class="C" href="#FU?rxgoto">rxgoto</a></li>
 <li>&nbsp;<a class="C" href="#FU?rzero">rzero</a></li>
 
 <br>
@@ -32660,11 +33141,13 @@ Functions with a variable number of arguments:
 <li>&nbsp;<a class="C" href="#FU?set1">set1</a></li>
 <li>&nbsp;<a class="C" href="#FU?setz">setz</a></li>
 <li>&nbsp;<a class="C" href="#FU?sgn">sgn</a></li>
+<li>&nbsp;<a class="C" href="#FU?sgnbit">sgnbit</a></li>
 <li>&nbsp;<a class="C" href="#FU?sh">sh</a></li>
 <li>&nbsp;<a class="C" href="#FU?shch">shch</a></li>
 <li>&nbsp;<a class="C" href="#FU?shl">shl</a></li>
 <li>&nbsp;<a class="C" href="#FU?shr">shr</a></li>
 <li>&nbsp;<a class="C" href="#FU?sign">sign</a></li>
+<li>&nbsp;<a class="C" href="#FU?signbit">signbit</a></li>
 <li>&nbsp;<a class="C" href="#FU?sin">sin</a></li>
 <li>&nbsp;<a class="C" href="#FU?sincos">sincos</a></li>
 <li>&nbsp;<a class="C" href="#FU?sinh">sinh</a></li>
@@ -32792,8 +33275,10 @@ Functions with a variable number of arguments:
 <li>&nbsp;<a class="C" href="#FU?x2copy">x2copy</a></li>
 <li>&nbsp;<a class="C" href="#FU?x3copy">x3copy</a></li>
 <li>&nbsp;<a class="C" href="#FU?x4copy">x4copy</a></li>
+<li>&nbsp;<a class="C" href="#FU?xcall">xcall</a></li>
 <li>&nbsp;<a class="C" href="#FU?xcopy">xcopy</a></li>
 <li>&nbsp;<a class="C" href="#FU?xcosign">xcosign</a></li>
+<li>&nbsp;<a class="C" href="#FU?xgoto">xgoto</a></li>
 <li>&nbsp;<a class="C" href="#FU?xnor">xnor</a></li>
 <li>&nbsp;<a class="C" href="#FU?xor">xor</a></li>
 <li>&nbsp;<a class="C" href="#FU?xsigny">xsigny</a></li>
@@ -35265,6 +35750,54 @@ There is a number of functions that have only the FPU implementation.
 &ndash;›
 <a class="C"></a>
 -->
+
+<!-- ----------------------------------------------------------------------- -->
+
+<p>
+<ul>
+<!-- version -->
+<a class="A">Version 6.2.2 &bull; 24.06.2023</a>
+
+<li>
+<a class="H">[+]</a>
+new built-in functions:&ensp;
+<a class="C" href="#FU?signbit">signbit</a>,&ensp; 
+<a class="C" href="#FU?rsignbit">rsignbit</a>&ensp; 
+</li>
+
+<li>
+<a class="H">[+]</a>
+new built-in functions:&ensp;
+<a class="C" href="#FU?xgoto">xgoto</a>,&ensp; 
+<a class="C" href="#FU?rxgoto">rxgoto</a>,&ensp; 
+<a class="C" href="#FU?xcall">xcall</a>,&ensp; 
+<a class="C" href="#FU?rxcall">rxcall</a>&ensp; 
+</li>
+
+<li>
+<a class="H">[+]</a>
+new built-in functions:&ensp;
+<a class="C" href="#FU?ronna">ronna</a>,&ensp; 
+<a class="C" href="#FU?ronto">ronto</a>,&ensp; 
+<a class="C" href="#FU?quetta">quetta</a>,&ensp; 
+<a class="C" href="#FU?quecto">quecto</a>&ensp; 
+</li>
+
+<li>
+<a class="H">[+]</a>
+new built-in functions:&ensp;
+<a class="C" href="#FU?robi">robi</a>,&ensp; 
+<a class="C" href="#FU?robo">robo</a>,&ensp; 
+<a class="C" href="#FU?quebi">quebi</a>,&ensp; 
+<a class="C" href="#FU?quebo">quebo</a>&ensp; 
+</li>
+
+<li>
+<a class="H">[@]</a>
+bug fix in <a class="C">x64:COFF</a> output
+</li>
+
+</ul>
 
 <!-- ----------------------------------------------------------------------- -->
 

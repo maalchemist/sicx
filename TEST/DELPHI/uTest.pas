@@ -49,6 +49,7 @@ unit uTest;
 {$IFDEF __SFMT_SSE2} {$DEFINE __SFMT} {$UNDEF __SFMT_AVX2} {$ENDIF}
 
 // Example of correct folding
+(*
 {$DEFINE __FOLDING}
 {$IFDEF CPUX64}
   {$IFDEF __FOLDING}
@@ -69,6 +70,7 @@ unit uTest;
     {$ENDREGION}
   {$ENDIF}
 {$ENDIF}
+// *)
 
 interface
 
@@ -865,11 +867,11 @@ begin
   sic_avaro (@vsic, 'Sic2_Proc', @vsic2_proc);
   // sic_avaro (@vsic, 'Sic2_Proc', @vsic2.entry);
 
-  // pack global tables
-  sic_patab (nil);
   // pack local tables
   sic_patab (@vsic);
   sic_patab (@vsic2);
+  // pack global tables
+  sic_patab (nil);
 end;
 {$ENDIF}
 
@@ -1121,11 +1123,11 @@ begin
   SIC.AddConO (@vsic, 'Sic2Proc', @Sic2Proc);
   SIC.AddVarO (@vsic, 'Sic2_Proc', @vsic2_proc);
 
-  // pack global tables
-  SIC.PackTables (nil);
   // pack local tables
   SIC.PackTables (@vsic);
   SIC.PackTables (@vsic2);
+  // pack global tables
+  SIC.PackTables (nil);
 end;
 {$ELSE}
 begin
@@ -1736,6 +1738,8 @@ begin
   S := S + 'AVX' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX) + #13#10;
   S := S + 'AVX2' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX2) + #13#10;
   S := S + 'AVX-512' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX512) + #13#10;
+  S := S + 'AVX-512F' + #09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX512F) + #13#10;
+  S := S + 'AVX-512VL' + #09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX512VL) + #13#10;
   S := S + 'BMI1' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_BMI1) + #13#10;
   S := S + 'BMI2' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_BMI2) + #13#10;
   S := S + 'POPCNT' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_POPCNT) + #13#10;
@@ -2145,6 +2149,8 @@ end;
 procedure TmForm.PrintResult (D: Double);
 const
   C_HI = $FFFFFFFF00000000;
+  C_maxInt64 : Double =  9223372036854775807; //  (2^63)-1
+  C_minInt64 : Double = -9223372036854775808; // -(2^63)
 var
   S : string;
   V : Double;
@@ -2180,13 +2186,20 @@ begin
       SetEditText (ED_IntHexResult, '');
     end else begin
       if TryStrToFloat (S, V) then begin
-        I := Trunc (V);
-        if (I and C_HI) <> C_HI then begin
-          S := AnsiUpperCase (Format ('%X', [I]));
+        if (V > C_maxInt64) then begin
+          S := '>max';
+        end else
+        if (V < C_minInt64) then begin
+          S := '<min';
         end else begin
-          S := AnsiUpperCase (Format ('%X', [Integer(I)]));
+          I := Trunc (V);
+          if (I and C_HI) <> C_HI then begin
+            S := AnsiUpperCase (Format ('%X', [I]));
+          end else begin
+            S := AnsiUpperCase (Format ('%X', [Integer(I)]));
+          end;
+          if (Length (S) mod 2) = 1 then S := '0' + S;
         end;
-        if (Length (S) mod 2) = 1 then S := '0' + S;
       end else begin
         S := '';
       end;

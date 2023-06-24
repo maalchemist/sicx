@@ -705,6 +705,7 @@ $proc sic_compile, sic, s, sop
        .prefix          db ?                    ; prefix function flag
 ;      .postfix         db ?                    ; postfix function flag
        .cotype          dd ?                    ; constant type
+       .opcode          dd ?
        .rax             dq ?
        .rbx             dq ?
        .rcx             dq ?
@@ -3392,6 +3393,8 @@ macro c
                 'f', .alpha.constant.f,\
                 'i', .alpha.constant.i,\
                 's', .alpha.constant.s
+;               'p', .alpha.constant.p
+;               'o', .alpha.constant.o
     $ifdef _X64
    .alpha.constant.x.x64:
        .push    ecx, eax, rdx, 'x64', 0
@@ -3435,6 +3438,34 @@ macro c
        .push    'c¶', 's', [edx], 0, 0
         jmp    .char.test
     $end
+    ;
+    macro c
+    {
+   .alpha.constant.p:
+    $ifdef _X64
+   .alpha.constant.p.x64:
+       .push    'c¶', 'p', [rdx], 'x64', 0
+        jmp    .char.test
+    $else
+   .alpha.constant.p.x32:
+       .push    'c¶', 'p', [edx], 0, 0
+        jmp    .char.test
+    $end
+    }
+    ;
+    macro c
+    {
+   .alpha.constant.o:
+    $ifdef _X64
+   .alpha.constant.o.x64:
+       .push    'c¶', 'o', [rdx], 'x64', 0
+        jmp    .char.test
+    $else
+   .alpha.constant.o.x32:
+       .push    'c¶', 'o', [edx], 0, 0
+        jmp    .char.test
+    $end
+    }
 
    .alpha.variable:
         mov     [.titem], rdx                   ; assign table item offset
@@ -3443,6 +3474,8 @@ macro c
         je     .error.token                     ; error. invalid token order
 
         movzx   rax, [rdx + vitem64.datype]     ; rax = variable data type
+        case    al,\
+                'o', .alpha.variable.o
         lea     rdx, [rdx + vitem64.offset]
 ;       mov     rdx, [rdx + vitem64.offset]
     $ifdef _X64
@@ -3451,6 +3484,18 @@ macro c
         jmp    .char.test
     $else
    .alpha.variable.x32:
+       .push    'v¶', eax, edx, 0, 0
+        jmp    .char.test
+    $end
+    ;
+   .alpha.variable.o:
+        mov     rdx, [rdx + vitem64.offset]
+    $ifdef _X64
+   .alpha.variable.o.x64:
+       .push    'v¶', eax, rdx, 'x64', 0
+        jmp    .char.test
+    $else
+   .alpha.variable.o.x32:
        .push    'v¶', eax, edx, 0, 0
         jmp    .char.test
     $end
@@ -4026,6 +4071,8 @@ $sproc .stack.add
                 @@exit.if.false   , .sa.fun.exit.bool
         pcase   rcx,\
                 @@goto            , .sa.fun.jump,\
+                @@xgoto           , .sa.fun.jump,\
+                @@rxgoto          , .sa.fun.jump,\
                 @@goto.if.x32     , .sa.fun.jump,\
                 @@goto.if.n32     , .sa.fun.jump,\
                 @@goto.if.x64     , .sa.fun.jump,\
@@ -4046,6 +4093,8 @@ $sproc .stack.add
                 @@call            , .sa.fun.jump,\
                 @@calls           , .sa.fun.jump,\
                 @@rcalls          , .sa.fun.jump,\
+                @@xcall           , .sa.fun.jump,\
+                @@rxcall          , .sa.fun.jump,\
                 @@call.if.x32     , .sa.fun.jump,\
                 @@call.if.n32     , .sa.fun.jump,\
                 @@call.if.x64     , .sa.fun.jump,\
@@ -4644,7 +4693,7 @@ $endp
 ; verify stack tokens
 ; assign functions argument count
 ; get argument count for functions with a variable number of arguments
-; -> tokens : c v r f F A ( ) , ! ?
+; -> tokens : c v r f F A ( ) , ! ? 0
 ; <- tokens : c v r f F A ( ) ,
 ; <- eax    : 0 on error
 $sproc .stack.verify
@@ -4731,6 +4780,8 @@ $sproc .stack.verify
    .sv.par.in:
         add     rdi, sizeof.sitem64             ; rdi = current stack item offset
         mov     dl, byte [rdi + sitem64.ItemType]
+        cmp     dl, '!'
+        je     .sv.error
         cmp     dl, '?'
         je     .sv.error
         cmp     dl, 'A'
@@ -4753,6 +4804,8 @@ $sproc .stack.verify
    .sv.fun.in:
         add     rsi, sizeof.sitem64             ; rsi = current stack item offset
         mov     dl, byte [rsi + sitem64.ItemType]
+        cmp     dl, '!'
+        je     .sv.error
         cmp     dl, '?'
         je     .sv.error
         cmp     dl, '('
@@ -4767,6 +4820,8 @@ $sproc .stack.verify
         je     .sv.fun.next
         cmp     dl, ','
         je     .sv.fun.next
+        cmp     dl, 0
+        je     .sv.fun.next                     ; ignore empty item
    .sv.fun.arg:
         mov     dx, [rsi + sitem64.DataType]
         cmp     dx, 'f2'
@@ -4795,9 +4850,12 @@ $sproc .stack.verify
         test    rax, rax
         jz     .sv.error                        ; void function is invalid argument
         cmp     rax, 'i'                        ; ? integer function
-        jne     @F
-        mov     rax, 1                          ; integer function
-    @@:
+        je     .sv.fun.fun.rt.1
+        cmp     rax, -1                         ; ? :int | :int64
+        jne    .sv.fun.fun.next
+   .sv.fun.fun.rt.1:
+        mov     rax, 1                          ; set return type = 1
+   .sv.fun.fun.next:
         add     rbx, rax
         cmp     [.pcount], 0
         jnz    .sv.fun.next
@@ -5145,8 +5203,8 @@ $sproc .rpn.add
                 @@rinf     , .rpn.test.dup.x,\
                 @@rpinf    , .rpn.test.dup.x,\
                 @@rninf    , .rpn.test.dup.x
-;               @@isign    , .rpn.test.dup.x,\
-;               @@risign   , .rpn.test.dup.x,\
+;               @@isign    , .rpn.test.dup.x
+;               @@risign   , .rpn.test.dup.x
         jmp    .rpn.test.dup.out
    .rpn.test.dup.x:                             ; f(x)
         movzx   rdx, [rdi + sitem64.ItemType]   ; rdx = previous rpn item type
@@ -5160,17 +5218,17 @@ $sproc .rpn.add
         cmp     rbx, rdx
         jne    .rpn.test.dup.out
    .rpn.test.dup.x.e:
-        case    rbx,\
+        pcase   rbx,\
                 @@rsign  , .rpn.test.dup.rsign,\
                 @@rnzero , .rpn.test.dup.rnzero
-;               @@risign , .rpn.test.dup.risign,\
+;               @@risign , .rpn.test.dup.risign
         jmp    .rpn.bypass.item                 ; f(f(x)) EQU f(x)
         ;
    .rpn.test.dup.rsign:                         ; rsign(rsign(x)) EQU sign(x)
         push    [??.sign]                       ; change prev rpn item function
         pop     [rdi + sitem64.Param]
         jmp    .rpn.bypass.item
-;  .rpn.test.dup.risign:                        ; rsign(rsign(x)) EQU sign(x)
+;  .rpn.test.dup.risign:                        ; risign(risign(x)) EQU isign(x)
 ;       push    [??.isign]                      ; change prev rpn item function
 ;       pop     [rdi + sitem64.Param]
 ;       jmp    .rpn.bypass.item
@@ -5621,6 +5679,8 @@ $sproc .rpn.add
                 @@exit.if.false , .rpn.test.return
         pcase   rbx,\
                 @@goto          , .rpn.test.jump,\
+                @@xgoto         , .rpn.test.jump.vx,\
+                @@rxgoto        , .rpn.test.jump.vx,\
                 @@goto.if.x32   , .rpn.test.jump,\
                 @@goto.if.n32   , .rpn.test.jump,\
                 @@goto.if.x64   , .rpn.test.jump,\
@@ -5641,6 +5701,8 @@ $sproc .rpn.add
                 @@call          , .rpn.test.jump,\
                 @@calls         , .rpn.test.jump.v,\
                 @@rcalls        , .rpn.test.jump.v,\
+                @@xcall         , .rpn.test.jump.vx,\
+                @@rxcall        , .rpn.test.jump.vx,\
                 @@call.if.x32   , .rpn.test.jump,\
                 @@call.if.n32   , .rpn.test.jump,\
                 @@call.if.x64   , .rpn.test.jump,\
@@ -5905,9 +5967,18 @@ $sproc .rpn.add
         je     .rpn.add.item
         retn
 
+   .rpn.test.jump.vx:                           ; test variable number of label parameters
+;       xor     rcx, rcx
+;       mov     cx, [rsi + sitem64.ArgCount]
+        movzx   rcx, word [rsi + sitem64.ArgCount]
+        dec     rcx
+        lea     rdx, [rdi - sizeof.sitem64]     ; rdx = parameter rpn item offset
+        jmp    .rpn.test.jump.v.x
+
    .rpn.test.jump.v:                            ; test variable number of label parameters
-        xor     rcx, rcx
-        mov     cx, [rsi + sitem64.ArgCount]
+;       xor     rcx, rcx
+;       mov     cx, [rsi + sitem64.ArgCount]
+        movzx   rcx, word [rsi + sitem64.ArgCount]
         lea     rdx, [rdi - sizeof.sitem64]     ; rdx = parameter rpn item offset
    .rpn.test.jump.v.x:
         add     rdx, sizeof.sitem64             ; rdi = current parameter rpn item offset
@@ -5918,14 +5989,26 @@ $sproc .rpn.add
         jmp    .rpn.test.jump.v.retn
    .rpn.jump.v.v:
         cmp     byte [rdx + sitem64.DataType], '?'
-        jne    .rpn.jump.v.v.o
+        jne    .rpn.jump.v.v?
         mov     byte [rdx + sitem64.DataType], 'o'  ; change data type of stack item
         dec     rcx
         jnz    .rpn.test.jump.v.x
         jmp    .rpn.test.jump.v.add
-   .rpn.jump.v.v.o:
+   .rpn.jump.v.v?:
         cmp     byte [rdx + sitem64.DataType], 'o'
+        je     .rpn.jump.v.v.o
+        cmp     byte [rdx + sitem64.DataType], 'p'
         jne    .rpn.test.jump.v.retn
+   .rpn.jump.v.v.p:
+        mov     rax, [rdx + sitem64.Offset]
+        test    rax, rax
+        jz     .rpn.test.jump.v.retn
+        mov     rax, [rax]
+        test    rax, rax
+        jnz    .rpn.test.jump.v.retn                ; accept only null pointers
+        mov     [rdx + sitem64.Offset], rax
+        mov     byte [rdx + sitem64.DataType], 'o'  ; change data type of stack item
+   .rpn.jump.v.v.o:
         dec     rcx
         jnz    .rpn.test.jump.v.x
         jmp    .rpn.test.jump.v.add
@@ -5985,6 +6068,11 @@ $sproc .rpn.add
 
    .rpn.error.argument:
         mov     [.ecode], SIC_ERROR_ARGUMENT
+        mov     rbx, rsp
+        retn
+
+   .rpn.error.no.impl:
+        mov     [.ecode], SIC_ERROR_NO_IMPL
         mov     rbx, rsp
         retn
 $endp
@@ -6229,6 +6317,8 @@ $sproc .code.build
                 'f', .cb.con.dou,\              ; double float
                 'i', .cb.con.int,\              ; integer
                 's', .cb.con.str                ; string
+;               'p', .cb.con.ptr                ; pointer
+;               'o', .cb.con.off                ; offset
         jmp    .cb.error
    .cb.con.dou:
         mov     byte [.LSO], 'f'

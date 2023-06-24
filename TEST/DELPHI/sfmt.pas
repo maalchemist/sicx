@@ -18,11 +18,21 @@ unit sfmt;
 // http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/SFMT/index.html
 // https://github.com/MersenneTwister-Lab/SFMT
 // https://github.com/MersenneTwister-Lab/SFMT/archive/refs/tags/1.5.4.zip
+//
+// Copyright (C) 2006, 2007 Mutsuo Saito, Makoto Matsumoto and Hiroshima University.
+// Copyright (c) 2012 Mutsuo Saito, Makoto Matsumoto, Hiroshima University and The University of Tokyo.
+// All rights reserved.
 
 interface
 
+{$DEFINE __CPUID}
+{$IFDEF VER120} {$UNDEF __CPUID} {$ENDIF} // Delphi 4.0
+{$IFDEF VER130} {$UNDEF __CPUID} {$ENDIF} // Delphi 5.0
+
 uses
   sfmtt;
+
+function sfmt_AV_Flags: Integer;
 
 function sfmt_get_idstring: string;
 
@@ -30,6 +40,127 @@ procedure sfmt_init_gen_rand (ASeed: UInt32);
 procedure sfmt_init_by_array (ASeeds: P_SFMT_ARRAY32; ACount: UInt32);
 
 implementation
+
+const
+  // CPU flags
+  SFMT_CPU_FLAG_SSE2     = $00000001;
+  SFMT_CPU_FLAG_AVX      = $00000002;
+  SFMT_CPU_FLAG_AVX2     = $00000004;
+  SFMT_CPU_FLAG_AVX512F  = $00000008; // AVX-512 Foundation (F)
+  SFMT_CPU_FLAG_AVX512VL = $00000010; // AVX-512 Vector Length Extensions (VL)
+
+{
+}
+function sfmt_CPUFlags: Integer;
+{$IFDEF CPUX64}
+asm
+        push    rbx                             // !!! cpuid changes rbx register
+        xor     r10, r10
+
+        mov     rax, 1                          // Basic CPUID Information
+        cpuid                                   // EAX = 01H
+    @sse2:
+        test    edx, $04000000                  // EDX:26 - SSE2 bit
+        jz      @sse2_out
+        or      r10, SFMT_CPU_FLAG_SSE2
+    @sse2_out:
+    @avx:
+        test    ecx, $10000000                  // ECX:28 - AVX bit
+        jz      @avx_out
+        or      r10, SFMT_CPU_FLAG_AVX
+    @avx_out:
+
+        mov     rax, $07                        // Structured Extended Feature Flags Enumeration Leaf
+        xor     rcx, rcx                        // EAX = 07H, ECX = 0
+        cpuid
+    @avx2:
+        test    ebx, $00000020                  // EBX:05 - AVX2 bit
+        jz      @avx2_out
+        or      r10, SFMT_CPU_FLAG_AVX2
+    @avx2_out:
+    @avx512f:
+        test    ebx, $00010000                  // EBX:16 - AVX512F bit
+        jz      @avx512f_out
+        or      r10, SFMT_CPU_FLAG_AVX512F
+    @avx512f_out:
+    @avx512vl:
+        test    ebx, $80000000                  // EBX:31 - AVX512VL bit
+        jz      @avx512vl_out
+        or      r10, SFMT_CPU_FLAG_AVX512VL
+    @avx512vl_out:
+
+        mov     rax, r10                        // assign result
+        pop     rbx
+end;
+{$ELSE}
+asm
+        push    ebx                             // !!! cpuid changes ebx register
+
+        mov     eax, 1                          // Basic CPUID Information
+        {$IFDEF __CPUID}                        // EAX = 01H
+        CPUID
+        {$ELSE}
+        DB $0F,$A2
+        {$ENDIF}
+        xor     eax, eax
+    @sse2:
+        test    edx, $04000000                  // EDX:26 - SSE2 bit
+        jz      @sse2_out
+        or      eax, SFMT_CPU_FLAG_SSE2
+    @sse2_out:
+    @avx:
+        test    ecx, $10000000                  // ECX:28 - AVX bit
+        jz      @avx_out
+        or      eax, SFMT_CPU_FLAG_AVX
+    @avx_out:
+
+        push    eax                             // Structured Extended Feature Flags Enumeration Leaf
+        mov     eax, $07                        // EAX = 07H, ECX = 0
+        xor     ecx, ecx
+        {$IFDEF __CPUID}
+        CPUID
+        {$ELSE}
+        DB $0F,$A2
+        {$ENDIF}
+        pop     eax
+    @avx2:
+        test    ebx, $00000020                  // EBX:05 - AVX2 bit
+        jz      @avx2_out
+        or      eax, SFMT_CPU_FLAG_AVX2
+    @avx2_out:
+    @avx512f:
+        test    ebx, $00010000                  // EBX:16 - AVX512F bit
+        jz      @avx512f_out
+        or      eax, SFMT_CPU_FLAG_AVX512F
+    @avx512f_out:
+    @avx512vl:
+        test    ebx, $80000000                  // EBX:31 - AVX512VL bit
+        jz      @avx512vl_out
+        or      eax, SFMT_CPU_FLAG_AVX512VL
+    @avx512vl_out:
+
+        pop     ebx
+end;
+{$ENDIF}
+
+{
+  Get sfmt availability flags
+}
+function sfmt_AV_Flags: Integer;
+var
+  F : Integer;
+begin
+  Result := 0;
+
+  F := sfmt_CPUFlags;
+  if ((F and SFMT_CPU_FLAG_SSE2) <> 0) then Result := Result or SFMT_AV_FLAG_SSE2;
+  if ((F and SFMT_CPU_FLAG_AVX) <> 0) and ((F and SFMT_CPU_FLAG_AVX2) <> 0) then begin
+    Result := Result or SFMT_AV_FLAG_AVX2;
+    if ((F and SFMT_CPU_FLAG_AVX512F) <> 0) and ((F and SFMT_CPU_FLAG_AVX512VL) <> 0) then begin
+      Result := Result or SFMT_AV_FLAG_AVX512;
+    end;
+  end;
+end;
 
 {
 }

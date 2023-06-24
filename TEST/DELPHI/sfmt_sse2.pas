@@ -18,6 +18,10 @@ unit sfmt_sse2;
 // http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/SFMT/index.html
 // https://github.com/MersenneTwister-Lab/SFMT
 // https://github.com/MersenneTwister-Lab/SFMT/archive/refs/tags/1.5.4.zip
+//
+// Copyright (C) 2006, 2007 Mutsuo Saito, Makoto Matsumoto and Hiroshima University.
+// Copyright (c) 2012 Mutsuo Saito, Makoto Matsumoto, Hiroshima University and The University of Tokyo.
+// All rights reserved.
 
 {$I version.inc}
 {$DEFINE __FOLDING}
@@ -284,6 +288,17 @@ end;
 {$ENDIF}
 
 {
+  dummy sfmt_gen_rand_all function
+}
+procedure sfmt_dummy_gen_rand_all (A_sfmt_state, A_sfmt_mask: Pointer); register;
+begin
+// do nothing
+end;
+
+var
+  sfmt_gen_rand_all : T_sfmt_gen_rand_all = sfmt_dummy_gen_rand_all; // dummy function by default
+
+{
   This function generates and returns 32-bit pseudorandom number.
   init_gen_rand or init_by_array must be called before this function.
   @param sfmt SFMT internal state
@@ -297,7 +312,7 @@ begin
   P := PUInt32(sfmt_state);
 
   if sfmt_index >= SFMT_N32 then begin
-    sfmt_sse2_gen_rand_all (sfmt_state, sfmt_mask);
+    sfmt_gen_rand_all (sfmt_state, sfmt_mask);
     sfmt_index := 0;
   end;
 
@@ -322,7 +337,7 @@ begin
   P := PUInt64(sfmt_state);
 
   if sfmt_index >= SFMT_N32 - 1 then begin
-    sfmt_sse2_gen_rand_all (sfmt_state, sfmt_mask);
+    sfmt_gen_rand_all (sfmt_state, sfmt_mask);
     sfmt_index := 0;
   end;
 
@@ -567,6 +582,21 @@ begin
     sfmt_done;
   end;
 end;
+
+{
+}
+procedure assign_sfmt_gen_rand_all;
+var
+  F : Integer;
+begin
+  F := sfmt_AV_Flags;
+
+  sfmt_gen_rand_all := sfmt_dummy_gen_rand_all; // dummy function by default
+  if (F and SFMT_AV_FLAG_SSE2) <> 0 then sfmt_gen_rand_all := sfmt_sse2_gen_rand_all;
+end;
+
+initialization
+  assign_sfmt_gen_rand_all;
 
 {$ENDIF}
 end.

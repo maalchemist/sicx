@@ -79,9 +79,9 @@ Comments=
 [HistoryLists\hlConditionals]
 Count=7
 Item0=RELEASE;SIC_SSE
-Item1=RELEASE
-Item2=RELEASE;SIC_STATIC;SIC_SSE
-Item3=RELEASE;SIC_STATIC
+Item1=RELEASE;SIC_STATIC
+Item2=RELEASE
+Item3=RELEASE;SIC_STATIC;SIC_SSE
 Item4=RELEASE;SIC_OCX
 Item5=SIC_STATIC
 Item6=_SIC_STATIC
@@ -96,8 +96,8 @@ Item1=.\STUB
 [HistoryLists\hlUnitOutputDirectory]
 Count=5
 Item0=.\OBJ\D4_Win32_Release_SSE
-Item1=.\OBJ\D4_Win32_Release
-Item2=.\OBJ\D4_Win32_Static
+Item1=.\OBJ\D4_Win32_Static
+Item2=.\OBJ\D4_Win32_Release
 Item3=.\OBJ
 Item4=.\OBJ\D4
 [HistoryLists\hlOutputDirectorry]

@@ -28,14 +28,16 @@ if not exist "%LIB%" GOTO RET
 
 set F=SICx64.LIB
 copy %F% ..\TEST\VS\VSCommon\%F%
-rem copy %F% ..\TEST\VS\VS2015\SICx64\%F%
-rem copy %F% ..\TEST\VS\VS2019\SICx64\%F%
+copy %F% ..\TEST\VS\VS2015\SICx64\%F%
+copy %F% ..\TEST\VS\VS2019\SICx64\%F%
+copy %F% ..\TEST\VS\VS2022\SICx64\%F%
 copy %F% ..\@OUT\%F%
 
 set F=SICs64.LIB
 copy %F% ..\TEST\VS\VSCommon\%F%
-rem copy %F% ..\TEST\VS\VS2015\SICs64\%F%
-rem copy %F% ..\TEST\VS\VS2019\SICs64\%F%
+copy %F% ..\TEST\VS\VS2015\SICs64\%F%
+copy %F% ..\TEST\VS\VS2019\SICs64\%F%
+copy %F% ..\TEST\VS\VS2022\SICs64\%F%
 copy %F% ..\@OUT\%F%
 
 :RET

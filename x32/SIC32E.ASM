@@ -34,12 +34,12 @@ SIC_E:
 $proc sic_version
 
     $ifdef _SSEX
-        ; 6.2.1.1
-        mov eax, 0x01010206
+        ; 6.2.2.1
+        mov eax, 0x01020206
         ret
     $else
-        ; 6.2.1.0
-        mov eax, 0x00010206
+        ; 6.2.2.0
+        mov eax, 0x00020206
         ret
     $end
 $endp
@@ -57,12 +57,11 @@ $proc sic_cpu_support
 
     $ifdef _SSEX
    .enter:
-        push    ebx
+        push    ebx                             ; !!! cpuid changes ebx register
 
    .main:
-        mov     eax, 1
-        cpuid                                   ; !!! cpuid changes ebx register
-
+        mov     eax, 1                          ; Basic CPUID Information
+        cpuid                                   ; EAX = 01H
         xor     eax, eax
 
    .SSE2:
@@ -150,7 +149,7 @@ $proc sic_setup, config
 ;       mov     [], r8
 ;       mov     [], r9
 
-   .enter:
+    .enter:                                     ; !!! cpuid changes rbx register
         pushsa  ebx, esi                        ; push & 16-byte stack align for x64
 
         mov     esi, [config]
@@ -169,8 +168,6 @@ $proc sic_setup, config
     .cflags:
         mov     eax, [esi + T_sic_config.cflags]
         mov     [@_CFG.cflags], eax             ; assign config flags
-
-; !!! cpuid changes rbx register
 
     .cpuid.enter:
         ;
@@ -258,6 +255,16 @@ $proc sic_setup, config
         jz     .rdrand.out
         or      eax, SIC_CPU_FLAG_RDSEED
     .rdseed.out:
+    .avx512f?:
+        test    ebx, 0x00010000                 ; EBX:16 - AVX512F bit
+        jz     .avx512f.out
+        or      eax, SIC_CPU_FLAG_AVX512F
+    .avx512f.out:
+    .avx512vl?:
+        test    ebx, 0x80000000                 ; EBX:31 - AVX512VL bit
+        jz     .avx512vl.out
+        or      eax, SIC_CPU_FLAG_AVX512VL
+    .avx512vl.out:
         ;
         push    eax                             ; Processor Extended State Enumeration Main Leaf
         mov     eax, 0x0D                       ; EAX = 0DH, ECX = 0
@@ -296,10 +303,11 @@ $proc sic_setup, config
     .memory.setup:
         mov     [@_CFG.memory], edx
         mov     [esi + T_sic_config.memory], edx
-        mov     eax, edx
-        shl     eax, 1
-        mov     [@_CFG.fdata_size], eax         ; fdata_size = 2 * mem_block_size
-        mov     [esi + T_sic_config.fdata_size], edx
+;       mov     eax, edx
+;       shl     eax, 1                          ; fdata_size = 2 * mem_block_size
+        lea     eax, [2*edx]                    ; fdata_size = 2 * mem_block_size
+        mov     [@_CFG.fdata_size], eax
+        mov     [esi + T_sic_config.fdata_size], eax
         mov     [@_CFG.cdata_size], edx         ; cdata_size = mem_block_size
         mov     [esi + T_sic_config.cdata_size], edx
         mov     [@_CFG.vdata_size], edx         ; vdata_size = mem_block_size
@@ -307,21 +315,23 @@ $proc sic_setup, config
         mov     [@_CFG.rdata_size], edx         ; rdata_size = mem_block_size
         mov     [esi + T_sic_config.rdata_size], edx
 
-        push    edx
-        mov     eax, edx
-        mov     ecx, 5
-        mul     ecx                             ; eax = 5 * mem_block_size
+;       push    edx
+;       mov     eax, edx
+;       mov     ecx, 5
+;       mul     ecx                             ; eax = 5 * mem_block_size
+        lea     eax, [4*edx + edx]              ; eax = 5 * mem_block_size
         mov     [@_CFG.stack_size], eax         ; stack_size = 5 * mem_block_size
         mov     [esi + T_sic_config.stack_size], eax
-        pop     edx
+;       pop     edx
 
-        push    edx
-        mov     eax, edx
-        mov     ecx, 3
-        mul     ecx                             ; eax = 3 * mem_block_size
+;       push    edx
+;       mov     eax, edx
+;       mov     ecx, 3
+;       mul     ecx                             ; eax = 3 * mem_block_size
+        lea     eax, [4*edx - edx]              ; eax = 3 * mem_block_size
         mov     [@_CFG.rpn_size], eax           ; rpn_size = 3 * mem_block_size
         mov     [esi + T_sic_config.rpn_size], eax
-        pop     edx
+;       pop     edx
 
         shl     edx, 2                          ; edx = 4 * mem_block_size
         mov     [@_CFG.code_size], edx          ; code_size = 4 * mem_block_size

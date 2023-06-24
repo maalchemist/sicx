@@ -21,6 +21,6 @@ include '..\..\..\x32\SICmt32V.ASM'
 include '..\..\..\xCommon\SICC.ASM'
 include '..\..\..\xCommon\SICF.ASM'
 include '..\..\..\xCommon\SICIDA.ASM'
-include '..\..\..\xCommon\SICFuCO.ASM'
+include '..\..\..\xCommon\SICFuCOs.ASM' ; '..\..\..\xCommon\SICFuCO.ASM'
 
 ; ------------------------------------------------------------------------------

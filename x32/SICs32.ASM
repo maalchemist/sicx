@@ -19,7 +19,7 @@ SIC:
 ; ------------------------------------------------------------------------------
 
 RS_Description EQU 'Simple compiler (32-BIT-SSE)'
-RS_Version     EQU '6.2.1'
+RS_Version     EQU '6.2.2'
 RS_Product     EQU 'SICs32'
 RS_Filename    EQU 'SICs32.DLL'
 RS_ProgramID   EQU 'ru.maalchemist.SICs32'

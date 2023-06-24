@@ -28,6 +28,28 @@ $endp
 
 ; ------------------------------------------------------------------------------
 
+; xgoto (label_0, label_1, ..., label_n, index)
+; jump by index
+
+$usprocf @@xgoto
+
+        nop
+;       retn
+$endp
+
+; ------------------------------------------------------------------------------
+
+; rxgoto (label_n, ..., label_1, label_0, index)
+; jump by reverse index
+
+$usprocf @@rxgoto
+
+        nop
+;       retn
+$endp
+
+; ------------------------------------------------------------------------------
+
 ; goto.if.x32 (label)
 ; conditional jump
 ;

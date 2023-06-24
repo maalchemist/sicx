@@ -44,7 +44,7 @@ macro GFT fat, [fun, fuo, fua, fur, sys]
   forward
     local @ndelta, @acount, @cosize, @sys
 
-   $if ~ ((sys eq 's-') | (sys eq '-'))
+   $if ~ ((sys eq '-s') | (sys eq 's-') | (sys eq '-'))
 
    $if sys eq 's'
     @sys=1
@@ -119,7 +119,7 @@ macro SFT fat, [fun, fuo, fui, fua, fur, sys]
   forward
     local @ndelta, @acount, @cosize, @sys
 
-   $if ~ ((sys eq 's-') | (sys eq '-'))
+   $if ~ ((sys eq '-s') | (sys eq 's-') | (sys eq '-'))
 
    $if sys eq 's'
     @sys=1

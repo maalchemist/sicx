@@ -17,6 +17,8 @@ unit sfmtu;
 
 interface
 
+function SysIntToStr_(const AValue: Integer): string;
+
 function GetN2UInt32 (AValue: UInt32): UInt32;
 function GetN2UInt64 (AValue: UInt64): UInt64;
 function GetN4UInt32 (AValue: UInt32): UInt32;
@@ -37,6 +39,16 @@ function GetA32Memory (var ASize: UInt32; var APointer: Pointer): Pointer;
 function GetA64Memory (var ASize: UInt32; var APointer: Pointer): Pointer;
 
 implementation
+
+{
+}
+function SysIntToStr_(const AValue: Integer): string;
+var
+  S : ShortString;
+begin
+  System.STR (AValue, S);
+  Result := string(S);
+end;
 
 {
   Result = N * 2

@@ -35,3 +35,15 @@ DELPHI-compiled 32-bit binaries
 DELPHI-compiled 32-bit binaries (SSE)
 .\TEST\DELPHI\DLL_Win32_Release\DX***\SICs32.DLL
 .\ActiveX\DX***\BIN_Win32_Release\SICs32.OCX
+
+VS-compiled 64-bit binaries
+.\TEST\VS\VS****\SICx64\x64\Release\SICx64.DLL
+
+VS-compiled 64-bit binaries (SSE)
+.\TEST\VS\VS****\SICs64\x64\Release\SICs64.DLL
+
+VS-compiled 32-bit binaries
+.\TEST\VS\VS****\SICx32\Release\SICx32.DLL
+
+VS-compiled 32-bit binaries (SSE)
+.\TEST\VS\VS****\SICs32\Release\SICs32.DLL

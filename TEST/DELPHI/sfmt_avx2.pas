@@ -18,15 +18,16 @@ unit sfmt_avx2;
 // http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/SFMT/index.html
 // https://github.com/MersenneTwister-Lab/SFMT
 // https://github.com/MersenneTwister-Lab/SFMT/archive/refs/tags/1.5.4.zip
+//
+// Copyright (C) 2006, 2007 Mutsuo Saito, Makoto Matsumoto and Hiroshima University.
+// Copyright (c) 2012 Mutsuo Saito, Makoto Matsumoto, Hiroshima University and The University of Tokyo.
+// All rights reserved.
 
 {$I version.inc}
 {$DEFINE __FOLDING}
 
 {$UNDEF SKIPUNIT}
 {$IFDEF VER_LDX11} {$DEFINE SKIPUNIT} {$ENDIF} // Delphi 11 required for AVX2/AVX512 instructions
-
-{$UNDEF __AVX512}
-{.$DEFINE __AVX512}
 
 {$IFDEF SKIPUNIT}
 interface
@@ -181,18 +182,6 @@ asm
         vmovdqa ymm1, yword [rcx + OFFA]        // LD2(&pstate[i + SFMT_POS1])
 
     {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
-    {$IFDEF __AVX512}
-        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
-        VBROADCASTI128  ymm3, DQWORD [rdx]      // ymm3 = mask
-        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
-        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
-        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
-        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
-        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
-        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
-        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
-        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
-    {$ELSE}
         // CPUID Flags: AVX, AVX2
         VBROADCASTI128  ymm3, DQWORD [rdx]      // ymm3 = mask
         VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
@@ -205,7 +194,6 @@ asm
         VPERM2F128      ymm1, ymm2, ymm0, $21   // ymm1 = w
         VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
         VPXOR           ymm2, ymm0, ymm1        // ymm2 = result
-    {$ENDIF}
     {$ENDREGION}
 
         vmovdqa yword [rcx], ymm2               // ST2(&pstate[i], r)
@@ -222,18 +210,6 @@ asm
         vmovdqa ymm1, yword [rcx + OFFB]        // LD2(&pstate[i + SFMT_POS1 - SFMT_N])
 
     {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
-    {$IFDEF __AVX512}
-        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
-        VBROADCASTI128  ymm3, DQWORD [rdx]      // ymm3 = mask
-        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
-        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
-        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
-        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
-        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
-        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
-        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
-        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
-    {$ELSE}
         // CPUID Flags: AVX, AVX2
         VBROADCASTI128  ymm3, DQWORD [rdx]      // ymm3 = mask
         VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
@@ -246,7 +222,6 @@ asm
         VPERM2F128      ymm1, ymm2, ymm0, $21   // ymm1 = w
         VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
         VPXOR           ymm2, ymm0, ymm1        // ymm2 = result
-    {$ENDIF}
     {$ENDREGION}
 
         vmovdqa yword [rcx], ymm2               // ST2(&pstate[i], r)
@@ -279,18 +254,6 @@ asm
         vmovdqa ymm1, yword [eax + OFFA]        // LD2(&pstate[i + SFMT_POS1])
 
     {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
-    {$IFDEF __AVX512}
-        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
-        VBROADCASTI128  ymm3, DQWORD [edx]      // ymm3 = mask
-        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
-        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
-        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
-        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
-        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
-        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
-        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
-        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
-    {$ELSE}
         // CPUID Flags: AVX, AVX2
         VBROADCASTI128  ymm3, DQWORD [edx]      // ymm3 = mask
         VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
@@ -303,7 +266,6 @@ asm
         VPERM2F128      ymm1, ymm2, ymm0, $21   // ymm1 = w
         VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
         VPXOR           ymm2, ymm0, ymm1        // ymm2 = result
-    {$ENDIF}
     {$ENDREGION}
 
         vmovdqa yword [eax], ymm2               // ST2(&pstate[i], r)
@@ -320,18 +282,6 @@ asm
         vmovdqa ymm1, yword [eax + OFFB]        // LD2(&pstate[i + SFMT_POS1 - SFMT_N])
 
     {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
-    {$IFDEF __AVX512}
-        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
-        VBROADCASTI128  ymm3, DQWORD [edx]      // ymm3 = mask
-        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
-        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
-        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
-        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
-        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
-        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
-        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
-        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
-    {$ELSE}
         // CPUID Flags: AVX, AVX2
         VBROADCASTI128  ymm3, DQWORD [edx]      // ymm3 = mask
         VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
@@ -344,7 +294,6 @@ asm
         VPERM2F128      ymm1, ymm2, ymm0, $21   // ymm1 = w
         VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
         VPXOR           ymm2, ymm0, ymm1        // ymm2 = result
-    {$ENDIF}
     {$ENDREGION}
 
         vmovdqa yword [eax], ymm2               // ST2(&pstate[i], r)
@@ -356,6 +305,162 @@ asm
 end;
 {$ENDIF}
 {$ENDIF}
+
+{
+  This function fills the internal state array with pseudorandom integers.
+  @param sfmt SFMT internal state
+  A_sfmt_state - 32-byte aligned memory
+  A_sfmt_mask  - 32-byte aligned memory
+}
+{$IFDEF CPUX64}
+{$IFDEF __FOLDING}
+procedure sfmt_avx512_gen_rand_all (A_sfmt_state, A_sfmt_mask: Pointer); register;
+// rcx | sfmt_state |   |
+// rdx | sfmt_mask  |   |
+// r8  |            | i |
+// r9  |            |   |
+//     |            | r | ymm2
+const
+  OFF2 = 16*(SFMT_N-2);
+  OFFA = 16*(SFMT_POS1);
+  OFFB = 16*(SFMT_POS1-SFMT_N);
+asm
+        xor     r8, r8                          // i = 0
+        vmovdqa ymm2, yword [rcx + OFF2]        // r = LD2(&pstate[SFMT_N - 2])
+
+    @LOOP_A: // for (i = 0; i < SFMT_N - SFMT_POS1; i+=2)
+        // r = mm256_recursion(LD2(&pstate[i]), LD2(&pstate[i + SFMT_POS1]), r)
+
+        vmovdqa ymm0, yword [rcx]               // LD2(&pstate[i])
+        vmovdqa ymm1, yword [rcx + OFFA]        // LD2(&pstate[i + SFMT_POS1])
+
+    {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
+        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
+        VBROADCASTI128  ymm3, DQWORD [rdx]      // ymm3 = mask
+        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
+        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
+        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
+        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
+        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
+        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
+        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
+        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
+    {$ENDREGION}
+
+        vmovdqa yword [rcx], ymm2               // ST2(&pstate[i], r)
+
+        add     rcx, 32
+        add     r8, 2
+        cmp     r8, SFMT_N - SFMT_POS1
+        jb      @LOOP_A
+
+    @LOOP_B: // for (; i < SFMT_N; i+=2)
+        // r = mm256_recursion(LD2(&pstate[i]), LD2(&pstate[i + SFMT_POS1 - SFMT_N]), r)
+
+        vmovdqa ymm0, yword [rcx]               // LD2(&pstate[i])
+        vmovdqa ymm1, yword [rcx + OFFB]        // LD2(&pstate[i + SFMT_POS1 - SFMT_N])
+
+    {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
+        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
+        VBROADCASTI128  ymm3, DQWORD [rdx]      // ymm3 = mask
+        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
+        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
+        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
+        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
+        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
+        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
+        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
+        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
+    {$ENDREGION}
+
+        vmovdqa yword [rcx], ymm2               // ST2(&pstate[i], r)
+
+        add     rcx, 32
+        add     r8, 2
+        cmp     r8, SFMT_N
+        jb      @LOOP_B
+end;
+{$ENDIF}
+{$ELSE}
+{$IFDEF __FOLDING}
+procedure sfmt_avx512_gen_rand_all (A_sfmt_state, A_sfmt_mask: Pointer); register;
+// eax | sfmt_state |   |
+// edx | sfmt_mask  |   |
+// ecx |            | i |
+//     |            | r | ymm2
+const
+  OFF2 = 16*(SFMT_N-2);
+  OFFA = 16*(SFMT_POS1);
+  OFFB = 16*(SFMT_POS1-SFMT_N);
+asm
+        xor     ecx, ecx                        // i = 0
+        vmovdqa ymm2, yword [eax + OFF2]        // r = LD2(&pstate[SFMT_N - 2])
+
+    @LOOP_A: // for (i = 0; i < SFMT_N - SFMT_POS1; i+=2)
+        // r = mm256_recursion(LD2(&pstate[i]), LD2(&pstate[i + SFMT_POS1]), r)
+
+        vmovdqa ymm0, yword [eax]               // LD2(&pstate[i])
+        vmovdqa ymm1, yword [eax + OFFA]        // LD2(&pstate[i + SFMT_POS1])
+
+    {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
+        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
+        VBROADCASTI128  ymm3, DQWORD [edx]      // ymm3 = mask
+        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
+        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
+        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
+        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
+        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
+        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
+        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
+        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
+    {$ENDREGION}
+
+        vmovdqa yword [eax], ymm2               // ST2(&pstate[i], r)
+
+        add     eax, 32
+        add     ecx, 2
+        cmp     ecx, SFMT_N - SFMT_POS1
+        jb      @LOOP_A
+
+    @LOOP_B: // for (; i < SFMT_N; i+=2)
+        // r = mm256_recursion(LD2(&pstate[i]), LD2(&pstate[i + SFMT_POS1 - SFMT_N]), r)
+
+        vmovdqa ymm0, yword [eax]               // LD2(&pstate[i])
+        vmovdqa ymm1, yword [eax + OFFB]        // LD2(&pstate[i + SFMT_POS1 - SFMT_N])
+
+    {$REGION 'mm256_recursion (a=ymm0, b=ymm1, c=ymm2)'}
+        // CPUID Flags: AVX, AVX2, AVX512F, AVX512VL
+        VBROADCASTI128  ymm3, DQWORD [edx]      // ymm3 = mask
+        VPSLLDQ         ymm4, ymm0, SFMT_SL2    // ymm4 = x
+        VPSRLD          ymm1, ymm1, SFMT_SR1    // ymm1 = y
+        VPTERNLOGD      ymm4, ymm1, ymm3, $78   // ymm4 = x | A ^ (B & C)
+        VPSRLDQ         ymm3, ymm2, SFMT_SR2    // ymm3 = z
+        VPTERNLOGD      ymm4, ymm0, ymm3, $96   // ymm4 = x | XOR3(A,B,C)
+        VPERM2F128      ymm1, ymm2, ymm4, $21   // ymm1 = w
+        VPSLLD          ymm1, ymm1, SFMT_SL1    // ymm1 = w
+        VPXOR           ymm2, ymm4, ymm1        // ymm2 = result
+    {$ENDREGION}
+
+        vmovdqa yword [eax], ymm2               // ST2(&pstate[i], r)
+
+        add     eax, 32
+        add     ecx, 2
+        cmp     ecx, SFMT_N
+        jb      @LOOP_B
+end;
+{$ENDIF}
+{$ENDIF}
+
+{
+  dummy sfmt_gen_rand_all function
+}
+procedure sfmt_dummy_gen_rand_all (A_sfmt_state, A_sfmt_mask: Pointer); register;
+begin
+// do nothing
+end;
+
+var
+  sfmt_gen_rand_all : T_sfmt_gen_rand_all = sfmt_dummy_gen_rand_all; // dummy function by default
 
 {
   This function generates and returns 32-bit pseudorandom number.
@@ -371,7 +476,7 @@ begin
   P := PUInt32(sfmt_state);
 
   if sfmt_index >= SFMT_N32 then begin
-    sfmt_avx2_gen_rand_all (sfmt_state, sfmt_mask);
+    sfmt_gen_rand_all (sfmt_state, sfmt_mask);
     sfmt_index := 0;
   end;
 
@@ -396,7 +501,7 @@ begin
   P := PUInt64(sfmt_state);
 
   if sfmt_index >= SFMT_N32 - 1 then begin
-    sfmt_avx2_gen_rand_all (sfmt_state, sfmt_mask);
+    sfmt_gen_rand_all (sfmt_state, sfmt_mask);
     sfmt_index := 0;
   end;
 
@@ -557,6 +662,7 @@ var
   U : T_UInt64_LH32 absolute v;
 begin
   U.HI := U.HI and $001FFFFF; // 0000 0000 0001 1111 1111 1111 1111 1111
+  // Umax = 2^53 - 1 = 9007199254740991
   Result := v * F;
 end;
 
@@ -644,37 +750,20 @@ end;
 
 {
 }
-function SysIntToStr_(const AValue: Integer): string;
+procedure assign_sfmt_gen_rand_all;
 var
-  S : ShortString;
+  F : Integer;
 begin
-  System.STR (AValue, S);
-  Result := string(S);
+  F := sfmt_AV_Flags;
+
+  sfmt_gen_rand_all := sfmt_dummy_gen_rand_all; // dummy function by default
+  if (F and SFMT_AV_FLAG_AVX512) <> 0 then sfmt_gen_rand_all := sfmt_avx512_gen_rand_all else
+  if (F and SFMT_AV_FLAG_AVX2) <> 0 then sfmt_gen_rand_all := sfmt_avx2_gen_rand_all;
 end;
 
-{
-}
-function Verify: Boolean;
-var
-  Smsg : string;
-begin
-  Smsg := '';
-
-  if SFMT_SL1 < 16 then begin
-    Smsg := Smsg +  '[SFMT_SL1:' + SysIntToStr_(SFMT_SL1) + ' < 16] ';
-  end;
-
-  if (SFMT_N and 1) <> 0 then begin
-    Smsg := Smsg +  '[SFMT_N:' + SysIntToStr_(SFMT_N) + ' is ODD] ';
-  end;
-
-  if (SFMT_POS1 and 1) <> 0 then begin
-    Smsg := Smsg +  '[SFMT_POS1:' + SysIntToStr_(SFMT_POS1) + ' is ODD] ';
-  end;
-
-  Result := Smsg = '';
-  if not Result then Assert (false, Smsg);
-end;
+initialization
+  assign_sfmt_gen_rand_all;
 
 {$ENDIF}
 end.
+

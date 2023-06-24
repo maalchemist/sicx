@@ -35,6 +35,43 @@ unit uTest;
 {$IFDEF VER120} {$UNDEF __MXCSR} {$ENDIF} // Delphi 4.0
 {$IFDEF VER130} {$UNDEF __MXCSR} {$ENDIF} // Delphi 5.0
 
+{$UNDEF __SFMT}
+{$UNDEF __SFMT_AVX2}
+{$UNDEF __SFMT_SSE2}
+
+{$DEFINE __SFMT_AVX2}
+{.$DEFINE __SFMT_SSE2}
+
+{$IFDEF VER_LDX11} {$UNDEF __SFMT_AVX2} {$ENDIF} // Delphi 11 required for AVX2/AVX512 instructions
+{$IFDEF VER_LDXE2} {$UNDEF __SFMT_SSE2} {$ENDIF} // Delphi XE2 required for SSE2 instructions
+
+{$IFDEF __SFMT_AVX2} {$DEFINE __SFMT} {$UNDEF __SFMT_SSE2} {$ENDIF}
+{$IFDEF __SFMT_SSE2} {$DEFINE __SFMT} {$UNDEF __SFMT_AVX2} {$ENDIF}
+
+// Example of correct folding
+(*
+{$DEFINE __FOLDING}
+{$IFDEF CPUX64}
+  {$IFDEF __FOLDING}
+    {$REGION}
+    // ...
+    {$ENDREGION}
+    {$REGION}
+    // ...
+    {$ENDREGION}
+  {$ENDIF}
+{$ELSE}
+  {$IFDEF __FOLDING}
+    {$REGION}
+    // ...
+    {$ENDREGION}
+    {$REGION}
+    // ...
+    {$ENDREGION}
+  {$ENDIF}
+{$ENDIF}
+// *)
+
 interface
 
 uses
@@ -381,26 +418,12 @@ implementation
 
 {$R *.dfm}
 
-{$UNDEF __SFMT}
-{$UNDEF __SFMT_SSE2}
-{$UNDEF __SFMT_AVX2}
-
-{.$DEFINE __SFMT_SSE2}
-{$DEFINE __SFMT_AVX2}
-
-{$IFNDEF UNICODE} {$UNDEF __SFMT_SSE2} {$ENDIF}
-{$IFNDEF UNICODE} {$UNDEF __SFMT_AVX2} {$ENDIF}
-{$IFDEF VER_LDX11} {$UNDEF __SFMT_AVX2} {$ENDIF} // min Delphi 11.0 required for AVX2 instructions
-
-{$IFDEF __SFMT_SSE2} {$DEFINE __SFMT} {$ENDIF}
-{$IFDEF __SFMT_AVX2} {$DEFINE __SFMT} {$ENDIF}
-
 uses
   SysUtils, IniFiles, ClipBrd, SICxTable, SICxUDF, SICxFPU, SICxSSE,
   SICxTest, mt19937,
   {$IFDEF __SFMT} sfmt, {$ENDIF}
-  {$IFDEF __SFMT_SSE2} sfmt_sse2, {$ENDIF}
   {$IFDEF __SFMT_AVX2} sfmt_avx2, {$ENDIF}
+  {$IFDEF __SFMT_SSE2} sfmt_sse2, {$ENDIF}
   cordic, msvcrt;
 
 var
@@ -1506,13 +1529,6 @@ begin
 
   asm_test;
 
-  // Delphi 4
-  {
-  BT_DefaultVars.Caption := '•';
-  ac_TEST_sfmt.Caption := 'sfmt • init_gen_rand';
-  ac_TEST_sfmt_a.Caption := 'sfmt • init_by_array';
-  }
-
   (*
   sin_TEST_();
   cos_TEST_();
@@ -1722,6 +1738,8 @@ begin
   S := S + 'AVX' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX) + #13#10;
   S := S + 'AVX2' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX2) + #13#10;
   S := S + 'AVX-512' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX512) + #13#10;
+  S := S + 'AVX-512F' + #09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX512F) + #13#10;
+  S := S + 'AVX-512VL' + #09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_AVX512VL) + #13#10;
   S := S + 'BMI1' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_BMI1) + #13#10;
   S := S + 'BMI2' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_BMI2) + #13#10;
   S := S + 'POPCNT' + #09#09': ' + SSEFlag_(SIC_Config.cpu_flags, SIC_CPU_FLAG_POPCNT) + #13#10;
@@ -5210,8 +5228,16 @@ end;
 
 {
 }
+procedure TmForm.ac_TEST_mt19937_SICxExecute (Sender: TObject);
+begin
+  SICxProcs_mt19937_test (SELF);
+end;
+
+{
+}
 procedure mt19937_test (AOutput: TmForm);
 const
+  S32 = SizeOf(UInt32);
   {$IFDEF CPUX64}
   seeds : array[0..3] of UIntX = ($12345, $23456, $34567, $45678);
   {$ELSE}
@@ -5222,39 +5248,57 @@ var
   Imax : Integer;
   U    : UIntX;
   D    : Double;
+  R    : PUInt32;
+  P    : PUInt32;
 begin
   AOutput.ClearTime;
   AOutput.ED_MultiLine.Lines.Clear;
 
   mt19937.mt19937_seeds (@seeds, 4);
 
-  PerformanceReset (VPData);
   Imax := 1000;
-  for I := 1 to Imax do begin
+  R := GetMemory (Imax * S32);
+  try
+    PerformanceReset (VPData);
     PerformanceEnter (VPData);
-    U := mt19937.mt19937_igen;
+    P := R;
+    for I := 0 to Imax - 1 do begin
+      P^ := mt19937.mt19937_igen;
+      P := PUInt32(PAnsiChar(P) + S32);
+    end;
     PerformanceLeave (VPData);
+    PerformanceDone (VPData, false);
+    AOutput.PrintTime (VPData, Imax);
+    Application.ProcessMessages;
 
-    AOutput.ED_MultiLine.Lines.ADD (Format ('%u', [u]));
+    AOutput.ED_MultiLine.Lines.BeginUpdate;
+    try
+      P := R;
+      for I := 0 to Imax - 1 do begin
+        U := P^;
+        P := PUInt32(PAnsiChar(P) + S32);
+        AOutput.ED_MultiLine.Lines.ADD (Format ('%u', [U]));
+      end;
+    finally
+      AOutput.ED_MultiLine.Lines.EndUpdate;
+    end;
+  finally
+    FreeMemory (R);
   end;
-  PerformanceDone (VPData, false);
-  AOutput.PrintTime (VPData, Imax);
 
-  for I := 1 to 1000 do begin
-    {$IFDEF CPUX64}
-    D := mt19937.mt19937_fgen;
-    {$ELSE}
-    D := mt19937.mt19937_gen0;
-    {$ENDIF}
-    AOutput.ED_MultiLine.Lines.ADD (Format ('%g', [D]));
+  AOutput.ED_MultiLine.Lines.BeginUpdate;
+  try
+    for I := 1 to 1000 do begin
+      {$IFDEF CPUX64}
+      D := mt19937.mt19937_fgen;
+      {$ELSE}
+      D := mt19937.mt19937_gen0;
+      {$ENDIF}
+      AOutput.ED_MultiLine.Lines.ADD (Format ('%g', [D]));
+    end;
+  finally
+    AOutput.ED_MultiLine.Lines.EndUpdate;
   end;
-end;
-
-{
-}
-procedure TmForm.ac_TEST_mt19937_SICxExecute (Sender: TObject);
-begin
-  SICxProcs_mt19937_test (SELF);
 end;
 
 {
@@ -5268,10 +5312,14 @@ end;
 }
 procedure TmForm.ac_TEST_sfmtExecute(Sender: TObject);
 {$IFDEF __SFMT}
+const
+  S32 = SizeOf(UInt32);
 var
   I    : Integer;
   Imax : Integer;
   U    : UInt32;
+  R    : PUInt32;
+  P    : PUInt32;
 begin
   sfmt_init;
   try
@@ -5285,17 +5333,35 @@ begin
 
   sfmt_init_gen_rand (1234);
 
-  PerformanceReset (VPData);
   Imax := 1000;
-  for I := 1 to Imax do begin
+  R := GetMemory (Imax * S32);
+  try
+    PerformanceReset (VPData);
     PerformanceEnter (VPData);
-    U := sfmt_genrand_uint32;
+    P := R;
+    for I := 0 to Imax - 1 do begin
+      P^ := sfmt_genrand_uint32;
+      P := PUInt32(PAnsiChar(P) + S32);
+    end;
     PerformanceLeave (VPData);
+    PerformanceDone (VPData, false);
+    SELF.PrintTime (VPData, Imax);
+    Application.ProcessMessages;
 
-    SELF.ED_MultiLine.Lines.ADD (Format ('%u', [u]));
+    SELF.ED_MultiLine.Lines.BeginUpdate;
+    try
+      P := R;
+      for I := 0 to Imax - 1 do begin
+        U := P^;
+        P := PUInt32(PAnsiChar(P) + S32);
+        SELF.ED_MultiLine.Lines.ADD (Format ('%u', [U]));
+      end;
+    finally
+      SELF.ED_MultiLine.Lines.EndUpdate;
+    end;
+  finally
+    FreeMemory (R);
   end;
-  PerformanceDone (VPData, false);
-  SELF.PrintTime (VPData, Imax);
 
   finally
     sfmt_done;
@@ -5314,11 +5380,14 @@ end;
 procedure TmForm.ac_TEST_sfmt_aExecute(Sender: TObject);
 {$IFDEF __SFMT}
 const
+  S32 = SizeOf(UInt32);
   C : array [0..3] of UInt32 = ($1234, $5678, $9abc, $def0);
 var
   I    : Integer;
   Imax : Integer;
   U    : UInt32;
+  R    : PUInt32;
+  P    : PUInt32;
 begin
   sfmt_init;
   try
@@ -5334,13 +5403,31 @@ begin
 
   PerformanceReset (VPData);
   Imax := 1000;
-  for I := 1 to Imax do begin
+  R := GetMemory (Imax * S32);
+  try
     PerformanceEnter (VPData);
-    U := sfmt_genrand_uint32;
+    P := R;
+    for I := 0 to Imax - 1 do begin
+      P^ := sfmt_genrand_uint32;
+      P := PUInt32(PAnsiChar(P) + S32);
+    end;
     PerformanceLeave (VPData);
 
-    SELF.ED_MultiLine.Lines.ADD (Format ('%u', [u]));
+    SELF.ED_MultiLine.Lines.BeginUpdate;
+    try
+      P := R;
+      for I := 0 to Imax - 1 do begin
+        U := P^;
+        P := PUInt32(PAnsiChar(P) + S32);
+        SELF.ED_MultiLine.Lines.ADD (Format ('%u', [U]));
+      end;
+    finally
+      SELF.ED_MultiLine.Lines.EndUpdate;
+    end;
+  finally
+    FreeMemory (R);
   end;
+
   PerformanceDone (VPData, false);
   SELF.PrintTime (VPData, Imax);
 

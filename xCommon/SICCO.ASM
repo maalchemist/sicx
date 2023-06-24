@@ -334,6 +334,8 @@ proc_map @x3_procs_1p, 3,\
          @@exbi     , @@_exbi_int      , @@exbi.enter     ,\
          @@zebi     , @@_zebi_int      , @@zebi.enter     ,\
          @@yobi     , @@_yobi_int      , @@yobi.enter     ,\
+         @@robi     , @@_robi_int      , @@robi.enter     ,\
+         @@quebi    , @@_quebi_int     , @@quebi.enter    ,\
          @@kibo     , @@_kibo_int      , @@kibo.enter     ,\
          @@mebo     , @@_mebo_int      , @@mebo.enter     ,\
          @@gibo     , @@_gibo_int      , @@gibo.enter     ,\
@@ -342,6 +344,8 @@ proc_map @x3_procs_1p, 3,\
          @@exbo     , @@_exbo_int      , @@exbo.enter     ,\
          @@zebo     , @@_zebo_int      , @@zebo.enter     ,\
          @@yobo     , @@_yobo_int      , @@yobo.enter     ,\
+         @@robo     , @@_robo_int      , @@robo.enter     ,\
+         @@quebo    , @@_quebo_int     , @@quebo.enter    ,\
          @@deca     , @@_deca_int      , @@deca.enter     ,\
          @@hecto    , @@_hecto_int     , @@hecto.enter    ,\
          @@kilo     , @@_kilo_int      , @@kilo.enter     ,\
@@ -352,6 +356,8 @@ proc_map @x3_procs_1p, 3,\
          @@exa      , @@_exa_int       , @@exa.enter      ,\
          @@zetta    , @@_zetta_int     , @@zetta.enter    ,\
          @@yotta    , @@_yotta_int     , @@yotta.enter    ,\
+         @@ronna    , @@_ronna_int     , @@ronna.enter    ,\
+         @@quetta   , @@_quetta_int    , @@quetta.enter   ,\
          @@deci     , @@_deci_int      , @@deci.enter     ,\
          @@centi    , @@_centi_int     , @@centi.enter    ,\
          @@milli    , @@_milli_int     , @@milli.enter    ,\
@@ -361,20 +367,16 @@ proc_map @x3_procs_1p, 3,\
          @@femto    , @@_femto_int     , @@femto.enter    ,\
          @@atto     , @@_atto_int      , @@atto.enter     ,\
          @@zepto    , @@_zepto_int     , @@zepto.enter    ,\
-         @@yocto    , @@_yocto_int     , @@yocto.enter
+         @@yocto    , @@_yocto_int     , @@yocto.enter    ,\
+         @@ronto    , @@_ronto_int     , @@ronto.enter    ,\
+         @@quecto   , @@_quecto_int    , @@quecto.enter
 ;        0            1                  2
 
 proc_map @x3_procs_1p_ir, 3,\
+         @@signbit  , @@signbit.enter  , @@_signbit_reg   ,\
+         @@rsignbit , @@rsignbit.enter , @@_rsignbit_reg  ,\
          @@trunc    , @@trunc.enter    , @@_trunc_reg
 ;        0            1                  2
-macro c
-{
-proc_map @x3_procs_1p_ir, 3,\
-         @@isign    , @@isign.enter    , @@_isign_reg     ,\
-         @@risign   , @@risign.enter   , @@_risign_reg    ,\
-         @@trunc    , @@trunc.enter    , @@_trunc_reg
-;        0            1                  2
-}
 
 proc_map @x3_procs_1p_xr, 3,\
          @@sign     , @@_sign_reg      , @@sign.enter     ,\
